@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'GangwonEduSaeeum_OTFMediumA';
+  src: url('./assets/fonts/GangwonEduSaeeum_OTFMediumA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'KCC-Sonkeechung';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2212@1.0/KCC-Sonkeechung.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-sans: "'Pretendard Variable'", "sans-serif";
+  --font-gs: "GangwonEduSaeeum_OTFMediumA";
+  --font-son: "KCC-Sonkeechung";
+  --light-purple: #e8e4ec;
+
+  --breakpoint-3xl: 1920px;
+
+  --color-avocado-100: oklch(0.99 0 0);
+  --color-avocado-200: oklch(0.98 0.04 113.22);
+  --color-avocado-300: oklch(0.94 0.11 115.03);
+  --color-avocado-400: oklch(0.92 0.19 114.08);
+  --color-avocado-500: oklch(0.84 0.18 117.33);
+  --color-avocado-600: oklch(0.53 0.12 118.34);
+
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ... */
+}
+
+body {
+    @apply font-sans;
+}
+
+/* 패널 기본 */
+.panel {
+    /* border-radius: 18px; */
+    padding: 40px 24px;
+    margin: 0 auto;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* 제목 공통 */
+  .panel h2 {
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  
+  /* 각 현황판별 배경색 / 스타일 */
+  .gate-status {
+    /* background: linear-gradient(to right, #9498F2, #e0f2f1); */
+    background: #456EBF;
+    border: 2px solid #456EBF;
+  }
+  
+  .gate-status h2 {
+    color: #ffffff;
+  }
+  
+  .crime-status {
+    background: linear-gradient(to right, #e3f2fd, #FFF2E6); /* ← 수정된 부분 */
+    border: 2px solid #b3e5fc; /* 동일 톤 유지 */
+  }
+  
+  .crime-status h2 {
+    color: #404040;
+  }
+  
+  /* 카드 기본 */
+  .status-card {
+    width: 4.5rem;
+    border-radius: 10px;
+    background: #ffffffcc;
+    text-align: center;
+    padding-top: 12px;
+    padding-bottom: 10px;
+    border: 1.5px solid #B6C5F2;
+    transition: 0.3s;
+  }
+  
+  .status-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* 등급 레이블 */
+  .label-section {
+    width: 44px;
+    height: 44px;
+    background: var(--color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin: 0 auto 8px;
+    clip-path: polygon(
+      50% 0%,
+      95.11% 34.55%,
+      78.18% 90.45%,
+      21.82% 90.45%,
+      4.89% 34.55%
+    );
+  }
+  
+  /* 개수 텍스트 */
+  .count-section {
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* 오각형 색상 */
+  .status-card.ex { --color: #263238; }
+  .status-card.s  { --color: #b71c1c; }
+  .status-card.a  { --color: #ef6c00; }
+  .status-card.b  { --color: #fbc02d; }
+  .status-card.c  { --color: #388e3c; }
+  .status-card.d  { --color: #90a4ae; }
+
+.writing-mode-vertical {
+    /* 기본값: 모바일에서는 가로 */
+    writing-mode: horizontal-tb;
+  }
+  
+  /* lg 이상일 때만 세로 */
+@media (min-width: 1024px) {
+    .writing-mode-vertical {
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+    }
+  }
