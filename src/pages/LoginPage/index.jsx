@@ -34,7 +34,7 @@ function LoginPage() {
 
           {/* 부제 */}
           <p className="text-center text-sm text-[#435373] mb-10">
-            본 시스템은 고도화된 보안 기술을 적용하고 있습니다.
+            본 시스템은 고도화된 보안 기술을 <p className="lg:inline">적용하고 있습니다.</p>
           </p>
 
           {/* 폼 전체 */}

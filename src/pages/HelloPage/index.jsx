@@ -40,7 +40,7 @@ function HelloPage() {
                 className={`text-sm text-left font-semibold px-4 py-4 transition 
                   ${
                     activeMenu === menu
-                      ? 'border-l-4 border-[#456EBF] text-[#456EBF]'
+                      ? 'border-l-4 border-[#456EBF] text-[#456EBF] rounded-md'
                       : 'text-[#404040] hover:text-[#456EBF]'
                   }`}
               >

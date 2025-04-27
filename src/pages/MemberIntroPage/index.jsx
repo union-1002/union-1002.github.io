@@ -843,7 +843,7 @@ function MemberIntroPage() {
                 className={`text-sm text-left font-semibold px-4 py-4 transition 
                   ${
                     activeMenu === menu
-                      ? 'border-l-4 border-l-[#456EBF] text-[#456EBF]'
+                      ? 'border-l-4 border-l-[#456EBF] text-[#456EBF] rounded-md'
                       : 'text-[#404040] hover:text-[#456EBF]'
                   }`}
               >
@@ -859,7 +859,7 @@ function MemberIntroPage() {
         <div className="flex-1 flex flex-col items-center space-y-8">
 
           {/* 제목 */}
-            <div className="w-full text-left mt-8 mb-6">
+            <div className="w-full text-left mt-8 mb-30">
               <h1 className="text-3xl font-bold text-[#435373] mb-2">
                 직원 소개
               </h1>
@@ -889,8 +889,10 @@ function MemberIntroPage() {
                         <div className="mt-2 text-xs text-gray-700 flex flex-col items-center">
                           {(titles[selected.initials]?.[emp.initials] || [{ text: '-', isSpoiler: false }]).map((title, idx) => (
                             <div
-                              key={idx}
-                              className={`transition cursor-pointer ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler ? '' : 'blur-xs'}`}
+                              key={`${title.text}-${idx}`}
+                              className={`cursor-pointer ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler
+                                ? 'transition-all duration-300 blur-none'
+                                : 'transition-none blur-xs'}`}
                               onClick={() => handleReveal(selected.initials, emp.initials, idx)}
                             >
                               {title.text}

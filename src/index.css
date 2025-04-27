@@ -14,10 +14,26 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'InkLipquid';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'BookkMyungjo-Bd';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
 @theme {
   --font-sans: "'Pretendard Variable'", "sans-serif";
   --font-gs: "GangwonEduSaeeum_OTFMediumA";
   --font-son: "KCC-Sonkeechung";
+  --font-ink: "InkLipquid";
+  --font-book: 'BookkMyungjo-Bd';
   --light-purple: #e8e4ec;
 
   --breakpoint-3xl: 1920px;
