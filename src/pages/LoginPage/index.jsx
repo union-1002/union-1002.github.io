@@ -24,8 +24,8 @@ function LoginPage() {
 
   return (
     <MainLayout>
-      <div className="flex justify-center mt-16 px-8">
-        <div className="w-full max-w-[720px] p-12 bg-white shadow-md">
+      <div className="flex justify-center mt-16 px-4 lg:px-8">
+        <div className="w-full max-w-[720px] p-8 bg-white shadow-md">
 
           {/* 제목 */}
           <h2 className="text-2xl font-bold text-center text-[#456EBF] mb-2">

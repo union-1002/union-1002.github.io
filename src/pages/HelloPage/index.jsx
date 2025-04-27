@@ -18,7 +18,7 @@ function HelloPage() {
   
   return (
     <MainLayout>
-      <div className="flex max-w-7xl mx-auto px-8 mt-8 space-x-8 items-start">
+      <div className="flex max-w-7xl mx-auto px-4 lg:px-8 mt-8 space-x-8 items-start">
         
         {/* 좌측 네비게이션 */}
         <div className="hidden lg:flex flex-col w-60 rounded-md border-[0.5px] border-[#435373]">

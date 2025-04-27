@@ -15,8 +15,8 @@ function MemberStatus({ className, openNoteModal }) {
   if (user.isLoggedIn()) {
     return (
       <div className={className}>
-        <div className="flex">
-          <div className="">
+        <div className="flex flex-col items-center lg:flex-row">
+          <div className="mb-2 lg:mb-0 lg:mr-2">
             <span>
               <button onClick={openNoteModal} className="relative cursor-pointer align-middle">
                 <Mail className="w-4" />
@@ -25,13 +25,15 @@ function MemberStatus({ className, openNoteModal }) {
             </span>&nbsp;
             <span>{user.group}</span>&nbsp;
             <span>{user.name} 님</span> 환영합니다!
-          </div>&nbsp;
+          </div>
+          <div className="">
           <button
             onClick={handleLogout}
             className="text-xs border-[0.5px] border-gray-400 px-2 py-1 rounded flex items-center cursor-pointer"
           >
             로그아웃
           </button>
+          </div>
         </div>
       </div>
     );

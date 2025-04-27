@@ -34,17 +34,6 @@ const groups = [
   ['라', 'F', '루', 'P', '느'],
 ];
 
-const groups_mobile = [
-  ['E', 'N'],
-  ['S', '오'],
-  ['L'],
-  ['M', '테'],
-  ['A', 'I'],
-  ['J'],
-  ['R', 'Y', 'X'],
-  ['라', 'F', '루'],
-  ['P', '느']
-];
 
 const circleColors = {
   "E": "#a4b778",
@@ -832,7 +821,7 @@ function MemberIntroPage() {
 
   return (
     <MainLayout>
-      <div className="flex max-w-7xl mx-auto px-8 mt-8 space-x-8 items-start">
+      <div className="flex max-w-7xl mx-auto px-4 lg:px-8 mt-8 space-x-8 items-start">
         
         {/* 좌측 네비게이션 */}
         <div className="hidden flex-shrink-0  lg:flex flex-col w-60 rounded-md border-[0.5px] border-[#435373]">
@@ -884,7 +873,7 @@ function MemberIntroPage() {
                   const emp = employees.find(e => e.initials === initial);
                   if (!emp) return null;
                   return (
-                    <div key={emp.id} className="flex flex-col items-center" style={{minWidth:"10rem", minHeight:"10rem", alignItems: "center"}}>
+                    <div key={emp.id} className="flex flex-col items-center" style={{minWidth:"9rem", minHeight:"10rem", alignItems: "center"}}>
                       <button
                         onClick={() => setSelected(emp)}
                         className={`w-20 h-20 flex items-center justify-center text-xl font-bold`}
@@ -897,7 +886,7 @@ function MemberIntroPage() {
                         {emp.initials}
                       </button>
                       {selected && selected.initials !== emp.initials && (
-                        <div className="mt-2 text-sm text-gray-700 flex flex-col items-center">
+                        <div className="mt-2 text-xs text-gray-700 flex flex-col items-center">
                           {(titles[selected.initials]?.[emp.initials] || [{ text: '-', isSpoiler: false }]).map((title, idx) => (
                             <div
                               key={idx}
