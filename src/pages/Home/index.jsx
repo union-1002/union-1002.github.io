@@ -5,7 +5,7 @@ import MainLayout from '@/shared/MainLayout';
 function MainPage() {
   return (
     <MainLayout>
-      <div className="max-w-7xl mx-auto px-4 lg:px-8 lg:px-0 mt-8 flex flex-col lg:flex-row ">
+      <div className="max-w-7xl mx-auto px-4 lg:px-0 mt-8 flex flex-col lg:flex-row ">
         {/* 왼쪽 배너 */}
         <div className="w-full lg:w-[635px] mb-8 lg:mb-0 lg:mr-[10px]">
           <BannerSlide />

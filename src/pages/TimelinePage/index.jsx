@@ -55,7 +55,7 @@ function TimelinePage() {
         <div className="flex-1 flex flex-col items-center space-y-8 pb-10">
 
           {/* 제목 */}
-            <div className="w-full text-left mt-8 mb-30">
+            <div className="w-full text-left mt-8 mb-20">
               <h1 className="text-3xl font-bold text-[#435373] mb-2">
                 연혁
               </h1>
@@ -132,7 +132,7 @@ function TimelinePage() {
 
               <div className="relative pl-8 sm:pl-32 pb-12 group">
 
-                <div className="font-ink font-medium text-2xl text-indigo-500 mb-1 sm:mb-0">The Dra...?</div>
+                <div className="font-ink font-medium text-2xl text-indigo-500 mb-1 sm:mb-0">The Dracal</div>
 
                 <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-indigo-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
                     <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-22 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">6년 전 초가을</time>
@@ -190,7 +190,7 @@ function TimelinePage() {
                 <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-indigo-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
                     <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-22 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">4년 전</time>
                     <div className="text-xl font-book text-slate-900">
-                      여기 20살짜리들끼리 싸운대여
+                      결렬
                     </div>
                 </div>
 
@@ -240,7 +240,7 @@ function TimelinePage() {
                 <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-indigo-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
                     <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-22 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">1년 전</time>
                     <div className="text-xl font-book text-slate-900">
-                      우리 동향 사람이에요
+                      체념
                     </div>
                 </div>
 
