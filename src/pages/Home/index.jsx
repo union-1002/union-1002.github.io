@@ -47,7 +47,8 @@ function MainPage() {
                 게이트 발생 제보 →
               </div>
             </div>
-            <div className="flex-1 h-26 bg-[#B6C5F2] flex flex-col items-center justify-center">
+            <Link to='/good' className='cursor-pointer flex-1 h-26 bg-[#B6C5F2] flex flex-col items-center justify-center'>
+            
               {/* 왼쪽 아이콘 */}
               <img
                 src="./images/goodjob.png" 
@@ -58,7 +59,7 @@ function MainPage() {
               <div className="text-sm font-semibold text-center">
                 칭찬합니다 →
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -69,12 +70,12 @@ function MainPage() {
           <div className="grid grid-cols-4 lg:grid-cols-8 gap-6 text-center">
             {[
               { icon: "./images/howto.png", label: "사이트 이용 안내", link: "/siteIntro" },
-              { icon: "./images/goodmember.png", label: "이달의 우수 사원" },
-              { icon: "./images/recruit.png", label: "채용 소식" },
-              { icon: "./images/group.png", label: "부서 소개" },
-              { icon: "./images/orga.png", label: "직원 소개" },
-              { icon: "./images/calendar.png", label: "일정" },
-              { icon: "./images/goodexam.png", label: "우수 민원 사례" },
+              { icon: "./images/goodmember.png", label: "이달의 우수 사원", link: "/good" },
+              { icon: "./images/recruit.png", label: "채용 소식", link: "/career" },
+              { icon: "./images/group.png", label: "부서 소개", link: "/teamIntro" },
+              { icon: "./images/orga.png", label: "직원 소개", link: "/memberIntro" },
+              { icon: "./images/calendar.png", label: "일정", link: "/schedule" },
+              { icon: "./images/goodexam.png", label: "우수 민원 사례", link: "/minwonList" },
               { icon: "./images/well.png", label: "직원 복지" },
             ].map((item, idx) => (
               <div key={idx} className="flex flex-col items-center">

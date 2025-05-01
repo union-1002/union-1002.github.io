@@ -9,7 +9,7 @@ function SchedulePage() {
         title="일정"
         sidebar={MENU_PROPS['유니온 소식']}
       >
-        내용
+        일정 준비 중입니다.
       </PageLayout>
     </MainLayout>
   );

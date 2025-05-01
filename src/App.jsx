@@ -15,6 +15,7 @@ import MinwonListPage from './pages/MinwonListPage';
 import MinwonSubmitPage from './pages/MinwonSubmitPage';
 import SitePage from './pages/SitePage';
 import HackerLoginPage from './pages/HackerLoginPage';
+import GoodPage from './pages/GoodPage';
 
 function AppProvider({ children }) {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/notice" element={<NoticePage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/career" element={<CareerPage />} />
+        <Route path="/good" element={<GoodPage />} />
         <Route path="/nojo" element={<NojoPage />} />
         <Route path="/minwonList" element={<MinwonListPage />} />
         <Route path="/minwonSubmit" element={<MinwonSubmitPage />} />

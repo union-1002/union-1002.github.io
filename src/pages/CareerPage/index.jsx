@@ -9,7 +9,7 @@ function CareerPage() {
         title="채용"
         sidebar={MENU_PROPS['유니온 소식']}
       >
-        내용
+        채용 준비 중입니다.
       </PageLayout>
     </MainLayout>
   );

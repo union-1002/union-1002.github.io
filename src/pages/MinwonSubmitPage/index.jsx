@@ -9,7 +9,7 @@ function MinwonSubmitPage() {
         title="민원 신청"
         sidebar={MENU_PROPS['시민 마당']}
       >
-        내용
+        민원 신청 준비 중입니다.
       </PageLayout>
     </MainLayout>
   );

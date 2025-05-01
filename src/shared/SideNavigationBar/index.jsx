@@ -21,6 +21,7 @@ export const MENU_PROPS = {
   '직원 마당': {
     title: '직원 마당',
     links: {
+      "칭찬합니다": "/good",
       "노동조합": "/nojo",
     },
   },

@@ -9,7 +9,7 @@ function MinwonListPage() {
         title="민원 사례"
         sidebar={MENU_PROPS['시민 마당']}
       >
-        내용
+        민원 사례 준비 중입니다.
       </PageLayout>
     </MainLayout>
   );
