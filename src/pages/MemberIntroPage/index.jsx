@@ -17,14 +17,14 @@ const employees = [
   { id: 9, initials: 'A', name: 'A', position: '울프독' },
   { id: 10,initials: 'I', name: 'I', position: '울프독' },
   { id: 11, initials:'J', name: 'J', position: '드라칼'},
-  { id: 12, initials:'R', name: 'R', position: '언더그라운드' },
-  { id: 13, initials: 'Y', name: 'Y', position: '언더그라운드' },
-  { id: 14, initials: 'X', name: 'X', position: '언더그라운드' },
-  { id: 15, initials: '라', name: '라멘타', position: '그림리퍼' },
-  { id: 16, initials: 'F', name: '하피', position: '그림리퍼' },
-  { id: 17, initials: '루', name: '루두스', position: '그림리퍼' },
-  { id: 18, initials: 'P', name: '뽀삐', position: '그림리퍼' },
-  { id: 19, initials: '느', name: '느베야', position: '그림리퍼' },
+  { id: 12, initials:'R', name: 'R', position: '언더 그라운드' },
+  { id: 13, initials: 'Y', name: 'Y', position: '언더 그라운드' },
+  { id: 14, initials: 'X', name: 'X', position: '언더 그라운드' },
+  { id: 15, initials: '라', name: '라멘타', position: '그림 리퍼' },
+  { id: 16, initials: 'F', name: '하피', position: '?' },
+  { id: 17, initials: '루', name: '루두스', position: '그림 리퍼' },
+  { id: 18, initials: 'P', name: '뽀삐', position: '그림 리퍼' },
+  { id: 19, initials: '느', name: '느베야', position: '그림 리퍼' },
 ];
 
 const groups = [
