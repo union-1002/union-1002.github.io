@@ -1271,7 +1271,7 @@ function MemberIntroPage() {
             <h2 className="text-2xl font-bold mb-2">{selected.name}</h2>
             <p className="text-lg text-gray-700 mb-6">{selected.position}</p>
 
-            <div className="grid grid-cols-2 max-w-lg mx-auto text-left px-4">
+            <div className="grid grid-cols-2 lg:max-w-lg mx-auto text-left">
               <div className="border border-gray-300 p-4">
                 <p className="text-xs text-gray-500 mb-1">생일</p>
                 <p className="text-sm font-medium">{selected.birthday}</p>
