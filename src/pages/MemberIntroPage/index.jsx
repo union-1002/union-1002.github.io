@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
 import MainLayout from '@/shared/MainLayout';
+import PageLayout from '@/shared/PageLayout';
+import { MENU_PROPS } from '@/shared/SideNavigationBar';
 
 
 
@@ -1181,107 +1182,63 @@ function MemberIntroPage() {
 
   return (
     <MainLayout>
-      <div className="flex max-w-7xl mx-auto px-4 lg:px-8 mt-8 space-x-8 items-start">
-        
-        {/* 좌측 네비게이션 */}
-        <div className="hidden flex-shrink-0  lg:flex flex-col w-60 rounded-md border-[0.5px] border-[#435373]">
-
-          {/* 대제목 */}
-          <div className=" bg-[#435373] h-40 flex items-center justify-center">
-            <h2 className="text-[#ffffff] font-bold text-lg text-center">
-              유니온 소개
-            </h2>
-          </div>
-
-          {/* 소메뉴 */}
-          <div className="flex flex-col divide-y divide-gray-300">
-            {subMenus.map((menu, idx) => (
-              <Link
-                key={idx}
-                to={menuLinks[menu] || "/"}
-                onClick={() => setActiveMenu(menu)}
-                className={`text-sm text-left font-semibold px-4 py-4 transition 
-                  ${
-                    activeMenu === menu
-                      ? 'border-l-4 border-l-[#456EBF] text-[#456EBF] rounded-md'
-                      : 'text-[#404040] hover:text-[#456EBF]'
-                  }`}
-              >
-                {menu}
-              </Link>
-            ))}
-          </div>
-
-        </div>
-
-
-        {/* 본문 */}
-        <div className="flex-1 flex flex-col items-center space-y-8">
-
-          {/* 제목 */}
-            <div className="w-full text-left mt-8 mb-20">
-              <h1 className="text-3xl font-bold text-[#435373] mb-2">
-                직원 소개
-              </h1>
-              <div className="w-full h-0.5 bg-[#435373]"></div>
-            </div>
-
-            <div className="flex flex-col items-center space-y-4 w-full">
-                {groups.map((row, rowIndex) => (
-              <div key={rowIndex} className="flex justify-center flex-wrap max-w-4xl w-full">
-                {row.map((initial) => {
-                  const emp = employees.find(e => e.initials === initial);
-                  if (!emp) return null;
-                  return (
-                    <div key={emp.id} className="flex flex-col items-center" style={{minWidth:"9rem", minHeight:"10rem", alignItems: "center"}}>
-                      <button
-                        onClick={() => setSelected(emp)}
-                        className={`w-20 h-20 flex items-center justify-center text-xl font-bold`}
-                        style={{
-                          backgroundColor: circleColors[initial],
-                          border: selected?.initials === initial ? `3px solid ${borderColors[initial]}` : "none",
-                          borderRadius: "9999px",
-                        }}
-                      >
-                        {emp.initials}
-                      </button>
-                      {selected && selected.initials !== emp.initials && (
-                        <div className="mt-2 text-xs text-gray-700 flex flex-col items-center">
-                          {(titles[selected.initials]?.[emp.initials] || [{ text: '-', isSpoiler: false }]).map((title, idx) => (
-                            <div
-                              key={`${title.text}-${idx}`}
-                              className={`cursor-pointer ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler
-                                ? 'transition-all duration-300 blur-none'
-                                : 'transition-none blur-xs'}`}
-                              onClick={() => handleReveal(selected.initials, emp.initials, idx)}
-                            >
-                              {title.text}
-                            </div>
-                          ))}
+      <PageLayout
+        title="직원 소개"
+        sidebar={MENU_PROPS['유니온 소개']}
+      >
+        <div className="flex flex-col items-center space-y-4 w-full">
+            {groups.map((row, rowIndex) => (
+          <div key={rowIndex} className="flex justify-center flex-wrap max-w-4xl w-full">
+            {row.map((initial) => {
+              const emp = employees.find(e => e.initials === initial);
+              if (!emp) return null;
+              return (
+                <div key={emp.id} className="flex flex-col items-center" style={{minWidth:"9rem", minHeight:"10rem", alignItems: "center"}}>
+                  <button
+                    onClick={() => setSelected(emp)}
+                    className={`w-20 h-20 flex items-center justify-center text-xl font-bold`}
+                    style={{
+                      backgroundColor: circleColors[initial],
+                      border: selected?.initials === initial ? `3px solid ${borderColors[initial]}` : "none",
+                      borderRadius: "9999px",
+                    }}
+                  >
+                    {emp.initials}
+                  </button>
+                  {selected && selected.initials !== emp.initials && (
+                    <div className="mt-2 text-xs text-gray-700 flex flex-col items-center">
+                      {(titles[selected.initials]?.[emp.initials] || [{ text: '-', isSpoiler: false }]).map((title, idx) => (
+                        <div
+                          key={`${title.text}-${idx}`}
+                          className={`cursor-pointer ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler
+                            ? 'transition-all duration-300 blur-none'
+                            : 'transition-none blur-xs'}`}
+                          onClick={() => handleReveal(selected.initials, emp.initials, idx)}
+                        >
+                          {title.text}
                         </div>
-                      )}
+                      ))}
                     </div>
-                  );
-                })}
-              </div>
-            ))}
-            
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        ))}
+        
 
-
-            </div>
-
-
-
-          {/* 선택한 직원 정보 출력 */}
-          {selected && (
-            <div className="mt-12 text-center">
-              <h2 className="text-2xl font-bold mb-2">{selected.name}</h2>
-              <p className="text-lg text-gray-700">{selected.position}</p>
-            </div>
-          )}
 
         </div>
-      </div>
+
+        {/* 선택한 직원 정보 출력 */}
+        {selected && (
+          <div className="mt-12 text-center">
+            <h2 className="text-2xl font-bold mb-2">{selected.name}</h2>
+            <p className="text-lg text-gray-700">{selected.position}</p>
+          </div>
+        )}
+
+      </PageLayout>
     </MainLayout>
   );
 }

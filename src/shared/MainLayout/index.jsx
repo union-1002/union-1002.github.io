@@ -28,7 +28,7 @@ const MainLayout = ({ children }) => {
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-0 lg:px-8">
           <div className="flex text-base">
             <button className="px-4 py-2 flex items-center lg:border-l-[0.5px] border-gray-400 cursor-pointer">조직도 안내</button>
-            <button className="px-4 py-2 flex items-center border-l-[0.5px] border-gray-400 cursor-pointer">민원 바로가기</button>
+            <Link to="https://spin-spin.com/r0bin?tab=1" target='_blank'><button className="px-4 py-2 flex items-center border-l-[0.5px] border-gray-400 cursor-pointer">민원 바로가기</button></Link>
             <Link to="https://flossy-divan-9fd.notion.site/Star-Rain-1b3c22059ac480acbf02c1449aa8a1b7" target='_blank'><button className="px-4 py-2 flex items-center border-l-[0.5px] lg:border-r-[0.5px] border-gray-400 cursor-pointer">정보공개포털</button></Link>
           </div>
           <MemberStatus className="hidden lg:block" openNoteModal={toggleNoteModal} />

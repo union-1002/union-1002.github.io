@@ -23,8 +23,10 @@ function MemberStatus({ className, openNoteModal }) {
                 {user.hasNewNotes && <span className="absolute top-0 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white" />}
               </button>
             </span>&nbsp;
-            <span>{user.group}</span>&nbsp;
-            <span>{user.name} 님</span> 환영합니다!
+            { user.group === '새붉은 재앙'
+              ? (<span>새붉은 재앙의 자녀 {user.name} 님 환영합니다!</span>)
+              : (<span>{user.group} {user.name} 님 환영합니다!</span>)
+            }
           </div>
           <div className="">
           <button

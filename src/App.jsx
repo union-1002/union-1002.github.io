@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router';
+import { UserProvider } from './shared/user';
 import Home from './pages/Home';
 import About from './pages/About';
 import LoginPage from './pages/LoginPage';
@@ -12,7 +13,8 @@ import CareerPage from './pages/CareerPage';
 import NojoPage from './pages/NojoPage';
 import MinwonListPage from './pages/MinwonListPage';
 import MinwonSubmitPage from './pages/MinwonSubmitPage';
-import { UserProvider } from './shared/user';
+import SitePage from './pages/SitePage';
+import HackerLoginPage from './pages/HackerLoginPage';
 
 function AppProvider({ children }) {
   return (
@@ -29,6 +31,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/hackerLogin" element={<HackerLoginPage />} />
         <Route path="/hello" element={<HelloPage />} />
         <Route path="/timeline" element={<TimelinePage />} />
         <Route path="/teamIntro" element={<TeamIntroPage />} />
@@ -39,6 +42,7 @@ function App() {
         <Route path="/nojo" element={<NojoPage />} />
         <Route path="/minwonList" element={<MinwonListPage />} />
         <Route path="/minwonSubmit" element={<MinwonSubmitPage />} />
+        <Route path="/siteIntro" element={<SitePage />} />
       </Routes>
     </AppProvider>
   );

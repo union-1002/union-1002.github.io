@@ -1,6 +1,7 @@
 import React from 'react';
 import BannerSlide from './components/BannerSlide';
 import MainLayout from '@/shared/MainLayout';
+import { Link } from 'react-router';
 
 function MainPage() {
   return (
@@ -37,7 +38,7 @@ function MainPage() {
             <div className="flex-1 h-26 bg-[#B6C5F2] flex flex-col items-center justify-center">
               {/* 왼쪽 아이콘 */}
               <img
-                src="./images/phonecall.png" // ← 이미지 경로 맞게 바꿔!
+                src="./images/phonecall.png" 
                 alt="Crime Report"
                 className="w-16 h-16 object-contain mb-4"
               />
@@ -49,7 +50,7 @@ function MainPage() {
             <div className="flex-1 h-26 bg-[#B6C5F2] flex flex-col items-center justify-center">
               {/* 왼쪽 아이콘 */}
               <img
-                src="./images/goodjob.png" // ← 이미지 경로 맞게 바꿔!
+                src="./images/goodjob.png" 
                 alt="Crime Report"
                 className="w-16 h-16 object-contain mb-4"
               />
@@ -67,7 +68,7 @@ function MainPage() {
           {/* 하단 내용 */}
           <div className="grid grid-cols-4 lg:grid-cols-8 gap-6 text-center">
             {[
-              { icon: "./images/howto.png", label: "사이트 이용 안내" },
+              { icon: "./images/howto.png", label: "사이트 이용 안내", link: "/siteIntro" },
               { icon: "./images/goodmember.png", label: "이달의 우수 사원" },
               { icon: "./images/recruit.png", label: "채용 소식" },
               { icon: "./images/group.png", label: "부서 소개" },
@@ -77,8 +78,10 @@ function MainPage() {
               { icon: "./images/well.png", label: "직원 복지" },
             ].map((item, idx) => (
               <div key={idx} className="flex flex-col items-center">
-                <img src={item.icon} alt={item.label} className="w-12 h-12 mb-2 object-contain" />
-                <div className="text-sm font-medium">{item.label}</div>
+                <Link to={item.link} key={idx} className="flex flex-col items-center cursor-pointer">
+                  <img src={item.icon} alt={item.label} className="w-12 h-12 mb-2 object-contain" />
+                  <div className="text-sm font-medium">{item.label}</div>
+                </Link>
               </div>
             ))}
 

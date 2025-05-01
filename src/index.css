@@ -28,12 +28,21 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'KOTRA_SONGEULSSI';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10-21@1.0/KOTRA_SONGEULSSI.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme {
   --font-sans: "'Pretendard Variable'", "sans-serif";
   --font-gs: "GangwonEduSaeeum_OTFMediumA";
   --font-son: "KCC-Sonkeechung";
   --font-ink: "InkLipquid";
   --font-book: 'BookkMyungjo-Bd';
+  --font-song: 'KOTRA_SONGEULSSI';
+  
   --light-purple: #e8e4ec;
 
   --breakpoint-3xl: 1920px;

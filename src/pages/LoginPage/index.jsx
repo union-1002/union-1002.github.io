@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { useUser } from '@/shared/user';
 import MainLayout from '@/shared/MainLayout';
 
@@ -34,7 +34,7 @@ function LoginPage() {
 
           {/* 부제 */}
           <p className="text-center text-sm text-[#435373] mb-10">
-            본 시스템은 고도화된 보안 기술을 <p className="lg:inline">적용하고 있습니다.</p>
+            본 시스템은 고도화된 <Link to="/hackerLogin">보안 기술</Link>을 <p className="lg:inline">적용하고 있습니다.</p>
           </p>
 
           {/* 폼 전체 */}
@@ -76,14 +76,14 @@ function LoginPage() {
 
                   <button
                     type="button"
-                    onClick={() => setSelectedDept("언더그라운드")}
+                    onClick={() => setSelectedDept("언더 그라운드")}
                     className={`px-4 py-3 border border-[#456EBF] text-sm transition ${
-                      selectedDept === "언더그라운드"
+                      selectedDept === "언더 그라운드"
                         ? "bg-[#456EBF] text-white opacity-100"
                         : "bg-white opacity-0 hover:opacity-100 hover:text-white hover:bg-[#456EBF]"
                     }`}
                   >
-                    언더그라운드
+                    언더 그라운드
                   </button>
                 </div>
               </div>

@@ -137,7 +137,7 @@ function useMails(user) {
           ),
         },
       ],
-      언더그라운드: [
+      '언더 그라운드': [
         {
           from: 'R',
           title: '정기 집합 건',
