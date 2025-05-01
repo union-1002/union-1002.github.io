@@ -10,11 +10,11 @@ function NoticePage() {
         title="공지사항"
         sidebar={MENU_PROPS['유니온 소식']}
       >
-        <div className="grid grid-cols-12 text-sm font-semibold text-gray-700 border-b border-gray-400 pb-4">
+        <div className="grid grid-cols-10 lg:grid-cols-12 text-sm font-semibold text-gray-700 border-b border-gray-400 pb-4">
           <div className="col-span-1 text-center">번호</div>
           <div className="col-span-7">제목</div>
           <div className="col-span-2 text-center">작성자</div>
-          <div className="col-span-2 text-center">작성일</div>
+          <div className="hidden lg:block col-span-2 text-center">작성일</div>
         </div>
 
         {/* 게시글 목록 */}
@@ -33,12 +33,12 @@ function NoticePage() {
             key={post.id}
             to={`/${post.link}`}
             // to={`/posts/${post.id}`}
-            className="grid grid-cols-12 items-center text-sm text-gray-800 hover:bg-gray-100 py-4 border-b border-gray-200 transition"
+            className="grid grid-cols-10 lg:grid-cols-12 items-center text-sm text-gray-800 hover:bg-gray-100 py-4 border-b border-gray-200 transition"
           >
             <div className="col-span-1 text-center">{post.id}</div>
             <div className="col-span-7 truncate text-left text-[#1a202c] hover:underline">{post.title}</div>
             <div className="col-span-2 text-center">{post.author}</div>
-            <div className="col-span-2 text-center">{post.date}</div>
+            <div className="col-span-2 text-center hidden lg:block">{post.date}</div>
           </Link>
         ))}
       </PageLayout>

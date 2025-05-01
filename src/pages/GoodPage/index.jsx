@@ -16,7 +16,7 @@ function GoodPage() {
     {
       id: 6,
       author: "F",
-      text: "왜 내 아이디 아직 살아있어?ㅋㅋ",
+      text: "왜 내 아이디 아직 살아있어?ㅋㅋ 죽일거면 제대로 죽였어야지",
       replies: [
       ],
     },
@@ -71,10 +71,10 @@ function GoodPage() {
         title="칭찬합니다"
         sidebar={MENU_PROPS['직원 마당']}
       >
-        <div className="grid grid-cols-10 text-sm font-semibold text-gray-700 border-b border-gray-400 pb-4">
-          <div className="col-span-1 text-center">번호</div>
-          <div className="col-span-1 text-center">작성자</div>
-          <div className="col-span-8 pl-8">내용</div>
+        <div className="grid grid-cols-12 lg:grid-cols-10 text-sm font-semibold text-gray-700 border-b border-gray-400 pb-4">
+          <div className="col-span-2 lg:col-span-1 text-center">번호</div>
+          <div className="col-span-2 lg:col-span-1 text-center">작성자</div>
+          <div className="col-span-8 lg:col-span-8 text-center lg:text-left lg:pl-8">내용</div>
         </div>
 
         {/* 게시글 목록 */}
@@ -87,18 +87,18 @@ function GoodPage() {
           >
             {/* 메인 글 */}
             
-            <div className="grid grid-cols-10 items-start text-sm text-gray-800 py-4 hover:bg-gray-50 transition">
-              <div className="col-span-1 text-center">{post.id}</div>
-              <div className="col-span-1 text-center font-medium text-[#1a202c]">{post.author}</div>
-              <div className="col-span-8 pl-8">{typeof post.text === "function" ? post.text(user) : post.text}</div>
+            <div className="grid grid-cols-12 lg:grid-cols-10 items-start text-sm text-gray-800 py-4 hover:bg-gray-50 transition">
+              <div className="col-span-2 lg:col-span-1 text-center">{post.id}</div>
+              <div className="col-span-2 lg:col-span-1 text-center font-medium text-[#1a202c]">{post.author}</div>
+              <div className="col-span-8 lg:col-span-8 pl-8">{typeof post.text === "function" ? post.text(user) : post.text}</div>
             </div>
         
             {/* 답글들 */}
             {post.replies.map((reply) => (
-              <div key={reply.id} className="grid grid-cols-10 items-start text-sm text-gray-600 border-t border-gray-200 py-2">
-                <div className="col-span-1 text-center"></div>
-                <div className="col-span-1 text-center">{reply.author}</div>
-                <div className="col-span-8 pl-8">↪ {reply.text}</div>
+              <div key={reply.id} className="grid grid-cols-12  lg:grid-cols-10 items-start text-sm text-gray-600 border-t border-gray-200 py-2">
+                <div className="col-span-2 lg:col-span-1 text-center"></div>
+                <div className="col-span-2 lg:col-span-1 text-center">{reply.author}</div>
+                <div className="col-span-8 lg:col-span-8 pl-8">↪ {reply.text}</div>
               </div>
             ))}
           </div>
