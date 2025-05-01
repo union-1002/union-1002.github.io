@@ -5,19 +5,62 @@ import { useUser } from '@/shared/user';
 
 function GoodPage() {
   const user = useUser();
+
+  function hasFinalConsonant(korChar) {
+    const code = korChar.charCodeAt(korChar.length - 1);
+    const base = 0xac00;
+    const diff = code - base;
+    return diff >= 0 && diff % 28 !== 0;
+  }
+
   const posts = [
     {
-      id: 7,
+      id: 10,
+      author: "익명",
+      text: (user) => {
+        const name = user.name ?? "예쁜이";
+        const group = user.group === "새붉은 재앙" ? "" : user.group ?? "";
+        const 조사 = hasFinalConsonant(name) ? "은" : "는";
+        return `${group} ${name}${조사} 내꺼다.`;
+      },
+      replies: [
+        { id: 11, author: "테리", text: "ㄴㄴ 내꺼" },
+        { id: 11, author: "N", text: "글 내려 학생" },
+      ],
+    },
+    {
+      id: 9,
+      author: "익명",
+      text: "님들 Y씨 홈파티 초대받아봄? 레전드;",
+      replies: [
+        { id: 11, author: "S", text: "저 가보고 싶어요!!" },
+        { id: 11, author: "Y", text: "부족함 없이 준비하겠습니다." },
+      ],
+    },
+    {
+      id: 8,
       author: "L",
       text: (user) => `저랑 매일 같이 게임해줘서 고마워요.... ${user.name ?? '내 영웅'}님`,
       replies: [
       ],
     },
     {
-      id: 6,
+      id: 7,
       author: "F",
       text: "왜 내 아이디 아직 살아있어?ㅋㅋ 죽일거면 제대로 죽였어야지",
       replies: [
+        { id: 11, author: "R", text: "관리자 뭐합니까? 이 계정 안 자르고." },
+        { id: 11, author: "F", text: "ㅋㅋ찔려?" },
+      ],
+    },
+    {
+      id: 6,
+      author: "A",
+      text: "도버만 개 짜증남",
+      replies: [
+        { id: 11, author: "E", text: "'칭찬' 게시판일세." },
+        { id: 11, author: "F", text: "왜~ 사랑해줘라" },
+        { id: 11, author: "H", text: "사이 좋게 지내라 인마들아." },
       ],
     },
     {
@@ -89,7 +132,7 @@ function GoodPage() {
             
             <div className="grid grid-cols-12 lg:grid-cols-10 items-start text-sm text-gray-800 py-4 hover:bg-gray-50 transition">
               <div className="col-span-2 lg:col-span-1 text-center">{post.id}</div>
-              <div className="col-span-2 lg:col-span-1 text-center font-medium text-[#1a202c]">{post.author}</div>
+              <div className="col-span-2 lg:col-span-1 text-center font-medium">{post.author}</div>
               <div className="col-span-8 lg:col-span-8 pl-8">{typeof post.text === "function" ? post.text(user) : post.text}</div>
             </div>
         

@@ -70,13 +70,13 @@ function MainPage() {
           <div className="grid grid-cols-4 lg:grid-cols-8 gap-6 text-center">
             {[
               { icon: "./images/howto.png", label: "사이트 이용 안내", link: "/siteIntro" },
-              { icon: "./images/goodmember.png", label: "이달의 우수 사원", link: "/good" },
+              { icon: "./images/goodmember.png", label: "이달의 우수 사원", link: "/monthlyMember" },
               { icon: "./images/recruit.png", label: "채용 소식", link: "/career" },
               { icon: "./images/group.png", label: "부서 소개", link: "/teamIntro" },
               { icon: "./images/orga.png", label: "직원 소개", link: "/memberIntro" },
               { icon: "./images/calendar.png", label: "일정", link: "/schedule" },
               { icon: "./images/goodexam.png", label: "우수 민원 사례", link: "/minwonList" },
-              { icon: "./images/well.png", label: "직원 복지" },
+              { icon: "./images/well.png", label: "직원 복지", link: "/wellfare" },
             ].map((item, idx) => (
               <div key={idx} className="flex flex-col items-center">
                 <Link to={item.link} key={idx} className="flex flex-col items-center cursor-pointer">

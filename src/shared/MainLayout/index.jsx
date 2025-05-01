@@ -107,6 +107,7 @@ const MainLayout = ({ children }) => {
 
               {/* 드롭다운 메뉴 */}
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 hidden group-hover:flex flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center">
+                <Link to="/wellfare" className="py-1 hover:bg-[var(--light-purple)] rounded">직원 복지</Link>
                 <Link to="/good" className="py-1 hover:bg-[var(--light-purple)] rounded">칭찬합니다</Link>
                 <Link to="/nojo" className="py-1 hover:bg-[var(--light-purple)] rounded">노동조합</Link>
               </div>
@@ -154,6 +155,7 @@ const MainLayout = ({ children }) => {
                 {/* 직원 마당 */}
                 <div className="flex flex-col items-center w-full">
                   <div className="font-bold mb-2">직원 마당</div>
+                  <Link to="/wellfare" className="py-1 hover:bg-gray-100 w-full text-center rounded">직원 복지</Link>
                   <Link to="/good" className="py-1 hover:bg-gray-100 w-full text-center rounded">칭찬합니다</Link>
                   <Link to="/nojo" className="py-1 hover:bg-gray-100 w-full text-center rounded">노동조합</Link>
                 </div>

@@ -19,14 +19,14 @@ function NoticePage() {
 
         {/* 게시글 목록 */}
         {[
-          { link: "notice", id: 9, title: "이달의 우수 사원", author: "이글아이", date: "2025.05.02" },
+          { link: "monthlyMember", id: 9, title: "이달의 우수 사원", author: "이글아이", date: "2025.05.02" },
           { link: "notice", id: 8, title: "인사 이동 공지", author: "이글아이", date: "2025.05.01" },
           { link: "notice", id: 7, title: "상반기 신입 사원 오리엔테이션", author: "드라칼", date: "2025.04.30" },
           { link: "notice", id: 6, title: "1분기 게이트 현황 공식 발표", author: "헌터즈", date: "2025.04.30" },
           { link: "notice", id: 5, title: "울프독 합동 장례식 배차 공지", author: "울프독", date: "2025.04.29" },
           { link: "notice", id: 4, title: "유니온 어린이집 원아 모집", author: "이글아이", date: "2025.04.28" },
           { link: "siteintro", id: 3, title: "유니온 사이트 안내", author: "이글아이", date: "2025.04.28" },
-          { link: "notice", id: 2, title: "5월 단체 상담 프로그램 모집", author: "상담센터", date: "2025.04.25" },
+          { link: "notice", id: 2, title: "5월 단체 상담 프로그램 모집", author: "심리센터", date: "2025.04.25" },
           { link: "notice", id: 1, title: "서버 점검 일정 안내 (5/1)", author: "이글아이", date: "2025.04.20" },
         ].map((post) => (
           <Link

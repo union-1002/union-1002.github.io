@@ -14,7 +14,7 @@ function LoginPage() {
     e.preventDefault();
 
     if (!username || !selectedDept) {
-      alert('이름과 부서를 모두 입력해주세요!');
+      alert('이름과 부서를 모두 입력해주세요.');
       return;
     }
 
@@ -50,6 +50,7 @@ function LoginPage() {
                   type="text"
                   placeholder="이름을 입력하세요"
                   value={username}
+                  maxLength={6}
                   onChange={(e) => setUsername(e.target.value)}
                   className="w-full px-4 py-3 border border-[#456EBF] focus:outline-none focus:ring-2 focus:ring-[#456EBF] text-base"
                 />

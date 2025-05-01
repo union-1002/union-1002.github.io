@@ -6,7 +6,7 @@ function PageLayout({ title, sidebar, children }) {
       {sidebar && <SideNavigationBar {...sidebar} />}
 
       {/* 본문 */}
-      <div className="flex-1 flex flex-col items-center space-y-8 pb-10">
+      <div className="flex-1 flex flex-col items-center space-y-8 mb-20">
 
         {/* 제목 */}
           <div className="w-full text-left mt-8 mb-20">

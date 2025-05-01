@@ -16,6 +16,8 @@ import MinwonSubmitPage from './pages/MinwonSubmitPage';
 import SitePage from './pages/SitePage';
 import HackerLoginPage from './pages/HackerLoginPage';
 import GoodPage from './pages/GoodPage';
+import WellPage from './pages/WellPage';
+import MonthPage from './pages/MonthPage';
 
 function AppProvider({ children }) {
   return (
@@ -40,11 +42,13 @@ function App() {
         <Route path="/notice" element={<NoticePage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/career" element={<CareerPage />} />
+        <Route path="/wellfare" element={<WellPage/>} />
         <Route path="/good" element={<GoodPage />} />
         <Route path="/nojo" element={<NojoPage />} />
         <Route path="/minwonList" element={<MinwonListPage />} />
         <Route path="/minwonSubmit" element={<MinwonSubmitPage />} />
         <Route path="/siteIntro" element={<SitePage />} />
+        <Route path="/monthlyMember" element={<MonthPage/>} />
       </Routes>
     </AppProvider>
   );

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MainLayout from '@/shared/MainLayout';
 import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
@@ -6,25 +6,25 @@ import { MENU_PROPS } from '@/shared/SideNavigationBar';
 
 
 const employees = [
-  { id: 1, initials: 'E', name: 'E', position: '헌터즈' },
-  { id: 2, initials: 'N', name: 'N', position: '헌터즈' },
-  { id: 3, initials: 'S', name: 'S', position: '헌터즈' },
-  { id: 4, initials: '오', name: '오르티', position: '헌터즈' },
-  { id: 5, initials: 'H', name: 'H', position: '이글아이'},
-  { id: 6, initials: 'L', name: 'L', position: '이글아이'},
-  { id: 7, initials: 'M', name: 'M', position: '울프독' },
-  { id: 8, initials: '테', name: '테리 도버만', position: '울프독' },
-  { id: 9, initials: 'A', name: 'A', position: '울프독' },
-  { id: 10,initials: 'I', name: 'I', position: '울프독' },
-  { id: 11, initials:'J', name: 'J', position: '드라칼'},
-  { id: 12, initials:'R', name: 'R', position: '언더 그라운드' },
-  { id: 13, initials: 'Y', name: 'Y', position: '언더 그라운드' },
-  { id: 14, initials: 'X', name: 'X', position: '언더 그라운드' },
-  { id: 15, initials: '라', name: '라멘타', position: '그림 리퍼' },
-  { id: 16, initials: 'F', name: '하피', position: '?' },
-  { id: 17, initials: '루', name: '루두스', position: '그림 리퍼' },
-  { id: 18, initials: 'P', name: '뽀삐', position: '그림 리퍼' },
-  { id: 19, initials: '느', name: '느베야', position: '그림 리퍼' },
+  { id: 1, initials: 'E', name: 'E', position: '헌터즈 · 수호자', birthday:'4/21', age: '41', height: '192', gen: '1', fullname:'에반 하워드 브라이트', engname:'Evan Howard Bright', nationality: '미국', },
+  { id: 2, initials: 'N', name: 'N', position: '헌터즈 · 맹수', birthday:'5/15', age: '27', height: '178', gen: '2', fullname:'니케 바네사 와이즈맨', engname:'Nike Vanessa Wiseman', nationality: '미국 · 스타레인', },
+  { id: 3, initials: 'S', name: 'S', position: '헌터즈 · 도살자', birthday:'', age: '22', height: '157', gen: '2', fullname:'슈슈', engname:'Chouchou', nationality: '', },
+  { id: 4, initials: '오', name: '오르티', position: '헌터즈 · 천방지축', birthday:'모른다! 매일이 생일이면 좋겠도다!', age: '200', height: '166', gen: '?', fullname:'오르토스', engname:'Όρθρος', nationality: '게이트?', },
+  { id: 5, initials: 'H', name: 'H', position: '이글아이 · 피곤한 리더', birthday:'', age: '33', height: '185', gen: '1', fullname:'', engname:'', nationality: '',},
+  { id: 6, initials: 'L', name: 'L', position: '이글아이 · 이해자', birthday:'3/20', age: '20', height: '165', gen: '1', fullname:'라비 블랑쉬 브누아', engname:'Ravi', nationality: '프랑스',},
+  { id: 7, initials: 'M', name: 'M', position: '울프독 · 변덕쟁이', birthday:'7/3', age: '26', height: '188', gen: '1', fullname:'모르페우스 레지오', engname:'Morpheus', nationality: '이탈리아', },
+  { id: 8, initials: '테', name: '테리 도버만', position: '울프독 · 추격자, 앙숙', birthday:'8/26', age: '24', height: '180', gen: '1.5', fullname:'테리 로이드 도버만', engname:'Terry Dobermann', nationality: '독일-미국 혼혈 · 스타레인', },
+  { id: 9, initials: 'A', name: 'A', position: '울프독 · 악몽', birthday:'1/15', age: '24', height: '184', gen: '2', fullname:'앙헬 헤세 베르너', engname:'', nationality: '독일 · 스타레인', },
+  { id: 10,initials: 'I', name: 'I', position: '울프독 · 유쾌한 친구?', birthday:'', age: '24', height: '182', gen: '', fullname:'아이작', engname:'Isaac', nationality: '', },
+  { id: 11, initials:'J', name: 'J', position: '드라칼 · 불편한 동거인, 웬수', birthday:'10/21', age: '26', height: '182', gen: '1', fullname:'주다스 데이 와이즈맨', engname:'Judas Day Wiseman', nationality: '미국 · 스타레인',},
+  { id: 12, initials:'R', name: 'R', position: '언더 그라운드 · 감시관, 처형인', birthday:'6/16', age: '30', height: '185', gen: '1', fullname:'리하르트 헬무트 하이넬', engname:'Richard Helmut Heinel', nationality: '독일', },
+  { id: 13, initials: 'Y', name: 'Y', position: '언더 그라운드 · 양육자', birthday:'4/23', age: '22', height: '182', gen: '3', fullname:'백연', engname:'白姸', nationality: '대한민국', },
+  { id: 14, initials: 'X', name: 'X', position: '언더 그라운드 · 예술가', birthday:'8/12', age: '25', height: '176', gen: '1', fullname:'위신옌', engname:'危歆魇', nationality: '홍콩', },
+  { id: 15, initials: '라', name: '라멘타', position: '그림 리퍼 · 재앙', birthday:'11/27', age: '34', height: '190', gen: '1', fullname:'라멘타', engname:'Laménta', nationality: '불명', },
+  { id: 16, initials: 'F', name: '하피', position: '? · 배신자', birthday:'9/15', age: '9/15', height: '196', gen: '1', fullname:'펠리체 에런 도버만', engname:'Felice Aaron Dobermann', nationality: '독일-미국 혼혈 · 스타레인', },
+  { id: 17, initials: '루', name: '루두스', position: '그림 리퍼 · 조련사, 광대', birthday:'9/16', age: '26', height: '186', gen: '3', fullname:'루두스', engname:'Lūdus', nationality: '불명', },
+  { id: 18, initials: 'P', name: '뽀삐', position: '그림 리퍼 · 맹수', birthday:'11/7', age: '28', height: '176', gen: '1', fullname:'피에르 리오넷', engname:'Pierre', nationality: '프랑스', },
+  { id: 19, initials: '느', name: '느베야', position: '그림 리퍼 · 간교한 자', birthday:'', age: '20', height: '165', gen: '?', fullname:'느베야', engname:'Nevaeh', nationality: '게이트?', },
 ];
 
 const groups = [
@@ -1171,6 +1171,7 @@ const menuLinks = {
 };
 
 
+
 function MemberIntroPage() {
   const [selected, setSelected] = useState(null);
   const [activeMenu, setActiveMenu] = useState('직원 소개'); // 현재 선택된 메뉴
@@ -1178,6 +1179,13 @@ function MemberIntroPage() {
   const handleReveal = (sel, target, idx) => {
     setRevealedTitles(prev => new Set(prev).add(`${sel}-${target}-${idx}`));
   };
+
+  const [revealedFields, setRevealedFields] = useState({
+    fullname: false,
+    nationality: false,
+  });
+
+  
 
 
   return (
@@ -1195,7 +1203,15 @@ function MemberIntroPage() {
               return (
                 <div key={emp.id} className="flex flex-col items-center" style={{minWidth:"9rem", minHeight:"10rem", alignItems: "center"}}>
                   <button
-                    onClick={() => setSelected(emp)}
+                    onClick={() => 
+                      {
+                        setSelected(emp);
+                        setRevealedFields({
+                          fullname: false,
+                          nationality: false,
+                        });    
+                      }             
+                    }
                     className={`w-20 h-20 flex items-center justify-center text-xl font-bold`}
                     style={{
                       backgroundColor: circleColors[initial],
@@ -1234,7 +1250,53 @@ function MemberIntroPage() {
         {selected && (
           <div className="mt-12 text-center">
             <h2 className="text-2xl font-bold mb-2">{selected.name}</h2>
-            <p className="text-lg text-gray-700">{selected.position}</p>
+            <p className="text-lg text-gray-700 mb-6">{selected.position}</p>
+
+            <div className="grid grid-cols-2 gap-x-8 gap-y-6 max-w-lg mx-auto text-left px-4">
+              <div>
+                <p className="text-xs text-gray-500 mb-1">생일</p>
+                <p className="text-sm font-medium">{selected.birthday}</p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-500 mb-1">나이</p>
+                <p className="text-sm font-medium">{selected.age}세</p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-500 mb-1">키</p>
+                <p className="text-sm font-medium">{selected.height}cm</p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-500 mb-1">세대</p>
+                <p className="text-sm font-medium">{selected.gen}세대</p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-500 mb-1">본명</p>
+                <p
+                  className={`text-sm font-medium cursor-pointer ${
+                    revealedFields.fullname
+                      ? 'transition-[filter] duration-300 ease-out blur-none'
+                      : 'transition-none [filter:blur(5px)]'
+                  }`}
+                  onClick={() => setRevealedFields({ ...revealedFields, fullname: true })}
+                >
+                  {selected.fullname}<br/>
+                  {selected.engname}
+                </p>
+              </div>
+              <div>
+                <p className="text-xs text-gray-500 mb-1">출신</p>
+                <p
+                  className={`text-sm font-medium cursor-pointer ${
+                    revealedFields.nationality
+                      ? 'transition-[filter] duration-300 ease-out blur-none'
+                      : 'transition-none [filter:blur(5px)]'
+                  }`}
+                  onClick={() => setRevealedFields({ ...revealedFields, nationality: true })}
+                >
+                  {selected.nationality}
+                </p>
+              </div>
+            </div>
           </div>
         )}
 
