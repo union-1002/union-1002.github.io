@@ -10,6 +10,27 @@ export const MENU_PROPS = {
       "직원 소개": "/memberIntro",
     },
   },
+  '유니온 소식': {
+    title: '유니온 소식',
+    links: {
+      "공지사항": "/notice",
+      "일정": "/schedule",
+      "채용": "/career",
+    },
+  },
+  '직원 마당': {
+    title: '직원 마당',
+    links: {
+      "노동조합": "/nojo",
+    },
+  },
+  '시민 마당': {
+    title: '시민 마당',
+    links: {
+      "민원 사례": "/minwonList",
+      "민원 신청": "/minwonSubmit",
+    },
+  },
 };
 
 function SideNavigationBar({ title, links }) {

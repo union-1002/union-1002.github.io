@@ -1,9 +1,16 @@
 import MainLayout from '@/shared/MainLayout';
+import PageLayout from '@/shared/PageLayout';
+import { MENU_PROPS } from '@/shared/SideNavigationBar';
 
 function MinwonListPage() {
   return (
     <MainLayout>
-      <div>MinwonListPage</div>
+      <PageLayout
+        title="민원 사례"
+        sidebar={MENU_PROPS['시민 마당']}
+      >
+        내용
+      </PageLayout>
     </MainLayout>
   );
 }

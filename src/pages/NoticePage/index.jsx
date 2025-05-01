@@ -1,9 +1,16 @@
 import MainLayout from '@/shared/MainLayout';
+import PageLayout from '@/shared/PageLayout';
+import { MENU_PROPS } from '@/shared/SideNavigationBar';
 
 function NoticePage() {
   return (
     <MainLayout>
-      <div>NoticePage</div>
+      <PageLayout
+        title="공지사항"
+        sidebar={MENU_PROPS['유니온 소식']}
+      >
+        내용
+      </PageLayout>
     </MainLayout>
   );
 }
