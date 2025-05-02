@@ -8,19 +8,19 @@ import { MENU_PROPS } from '@/shared/SideNavigationBar';
 const employees = [
   { id: 1, initials: 'E', name: 'E', position: '헌터즈 · 수호자', birthday:'4/21', age: '41', height: '192', gen: '1', fullname:'에반 하워드 브라이트', engname:'Evan Howard Bright', nationality: '미국', etc:'', },
   { id: 2, initials: 'N', name: 'N', position: '헌터즈 · 맹수', birthday:'5/15', age: '27', height: '178', gen: '2', fullname:'니케 바네사 와이즈맨', engname:'Nike Vanessa Wiseman', nationality: '미국 · 스타레인', etc:'',},
-  { id: 3, initials: 'S', name: 'S', position: '헌터즈 · 도살자', birthday:'', age: '22', height: '157', gen: '2', fullname:'슈슈', engname:'Chouchou', nationality: '', },
+  { id: 3, initials: 'S', name: 'S', position: '헌터즈 · 도살자', birthday:'', age: '22', height: '157', gen: '2', fullname:'슈슈', engname:'Chouchou', nationality: '프랑스 · 스타레인 슬럼 보육원', },
   { id: 4, initials: '오', name: '오르티', position: '헌터즈 · 천방지축', birthday:'모른다! 매일이 생일이면 좋겠도다!', age: '200', height: '166', gen: '?', fullname:'오르토스', engname:'Όρθρος', nationality: '게이트?', },
-  { id: 5, initials: 'H', name: 'H', position: '이글아이 · 피곤한 리더', birthday:'', age: '33', height: '185', gen: '1', fullname:'', engname:'', nationality: '',},
-  { id: 6, initials: 'L', name: 'L', position: '이글아이 · 이해자', birthday:'3/20', age: '20', height: '165', gen: '1', fullname:'라비 블랑쉬 브누아', engname:'Ravi', nationality: '프랑스',},
-  { id: 7, initials: 'M', name: 'M', position: '울프독 · 변덕쟁이', birthday:'7/3', age: '26', height: '188', gen: '1', fullname:'모르페우스 레지오', engname:'Morpheus', nationality: '이탈리아', },
+  { id: 5, initials: 'H', name: 'H', position: '이글아이 · 피곤한 리더', birthday:'', age: '33', height: '185', gen: '1', fullname:'헤르베르트 페터 슈나이더', engname:'Herbert Peter Schneider', nationality: '독일 · 스타레인',},
+  { id: 6, initials: 'L', name: 'L', position: '이글아이 · 이해자', birthday:'3/20', age: '20', height: '165', gen: '1', fullname:'라비 블랑쉬 브누아', engname:'Lavi Blanche Benoit', nationality: '프랑스',},
+  { id: 7, initials: 'M', name: 'M', position: '울프독 · 변덕쟁이', birthday:'7/3', age: '26', height: '188', gen: '1', fullname:'모르페우스 레지오', engname:'Morpheus Leggio', nationality: '이탈리아', },
   { id: 8, initials: '테', name: '테리 도버만', position: '울프독 · 추격자, 앙숙', birthday:'8/26', age: '24', height: '180', gen: '1.5', fullname:'테리 로이드 도버만', engname:'Terry Dobermann', nationality: '독일-미국 혼혈 · 스타레인', },
-  { id: 9, initials: 'A', name: 'A', position: '울프독 · 악몽', birthday:'1/15', age: '24', height: '184', gen: '2', fullname:'앙헬 헤세 베르너', engname:'', nationality: '독일 · 스타레인',
+  { id: 9, initials: 'A', name: 'A', position: '울프독 · 악몽', birthday:'1/15', age: '24', height: '184', gen: '2', fullname:'앙헬 헤세 베르너', engname:'Angel Hesse Werner', nationality: '독일 · 스타레인 슬럼',
     etc:
       `
         1. 스스로 격식을 차리기 때문에(슬럼 출신이라는 것이 약한 콤플렉스로 자리해서) 평소에는 존댓말-경어를 쓰지만, 본인의 격식마저 잊을 정도로 감정이 격해지거나 충분한 친밀도가 쌓였을 때, 그리고 마지막으로... 같은 슬럼 출신이라서 따질 필요 없이 진창으로 처박힐 일만 남았을 때... 반말을 사용.
-        2. 면허만 있음
+        2. 운전은 면허만 있음
       `},
-  { id: 10,initials: 'I', name: 'I', position: '울프독 · 유쾌한 친구?', birthday:'', age: '24', height: '182', gen: '', fullname:'아이작', engname:'Isaac', nationality: '', },
+  { id: 10,initials: 'I', name: 'I', position: '울프독 · 유쾌한 친구?', birthday:'', age: '24', height: '182', gen: '', fullname:'아이작', engname:'Isaac', nationality: '독일 · 스타레인 슬럼', },
   { id: 11, initials:'J', name: 'J', position: '드라칼 · 불편한 동거인, 웬수', birthday:'10/21', age: '26', height: '182', gen: '1', fullname:'주다스 데이 와이즈맨', engname:'Judas Day Wiseman', nationality: '미국 · 스타레인',},
   { id: 12, initials:'R', name: 'R', position: '언더 그라운드 · 감시관, 처형인', birthday:'6/16', age: '30', height: '185', gen: '1', fullname:'리하르트 헬무트 하이넬', engname:'Richard Helmut Heinel', nationality: '독일',
     etc:
@@ -32,7 +32,12 @@ const employees = [
         5. 정말 안 되겠다 싶으면 본인 소유 별장으로 가서 휴가를 보냄. 주로 주변 바닷가에서 서핑을 하거나 하루종일 누워있음!
         6. 메르세데스-마이바흐 S클래스 오너
       `,},
-  { id: 13, initials: 'Y', name: 'Y', position: '언더 그라운드 · 양육자', birthday:'4/23', age: '22', height: '182', gen: '3', fullname:'백연', engname:'白姸', nationality: '대한민국', },
+  { id: 13, initials: 'Y', name: 'Y', position: '언더 그라운드 · 양육자', birthday:'4/23', age: '22', height: '182', gen: '3', fullname:'백연', engname:'白姸', nationality: '대한민국 전주',
+    etc:
+    `
+      조손가정(할머니 할아버지 편히 가셨음) / 판소리 집안 출신
+    `
+   },
   { id: 14, initials: 'X', name: 'X', position: '언더 그라운드 · 예술가', birthday:'8/12', age: '25', height: '176', gen: '1', fullname:'위신옌', engname:'危歆魇', nationality: '홍콩', },
   { id: 15, initials: '라', name: '라멘타', position: '그림 리퍼 · 재앙', birthday:'11/27', age: '34', height: '190', gen: '1', fullname:'라멘타', engname:'Laménta', nationality: '불명', },
   { id: 16, initials: 'F', name: '하피', position: '? · 배신자', birthday:'9/15', age: '9/15', height: '196', gen: '1', fullname:'펠리체 에런 도버만', engname:'Felice Aaron Dobermann', nationality: '독일-미국 혼혈 · 스타레인', },

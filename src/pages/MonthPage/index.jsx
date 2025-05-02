@@ -30,6 +30,13 @@ function MonthPage() {
     },
     {
       id: 7,
+      author: "I",
+      text: "우.리.의.친.구.울.프.독.의.자.랑.",
+      replies: [
+      ],
+    },
+    {
+      id: 7,
       author: "H",
       text: "오, 축하한다.",
       replies: [],
@@ -151,6 +158,7 @@ function MonthPage() {
         </p>
 
         {/* 우수 사원 카드 */}
+        <div className='px-2'>
         <div className="bg-white shadow-xl rounded-lg overflow-hidden max-w-md mx-auto">
           <img
             src="/images/M.webp"
@@ -164,6 +172,7 @@ function MonthPage() {
               감사합니다. 앞으로 더 열심히 하겠습니다.
             </p>
           </div>
+        </div>
         </div>
 
         <div className="grid grid-cols-12 text-sm font-semibold text-gray-700 border-b border-gray-400 mt-20 pb-4">

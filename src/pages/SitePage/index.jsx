@@ -30,7 +30,7 @@ function SitePage() {
         <div className="w-full max-w-3xl text-left space-y-2">
           <h2 className="text-xl font-bold text-[#435373]">이스터 에그</h2>
           <p className="text-base text-gray-700 leading-relaxed">
-            - 로그인 하여 쪽지를 확인해보세요. (이름 등 정보는 저장되지 않습니다. DB 서버 미보유)<br/>
+            - 로그인 하여 쪽지를 확인하고 게시판을 둘러보세요. (이름 등 정보는 저장되지 않습니다. DB 서버 미보유)<br/>
             - 언더 그라운드로 로그인 해보세요.<br/>
             - 부서 소개에서 숨겨진 부서를 찾아보세요.<br/>
             - 유니온의 보안을 뚫어보세요. (보안 해제시 스포일러 절대 주의!)<br/>

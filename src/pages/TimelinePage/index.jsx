@@ -22,7 +22,7 @@ function TimelinePage() {
               </div>
 
               <div className="text-slate-500">
-                첫 게이트 각성: J / R / F / L / E / X / P<br/>
+                첫 게이트 각성: J / R / F / L / E / X / P / I / H<br/>
                 번외: 라멘타 각성
               </div>
           </div>
@@ -106,7 +106,7 @@ function TimelinePage() {
 
             <div className="text-slate-500">
               데스사이드 발생 / 그림 리퍼의 민간인 학살(제물 의식)<br/>
-              각성: A / N (2세대의 시작)<br/>
+              각성: A / N / S(2세대의 시작)<br/>
               사망: F / P
             </div>
           </div>

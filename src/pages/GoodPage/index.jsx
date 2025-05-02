@@ -68,7 +68,7 @@ function GoodPage() {
       author: "ㄴㅂㅇ",
       text: "응 유니온 사이트 다털렸죠ㅋㅋ",
       replies: [
-        { id: 11, author: "L", text: "내쫓아주세요...." }
+        { id: 11, author: "L", text: "내쫓아주세요.." }
       ],
     },
     {
