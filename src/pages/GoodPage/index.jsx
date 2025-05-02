@@ -115,9 +115,9 @@ function GoodPage() {
         sidebar={MENU_PROPS['직원 마당']}
       >
         <div className="flex flex-wrap lg:flex-nowrap items-start text-sm font-semibold border-b border-gray-400 pb-4">
-          <div className="hidden lg:block w-[60px] text-center shrink-0">번호</div>
+          <div className="w-[50px] lg:w-[60px] text-center shrink-0">번호</div>
           <div className="hidden lg:block w-[60px] text-center font-medium shrink-0">작성자</div>
-          <div className="hidden lg:block w-full lg:flex-grow lg:ml-5">내용</div>
+          <div className="flex justify-center items-center w-[calc(100%-50px)]  lg:flex-grow lg:mt-0 lg:ml-5">내용</div>
         </div>
 
         {/* 게시글 목록 */}
