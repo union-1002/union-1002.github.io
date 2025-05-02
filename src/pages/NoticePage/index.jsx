@@ -12,7 +12,7 @@ function NoticePage() {
       >
         <div className="grid grid-cols-10 lg:grid-cols-12 text-sm font-semibold text-gray-700 border-b border-gray-400 pb-4">
           <div className="col-span-1 text-center">번호</div>
-          <div className="col-span-7">제목</div>
+          <div className="col-span-7 text-center">제목</div>
           <div className="col-span-2 text-center">작성자</div>
           <div className="hidden lg:block col-span-2 text-center">작성일</div>
         </div>
