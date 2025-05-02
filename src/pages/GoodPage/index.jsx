@@ -114,10 +114,10 @@ function GoodPage() {
         title="칭찬합니다"
         sidebar={MENU_PROPS['직원 마당']}
       >
-        <div className="grid grid-cols-12 lg:grid-cols-10 text-sm font-semibold text-gray-700 border-b border-gray-400 pb-4">
-          <div className="col-span-2 lg:col-span-1 text-center">번호</div>
-          <div className="col-span-2 lg:col-span-1 text-center">작성자</div>
-          <div className="col-span-8 lg:col-span-8 text-center lg:text-left lg:pl-8">내용</div>
+        <div className="flex flex-wrap lg:flex-nowrap items-start text-sm font-semibold border-b border-gray-400 pb-4">
+          <div className="hidden lg:block w-[60px] text-center shrink-0">번호</div>
+          <div className="hidden lg:block w-[60px] text-center font-medium shrink-0">작성자</div>
+          <div className="hidden lg:block w-full lg:flex-grow lg:ml-5">내용</div>
         </div>
 
         {/* 게시글 목록 */}
@@ -130,18 +130,18 @@ function GoodPage() {
           >
             {/* 메인 글 */}
             
-            <div className="grid grid-cols-12 lg:grid-cols-10 items-start text-sm text-gray-800 py-4 hover:bg-gray-50 transition">
-              <div className="col-span-2 lg:col-span-1 text-center">{post.id}</div>
-              <div className="col-span-2 lg:col-span-1 text-center font-medium">{post.author}</div>
-              <div className="col-span-8 lg:col-span-8 pl-8">{typeof post.text === "function" ? post.text(user) : post.text}</div>
+            <div className="flex flex-wrap lg:flex-nowrap items-start text-sm py-4 hover:bg-gray-50 transition">
+              <div className="w-[50px] lg:w-[60px] text-center shrink-0">{post.id}</div>
+              <div className="w-[50px] lg:w-[60px] text-left lg:text-center font-medium shrink-0">{post.author}</div>
+              <div className="w-full lg:flex-grow ml-12 mt-1.5 lg:mt-0 lg:ml-5">{typeof post.text === "function" ? post.text(user) : post.text}</div>
             </div>
         
             {/* 답글들 */}
             {post.replies.map((reply) => (
-              <div key={reply.id} className="grid grid-cols-12  lg:grid-cols-10 items-start text-sm text-gray-600 border-t border-gray-200 py-2">
-                <div className="col-span-2 lg:col-span-1 text-center"></div>
-                <div className="col-span-2 lg:col-span-1 text-center">{reply.author}</div>
-                <div className="col-span-8 lg:col-span-8 pl-8">↪ {reply.text}</div>
+              <div key={reply.id} className="flex flex-wrap lg:flex-nowrap items-start text-sm text-gray-600 border-t border-gray-200 py-2">
+                <div className="w-[50px] lg:w-[60px] text-center shrink-0 text-xs">↪</div>
+                <div className="w-[50px] lg:w-[60px] text-left lg:text-center shrink-0">{reply.author}</div>
+                <div className="w-full lg:flex-grow ml-12 mt-1.5 lg:mt-0 lg:ml-5">{reply.text}</div>
               </div>
             ))}
           </div>
