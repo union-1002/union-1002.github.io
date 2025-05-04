@@ -40,7 +40,7 @@ const employees = [
    },
   { id: 14, initials: 'X', name: 'X', position: '언더 그라운드 · 예술가', birthday:'8/12', age: '25', height: '176', gen: '1', fullname:'위신옌', engname:'危歆魇', nationality: '홍콩', },
   { id: 15, initials: '라', name: '라멘타', position: '그림 리퍼 · 재앙', birthday:'11/27', age: '34', height: '190', gen: '1', fullname:'라멘타', engname:'Laménta', nationality: '불명', },
-  { id: 16, initials: 'F', name: '하피', position: '? · 배신자', birthday:'9/15', age: '9/15', height: '196', gen: '1', fullname:'펠리체 에런 도버만', engname:'Felice Aaron Dobermann', nationality: '독일-미국 혼혈 · 스타레인', },
+  { id: 16, initials: 'F', name: '하피', position: '? · 배신자', birthday:'9/15', age: '27', height: '196', gen: '1', fullname:'펠리체 에런 도버만', engname:'Felice Aaron Dobermann', nationality: '독일-미국 혼혈 · 스타레인', },
   { id: 17, initials: '루', name: '루두스', position: '그림 리퍼 · 조련사, 광대', birthday:'9/16', age: '26', height: '186', gen: '3', fullname:'루두스', engname:'Lūdus', nationality: '불명',
     etc:
       `
@@ -1265,7 +1265,7 @@ function MemberIntroPage() {
             })}
           </div>
         ))}
-        
+
 
 
         </div>
