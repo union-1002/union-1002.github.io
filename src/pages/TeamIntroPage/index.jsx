@@ -7,19 +7,19 @@ import TeamIntroCard from './TeamIntroCard';
 
 function TeamIntroPage() {
   const user = useUser();
-  const [isOpen, setIsOpen] = useState(false);
-  const cardRef = useRef(null);
+
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef();
 
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (cardRef.current && !cardRef.current.contains(e.target)) {
-        setIsOpen(false);
+        setIsVisible(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
-  
   return (
     <MainLayout>
       <PageLayout
@@ -101,11 +101,10 @@ function TeamIntroPage() {
         }
         <TeamIntroCard
           ref={cardRef}
-          tabIndex={0}
-          onClick={() => setIsOpen(prev => !prev)}
-          className={`transition-opacity duration-300 
-            ${isOpen ? 'opacity-100' : 'opacity-0'} 
-            hover:opacity-100`}
+          onClick={() => setIsVisible(prev => !prev)}
+          className={`transition-opacity duration-300 cursor-pointer ${
+            isVisible ? 'opacity-100' : 'opacity-0'
+          } hover:opacity-100`}
           name="?"
           name_en="?"
           title="유령처럼."
