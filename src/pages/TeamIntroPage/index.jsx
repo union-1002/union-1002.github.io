@@ -18,11 +18,7 @@ function TeamIntroPage() {
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
-    document.addEventListener('touchstart', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside);
-    };
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
   return (
     <MainLayout>
@@ -104,12 +100,7 @@ function TeamIntroPage() {
           />
         }
         <TeamIntroCard
-          ref={cardRef}
-          tabIndex={0}
-          onClick={() => setIsVisible(prev => !prev)}
-          className={`transition-opacity duration-300 cursor-pointer ${
-            isVisible ? 'opacity-100' : 'opacity-0'
-          } hover:opacity-100`}
+          className="opacity-0 hover:opacity-100 transition-opacity duration-300"
           name="?"
           name_en="?"
           title="유령처럼."
