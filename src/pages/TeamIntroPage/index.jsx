@@ -2,12 +2,23 @@ import MainLayout from '@/shared/MainLayout';
 import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
 import { useUser } from '@/shared/user';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import TeamIntroCard from './TeamIntroCard';
 
 function TeamIntroPage() {
   const user = useUser();
-  const [clicked, setClicked] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (cardRef.current && !cardRef.current.contains(e.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
   
   return (
     <MainLayout>
@@ -89,9 +100,11 @@ function TeamIntroPage() {
           />
         }
         <TeamIntroCard
-          onClick={() => setClicked(prev => !prev)}
+          ref={cardRef}
+          tabIndex={0}
+          onClick={() => setIsOpen(prev => !prev)}
           className={`transition-opacity duration-300 
-            ${clicked ? 'opacity-100' : 'opacity-0'} 
+            ${isOpen ? 'opacity-100' : 'opacity-0'} 
             hover:opacity-100`}
           name="?"
           name_en="?"
