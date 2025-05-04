@@ -12,15 +12,24 @@ const MainLayout = ({ children }) => {
   const user = useUser();
   const [isMenuOpen, toggleMenu] = useToggle(false);
   const [isNoteModalOpen, toggleNoteModal] = useToggle(false);
-  const [open, setOpen] = useState(false);
-  const dropdownRef = useRef(null);
+
+  const [openId, setOpenId] = useState(null);
+  const dropdownRefs = {
+    menu1: useRef(null),
+    menu2: useRef(null),
+    menu3: useRef(null),
+    menu4: useRef(null),
+    // ...추가 가능
+  };
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setOpen(false);
-      }
+      const isOutsideAll = Object.values(dropdownRefs).every(
+        (ref) => ref.current && !ref.current.contains(e.target)
+      );
+      if (isOutsideAll) setOpenId(null);
     };
+
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
@@ -32,7 +41,7 @@ const MainLayout = ({ children }) => {
 
       {/* 알림바 */}
       <div className="w-full bg-[var(--light-purple)] text-center text-sm py-1 font-sans font-normal">
-        게이트 위험 수준 [안전] 단계입니다
+        게이트 위험 수준 [경계] 단계입니다
       </div>
 
       {/* 메뉴바 */}
@@ -81,16 +90,16 @@ const MainLayout = ({ children }) => {
           <div className="hidden lg:flex space-x-12 text-lg">
             {/* 유니온 소개 메뉴 */}
             <div
-              className="relative group" ref={dropdownRef}>
+              className="relative group" ref={dropdownRefs.menu1}>
               <button
-                onClick={() => setOpen(prev => !prev)}
+                onClick={() => setOpenId(openId === 'menu1' ? null : 'menu1')}
                 className="px-4 py-2 font-semibold"
                 >
                 유니온 소개
               </button>
 
               {/* 드롭다운 메뉴 */}
-              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 ${open ? 'flex' : 'hidden'} group-hover:flex flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center`}>
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 ${openId === 'menu1' ? 'flex' : 'hidden'} group-hover:flex flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center`}>
                 <Link to="/hello" className="py-1 hover:bg-[var(--light-purple)] rounded">총장 인사말</Link>
                 <Link to="/timeline" className="py-1 hover:bg-[var(--light-purple)] rounded">연혁</Link>
                 <Link to="/teamIntro" className="py-1 hover:bg-[var(--light-purple)] rounded">부서 소개</Link>
@@ -102,13 +111,17 @@ const MainLayout = ({ children }) => {
 
 
             {/* 유니온 소식 메뉴 */}
-            <div className="relative group flex flex-col items-center">
-              <button className="px-4 py-2 font-semibold">
+            <div
+              className="relative group" ref={dropdownRefs.menu1}>
+              <button
+                onClick={() => setOpenId(openId === 'menu2' ? null : 'menu2')}
+                className="px-4 py-2 font-semibold"
+                >
                 유니온 소식
               </button>
 
               {/* 드롭다운 메뉴 */}
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 hidden group-hover:flex flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center">
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 ${openId === 'menu2' ? 'flex' : 'hidden'} group-hover:flex flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center`}>
                 <Link to="/notice" className="py-1 hover:bg-[var(--light-purple)] rounded">공지사항</Link>
                 <Link to="/schedule" className="py-1 hover:bg-[var(--light-purple)] rounded">일정</Link>
                 <Link to="/career" className="py-1 hover:bg-[var(--light-purple)] rounded">채용</Link>
@@ -116,13 +129,17 @@ const MainLayout = ({ children }) => {
             </div>
 
             {/* 직원 마당 메뉴 */}
-            <div className="relative group flex flex-col items-center">
-              <button className="px-4 py-2 font-semibold">
+            <div
+              className="relative group" ref={dropdownRefs.menu3}>
+              <button
+                onClick={() => setOpenId(openId === 'menu3' ? null : 'menu3')}
+                className="px-4 py-2 font-semibold"
+                >
                 직원 마당
               </button>
 
               {/* 드롭다운 메뉴 */}
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 hidden group-hover:flex flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center">
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 ${openId === 'menu3' ? 'flex' : 'hidden'} group-hover:flex flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center`}>
                 <Link to="/wellfare" className="py-1 hover:bg-[var(--light-purple)] rounded">직원 복지</Link>
                 <Link to="/good" className="py-1 hover:bg-[var(--light-purple)] rounded">칭찬합니다</Link>
                 <Link to="/nojo" className="py-1 hover:bg-[var(--light-purple)] rounded">노동조합</Link>
@@ -130,13 +147,17 @@ const MainLayout = ({ children }) => {
             </div>
 
             {/* 시민 마당 메뉴 */}
-            <div className="relative group flex flex-col items-center">
-              <button className="px-4 py-2 font-semibold">
+            <div
+              className="relative group" ref={dropdownRefs.menu4}>
+              <button
+                onClick={() => setOpenId(openId === 'menu4' ? null : 'menu4')}
+                className="px-4 py-2 font-semibold"
+                >
                 시민 마당
               </button>
 
               {/* 드롭다운 메뉴 */}
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 hidden group-hover:flex flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center">
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 ${openId === 'menu4' ? 'flex' : 'hidden'} group-hover:flex flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center`}>
                 <Link to="/minwonList" className="py-1 hover:bg-[var(--light-purple)] rounded">민원 사례</Link>
                 <Link to="/minwonSubmit" className="py-1 hover:bg-[var(--light-purple)] rounded">민원 신청</Link>
               </div>
