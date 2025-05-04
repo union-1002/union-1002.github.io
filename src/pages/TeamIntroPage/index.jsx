@@ -18,7 +18,11 @@ function TeamIntroPage() {
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
   }, []);
   return (
     <MainLayout>
@@ -101,6 +105,7 @@ function TeamIntroPage() {
         }
         <TeamIntroCard
           ref={cardRef}
+          tabIndex={0}
           onClick={() => setIsVisible(prev => !prev)}
           className={`transition-opacity duration-300 cursor-pointer ${
             isVisible ? 'opacity-100' : 'opacity-0'
