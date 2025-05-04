@@ -198,7 +198,7 @@ function MonthPage() {
                 className="grid grid-cols-12 items-start text-sm text-gray-600 border-t border-gray-200 py-2"
               >
                 <div className="col-span-2 text-center">{reply.author}</div>
-                <div className="col-span-10 text-left">↪ {reply.text}</div>
+                <div className="col-span-10 text-left">⤷ {reply.text}</div>
               </div>
             ))}
           </div>

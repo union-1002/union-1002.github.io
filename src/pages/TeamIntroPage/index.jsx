@@ -87,7 +87,7 @@ function TeamIntroPage() {
           />
         }
         <TeamIntroCard
-          className="opacity-0 hover:opacity-100 transition-opacity duration-300"
+          className="opacity-0 hover:opacity-100 focus:opacity-100 active:opacity-100 transition-opacity duration-300"
           name="?"
           name_en="?"
           title="유령처럼."

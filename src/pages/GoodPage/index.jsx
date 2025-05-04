@@ -139,7 +139,7 @@ function GoodPage() {
             {/* 답글들 */}
             {post.replies.map((reply) => (
               <div key={reply.id} className="flex flex-wrap lg:flex-nowrap items-start text-sm text-gray-600 border-t border-gray-200 py-2">
-                <div className="w-[50px] lg:w-[60px] text-center shrink-0 text-xs">↪</div>
+                <div className="w-[50px] lg:w-[60px] text-center shrink-0 text-xs">⤷</div>
                 <div className="w-[50px] lg:w-[60px] text-left lg:text-center shrink-0">{reply.author}</div>
                 <div className="w-full lg:flex-grow ml-12 mt-1.5 lg:mt-0 lg:ml-5">{reply.text}</div>
               </div>

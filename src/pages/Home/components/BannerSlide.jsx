@@ -30,7 +30,7 @@ const BannerSlide = () => {
   };
 
   return (
-    <div className="relative w-full lg:w-[635px] pt-[56.25%] overflow-hidden rounded-md">
+    <div className="relative w-full pt-[56.25%] overflow-hidden rounded-md">
       {/* 이미지 */}
       {images.map((src, index) => (
         <img

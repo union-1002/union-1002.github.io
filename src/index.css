@@ -36,7 +36,7 @@
 }
 
 @theme {
-  --font-sans: "'Pretendard Variable'", "sans-serif";
+  --font-sans: "Pretendard Variable", "Pretendard", "system-ui", sans-serif;
   --font-gs: "GangwonEduSaeeum_OTFMediumA";
   --font-son: "KCC-Sonkeechung";
   --font-ink: "InkLipquid";

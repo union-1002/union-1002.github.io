@@ -6,19 +6,19 @@ import { Link } from 'react-router';
 function MainPage() {
   return (
     <MainLayout>
-      <div className="max-w-7xl mx-auto px-4 lg:px-0 mt-8 flex flex-col lg:flex-row ">
+      <div className="max-w-7xl mx-auto px-4 lg:px-2 mt-8 gap-4 flex flex-col lg:flex-row lg:gap-2">
         {/* 왼쪽 배너 */}
-        <div className="w-full lg:w-[635px] mb-8 lg:mb-0 lg:mr-[10px]">
+        <div className="w-full lg:max-w-[627px] lg:mb-0">
           <BannerSlide />
         </div>
 
         {/* 오른쪽 영역 */}
-        <div className="w-full lg:w-[635px] flex flex-col space-y-8">
+        <div className="w-full xl:flex-1 flex flex-col space-y-8 gap-2">
           {/* 게이트 현황 */}
-          <div className="panel gate-status w-full lg:w-[635px] rounded-md">
+          <div className="panel gate-status w-full rounded-md">
             <h2 className='text-5xl'>주간 게이트 현황</h2>
             <div className="w-full h-px bg-[#B6C5F2] my-5"></div>
-            <div className="status-grid grid grid-cols-3 lg:grid-cols-6 gap-3 mt-3 justify-items-center">
+            <div className="status-grid grid grid-cols-3 xl:grid-cols-6 gap-2 justify-items-center">
               {[
                 { grade: 'EX', count: 0, className: 'ex' },
                 { grade: 'S', count: 4, className: 's' },
@@ -34,7 +34,7 @@ function MainPage() {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-4 flex-row mt-3">
+          <div className="flex flex-col gap-2 flex-row">
             <div className="flex-1 h-26 bg-[#B6C5F2] flex flex-col items-center justify-center">
               {/* 왼쪽 아이콘 */}
               <img
@@ -65,9 +65,9 @@ function MainPage() {
       </div>
 
       <div className="w-full bg-gray-100 py-12 mt-8">
-        <div className="max-w-7xl mx-auto px-4 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 xl:px-8">
           {/* 하단 내용 */}
-          <div className="grid grid-cols-4 lg:grid-cols-8 gap-6 text-center">
+          <div className="grid grid-cols-4 xl:grid-cols-8 gap-6 text-center">
             {[
               { icon: "./images/howto.png", label: "사이트 이용 안내", link: "/siteIntro" },
               { icon: "./images/goodmember.png", label: "이달의 우수 사원", link: "/monthlyMember" },
