@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useUser } from '../user';
 import MemberStatus from './MemberStatus';
 import { useToggle } from 'react-use';
@@ -13,6 +13,17 @@ const MainLayout = ({ children }) => {
   const [isMenuOpen, toggleMenu] = useToggle(false);
   const [isNoteModalOpen, toggleNoteModal] = useToggle(false);
   const [open, setOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -70,9 +81,7 @@ const MainLayout = ({ children }) => {
           <div className="hidden lg:flex space-x-12 text-lg">
             {/* 유니온 소개 메뉴 */}
             <div
-              className="relative group"
-              onMouseEnter={() => setOpen(true)}
-              onMouseLeave={() => setOpen(false)}>
+              className="relative group" ref={dropdownRef}>
               <button
                 onClick={() => setOpen(prev => !prev)}
                 className="px-4 py-2 font-semibold"
@@ -81,7 +90,7 @@ const MainLayout = ({ children }) => {
               </button>
 
               {/* 드롭다운 메뉴 */}
-              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 hidden group-hover:flex ${open ? 'flex' : ''} flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center`}>
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 ${open ? 'flex' : 'hidden'} group-hover:flex flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center`}>
                 <Link to="/hello" className="py-1 hover:bg-[var(--light-purple)] rounded">총장 인사말</Link>
                 <Link to="/timeline" className="py-1 hover:bg-[var(--light-purple)] rounded">연혁</Link>
                 <Link to="/teamIntro" className="py-1 hover:bg-[var(--light-purple)] rounded">부서 소개</Link>
