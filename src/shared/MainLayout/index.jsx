@@ -81,14 +81,12 @@ const MainLayout = ({ children }) => {
               </button>
 
               {/* 드롭다운 메뉴 */}
-              {open && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-0 hidden group-hover:flex ${open ? 'flex' : ''} flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center">
-                  <Link to="/hello" className="py-1 hover:bg-[var(--light-purple)] rounded">총장 인사말</Link>
-                  <Link to="/timeline" className="py-1 hover:bg-[var(--light-purple)] rounded">연혁</Link>
-                  <Link to="/teamIntro" className="py-1 hover:bg-[var(--light-purple)] rounded">부서 소개</Link>
-                  <Link to="/memberIntro" className="py-1 hover:bg-[var(--light-purple)] rounded">직원 소개</Link>
-                </div>
-              )}
+              <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 hidden group-hover:flex ${open ? 'flex' : ''} flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-10 text-base text-center`}>
+                <Link to="/hello" className="py-1 hover:bg-[var(--light-purple)] rounded">총장 인사말</Link>
+                <Link to="/timeline" className="py-1 hover:bg-[var(--light-purple)] rounded">연혁</Link>
+                <Link to="/teamIntro" className="py-1 hover:bg-[var(--light-purple)] rounded">부서 소개</Link>
+                <Link to="/memberIntro" className="py-1 hover:bg-[var(--light-purple)] rounded">직원 소개</Link>
+              </div>
             </div>
 
 
