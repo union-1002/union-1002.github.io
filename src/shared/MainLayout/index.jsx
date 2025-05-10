@@ -40,8 +40,8 @@ const MainLayout = ({ children }) => {
       <NoteModal isOpen={isNoteModalOpen} handleClose={toggleNoteModal} />
 
       {/* 알림바 */}
-      <div className="w-full bg-[#9f6363] text-center text-sm py-1 font-sans font-normal text-[#ffffff]">
-        게이트 위험 수준 [경계] 단계입니다
+      <div className="w-full bg-[#dfa98c] text-center text-sm py-1 font-sans font-normal">
+        게이트 위험 수준 [주의] 단계입니다
       </div>
 
       {/* 메뉴바 */}

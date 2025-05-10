@@ -1,113 +1,24 @@
+import _ from 'lodash';
+import { useSearchParams } from 'react-router';
 import MainLayout from '@/shared/MainLayout';
 import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
-import { useUser } from '@/shared/user';
+import { usePagination, usePosts } from './hooks';
 
 function GoodPage() {
-  const user = useUser();
+  // URL 쿼리 파라미터
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = Number.parseInt(searchParams.get('page') ?? 1);
+  // 페이지 목록
+  const posts = usePosts();
+  const pageSize = 10;  // 한 페이지에 보여질 글 개수
+  const { pageItems, totalPages } = usePagination(posts, pageSize, currentPage);
+  const pageListRange = 2;  // 현재 페이지 양 옆에 보여줄 번호 수
+  const pageListStart = Math.max(1, Math.min(totalPages, currentPage - pageListRange));
+  const pageListEnd = Math.max(1, Math.min(totalPages, currentPage + pageListRange));
 
-  function hasFinalConsonant(korChar) {
-    const code = korChar.charCodeAt(korChar.length - 1);
-    const base = 0xac00;
-    const diff = code - base;
-    return diff >= 0 && diff % 28 !== 0;
-  }
+  const goToPage = (i) => { setSearchParams({ page: i }) };
 
-  const posts = [
-    {
-      id: 10,
-      author: "익명",
-      text: (user) => {
-        const name = user.name ?? "예쁜이";
-        const group = user.group === "새붉은 재앙" ? "" : user.group ?? "";
-        const 조사 = hasFinalConsonant(name) ? "은" : "는";
-        return `${group} ${name}${조사} 내꺼다.`;
-      },
-      replies: [
-        { id: 11, author: "테리", text: "ㄴㄴ 내꺼" },
-        { id: 11, author: "N", text: "글 내려 학생" },
-      ],
-    },
-    {
-      id: 9,
-      author: "익명",
-      text: "님들 Y씨 홈파티 초대받아봄? 레전드;",
-      replies: [
-        { id: 11, author: "S", text: "저 가보고 싶어요!!" },
-        { id: 11, author: "Y", text: "부족함 없이 준비하겠습니다." },
-      ],
-    },
-    {
-      id: 8,
-      author: "L",
-      text: (user) => `저랑 매일 같이 게임해줘서 고마워요.... ${user.name ?? '내 영웅'}님`,
-      replies: [
-      ],
-    },
-    {
-      id: 7,
-      author: "F",
-      text: "왜 내 아이디 아직 살아있어?ㅋㅋ 죽일거면 제대로 죽였어야지",
-      replies: [
-        { id: 11, author: "R", text: "관리자 뭐합니까? 이 계정 안 자르고." },
-        { id: 11, author: "F", text: "ㅋㅋ찔려?" },
-      ],
-    },
-    {
-      id: 6,
-      author: "A",
-      text: "도버만 개 짜증남",
-      replies: [
-        { id: 11, author: "E", text: "'칭찬' 게시판일세." },
-        { id: 11, author: "F", text: "왜~ 사랑해줘라" },
-        { id: 11, author: "H", text: "사이 좋게 지내라 인마들아." },
-      ],
-    },
-    {
-      id: 5,
-      author: "ㄴㅂㅇ",
-      text: "응 유니온 사이트 다털렸죠ㅋㅋ",
-      replies: [
-        { id: 11, author: "L", text: "내쫓아주세요.." }
-      ],
-    },
-    {
-      id: 4,
-      author: "익명",
-      text: "제 페어를 칭찬해요.... 완벽한 나의 뮤즈....",
-      replies: [
-      ],
-    },
-    {
-      id: 3,
-      author: "익명",
-      text: "A를 칭찬함다. 사람 개빡치게 하는 데 뭐있음ㄹㅇ",
-      replies: [
-        { id: 11, author: "I", text: "ㅋㅋㅋㅋ" },
-        { id: 12, author: "J", text: "장난성 게시물은 자제 바랍니다." },
-        { id: 13, author: "M", text: "제발 울프독 안에서만 새주세요." },
-        { id: 13, author: "A", text: "뒤질래?" },
-      ],
-    },
-    {
-      id: 2,
-      author: "익명",
-      text: "오ㅗ르티가 유ㅜ니온에서ㅓ 갖ㅏㅇ 잜생겻다!",
-      replies: [
-        { id: 11, author: "테리", text: "에바예여" },
-        { id: 12, author: "S", text: "에바라구?" },
-        { id: 13, author: "Y", text: "삼진 에바로 기각되었습니다." },
-      ],
-    },
-    {
-      id: 1,
-      author: "E",
-      text: "N을 칭찬합니다. 어려운 환경에서도 늘 타의 모범이 되며, 헌터즈의 미래가 되는 직원입니다.",
-      replies: [
-        { id: 11, author: "S", text: "N언니 최고!" },
-      ],
-    },
-  ]
   return (
     <MainLayout>
       <PageLayout
@@ -121,7 +32,7 @@ function GoodPage() {
         </div>
 
         {/* 게시글 목록 */}
-        {posts.map((post, index) => (
+        {pageItems.map((post, index) => (
           <div
             key={post.id}
             className="border-gray-300 
@@ -133,7 +44,7 @@ function GoodPage() {
             <div className="flex flex-wrap lg:flex-nowrap items-start text-sm py-4 hover:bg-gray-50 transition">
               <div className="w-[50px] lg:w-[60px] text-center shrink-0">{post.id}</div>
               <div className="w-[50px] lg:w-[60px] text-left lg:text-center font-medium shrink-0">{post.author}</div>
-              <div className="w-full lg:flex-grow ml-12 mt-1.5 lg:mt-0 lg:ml-5">{typeof post.text === "function" ? post.text(user) : post.text}</div>
+              <div className="w-full lg:flex-grow ml-12 mt-1.5 lg:mt-0 lg:ml-5">{typeof post.text === "function" ? post.text() : post.text}</div>
             </div>
         
             {/* 답글들 */}
@@ -146,6 +57,39 @@ function GoodPage() {
             ))}
           </div>
         ))}
+
+        {/* 페이지 목록 */}
+        <div className="flex items-center justify-center space-x-2 mt-6">
+          <button
+            onClick={() => goToPage(currentPage - 1)}
+            disabled={currentPage <= 1}
+            className="px-3 py-1 rounded-md border text-sm select-none cursor-pointer disabled:cursor-default bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+          >
+            이전
+          </button>
+
+          {_.range(pageListStart, pageListEnd+1).map((i) =>
+            <button
+              key={i}
+              onClick={() => goToPage(i)}
+              className={`px-3 py-1 rounded-md border text-sm select-none cursor-pointer disabled:cursor-default ${
+                i === currentPage
+                  ? "bg-[#435373] text-white"
+                  : "bg-white text-gray-700 hover:bg-gray-100"
+              }`}
+            >
+              {i}
+            </button>
+          )}
+
+          <button
+            onClick={() => goToPage(currentPage + 1)}
+            disabled={currentPage >= totalPages}
+            className="px-3 py-1 rounded-md border text-sm select-none cursor-pointer disabled:cursor-default bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+          >
+            다음
+          </button>
+        </div>
       </PageLayout>
     </MainLayout>
   );

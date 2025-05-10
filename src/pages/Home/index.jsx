@@ -21,11 +21,11 @@ function MainPage() {
             <div className="status-grid grid grid-cols-3 xl:grid-cols-6 gap-2 justify-items-center">
               {[
                 { grade: 'EX', count: 0, className: 'ex' },
-                { grade: 'S', count: 4, className: 's' },
-                { grade: 'A', count: 7, className: 'a' },
-                { grade: 'B', count: 10, className: 'b' },
-                { grade: 'C', count: 15, className: 'c' },
-                { grade: 'D', count: 23, className: 'd' },
+                { grade: 'S', count: 1, className: 's' },
+                { grade: 'A', count: 10, className: 'a' },
+                { grade: 'B', count: 19, className: 'b' },
+                { grade: 'C', count: 26, className: 'c' },
+                { grade: 'D', count: 26, className: 'd' },
               ].map(({ grade, count, className }, idx) => (
                 <div key={idx} className={`status-card ${className}`}>
                   <div className="label-section">{grade}</div>
