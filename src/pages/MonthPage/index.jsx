@@ -8,136 +8,132 @@ function MonthPage() {
   const defaultPosts = [
     {
       id: 7,
-      author: "오르티",
-      text: "ㅇㅙ 이 몸ㅁ이 받ㅈ지 몸ㅅ한거냐!",
-      replies: [],
-    },
-    {
-      id: 7,
-      author: "N",
-      text: "ㅊㅋㅊㅋㅊㅋ",
+      author: "J",
+      text: "H 이달사 수상 기념 리더즈 회식, 금일 오후 6시에 있습니다.",
       replies: [
-        { id: 11, author: "J", text: "222" },
-        { id: 11, author: "N", text: "꺼져 답글 삭제해" },
-        { id: 11, author: "J", text: "ㅎ" },
+        { id: 11, author: "H", text: "뭔소리냐 나 못가는데" },
+        { id: 11, author: "J", text: "안오셔도 괜찮습니다 저희끼리 축하하겠습니다." },
+        { id: 11, author: "H", text: "이게 대체 뭔소리야" },
       ],
-    },
-    {
-      id: 7,
-      author: "Y",
-      text: "축하드립니다, 선배님. 후문 쪽 맛집으로 축하 회식 하러 가시죠.",
-      replies: [],
-    },
-    {
-      id: 7,
-      author: "I",
-      text: "우.리.의.친.구.울.프.독.의.자.랑.",
-      replies: [
-      ],
-    },
-    {
-      id: 7,
-      author: "H",
-      text: "오, 축하한다.",
-      replies: [],
-    },
-    {
-      id: 7,
-      author: "X",
-      text: "뭔가 오류가 있는 건 아닐까요....",
-      replies: [],
-    },
-    {
-      id: 7,
-      author: "A",
-      text: "축하드립니다.",
-      replies: [],
     },
     {
       id: 7,
       author: "L",
       text: "축하드려요...!",
+      replies: [
+        { id: 11, author: "H", text: "고맙다 쪼꼬미" },
+      ],
+    },
+    {
+      id: 7,
+      author: "E",
+      text: "축하하네. 앞으로도 리더로서 더욱 모범이 되고, 좀 쉬어가면서 하길 바랄 뿐이야.",
+      replies: [],
+    },
+    {
+      id: 7,
+      author: "F",
+      text: "축하🎉🎉🎉🎉🎉🎉",
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "M",
+      text: "축하드립니다.",
+      replies: [
+        { id: 11, author: "테리", text: "222" },
+        { id: 11, author: "I", text: "333" },
+        { id: 11, author: "A", text: "444" },
+        { id: 11, author: "H", text: "너넨 안 다치는 게 축하해주는 거야" },
+        
+      ],
+    },
+    {
+      id: 7,
+      author: "R",
+      text: "잘된 일입니다.",
+      replies: [],
+    },
+    {
+      id: 7,
+      author: "N",
+      text: "오 ㅋㅋ 어쩐일 ㅋㅋㅋㅋ",
       replies: [],
     },
     {
       id: 3,
-      author: "테리",
-      text: "웅성웅성👥👤👥뭐야..👤👥👥👤👥👥👤웅성웅성👥👤👥👤👥👤대단해...👥👤👥👤👥👤👥웅성웅성,,👤👥👥👤👥👤왤케 잘해...👤👥👤👥👥 뭐야..👤👥👤👥👤👤👥👥👤👥웅성웅성..👤👥 👥👤👥👥👤👥 👤👥👤",
-      replies: [],
+      author: "X",
+      text: "받으실 줄 알았어요.......",
+      replies: [
+        { id: 11, author: "H", text: "난 네가 나 수상 기념으로 누우러 올줄 몰랐다" },
+      ],
     },
   ];
   
   const grimmerReaperPosts = [
     {
       id: 7,
-      author: "오르티",
-      text: "ㅇㅙ 이 몸ㅁ이 받ㅈ지 몸ㅅ한거냐!",
-      replies: [],
-    },
-    {
-      id: 7,
-      author: "N",
-      text: "ㅊㅋㅊㅋㅊㅋ",
+      author: "J",
+      text: "H 이달사 수상 기념 리더즈 회식, 금일 오후 6시에 있습니다.",
       replies: [
-        { id: 11, author: "J", text: "222" },
-        { id: 11, author: "N", text: "꺼져 답글 삭제해" },
-        { id: 11, author: "J", text: "ㅎ" },
+        { id: 11, author: "H", text: "뭔소리냐 나 못가는데" },
+        { id: 11, author: "J", text: "안오셔도 괜찮습니다 저희끼리 축하하겠습니다." },
+        { id: 11, author: "H", text: "이게 대체 뭔소리야" },
       ],
-    },
-    {
-      id: 7,
-      author: "Y",
-      text: "축하드립니다, 선배님. 후문 쪽 맛집으로 축하 회식 하러 가시죠.",
-      replies: [],
-    },
-    {
-      id: 8,
-      author: "느베야",
-      text: "M!!! 잘하고 있다고!!!! 유니온 바보들 암것도 모르죠ㅋㅋㅋ",
-      replies: [
-        
-      ],
-    },
-    {
-      id: 7,
-      author: "I",
-      text: "우.리.의.친.구.울.프.독.의.자.랑.",
-      replies: [
-        { id: 11, author: "루두스", text: "이 분이야 말로 캐스팅 하고 싶은 분인데 말이죠." },
-      ],
-    },
-    {
-      id: 7,
-      author: "H",
-      text: "오, 축하한다.",
-      replies: [],
-    },
-    {
-      id: 7,
-      author: "X",
-      text: "뭔가 오류가 있는 건 아닐까요....",
-      replies: [
-        { id: 11, author: "하피", text: "솔직히 말이야, 얘 뭐 알고 있는 거 같지 않아?" },
-        { id: 11, author: "루두스", text: "가능성 있는 추측입니다." },
-      ],
-    },
-    {
-      id: 7,
-      author: "A",
-      text: "축하드립니다.",
-      replies: [],
     },
     {
       id: 7,
       author: "L",
       text: "축하드려요...!",
+      replies: [
+        { id: 11, author: "H", text: "고맙다 쪼꼬미" },
+      ],
+    },
+    {
+      id: 7,
+      author: "E",
+      text: "축하하네. 앞으로도 리더로서 더욱 모범이 되고, 좀 쉬어가면서 하길 바랄 뿐이야.",
+      replies: [],
+    },
+    {
+      id: 7,
+      author: "F",
+      text: "축하🎉🎉🎉🎉🎉🎉",
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "M",
+      text: "축하드립니다.",
+      replies: [
+        { id: 11, author: "테리", text: "222" },
+        { id: 11, author: "I", text: "333" },
+        { id: 11, author: "A", text: "444" },
+        { id: 11, author: "H", text: "너넨 안 다치는 게 축하해주는 거야" },
+        
+      ],
+    },
+    {
+      id: 7,
+      author: "R",
+      text: "잘된 일입니다.",
+      replies: [],
+    },
+    {
+      id: 7,
+      author: "N",
+      text: "오 ㅋㅋ 어쩐일 ㅋㅋㅋㅋ",
       replies: [],
     },
     {
       id: 3,
-      author: "테리",
-      text: "웅성웅성👥👤👥뭐야..👤👥👥👤👥👥👤웅성웅성👥👤👥👤👥👤대단해...👥👤👥👤👥👤👥웅성웅성,,👤👥👥👤👥👤왤케 잘해...👤👥👤👥👥 뭐야..👤👥👤👥👤👤👥👥👤👥웅성웅성..👤👥 👥👤👥👥👤👥 👤👥👤",
-      replies: [],
+      author: "X",
+      text: "받으실 줄 알았어요.......",
+      replies: [
+        { id: 11, author: "H", text: "난 네가 나 수상 기념으로 누우러 올줄 몰랐다" },
+      ],
     },
   ];
 
@@ -151,25 +147,25 @@ function MonthPage() {
 
         {/* 타이틀 */}
         <h1 className="text-3xl font-extrabold font-book text-[#435373] mb-2">
-        👑이달의 우수 사원👑
+        👑{user.group === '새붉은 재앙' ? '이달의 사살 대상' : '이달의 우수 사원'}👑
         </h1>
-        <p className="text-gray-600 text-sm mb-10">
-          매달 유니온의 가장 빛나는 별을 소개합니다.
+        <p className="text-gray-600 text-sm mb-10">          
+          {user.group === '새붉은 재앙' ? '매달 유니온의 가장 같잖은 개를 소개합니다.' : '매달 유니온의 가장 빛나는 별을 소개합니다.'}
         </p>
 
         {/* 우수 사원 카드 */}
         <div className='px-2'>
         <div className="bg-white shadow-xl rounded-lg overflow-hidden max-w-md mx-auto">
           <img
-            src="/images/M.webp"
+            src="/images/H.webp"
             alt="이달의 우수 사원"
             className="w-full h-180 object-cover"
           />
           <div className="p-6">
-            <h2 className="text-xl font-bold text-[#456EBF] mb-1">M</h2>
-            <p className="text-sm text-gray-500 mb-2">울프독</p>
+            <h2 className="text-xl font-bold text-[#456EBF] mb-1">H</h2>
+            <p className="text-sm text-gray-500 mb-2">이글아이</p>
             <p className="text-sm text-gray-700 leading-relaxed">
-              감사합니다. 앞으로 더 열심히 하겠습니다.
+              감사합니다만, 포상휴가 주는 건가요?
             </p>
           </div>
         </div>
