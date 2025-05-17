@@ -2,24 +2,13 @@ import MainLayout from '@/shared/MainLayout';
 import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
 import { useUser } from '@/shared/user';
-import { useState, useRef, useEffect } from 'react';
+import { useState, } from 'react';
 import TeamIntroCard from './TeamIntroCard';
 
 function TeamIntroPage() {
   const user = useUser();
 
-  const [isVisible, setIsVisible] = useState(false);
-  const cardRef = useRef();
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (cardRef.current && !cardRef.current.contains(e.target)) {
-        setIsVisible(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  const [selectedCard, setSelectedCard] = useState(null);
   return (
     <MainLayout>
       <PageLayout
@@ -99,8 +88,19 @@ function TeamIntroPage() {
             `}
           />
         }
+        <div
+          onClick={() =>
+            setSelectedCard((prev) =>
+              prev === "유령처럼." ? null : "유령처럼."
+            )
+          }
+          className={`transition-opacity duration-300 ${
+            selectedCard === "유령처럼." ? "opacity-100" : "opacity-0 hover:opacity-100"
+          }`}
+        >
         <TeamIntroCard
-          className="opacity-0 hover:opacity-100 focus:opacity-100 transition-opacity duration-300"
+          selectedCard={selectedCard}
+          setSelectedCard={setSelectedCard}
           name="?"
           name_en="?"
           title="유령처럼."
@@ -111,6 +111,7 @@ function TeamIntroPage() {
             무엇일까요?
           `}
         />
+        </div>
       </PageLayout>
     </MainLayout>
   );

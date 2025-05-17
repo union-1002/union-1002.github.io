@@ -13,9 +13,9 @@ const employees = [
       `,
   },
   { id: 2, initials: 'N', name: 'N', position: '헌터즈 · 맹수', birthday:'5/15', age: '27', height: '178', gen: '2', fullname:'니케 바네사 와이즈맨', engname:'Nike Vanessa Wiseman', nationality: '미국 · 스타레인', etc:'',},
-  { id: 3, initials: 'S', name: 'S', position: '헌터즈 · 도살자', birthday:'', age: '22', height: '157', gen: '2', fullname:'슈슈', engname:'Chouchou', nationality: '프랑스 · 스타레인 슬럼 보육원', },
+  { id: 3, initials: 'S', name: 'S', position: '헌터즈 · 도살자', birthday:'10/10', age: '22', height: '157', gen: '2', fullname:'슈슈', engname:'Chouchou', nationality: '프랑스 · 스타레인 슬럼 보육원', },
   { id: 4, initials: '오', name: '오르티', position: '헌터즈 · 천방지축', birthday:'모른다! 매일이 생일이면 좋겠도다!', age: '200', height: '166', gen: '?', fullname:'오르토스', engname:'Όρθρος', nationality: '게이트?', },
-  { id: 5, initials: 'H', name: 'H', position: '이글아이 · 피곤한 리더', birthday:'', age: '33', height: '185', gen: '1', fullname:'헤르베르트 페터 슈나이더', engname:'Herbert Peter Schneider', nationality: '독일 · 스타레인',},
+  { id: 5, initials: 'H', name: 'H', position: '이글아이 · 피곤한 리더', birthday:'7/8', age: '33', height: '185', gen: '1', fullname:'헤르베르트 페터 슈나이더', engname:'Herbert Peter Schneider', nationality: '독일 · 스타레인',},
   { id: 6, initials: 'L', name: 'L', position: '이글아이 · 이해자', birthday:'3/20', age: '20', height: '165', gen: '1', fullname:'라비 블랑쉬 브누아', engname:'Lavi Blanche Benoit', nationality: '프랑스',
     etc:
       `
@@ -35,7 +35,7 @@ const employees = [
         1. 스스로 격식을 차리기 때문에(슬럼 출신이라는 것이 약한 콤플렉스로 자리해서) 평소에는 존댓말-경어를 쓰지만, 본인의 격식마저 잊을 정도로 감정이 격해지거나 충분한 친밀도가 쌓였을 때, 그리고 마지막으로... 같은 슬럼 출신이라서 따질 필요 없이 진창으로 처박힐 일만 남았을 때... 반말을 사용.
         2. 미니어처 가챠가 있으면 일단 모음
       `},
-  { id: 10,initials: 'I', name: 'I', position: '울프독 · 유쾌한 친구?', birthday:'', age: '24', height: '182', gen: '', fullname:'아이작', engname:'Isaac', nationality: '독일 · 스타레인 슬럼', },
+  { id: 10,initials: 'I', name: 'I', position: '울프독 · 유쾌한 친구?', birthday:'9/21', age: '24', height: '182', gen: '', fullname:'아이작', engname:'Isaac', nationality: '독일 · 스타레인 슬럼', },
   { id: 11, initials:'J', name: 'J', position: '드라칼 · 불편한 동거인, 웬수', birthday:'10/21', age: '26', height: '182', gen: '1', fullname:'주다스 데이 와이즈맨', engname:'Judas Day Wiseman', nationality: '미국 · 스타레인',
     etc:
       `
