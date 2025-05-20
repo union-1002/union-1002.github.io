@@ -75,6 +75,8 @@ const employees = [
    },
   { id: 18, initials: 'P', name: '뽀삐', position: '그림 리퍼 · 맹수', birthday:'11/7', age: '28', height: '176', gen: '1', fullname:'피에르 리오넷', engname:'Pierre', nationality: '프랑스', },
   { id: 19, initials: '느', name: '느베야', position: '그림 리퍼 · 간교한 자', birthday:'', age: '20', height: '165', gen: '?', fullname:'느베야', engname:'Nevaeh', nationality: '게이트?', },
+  { id: 20, initials: 'T', name: 'T', position: '그림 리퍼 · 해탈한 자', birthday:'', age: '25', height: '165', gen: '?', fullname:'탄리엔', engname:'幽昙莲', nationality: '중국', },
+
 ];
 
 const groups = [
@@ -83,7 +85,7 @@ const groups = [
   ['M', '테', 'A', 'I'],
   ['J'],
   ['R', 'Y', 'X'],
-  ['라', 'F', '루', 'P', '느'],
+  ['라', '루', 'P', '느', 'T', 'F',],
 ];
 
 const colorGroups = {
@@ -92,7 +94,7 @@ const colorGroups = {
   blue: ["M", "테", "A", "I"],
   grayBlue: ["J"],
   red: ["R", "Y", "X"],
-  gray: ["라", "F", "루", "P", "느"],
+  gray: ['라', '루', 'P', '느', 'T', 'F',],
 };
 
 const colorValues = {
@@ -195,6 +197,9 @@ const titles = {
       { text: 'H 군', isSpoiler: false },
       { text: '슈나이더 군', isSpoiler: true },
     ],
+    'T': [
+      { text: 'T 군', isSpoiler: false },
+    ],
   },
 
   'N': {
@@ -258,6 +263,9 @@ const titles = {
     'H': [
       { text: '헤베', isSpoiler: true }
     ],
+    'T': [
+      { text: '개새끼', isSpoiler: false },
+    ],
   },
 
   'S': {
@@ -317,6 +325,9 @@ const titles = {
     ],
     'I': [
       { text: '이삭 오빠', isSpoiler: true }
+    ],
+    'T': [
+      { text: '연꽃 오빠', isSpoiler: false },
     ],
   },
 
@@ -378,6 +389,9 @@ const titles = {
     ],
     'H': [
       { text: '쑥쑥이', isSpoiler: false }
+    ],
+    'T': [
+      { text: '꽃돌이!', isSpoiler: false },
     ],
   },
 
@@ -445,6 +459,9 @@ const titles = {
     '오': [
       { text: '용용이', isSpoiler: false }
     ],
+    'T': [
+      { text: '요', isSpoiler: false },
+    ],
   },
 
   'L': {
@@ -508,6 +525,9 @@ const titles = {
     'H': [
       { text: '삼촌', isSpoiler: false }
     ],
+    'T': [
+      { text: '겁쟁이', isSpoiler: false },
+    ],
   },
 
   'M': {
@@ -568,6 +588,9 @@ const titles = {
     'H': [
       { text: 'H 씨', isSpoiler: false }
     ],
+    'T': [
+      { text: '리엔', isSpoiler: true },
+    ],
   },
 
   '테': {
@@ -596,6 +619,9 @@ const titles = {
     ],
     'H': [
       { text: '형님', isSpoiler: false }
+    ],
+    'T': [
+      { text: '배신자', isSpoiler: false },
     ],
   },
 
@@ -664,6 +690,9 @@ const titles = {
     'H': [
       { text: 'H 선배님', isSpoiler: false }
     ],
+    'T': [
+      { text: '사살 대상', isSpoiler: false },
+    ],
   },
 
   'I': {
@@ -723,6 +752,9 @@ const titles = {
     'H': [
       { text: '의사 쌤', isSpoiler: false }
     ],
+    'T': [
+      { text: '기분 나쁜 녀석', isSpoiler: false },
+    ],
   },
 
   'J': { 
@@ -749,6 +781,9 @@ const titles = {
     ],
     'H': [
       { text: '형님', isSpoiler: false }
+    ],
+    'T': [
+      { text: 'T', isSpoiler: false },
     ],
   },
 
@@ -777,6 +812,9 @@ const titles = {
     'H': [
       { text: '의사', isSpoiler: false },
       { text: '헤리', isSpoiler: true },
+    ],
+    'T': [
+      { text: '시든 꽃', isSpoiler: false },
     ],
   },
 
@@ -838,6 +876,9 @@ const titles = {
     'H': [
       { text: '항상 감사한 선배님', isSpoiler: false },
     ],
+    'T': [
+      { text: '연꽃 님', isSpoiler: false },
+    ],
   },
 
   'X': {
@@ -897,6 +938,9 @@ const titles = {
     'H': [
       { text: '튕기는 분', isSpoiler: false },
     ],
+    'T': [
+      { text: '예술가', isSpoiler: false },
+    ],
   },
 
   'F': {
@@ -932,7 +976,7 @@ const titles = {
       { text: '레지오', isSpoiler: true }
     ],
     'X': [
-      { text: '예예', isSpoiler: false }
+      { text: '예예', isSpoiler: true }
     ],
     '오': [
       { text: '오르토스', isSpoiler: false }
@@ -958,6 +1002,9 @@ const titles = {
     ],
     'H': [
       { text: '헤리', isSpoiler: true },
+    ],
+    'T': [
+      { text: '엔엔/엔자기', isSpoiler: true },
     ],
   },
 
@@ -1015,6 +1062,9 @@ const titles = {
     ],
     'H': [
       { text: '생명의 근원 되는 자', isSpoiler: false },
+    ],
+    'T': [
+      { text: '깨달은 어린 양', isSpoiler: false },
     ],
   },
 
@@ -1074,6 +1124,10 @@ const titles = {
     'H': [
       { text: '나타나면 방해되는 분', isSpoiler: false },
     ],
+    'T': [
+      { text: '형제 님', isSpoiler: false },
+      { text: '무대의 꽃', isSpoiler: false },
+    ],
   },
 
   'P': {
@@ -1131,6 +1185,9 @@ const titles = {
     ],
     'H': [
       { text: '맛없는 사탕 인간', isSpoiler: false },
+    ],
+    'T': [
+      { text: '좋은 냄새!', isSpoiler: false },
     ],
   },
 
@@ -1206,6 +1263,75 @@ const titles = {
     'H': [
       { text: '피곤해 보이는 아저씨', isSpoiler: false },
       { text: '위대한 생명의 싹', isSpoiler: true },
+    ],
+    'T': [
+      { text: '가능성을 준 친구', isSpoiler: false },
+    ],
+  },
+
+  'T': {
+    'J': [
+      { text: '와이즈맨 공', isSpoiler: true },
+
+    ],
+    'R': [
+      { text: '하이넬 공', isSpoiler: true },
+    ],
+    '테': [
+      { text: '테리 공', isSpoiler: false },
+    ],
+    'F': [
+      { text: '펠리체', isSpoiler: true },
+      { text: '형제', isSpoiler: false },
+    ],
+    'A': [
+      { text: 'A 공', isSpoiler: false },
+    ],
+    'L': [
+      { text: '작은 열매', isSpoiler: false },
+    ],
+    'E': [
+      { text: '리더 님', isSpoiler: false },
+    ],
+    'N': [
+      { text: 'N 공', isSpoiler: false },
+    ],
+    'Y': [
+      { text: '아해', isSpoiler: false },
+    ],
+    'M': [
+      { text: '그이', isSpoiler: false },
+      { text: '모르페우스', isSpoiler: true },
+      { text: '나의 벗', isSpoiler: true },
+    ],
+    'X': [
+      { text: '범부', isSpoiler: false },
+    ],
+    '오': [
+      { text: '두려운 자', isSpoiler: false },
+    ],
+    '라': [
+      { text: '교주님', isSpoiler: true },
+    ],
+    '루': [
+      { text: '형제', isSpoiler: false },
+    ],
+    'P': [
+      { text: '뽀삐', isSpoiler: false },
+      { text: '피에르', isSpoiler: true },
+    ],
+    'S': [
+      { text: '아해', isSpoiler: false },
+    ],
+    'I': [
+      { text: 'I 공', isSpoiler: false },
+    ],
+    'H': [
+      { text: '생불', isSpoiler: false },
+    ],
+    '느': [
+      { text: '위대하신 분', isSpoiler: false },
+      { text: '제사장', isSpoiler: false },
     ],
   },
 
