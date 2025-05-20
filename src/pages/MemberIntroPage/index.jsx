@@ -75,7 +75,7 @@ const employees = [
    },
   { id: 18, initials: 'P', name: '뽀삐', position: '그림 리퍼 · 맹수', birthday:'11/7', age: '28', height: '176', gen: '1', fullname:'피에르 리오넷', engname:'Pierre', nationality: '프랑스', },
   { id: 19, initials: '느', name: '느베야', position: '그림 리퍼 · 간교한 자', birthday:'', age: '20', height: '165', gen: '?', fullname:'느베야', engname:'Nevaeh', nationality: '게이트?', },
-  { id: 20, initials: 'T', name: 'T', position: '그림 리퍼 · 해탈한 자', birthday:'', age: '25', height: '165', gen: '?', fullname:'탄리엔', engname:'幽昙莲', nationality: '중국', },
+  { id: 20, initials: 'T', name: 'T', position: '그림 리퍼 · 해탈한 자', birthday:'1/23', age: '25', height: '165', gen: '1', fullname:'탄리엔', engname:'幽昙莲', nationality: '중국', },
 
 ];
 
