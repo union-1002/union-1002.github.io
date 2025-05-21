@@ -22,7 +22,7 @@ function TimelinePage() {
               </div>
 
               <div className="text-slate-500">
-                첫 게이트 각성: J / R / F / L / E / X / P / I / H / T<br/>
+                첫 게이트 각성: J / R / F / L / E / X / P / I / H / T / 비광<br/>
                 번외: 라멘타 각성
               </div>
           </div>

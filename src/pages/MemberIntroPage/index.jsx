@@ -76,13 +76,14 @@ const employees = [
   { id: 18, initials: 'P', name: '뽀삐', position: '그림 리퍼 · 맹수', birthday:'11/7', age: '28', height: '176', gen: '1', fullname:'피에르 리오넷', engname:'Pierre', nationality: '프랑스', },
   { id: 19, initials: '느', name: '느베야', position: '그림 리퍼 · 간교한 자', birthday:'', age: '20', height: '165', gen: '?', fullname:'느베야', engname:'Nevaeh', nationality: '게이트?', },
   { id: 20, initials: 'T', name: 'T', position: '그림 리퍼 · 해탈한 자', birthday:'1/23', age: '25', height: '165', gen: '1', fullname:'요 탄리엔', engname:'幽昙莲', nationality: '중국', },
+  { id: 21, initials: '비', name: '비광', position: '울프독 · 승부사', birthday:'7/7', age: '30', height: '186', gen: '1', fullname:'아마코우 야나기', engname:'雨光 柳', nationality: '일본', },
 
 ];
 
 const groups = [
   ['E', 'N', 'S', '오'],
   ['H', 'L'],
-  ['M', '테', 'A', 'I'],
+  ['M', '테', 'A', 'I', '비'],
   ['J'],
   ['R', 'Y', 'X'],
   ['라', '루', 'P', '느', 'T', 'F',],
@@ -91,7 +92,7 @@ const groups = [
 const colorGroups = {
   green: ["E", "N", "S", "오"],
   purple: ["H", "L"],
-  blue: ["M", "테", "A", "I"],
+  blue: ["M", "테", "A", "I", "비"],
   grayBlue: ["J"],
   red: ["R", "Y", "X"],
   gray: ['라', '루', 'P', '느', 'T', 'F',],
@@ -200,6 +201,9 @@ const titles = {
     'T': [
       { text: 'T 군', isSpoiler: false },
     ],
+    '비': [
+      { text: '비광 군', isSpoiler: false },
+    ],
   },
 
   'N': {
@@ -266,6 +270,9 @@ const titles = {
     'T': [
       { text: '개새끼', isSpoiler: false },
     ],
+    '비': [
+      { text: '도박쟁이', isSpoiler: false },
+    ],
   },
 
   'S': {
@@ -328,6 +335,9 @@ const titles = {
     ],
     'T': [
       { text: '연꽃 오빠', isSpoiler: false },
+    ],
+    '비': [
+      { text: '비광 오빠', isSpoiler: false },
     ],
   },
 
@@ -392,6 +402,9 @@ const titles = {
     ],
     'T': [
       { text: '꽃돌이!', isSpoiler: false },
+    ],
+    '비': [
+      { text: '이몸의 친구!', isSpoiler: false },
     ],
   },
 
@@ -462,6 +475,11 @@ const titles = {
     'T': [
       { text: '요', isSpoiler: true },
     ],
+    '비': [
+      { text: '야', isSpoiler: false },
+      { text: '너', isSpoiler: false },
+      { text: '야나기', isSpoiler: true },
+    ],
   },
 
   'L': {
@@ -528,6 +546,10 @@ const titles = {
     'T': [
       { text: '겁쟁이', isSpoiler: false },
     ],
+    '비': [
+      { text: '아저씨', isSpoiler: false },
+      { text: '연결되신 분', isSpoiler: false },
+    ],
   },
 
   'M': {
@@ -591,6 +613,10 @@ const titles = {
     'T': [
       { text: '리엔', isSpoiler: true },
     ],
+    '비': [
+      { text: '비광 씨', isSpoiler: false },
+      { text: '형님', isSpoiler: false },
+    ],
   },
 
   '테': {
@@ -622,6 +648,10 @@ const titles = {
     ],
     'T': [
       { text: '배신자', isSpoiler: false },
+    ],
+    '비': [
+      { text: '슨배임', isSpoiler: false },
+      { text: '형', isSpoiler: false },
     ],
   },
 
@@ -693,6 +723,9 @@ const titles = {
     'T': [
       { text: '사살 대상', isSpoiler: false },
     ],
+    '비': [
+      { text: '선배님', isSpoiler: false },
+    ],
   },
 
   'I': {
@@ -755,6 +788,10 @@ const titles = {
     'T': [
       { text: '기분 나쁜 녀석', isSpoiler: false },
     ],
+    '비': [
+      { text: '형님', isSpoiler: false },
+      { text: '그 아저씨', isSpoiler: false },
+    ],
   },
 
   'J': { 
@@ -784,6 +821,9 @@ const titles = {
     ],
     'T': [
       { text: 'T', isSpoiler: false },
+    ],
+    '비': [
+      { text: '형님', isSpoiler: false },
     ],
   },
 
@@ -815,6 +855,10 @@ const titles = {
     ],
     'T': [
       { text: '시든 꽃', isSpoiler: false },
+    ],
+    '비': [
+      { text: '너', isSpoiler: false },
+      { text: '걔', isSpoiler: false },
     ],
   },
 
@@ -879,6 +923,10 @@ const titles = {
     'T': [
       { text: '연꽃 님', isSpoiler: false },
     ],
+    '비': [
+      { text: '일본 분', isSpoiler: true },
+      { text: '비광 님', isSpoiler: false },
+    ],
   },
 
   'X': {
@@ -940,6 +988,9 @@ const titles = {
     ],
     'T': [
       { text: '예술가', isSpoiler: false },
+    ],
+    '비': [
+      { text: '선배님', isSpoiler: false },
     ],
   },
 
@@ -1006,6 +1057,10 @@ const titles = {
     'T': [
       { text: '엔엔/엔자기', isSpoiler: true },
     ],
+    '비': [
+      { text: '비광', isSpoiler: false },
+      { text: '야니', isSpoiler: true },
+    ],
   },
 
   '라': {
@@ -1065,6 +1120,9 @@ const titles = {
     ],
     'T': [
       { text: '깨달은 어린 양', isSpoiler: false },
+    ],
+    '비': [
+      { text: '진리를 보는 자', isSpoiler: false },
     ],
   },
 
@@ -1128,6 +1186,10 @@ const titles = {
       { text: '형제 님', isSpoiler: false },
       { text: '무대의 꽃', isSpoiler: false },
     ],
+    '비': [
+      { text: '명확히 거슬리는 분', isSpoiler: false },
+      { text: '암살 대상', isSpoiler: false },
+    ],
   },
 
   'P': {
@@ -1188,6 +1250,9 @@ const titles = {
     ],
     'T': [
       { text: '좋은 냄새!', isSpoiler: false },
+    ],
+    '비': [
+      { text: '재밌는 마술사!', isSpoiler: false },
     ],
   },
 
@@ -1267,6 +1332,9 @@ const titles = {
     'T': [
       { text: '가능성을 준 친구', isSpoiler: false },
     ],
+    '비': [
+      { text: '무서운 애', isSpoiler: false },
+    ],
   },
 
   'T': {
@@ -1311,7 +1379,7 @@ const titles = {
       { text: '두려운 자', isSpoiler: false },
     ],
     '라': [
-      { text: '교주님', isSpoiler: true },
+      { text: '교주님', isSpoiler: false },
     ],
     '루': [
       { text: '형제', isSpoiler: false },
@@ -1332,6 +1400,86 @@ const titles = {
     '느': [
       { text: '위대하신 분', isSpoiler: false },
       { text: '제사장', isSpoiler: false },
+    ],
+    '비': [
+      { text: '선배님', isSpoiler: false },
+    ],
+  },
+  
+  '비': {
+    'J': [
+      { text: 'J', isSpoiler: false },
+      { text: '주다스', isSpoiler: true },
+
+    ],
+    'R': [
+      { text: '그 녀석', isSpoiler: false },
+      { text: '리하르트', isSpoiler: true },
+      { text: 'R', isSpoiler: false },
+    ],
+    '테': [
+      { text: '테리', isSpoiler: false },
+      { text: '로이드', isSpoiler: true },
+    ],
+    'F': [
+      { text: '펠리체', isSpoiler: true },
+      { text: 'F', isSpoiler: false },
+    ],
+    'A': [
+      { text: '베르너', isSpoiler: true },
+    ],
+    'L': [
+      { text: '꼬맹이', isSpoiler: false },
+      { text: '아이', isSpoiler: false },
+    ],
+    'E': [
+      { text: '형님', isSpoiler: false },
+    ],
+    'N': [
+      { text: '날치기', isSpoiler: false },
+    ],
+    'Y': [
+      { text: '한국인 꼬마', isSpoiler: true },
+      { text: '도련님', isSpoiler: false },
+    ],
+    'M': [
+      { text: '깍쟁이', isSpoiler: false },
+      { text: '레지오', isSpoiler: true },
+    ],
+    'X': [
+      { text: 'X', isSpoiler: false },
+    ],
+    '오': [
+      { text: '좋은 만담 콤비', isSpoiler: false },
+    ],
+    '라': [
+      { text: '희생자', isSpoiler: false },
+    ],
+    '루': [
+      { text: '견제하는 녀석', isSpoiler: false },
+      { text: '사살 대상', isSpoiler: false },
+    ],
+    'P': [
+      { text: '뽀삐', isSpoiler: false },
+      { text: '피에르', isSpoiler: true },
+    ],
+    'S': [
+      { text: '분홍 토끼', isSpoiler: false },
+    ],
+    'I': [
+      { text: '젊은 친구', isSpoiler: false },
+      { text: '론의 후배', isSpoiler: true },
+    ],
+    'H': [
+      { text: '야', isSpoiler: false },
+      { text: '너', isSpoiler: false },
+      { text: '헤르베르트', isSpoiler: true },
+    ],
+    '느': [
+      { text: '꼬마 친구', isSpoiler: false },
+    ],
+    'T': [
+      { text: '개자식', isSpoiler: false },
     ],
   },
 
