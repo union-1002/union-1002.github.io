@@ -6,6 +6,7 @@ import banner3 from '../images/banner3.png';
 import banner4 from '../images/banner4.png';
 import banner5 from '../images/banner5.png';
 import banner_n from '../images/banner_n.png';
+import banner_h from '../images/banner_h.jpg';
 
 
 
@@ -17,6 +18,7 @@ const BannerSlide = () => {
 
   const images = [
     ...(user.group === '새붉은 재앙' ? [banner_n] : []),
+    banner_h,
     banner1,
     banner2,
     banner3,
