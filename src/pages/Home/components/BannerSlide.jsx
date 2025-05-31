@@ -18,7 +18,6 @@ const BannerSlide = () => {
 
   const images = [
     ...(user.group === '새붉은 재앙' ? [banner_n] : []),
-    banner_h,
     banner1,
     banner2,
     banner3,

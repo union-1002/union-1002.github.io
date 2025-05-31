@@ -40,9 +40,11 @@ const MainLayout = ({ children }) => {
       <NoteModal isOpen={isNoteModalOpen} handleClose={toggleNoteModal} />
 
       {/* 알림바 */}
-      <div className="w-full bg-[var(--light-purple)] text-center text-sm py-1 font-sans font-normal">
-        게이트 위험 수준 [안전] 단계입니다
+      <div className="w-full bg-[#42000F] text-center text-sm py-1 font-sans font-normal text-[#ffffff]">
+        게이트 위험 수준 [심각] 단계입니다. *집합 금지 발령*
       </div>
+      
+      {/* var(--light-purple) */}
 
       {/* 메뉴바 */}
       <div className="w-full border-b border-b-gray-400 border-b-[0.5px]">
@@ -143,6 +145,7 @@ const MainLayout = ({ children }) => {
                 <Link to="/wellfare" className="py-1 hover:bg-[var(--light-purple)] rounded">직원 복지</Link>
                 <Link to="/good" className="py-1 hover:bg-[var(--light-purple)] rounded">칭찬합니다</Link>
                 <Link to="/nojo" className="py-1 hover:bg-[var(--light-purple)] rounded">노동조합</Link>
+                <Link to="https://bangool.tistory.com/" target='_blank' className="py-1 hover:bg-[var(--light-purple)] rounded">조직문화SOS</Link>
               </div>
             </div>
 
@@ -195,6 +198,7 @@ const MainLayout = ({ children }) => {
                   <Link to="/wellfare" className="py-1 hover:bg-gray-100 w-full text-center rounded">직원 복지</Link>
                   <Link to="/good" className="py-1 hover:bg-gray-100 w-full text-center rounded">칭찬합니다</Link>
                   <Link to="/nojo" className="py-1 hover:bg-gray-100 w-full text-center rounded">노동조합</Link>
+                  <Link to="https://bangool.tistory.com/" target='_blank' className="py-1 hover:bg-gray-100 w-full text-center rounded">조직문화SOS</Link>
                 </div>
 
                 {/* 시민 마당 */}
