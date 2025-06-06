@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router';
 import MainLayout from '@/shared/MainLayout';
 import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
-import { createPost, createReply, deletePost, deleteReply, makeContext, updatePost, updateReply, usePagination, usePosts } from './hooks';
+import { createPost, createReply, deletePost, deleteReply, makeContext, updatePost, updateReply, usePosts } from './hooks';
 import { useUser } from "@/shared/user";
 import { RenderdCheckbox, TextEdit, TextEditTailButton } from "./components";
 import { FaCode } from "react-icons/fa6";
@@ -15,14 +15,13 @@ const BOARD_ID = 'good';
 function GoodPage() {
   // URL 쿼리 파라미터
   const [searchParams, setSearchParams] = useSearchParams();
-  const currentPage = Number.parseInt(searchParams.get('page') ?? 1);
+  const page = Number.parseInt(searchParams.get('page') ?? 1);
   // 페이지 목록
-  const { loading, error, data: posts, update } = usePosts(BOARD_ID);
   const pageSize = 10;  // 한 페이지에 보여질 글 개수
-  const { pageItems, totalPages } = usePagination(posts, pageSize, currentPage);
   const pageListRange = 2;  // 현재 페이지 양 옆에 보여줄 번호 수
-  const pageListStart = Math.max(1, Math.min(totalPages, currentPage - pageListRange));
-  const pageListEnd = Math.max(1, Math.min(totalPages, currentPage + pageListRange));
+  const { loading, error, data: posts, update, nPages } = usePosts(BOARD_ID, page, pageSize);
+  const pageListStart = Math.max(1, Math.min(nPages, page - pageListRange));
+  const pageListEnd = Math.max(1, Math.min(nPages, page + pageListRange));
   const [currentCommandId, setCurrentCommandId] = useState(null);
 
   const goToPage = (i) => { setSearchParams({ page: i }) };
@@ -48,7 +47,7 @@ function GoodPage() {
           </div>
 
           {/* 게시글 목록 */}
-          {pageItems.map((post, index) => (
+          {posts.map((post, index) => (
             <div
               key={post.id}
               className="border-gray-300 
@@ -79,8 +78,8 @@ function GoodPage() {
           {/* 페이지 목록 */}
           <div className="flex items-center justify-center space-x-2 mt-6">
             <button
-              onClick={() => goToPage(currentPage - 1)}
-              disabled={currentPage <= 1}
+              onClick={() => goToPage(page - 1)}
+              disabled={page <= 1}
               className="px-3 py-1 rounded-md border text-sm select-none cursor-pointer disabled:cursor-default bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
             >
               이전
@@ -91,7 +90,7 @@ function GoodPage() {
                 key={i}
                 onClick={() => goToPage(i)}
                 className={`px-3 py-1 rounded-md border text-sm select-none cursor-pointer disabled:cursor-default ${
-                  i === currentPage
+                  i === page
                     ? "bg-[#435373] text-white"
                     : "bg-white text-gray-700 hover:bg-gray-100"
                 }`}
@@ -101,8 +100,8 @@ function GoodPage() {
             )}
 
             <button
-              onClick={() => goToPage(currentPage + 1)}
-              disabled={currentPage >= totalPages}
+              onClick={() => goToPage(page + 1)}
+              disabled={page >= nPages}
               className="px-3 py-1 rounded-md border text-sm select-none cursor-pointer disabled:cursor-default bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
             >
               다음
@@ -148,7 +147,6 @@ function PostItem({ post, update, currentCommandId, setCurrentCommandId }) {
   const [editingText, setEditingText] = useState(typeof post.text === 'function' ? post.text.toString() : post.text);
   const isUsernameEditable = isAdmin;
   const isTextEditable = true;
-  console.log(typeof post.text === 'function', jsMode);
 
   const handleReply = () => {
     if (!isRepliable || editMode) {

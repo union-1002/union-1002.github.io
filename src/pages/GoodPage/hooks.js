@@ -20,20 +20,28 @@ export function makeContext(user) {
   }
 }
 
-export function usePosts(board) {
+export function usePosts(board, page, pageSize) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
-
+  const [nPages, setNPages] = useState(0);
   const user = useUser();
-  
+
   const update = async () => {
     setLoading(true);
 
     try {
-      const posts = await getPosts(board);
+      const nRows = await countPosts(board);
+      const nPages = Math.ceil(nRows / pageSize);
+      let posts = [];
+      if (1 <= page && page <= nPages) {
+        const from = (page - 1) * pageSize;
+        const to = (page * pageSize) - 1;
+        posts = await getPosts(board, from, to);
+      }
       setError(null);
       setData(posts);
+      setNPages(nPages);
     }
     catch (e) {
       setError(e);
@@ -44,12 +52,22 @@ export function usePosts(board) {
 
   useEffect(() => {
     update();
-  }, [user, board]);
+  }, [user, board, page, pageSize]);
 
-  return { loading, data, error, update };
+  return { loading, data, error, update, nPages };
 }
 
-export async function getPosts(board) {
+export async function countPosts(board) {
+  const { count, error } = await supabase
+    .from(`${board}_posts`)
+    .select('*', { count: 'exact', head: true });
+  if (error) {
+    throw error;
+  }
+  return count;
+}
+
+export async function getPosts(board, from, to) {
   const postMap = {};
   const posts = [];
 
@@ -57,8 +75,8 @@ export async function getPosts(board) {
     const { data, error } = await supabase
       .from(`${board}_posts`)
       .select('*')
-      .order('created_at', { ascending: false });
-
+      .order('created_at', { ascending: false })
+      .range(from, to);
     if (error) {
       throw error;
     }
@@ -77,9 +95,13 @@ export async function getPosts(board) {
   }
 
   {
+    const maxPostId = posts.length ? posts.at(0).id : -1;
+    const minPostId = posts.length ? posts.at(-1).id : -1;
     const { data, error } = await supabase
       .from(`${board}_replies`)
       .select('*')
+      .gte('parent_id', minPostId)
+      .lte('parent_id', maxPostId)
       .order('created_at', { ascending: true });
 
     if (error) {
@@ -138,7 +160,6 @@ export async function deletePost(board, postId) {
   if (error)  {
     throw error;
   }
-  console.log(postId, data, error);
 }
 
 export async function createReply(board, postId, user, username, jsMode, text) {
