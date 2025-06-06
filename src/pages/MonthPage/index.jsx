@@ -162,10 +162,10 @@ function MonthPage() {
             className="w-full h-180 object-cover"
           />
           <div className="p-6">
-            <h2 className="text-xl font-bold text-[#456EBF] mb-1">H</h2>
+            <h2 className="text-xl font-bold text-[#456EBF] mb-1">주짱</h2>
             <p className="text-sm text-gray-500 mb-2">이글아이</p>
             <p className="text-sm text-gray-700 leading-relaxed">
-              감사합니다만, 포상휴가 주는 건가요?
+              유니온 창립 10주년 최고의 사원
             </p>
           </div>
         </div>

@@ -18,6 +18,7 @@ import HackerLoginPage from './pages/HackerLoginPage';
 import GoodPage from './pages/GoodPage';
 import WellPage from './pages/WellPage';
 import MonthPage from './pages/MonthPage';
+import AdminPage from './pages/AdminPasswordReset';
 
 function AppProvider({ children }) {
   return (
@@ -49,6 +50,7 @@ function App() {
         <Route path="/minwonSubmit" element={<MinwonSubmitPage />} />
         <Route path="/siteIntro" element={<SitePage />} />
         <Route path="/monthlyMember" element={<MonthPage/>} />
+        <Route path="/unionAdmin" element={<AdminPage/>} />
       </Routes>
     </AppProvider>
   );
