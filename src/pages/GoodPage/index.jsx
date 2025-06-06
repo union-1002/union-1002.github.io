@@ -25,6 +25,14 @@ function GoodPage() {
   const [currentCommandId, setCurrentCommandId] = useState(null);
 
   const goToPage = (i) => { setSearchParams({ page: i }) };
+  const updateOnCreatePost = async () => {
+    if (page === 1) {
+      await update();
+    }
+    else {
+      goToPage(1);
+    }
+  }
 
   return (
     <MainLayout>
@@ -38,7 +46,7 @@ function GoodPage() {
             <div className="absolute w-full h-full z-10 flex justify-center items-center backdrop-brightness-90"><Loading /></div>
           }
 
-          <PostWriter update={update} />
+          <PostWriter update={updateOnCreatePost} />
 
           <div className="flex flex-wrap lg:flex-nowrap items-start text-sm font-semibold border-b border-gray-400 pb-4">
             <div className="w-[50px] lg:w-[60px] text-center shrink-0">번호</div>
