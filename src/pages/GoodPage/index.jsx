@@ -23,7 +23,6 @@ function GoodPage() {
   const pageListStart = Math.max(1, Math.min(nPages, page - pageListRange));
   const pageListEnd = Math.max(1, Math.min(nPages, page + pageListRange));
   const [currentCommandId, setCurrentCommandId] = useState(null);
-
   const goToPage = (i) => { setSearchParams({ page: i }) };
   const updateOnCreatePost = async () => {
     if (page === 1) {
@@ -33,6 +32,8 @@ function GoodPage() {
       goToPage(1);
     }
   }
+
+  const user = useUser();
 
   return (
     <MainLayout>
@@ -46,7 +47,9 @@ function GoodPage() {
             <div className="absolute w-full h-full z-10 flex justify-center items-center backdrop-brightness-90"><Loading /></div>
           }
 
-          <PostWriter update={updateOnCreatePost} />
+          {user.isLoggedIn() &&
+            <PostWriter update={updateOnCreatePost} />
+          }
 
           <div className="flex flex-wrap lg:flex-nowrap items-start text-sm font-semibold border-b border-gray-400 pb-4">
             <div className="w-[50px] lg:w-[60px] text-center shrink-0">번호</div>
@@ -143,12 +146,12 @@ function PostItem({ post, update, currentCommandId, setCurrentCommandId }) {
   const context = { user };
   const isAdmin = user.isAdmin;
   const isMine = post.authorId === user.uid;
-  const isRepliable = true;
+  const isRepliable = user.isLoggedIn();
   const isEditable = isMine || user.isAdmin;
   const isDeletable = isMine || user.isAdmin;
   const toggleEditMode = () => setCurrentCommandId(currentCommandId !== COMMAND_EDIT_POST ? COMMAND_EDIT_POST : null);
   const toggleReplyWriter = () => setCurrentCommandId(currentCommandId !== COMMAND_WRITE_REPLY ? COMMAND_WRITE_REPLY : null);
-
+  
   const editMode = currentCommandId === COMMAND_EDIT_POST;
   const [username, setUsername] = useState(isAdmin ? post.author : user.username);
   const [jsMode, setJsMode] = useState(typeof post.text === 'function');
@@ -198,7 +201,7 @@ function PostItem({ post, update, currentCommandId, setCurrentCommandId }) {
 
   return (
     <div>
-      <div onClick={handleReply} className="group cursor-pointer relative flex flex-wrap lg:flex-nowrap items-start text-sm py-4 hover:bg-gray-50 transition">
+      <div onClick={handleReply} className={`${isRepliable && 'cursor-pointer '} group relative flex flex-wrap lg:flex-nowrap items-start text-sm py-4 hover:bg-gray-50 transition`}>
         <div className="w-[50px] lg:w-[60px] text-center shrink-0">
           {post.id}
           {(editMode && isAdmin) &&
