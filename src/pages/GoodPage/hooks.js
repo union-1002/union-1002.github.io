@@ -110,13 +110,15 @@ export async function getPosts(board, from, to) {
 
     for (const row of data) {
       const post = postMap[row.parent_id];
-      const reply = {
-        id: row.id,
-        authorId: row.author_id,
-        author: row.username,
-        text: row.is_js ? getFunctionOrText(row.title) : row.title,
-      };
-      post.replies.push(reply);
+      if (post) {
+        const reply = {
+          id: row.id,
+          authorId: row.author_id,
+          author: row.username,
+          text: row.is_js ? getFunctionOrText(row.title) : row.title,
+        };
+        post.replies.push(reply);
+      }
     }
   }
 
