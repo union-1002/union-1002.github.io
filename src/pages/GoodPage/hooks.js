@@ -129,6 +129,7 @@ export async function createPost(board, user, username, jsMode, text) {
     .insert([{
       author_id: user.uid,
       username: username || user.username,
+      is_public: user.isAdmin,
       is_js: jsMode,
       title: text,
       content: null,
@@ -169,6 +170,7 @@ export async function createReply(board, postId, user, username, jsMode, text) {
       parent_id: postId,
       author_id: user.uid,
       username: username || user.username,
+      is_public: user.isAdmin,
       is_js: jsMode,
       title: text,
       content: null,
