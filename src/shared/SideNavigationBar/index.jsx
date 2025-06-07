@@ -7,6 +7,7 @@ export const MENU_PROPS = {
       "총장 인사말": "/hello",
       "연혁": "/timeline",
       "부서 소개": "/teamIntro",
+      "조직도": "/organization",
       "직원 소개": "/memberIntro",
     },
   },

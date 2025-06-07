@@ -52,6 +52,15 @@ function useMails(user) {
       이글아이: [
         {
           from: 'H',
+          title: <>사탕 받아 와.</>,
+          body: (
+            <>
+              1층.
+            </>
+          ),
+        },
+        {
+          from: 'H',
           title: '의무실 관련 총 공지사항',
           body: (
             <>
@@ -71,6 +80,15 @@ function useMails(user) {
         },
       ],
       울프독: [
+        {
+          from: '비광',
+          title: '징계는 너무하지 않나?',
+          body: (
+            <>
+              M 저 쪼잔한 양반, 경마 베팅한 거 들켰다고 징계라니. 말도 안 되는 일이지!
+            </>
+          ),
+        },
         {
           from: '유니온 노동조합 울프독 지부',
           title: '주 52시간 이상 근무를 강요하는 회사를 규탄한다',
@@ -139,6 +157,15 @@ function useMails(user) {
       ],
       '언더 그라운드': [
         {
+          from: '?',
+          title: '약 받아가시오.',
+          body: (
+            <>
+              독은 아닐세.
+            </>
+          ),
+        },
+        {
           from: 'R',
           title: '정기 집합 건',
           body: (
@@ -170,6 +197,15 @@ function useMails(user) {
       ],
       드라칼: [
         {
+          from: '미카엘',
+          title: '신규 요원 트레이닝 관련',
+          body: (
+            <>
+              오늘 오후 3시에 전투 테스트 있습니다. 참관 부탁드려요.
+            </>
+          ),
+        },
+        {
           from: 'J',
           title: '중요) 01-4879호 정책 회의 건',
           body: (
@@ -189,6 +225,24 @@ function useMails(user) {
         },
       ],
       '새붉은 재앙': [
+        {
+          from: '아가페',
+          title: <>꼬옥 알아와 주셔요.</>,
+          body: (
+            <>
+              꼭, 테리 님에 대한 정보를……
+            </>
+          ),
+        },
+        {
+          from: 'T',
+          title: <>접속 방법</>,
+          body: (
+            <>
+              소승의 비밀번호는 qwert1234 입니다.
+            </>
+          ),
+        },
         {
           from: '느베야',
           title: <>느베야가 유니온 다 털었으니까 어서 칭찬해!</>,
@@ -237,7 +291,7 @@ function useMails(user) {
         },
       ],
     };
-    return group_mails[user.group] || [];
+    return group_mails[user.part] || [];
   }, [user]);
 }
 

@@ -14,7 +14,8 @@ const groups = [
   ['M', '테', 'A', 'I', '비'],
   ['J', '미'],
   ['R', 'Y', 'X'],
-  ['라', '루', 'P', '느', 'T', 'F',],
+  ['라', '루', 'P', '느', 'T', '아',],
+  ['F', '사',]
 ];
 
 const groupedParts = [
@@ -50,10 +51,16 @@ const groupedParts = [
   },
   {
     groupName: "그림 리퍼",
-    parts: ['라', '루', 'P', '느', 'T', 'F'],
+    parts: ['라', '루', 'P', '느', 'T', '아',],
     color: "#eae9ef",
     borderColor: "#25265e"
-  }
+  },
+  {
+    groupName: "빌런",
+    parts: ['F', '사',],
+    color: "#eae9ef",
+    borderColor: "#25265e"
+  },
 ];
 
 // circleColors와 borderColors 동시 생성
@@ -102,7 +109,6 @@ function MemberIntroPage() {
     if (cachedEmpData && cachedTitleData) {
       empData = JSON.parse(cachedEmpData);
       titleMap = JSON.parse(cachedTitleData);
-      console.log('여기')
     } else {
       const [empRes, titleRes] = await Promise.all([
         fetch('/data/employees.csv'),
@@ -122,7 +128,7 @@ function MemberIntroPage() {
         if (!titleMap[from]) titleMap[from] = {};
         if (!titleMap[from][to]) titleMap[from][to] = [];
         titleMap[from][to].push({
-          text,
+          text: text?.replace(/\\n/g, '\n'),
           isSpoiler: isSpoiler === "TRUE" || isSpoiler === true
         });
       });
@@ -144,13 +150,13 @@ function MemberIntroPage() {
         initials: '나',
         name: user.username,
         position: user.part,
-        birthday: '-',
-        age: '-',
-        height: '-',
-        gen: '-',
-        fullname: '-',
-        engname: '-',
-        nationality: '-',
+        birthday: user.birthday,
+        age: user.age,
+        height: user.height,
+        gen: user.gen,
+        fullname: user.fullname,
+        engname: user.engname,
+        nationality: user.nationality,
         etc: '',
       });
 
@@ -336,7 +342,7 @@ function MemberIntroPage() {
               const emp = employees.find(e => e.initials === initial);
               if (!emp) return null;
               return (
-                <div key={emp.id} className="flex flex-col items-center" style={{minWidth:"9rem", minHeight:"10rem", alignItems: "center"}}>
+                <div key={emp.id} className="flex flex-col items-center" style={{minWidth:"9rem", maxWidth: "9rem", minHeight:"10rem", alignItems: "center"}}>
                   <div className="relative">
                     <button
                       onClick={() => 
@@ -374,7 +380,7 @@ function MemberIntroPage() {
                       {(titles[selected.initials]?.[emp.initials] || [{ text: '-', isSpoiler: false }]).map((title, idx) => (
                         <div
                           key={`${title.text}-${idx}`}
-                          className={`cursor-pointer ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler
+                          className={`whitespace-pre-line text-center cursor-pointer ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler
                             ? 'transition-all duration-300 blur-none'
                             : 'transition-none blur-xs'}`}
                           onClick={() => handleReveal(selected.initials, emp.initials, idx)}

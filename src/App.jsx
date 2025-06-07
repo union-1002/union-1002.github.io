@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import HelloPage from './pages/HelloPage';
 import TimelinePage from './pages/TimelinePage';
 import TeamIntroPage from './pages/TeamIntroPage';
+import OrganizationPage from './pages/OrganizationPage';
 import MemberIntroPage from './pages/MemberIntroPage';
 import NoticePage from './pages/NoticePage';
 import SchedulePage from './pages/SchedulePage';
@@ -44,6 +45,7 @@ function App() {
         <Route path="/hello" element={<HelloPage />} />
         <Route path="/timeline" element={<TimelinePage />} />
         <Route path="/teamIntro" element={<TeamIntroPage />} />
+        <Route path="/organization" element={<OrganizationPage />} />
         <Route path="/memberIntro" element={<MemberIntroPage />} />
         <Route path="/notice" element={<NoticePage />} />
         <Route path="/schedule" element={<SchedulePage />} />

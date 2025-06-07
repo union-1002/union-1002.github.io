@@ -1,6 +1,8 @@
 import { createContext, useContext, useMemo } from "react";
 import { useSessionStorage } from "react-use";
 import supabase from "@/shared/supabase";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const defaultUser = {
   userId: null,
@@ -9,6 +11,13 @@ const defaultUser = {
   part: null,
   isAdmin: false,
   hasNewNotes: false,
+  fullname: null,
+  engname: null,
+  birthday: null,
+  nationality: null,
+  gen: null,
+  height: null,
+  age: null,
 
   // Calculated fields
   isLoggedIn: false,
@@ -43,7 +52,7 @@ export function UserProvider({ children }) {
 
       const { data: profileData, error: profileError } = await supabase
         .from('members')
-        .select('username, part, role')
+        .select('username, part, role, fullname, engname, birthday, nationality, gen, age, height')
         .eq('id', authData.user.id)
         .single();
       if (profileError || !profileData) {
@@ -60,12 +69,20 @@ export function UserProvider({ children }) {
         uid: authData.user.id,
         username: profileData.username,
         part: profileData.part,
+        fullname: profileData.fullname,
+        engname: profileData.engname,
+        birthday: profileData.birthday,
+        nationality: profileData.nationality,
+        gen: profileData.gen,
+        height: profileData.height,
+        age: profileData.age,
         isAdmin: profileData.role === 'admin',
         hasNewNotes: true,
       });
     },
     loginWithoutAuth: async (part, userId, password) => {
       setUserData({
+        ...defaultUser,
         userId,
         uid: null,
         username: userId,
@@ -84,6 +101,20 @@ export function UserProvider({ children }) {
       setUserData({ ...userData, hasNewNotes: false });
     },
   }), [userData]);
+
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await supabase.auth.getUser();
+      if (!data?.user) {
+        setUserData(defaultUser);
+      }
+      supabase.auth.onAuthStateChange(async (e) => {
+        if (e === 'SIGNED_OUT') {
+          setUserData(defaultUser);
+        }
+      });
+    })();
+  }, []);
 
   return <UserContext.Provider value={user}>{children}</UserContext.Provider>;
 }
