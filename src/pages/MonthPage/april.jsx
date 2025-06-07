@@ -141,7 +141,7 @@ function MonthPage() {
     },
   ];
 
-  const postsToShow = user.group === "새붉은 재앙" ? grimmerReaperPosts : defaultPosts;
+  const postsToShow = user.part === "새붉은 재앙" ? grimmerReaperPosts : defaultPosts;
 
   
   return (

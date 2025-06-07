@@ -137,7 +137,7 @@ function MonthPage() {
     },
   ];
 
-  const postsToShow = user.group === "새붉은 재앙" ? grimmerReaperPosts : defaultPosts;
+  const postsToShow = user.part === "새붉은 재앙" ? grimmerReaperPosts : defaultPosts;
 
   
   return (
@@ -147,10 +147,10 @@ function MonthPage() {
 
         {/* 타이틀 */}
         <h1 className="text-3xl font-extrabold font-book text-[#435373] mb-2">
-        👑{user.group === '새붉은 재앙' ? '이달의 사살 대상' : '이달의 우수 사원'}👑
+        👑{user.part === '새붉은 재앙' ? '이달의 사살 대상' : '이달의 우수 사원'}👑
         </h1>
         <p className="text-gray-600 text-sm mb-10">          
-          {user.group === '새붉은 재앙' ? '매달 유니온의 가장 같잖은 개를 소개합니다.' : '매달 유니온의 가장 빛나는 별을 소개합니다.'}
+          {user.part === '새붉은 재앙' ? '매달 유니온의 가장 같잖은 개를 소개합니다.' : '매달 유니온의 가장 빛나는 별을 소개합니다.'}
         </p>
 
         {/* 우수 사원 카드 */}

@@ -71,7 +71,7 @@ function useMails(user) {
         },
         {
           from: 'L',
-          title: <>{user.name} 님께</>,
+          title: <>{user.username} 님께</>,
           body: (
             <>
               바쁘신가요…? 오늘 퇴근하고 같이 게임 하실래요?💌
@@ -121,7 +121,7 @@ function useMails(user) {
           title: '노조한테 물어보실?',
           body: (
             <>
-              {user.name}, 저희도 월급 인상해달라 할까여?
+              {user.username}, 저희도 월급 인상해달라 할까여?
             </>
           ),
         },
@@ -216,10 +216,10 @@ function useMails(user) {
         },
         {
           from: 'J',
-          title: <>{user.name} 회신</>,
+          title: <>{user.username} 회신</>,
           body: (
             <>
-              {user.name}, 회의 끝나고 맥주 마실 겁니까?
+              {user.username}, 회의 끝나고 맥주 마실 겁니까?
             </>
           ),
         },

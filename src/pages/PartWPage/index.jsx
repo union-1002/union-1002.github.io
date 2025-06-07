@@ -66,10 +66,10 @@ function PartWPage() {
                 titleBackground="#F5FAFC"
                 title={(
                   <>
-                    <div className="absolute -left-2 -top-2 w-[150%] h-[150%]">
-                      <WolfdogIcon className="aspect-square max-w-full max-h-full" />
+                    <div className="absolute -left-2 -top-2">
+                      <WolfdogIcon className="aspect-square w-23 h-23" />
                     </div>
-                    <span className="pl-13">그림 리퍼 최신 동향 보고</span>
+                    <span className="pl-13 z-1">그림 리퍼 최신 동향 보고</span>
                   </>)}
                 statusBackground="#313131"
                 status={<span className="text-white">진행중</span>}
@@ -106,10 +106,10 @@ function PartWPage() {
                 titleBackground="#F5FAFC"
                 title={(
                   <>
-                    <div className="absolute -left-2 -top-2 w-[150%] h-[150%]">
-                      <WolfdogIcon className="aspect-square max-w-full max-h-full" />
+                    <div className="absolute -left-2 -top-2">
+                      <WolfdogIcon className="aspect-square w-23 h-23" />
                     </div>
-                    <span className="pl-13">스케빈저 소탕 충원 (사살 허가)</span>
+                    <span className="pl-13 z-1">스케빈저 소탕 충원 (사살 허가)</span>
                   </>)}
                 statusBackground="#313131"
                 status={<span className="text-white">진행중</span>}
@@ -141,10 +141,10 @@ function PartWPage() {
                 titleBackground="#F5FAFC"
                 title={(
                   <>
-                    <div className="absolute -left-2 -top-2 w-[150%] h-[150%]">
-                      <WolfdogIcon className="aspect-square max-w-full max-h-full" />
+                    <div className="absolute -left-2 -top-2">
+                      <WolfdogIcon className="aspect-square w-23 h-23" />
                     </div>
-                    <span className="pl-13">[지명수배] A급 에스퍼 탈주범 추적</span>
+                    <span className="pl-13 z-1">[지명수배] A급 에스퍼 탈주범 추적</span>
                   </>)}
                 statusBackground="#313131"
                 status={<span className="text-white">진행중</span>}

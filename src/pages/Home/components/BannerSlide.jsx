@@ -17,7 +17,7 @@ const BannerSlide = () => {
   const [current, setCurrent] = useState(0);
 
   const images = [
-    ...(user.group === '새붉은 재앙' ? [banner_n] : []),
+    ...(user.part === '새붉은 재앙' ? [banner_n] : []),
     banner1,
     banner2,
     banner3,
