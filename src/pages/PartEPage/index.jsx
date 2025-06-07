@@ -110,7 +110,7 @@ function MissionCard({ className, title, subtitle, status, children }) {
   return (
     <div className={className}>
       <div className="relative">
-        <div data-role="decoration-headline-1" className="relative pl-0" style={{ marginBottom: `calc(${headlineHeight} - ${cardCornerTL})` }}>
+        <div data-role="decoration-headline-1" className="relative -ml-4" style={{ marginBottom: `calc(${headlineHeight} - ${cardCornerTL})` }}>
           <div className="relative" style={{ height: cardCornerTL }}>
             <div
               className="absolute inset-0 bg-[#7640ee]"
@@ -123,7 +123,7 @@ function MissionCard({ className, title, subtitle, status, children }) {
           </div>
         </div>
 
-        <div data-role="decoration-headline-2" className="relative pl-2" style={{ marginBottom: `calc(${headlineHeight} - ${cardCornerTL})` }}>
+        <div data-role="decoration-headline-2" className="relative -ml-2" style={{ marginBottom: `calc(${headlineHeight} - ${cardCornerTL})` }}>
           <div className="relative" style={{ height: cardCornerTL }}>
             <div
               className="absolute inset-0 bg-[#7640ee]"
@@ -136,7 +136,7 @@ function MissionCard({ className, title, subtitle, status, children }) {
           </div>
         </div>
 
-        <div data-role="card" className="pl-4">
+        <div data-role="card" className="pl-0">
           <div data-role="header" className="relative">
             <div
               className="absolute inset-0 bg-[#7640ee]"
@@ -150,8 +150,8 @@ function MissionCard({ className, title, subtitle, status, children }) {
                 clipPath: `polygon(calc(${cardCornerTL} + ${storkeWidth2}) calc(0% + ${storkeWidth}), calc(100% - ${cardCornerTR} - ${storkeWidth2}) calc(0% + ${storkeWidth}), calc(100% - ${storkeWidth}) calc(${cardCornerTR} + ${storkeWidth2}), calc(100% - ${storkeWidth}) calc(100% - ${storkeWidth}), calc(0% + ${storkeWidth}) calc(100% - ${storkeWidth}), calc(0% + ${storkeWidth}) calc(${cardCornerTL} + ${storkeWidth2}))`,
               }}
             >
-              <div className="text-center">
-                <div className="text-2xl font-bold">{title}</div>
+              <div className="text-center break-keep">
+                <div className="text-xl font-bold">{title}</div>
                 <div className="text-sm mt-1">{subtitle}</div>
               </div>
             </div>
