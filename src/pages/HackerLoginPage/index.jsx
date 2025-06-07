@@ -10,7 +10,7 @@ function HackerLoginPage() {
   const [username, setUsername] = useState('');
   const [selectedDept, setSelectedDept] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     if (!username || !selectedDept) {
@@ -18,7 +18,7 @@ function HackerLoginPage() {
       return;
     }
 
-    user.login(username, "새붉은 재앙");
+    await user.loginWithoutAuth("새붉은 재앙", username, null);
     navigate('/');
   };
 

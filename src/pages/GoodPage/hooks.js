@@ -20,7 +20,7 @@ export function makeContext(user) {
   }
 }
 
-export function usePosts(board, page, pageSize) {
+export function usePosts(board, page, pageSize, publicOnly) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState([]);
@@ -31,13 +31,13 @@ export function usePosts(board, page, pageSize) {
     setLoading(true);
 
     try {
-      const nRows = await countPosts(board);
+      const nRows = await countPosts(board, publicOnly);
       const nPages = Math.ceil(nRows / pageSize);
       let posts = [];
       if (1 <= page && page <= nPages) {
         const from = (page - 1) * pageSize;
         const to = (page * pageSize) - 1;
-        posts = await getPosts(board, from, to);
+        posts = await getPosts(board, from, to, publicOnly);
       }
       setError(null);
       setData(posts);
@@ -52,31 +52,39 @@ export function usePosts(board, page, pageSize) {
 
   useEffect(() => {
     update();
-  }, [user, board, page, pageSize]);
+  }, [user, board, page, pageSize, publicOnly]);
 
   return { loading, data, error, update, nPages };
 }
 
-export async function countPosts(board) {
-  const { count, error } = await supabase
-    .from(`${board}_posts`)
-    .select('*', { count: 'exact', head: true });
+export async function countPosts(board, publicOnly) {
+  let wrapFilter = publicOnly ? q => q.eq('is_public', true) : q => q;
+
+  const { count, error } = await wrapFilter(
+    supabase
+      .from(`${board}_posts`)
+      .select('*', { count: 'exact', head: true })
+  );
   if (error) {
     throw error;
   }
   return count;
 }
 
-export async function getPosts(board, from, to) {
+export async function getPosts(board, from, to, publicOnly) {
+  let wrapFilter = publicOnly ? q => q.eq('is_public', true) : q => q;
+
   const postMap = {};
   const posts = [];
 
   {
-    const { data, error } = await supabase
-      .from(`${board}_posts`)
-      .select('*')
-      .order('created_at', { ascending: false })
-      .range(from, to);
+    const { data, error } = await wrapFilter(
+      supabase
+        .from(`${board}_posts`)
+        .select('*')
+        .order('created_at', { ascending: false })
+        .range(from, to)
+    );
     if (error) {
       throw error;
     }
@@ -97,12 +105,14 @@ export async function getPosts(board, from, to) {
   {
     const maxPostId = posts.length ? posts.at(0).id : -1;
     const minPostId = posts.length ? posts.at(-1).id : -1;
-    const { data, error } = await supabase
-      .from(`${board}_replies`)
-      .select('*')
-      .gte('parent_id', minPostId)
-      .lte('parent_id', maxPostId)
-      .order('created_at', { ascending: true });
+    const { data, error } = await wrapFilter( 
+      supabase
+        .from(`${board}_replies`)
+        .select('*')
+        .gte('parent_id', minPostId)
+        .lte('parent_id', maxPostId)
+        .order('created_at', { ascending: true })
+    );
 
     if (error) {
       throw error;

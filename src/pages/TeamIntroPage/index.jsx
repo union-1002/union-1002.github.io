@@ -72,7 +72,7 @@ function TeamIntroPage() {
             멤버: 미카엘
           `}
         />
-        {user.isLoggedIn() &&
+        {user.isLoggedIn &&
           <TeamIntroCard
             name="언더 그라운드"
             name_en="Underground"

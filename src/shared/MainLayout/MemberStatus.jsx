@@ -11,17 +11,17 @@ function MemberStatus({ className, openNoteModal }) {
   const handleLogout = async () => {
     const { error } = await supabase.auth.signOut();
 
-    if (error) {
-      console.warn("⚠️ Supabase 로그아웃 실패:", error);
-    } else {
-      console.log("✅ Supabase 로그아웃 완료");
-    }
+    // if (error) {
+    //   console.warn("⚠️ Supabase 로그아웃 실패:", error);
+    // } else {
+    //   console.log("✅ Supabase 로그아웃 완료");
+    // }
 
     user.logout(); // 세션 기반 로그아웃 처리
     navigate('/');
   };
 
-  if (user.isLoggedIn()) {
+  if (user.isLoggedIn) {
     return (
       <div className={className}>
         <div className="flex flex-col items-center lg:flex-row">

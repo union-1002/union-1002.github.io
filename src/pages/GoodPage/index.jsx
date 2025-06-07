@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSessionStorage } from 'react-use';
 import _ from 'lodash';
 import { useSearchParams } from 'react-router';
 import MainLayout from '@/shared/MainLayout';
@@ -6,7 +7,7 @@ import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
 import { createPost, createReply, deletePost, deleteReply, makeContext, updatePost, updateReply, usePosts } from './hooks';
 import { useUser } from "@/shared/user";
-import { RenderdCheckbox, TextEdit, TextEditTailButton } from "./components";
+import { RenderdCheckbox, TextEdit, TextEditTailButton, ToggleButton } from "./components";
 import { FaCode } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 
@@ -16,24 +17,31 @@ function GoodPage() {
   // URL 쿼리 파라미터
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number.parseInt(searchParams.get('page') ?? 1);
+  // 필터링 설정
+  const user = useUser();
+  const [userMode, setUserMode] = useSessionStorage('good-userMode', false);
+  const isWritableMode = user.isAdmin || (user.isAuthenticated && userMode);
   // 페이지 목록
   const pageSize = 10;  // 한 페이지에 보여질 글 개수
   const pageListRange = 2;  // 현재 페이지 양 옆에 보여줄 번호 수
-  const { loading, error, data: posts, update, nPages } = usePosts(BOARD_ID, page, pageSize);
+  const { loading, error, data: posts, update, nPages } = usePosts(BOARD_ID, page, pageSize, !userMode);
   const pageListStart = Math.max(1, Math.min(nPages, page - pageListRange));
   const pageListEnd = Math.max(1, Math.min(nPages, page + pageListRange));
   const [currentCommandId, setCurrentCommandId] = useState(null);
-  const goToPage = (i) => { setSearchParams({ page: i }) };
+  const goToPage = (i) => setSearchParams(i ? { page: i } : {});
   const updateOnCreatePost = async () => {
     if (page === 1) {
       await update();
     }
     else {
-      goToPage(1);
+      goToPage(null);
     }
   }
 
-  const user = useUser();
+  const handleUserModeToggleChange = (e) => {
+    setUserMode(e.target.checked);
+    goToPage(null);
+  }
 
   return (
     <MainLayout>
@@ -47,7 +55,14 @@ function GoodPage() {
             <div className="absolute w-full h-full z-10 flex justify-center items-center backdrop-brightness-90"><Loading /></div>
           }
 
-          {user.isLoggedIn() &&
+          {user.isAuthenticated &&
+            <div className="flex justify-end mb-1">
+              {/* 토글 */}
+              <ToggleButton value={userMode} onChange={handleUserModeToggleChange}></ToggleButton>
+            </div>
+          }
+
+          {isWritableMode &&
             <PostWriter update={updateOnCreatePost} />
           }
 
@@ -71,6 +86,7 @@ function GoodPage() {
                 update={update}
                 currentCommandId={currentCommandId}
                 setCurrentCommandId={setCurrentCommandId}
+                isRepliable={isWritableMode}
               />
 
               {/* 답글들 */}
@@ -100,9 +116,9 @@ function GoodPage() {
               <button
                 key={i}
                 onClick={() => goToPage(i)}
-                className={`px-3 py-1 rounded-md border text-sm select-none cursor-pointer disabled:cursor-default ${
+                className={`px-3 py-1 rounded-md text-sm select-none cursor-pointer disabled:cursor-default ${
                   i === page
-                    ? "bg-[#435373] text-white"
+                    ? "bg-[#435373] text-white "
                     : "bg-white text-gray-700 hover:bg-gray-100"
                 }`}
               >
@@ -134,11 +150,11 @@ function renderText(text, context) {
     }
   }
   else {
-    return text;
+    return text.replace(/\n{2,}/g, '\n');
   }
 }
 
-function PostItem({ post, update, currentCommandId, setCurrentCommandId }) {
+function PostItem({ post, update, currentCommandId, setCurrentCommandId, isRepliable }) {
   const COMMAND_EDIT_POST = `edit_post_${post.id}`;
   const COMMAND_WRITE_REPLY = `write_reply_${post.id}`;
 
@@ -146,7 +162,6 @@ function PostItem({ post, update, currentCommandId, setCurrentCommandId }) {
   const context = { user };
   const isAdmin = user.isAdmin;
   const isMine = post.authorId === user.uid;
-  const isRepliable = user.isLoggedIn();
   const isEditable = isMine || user.isAdmin;
   const isDeletable = isMine || user.isAdmin;
   const toggleEditMode = () => setCurrentCommandId(currentCommandId !== COMMAND_EDIT_POST ? COMMAND_EDIT_POST : null);
@@ -200,7 +215,7 @@ function PostItem({ post, update, currentCommandId, setCurrentCommandId }) {
   };
 
   return (
-    <div>
+    <div className="">
       <div onClick={handleReply} className={`${isRepliable && 'cursor-pointer '} group relative flex flex-wrap lg:flex-nowrap items-start text-sm py-4 hover:bg-gray-50 transition`}>
         <div className="w-[50px] lg:w-[60px] text-center shrink-0">
           {post.id}
@@ -216,29 +231,29 @@ function PostItem({ post, update, currentCommandId, setCurrentCommandId }) {
             : post.author
           }
         </div>
-        <div className="w-full lg:flex-grow ml-12 mt-1.5 lg:mt-0 lg:ml-5">
+        <div className="w-full lg:flex-grow ml-12 mt-1.5 lg:mt-0 lg:ml-5 whitespace-pre-line">
           {editMode && isTextEditable
-            ? <div className="pe-14">
-                <TextEdit
-                  className="w-full"
+            ? <div className="flex">
+                <textarea
+                  className="w-full min-h-14 block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="내용을 입력하세요."
                   value={editingText}
                   onChange={(e) => setEditingText(e.target.value)}
-                  tail={<TextEditTailButton onClick={handleEditSubmit}>수정하기</TextEditTailButton>}
                 />
+                <button onClick={handleEditSubmit} className="rounded mt-6 w-14 cursor-pointer text-white bg-[#435373] hover:bg-[#3457A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-2 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">수정</button>
               </div>
             : renderText(post.text, context)
           }
         </div>
         {isEditable &&
-          <div onClick={handleEdit} className="absolute right-7 cursor-pointer opacity-0 group-hover:opacity-100 text-gray-600">
+          <div onClick={handleEdit} className="absolute right-7 cursor-pointer lg:opacity-0 group-hover:opacity-100 text-gray-600">
             <svg className="w-5 h-5 text-inherit dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
             </svg>
           </div>
         }
         {isDeletable &&
-          <div onClick={handleDelete} className="absolute right-2 cursor-pointer opacity-0 group-hover:opacity-100 text-gray-600">
+          <div onClick={handleDelete} className="absolute right-2 cursor-pointer lg:opacity-0 group-hover:opacity-100 text-gray-600">
             <svg className="w-5 h-5 text-inherit dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
               <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
             </svg>
@@ -246,7 +261,7 @@ function PostItem({ post, update, currentCommandId, setCurrentCommandId }) {
         }
       </div>
       {currentCommandId === COMMAND_WRITE_REPLY &&
-        <div className="group relative flex flex-wrap lg:flex-nowrap items-start text-sm px-4 hover:bg-gray-50 transition">
+        <div className="px-4">
           <ReplyWriter post={post} update={update} close={toggleReplyWriter} />
         </div>
       }
@@ -278,27 +293,33 @@ function PostWriter({ update }) {
     setText('');
   };
   return (
-    <form className="flex pb-5">
+    <form className="mb-6">
       {isAdmin &&
-        <RenderdCheckbox className="p-1 relative inline-block" title="JS Mode" value={jsMode} onChange={(e) => setJsMode(e.target.checked)}>
-          <FaCode />
-        </RenderdCheckbox>
+        <div className="*:me-1 *:align-middle mb-1">
+          <div className="inline-block">
+            <RenderdCheckbox className="p-1.5" title="JS Mode" value={jsMode} onChange={(e) => setJsMode(e.target.checked)}>
+              <FaCode />
+            </RenderdCheckbox>
+          </div>
+
+          <TextEdit
+            className="w-30"
+            icon={<FaUser />}
+            placeholder="작성자"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
       }
-      {isAdmin &&
-        <TextEdit
-          icon={<FaUser />}
-          placeholder="작성자"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+      <div className="flex">
+        <textarea
+          className="w-full min-h-9 block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="내용을 입력하세요."
+          value={text}
+          onChange={(e) => setText(e.target.value)}
         />
-      }
-      <TextEdit
-        className="grow"
-        placeholder="내용을 입력하세요."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        tail={<button onClick={handleSubmit} className="cursor-pointer text-white absolute h-full end-0 bottom-0 bg-[#435373] hover:bg-[#3457A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-e-lg text-sm px-4 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">글쓰기</button>}
-      />
+        <button onClick={handleSubmit} className="rounded w-14 cursor-pointer text-white bg-[#435373] hover:bg-[#3457A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-2 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">등록</button>
+      </div>
     </form>
   );
 }
@@ -359,9 +380,11 @@ function ReplyItem({ reply, update, currentCommandId, setCurrentCommandId }) {
       <div className="w-[50px] lg:w-[60px] text-center shrink-0 text-xs">
         ⤷
         {(editMode && isAdmin) &&
-          <RenderdCheckbox className="p-1 relative inline-block" title="JS Mode" value={jsMode} onChange={(e) => setJsMode(e.target.checked)}>
-            <FaCode />
-          </RenderdCheckbox>
+          <div>
+            <RenderdCheckbox className="p-1 relative inline-block" title="JS Mode" value={jsMode} onChange={(e) => setJsMode(e.target.checked)}>
+              <FaCode />
+            </RenderdCheckbox>
+          </div>
         }
       </div>
       <div className="w-[50px] lg:w-[60px] text-left lg:text-center shrink-0">
@@ -370,29 +393,29 @@ function ReplyItem({ reply, update, currentCommandId, setCurrentCommandId }) {
           : reply.author
         }
       </div>
-      <div className="w-full lg:flex-grow ml-12 mt-1.5 lg:mt-0 lg:ml-5">
+      <div className="w-full lg:flex-grow ml-12 mt-1.5 lg:mt-0 lg:ml-5 whitespace-pre-line">
         {editMode && isTextEditable
-          ? <div className="pe-14">
-              <TextEdit
-                className="w-full"
+          ? <div className="flex">
+              <textarea
+                className="w-full min-h-14 block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="내용을 입력하세요."
                 value={editingText}
                 onChange={(e) => setEditingText(e.target.value)}
-                tail={<button onClick={handleEditSubmit} className="cursor-pointer text-white absolute h-full end-0 bottom-0 bg-[#435373] hover:bg-[#3457A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-e-lg text-sm px-4 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">수정하기</button>}
               />
+              <button onClick={handleEditSubmit} className="rounded mt-6 w-14 cursor-pointer text-white bg-[#435373] hover:bg-[#3457A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-2 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">수정</button>
             </div>
           : renderText(reply.text, context)
         }
       </div>
       {isEditable &&
-        <div onClick={handleEdit} className="absolute right-7 cursor-pointer opacity-0 group-hover:opacity-100 text-gray-600">
+        <div onClick={handleEdit} className="absolute right-7 cursor-pointer lg:opacity-0 group-hover:opacity-100 text-gray-600">
           <svg className="w-5 h-5 text-inherit dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z"/>
           </svg>
         </div>
       }
       {isDeletable &&
-        <div onClick={handleDelete} className="absolute right-2 cursor-pointer opacity-0 group-hover:opacity-100 text-gray-600">
+        <div onClick={handleDelete} className="absolute right-2 cursor-pointer lg:opacity-0 group-hover:opacity-100 text-gray-600">
           <svg className="w-5 h-5 text-inherit dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
           </svg>
@@ -427,27 +450,33 @@ function ReplyWriter({ post, update, close }) {
     close();
   };
   return (
-    <form className="flex w-full">
+    <form className="mb-6">
       {isAdmin &&
-        <RenderdCheckbox className="p-1 relative inline-block" title="JS Mode" value={jsMode} onChange={(e) => setJsMode(e.target.checked)}>
-          <FaCode size="1rem" />
-        </RenderdCheckbox>
+        <div className="*:me-1 *:align-middle mb-1">
+          <div className="inline-block">
+            <RenderdCheckbox className="p-1.5" title="JS Mode" value={jsMode} onChange={(e) => setJsMode(e.target.checked)}>
+              <FaCode />
+            </RenderdCheckbox>
+          </div>
+
+          <TextEdit
+            className="w-30"
+            icon={<FaUser />}
+            placeholder="작성자"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
       }
-      {isAdmin &&
-        <TextEdit
-          icon={<FaUser />}
-          placeholder="작성자"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+      <div className="flex">
+        <textarea
+          className="w-full min-h-9 block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="댓글을 입력하세요."
+          value={text}
+          onChange={(e) => setText(e.target.value)}
         />
-      }
-      <TextEdit
-        className="grow"
-        placeholder="댓글을 입력하세요."
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        tail={<TextEditTailButton onClick={handleSubmit}>댓글쓰기</TextEditTailButton>}
-      />
+        <button onClick={handleSubmit} className="rounded w-14 cursor-pointer text-white bg-[#435373] hover:bg-[#3457A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-2 py-1 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">등록</button>
+      </div>
     </form>
   );
 }

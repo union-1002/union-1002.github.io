@@ -90,28 +90,34 @@ function MemberIntroPage() {
 
 
   useEffect(() => {
-    // if (!user.userid) return;
-    const newGroups = groups.map(group => [...group]);
-    const fetchCSVData = async () => {
+  const newGroups = groups.map(group => [...group]);
+
+  const fetchCSVData = async () => {
+    const cachedEmpData = sessionStorage.getItem('cachedEmployees');
+    const cachedTitleData = sessionStorage.getItem('cachedTitles');
+
+    let empData = [];
+    let titleMap = {};
+
+    if (cachedEmpData && cachedTitleData) {
+      empData = JSON.parse(cachedEmpData);
+      titleMap = JSON.parse(cachedTitleData);
+      console.log('여기')
+    } else {
       const [empRes, titleRes] = await Promise.all([
         fetch('/data/employees.csv'),
         fetch('/data/titles.csv')
       ]);
-
       const [empText, titleText] = await Promise.all([
         empRes.text(),
         titleRes.text()
       ]);
-
-      // CSV 파싱
       const empResult = Papa.parse(empText, { header: true, skipEmptyLines: true });
       const titleResult = Papa.parse(titleText, { header: true, skipEmptyLines: true });
 
-      const empData = empResult.data;
+      empData = empResult.data;
       const titleData = titleResult.data;
 
-      // titles를 {from: {to: [{text, isSpoiler}]}} 형태로 변환
-      const titleMap = {};
       titleData.forEach(({ from, to, text, isSpoiler }) => {
         if (!titleMap[from]) titleMap[from] = {};
         if (!titleMap[from][to]) titleMap[from][to] = [];
@@ -123,66 +129,67 @@ function MemberIntroPage() {
 
       empData.forEach(emp => {
         if (emp.etc) {
-          emp.etc = emp.etc.replace(/\\n/g, '\n');  // 문자열 "\n" → 진짜 줄바꿈
+          emp.etc = emp.etc.replace(/\\n/g, '\n');
         }
       });
 
-      if (user.isLoggedIn()) {
-        empData.push({
-          id: 'me',
-          initials: '나',
-          name: user.username,
-          position: user.part,
-          birthday: '-',
-          age: '-',
-          height: '-',
-          gen: '-',
-          fullname: '-',
-          engname: '-',
-          nationality: '-',
-          etc: '',
+      sessionStorage.setItem('cachedEmployees', JSON.stringify(empData));
+      sessionStorage.setItem('cachedTitles', JSON.stringify(titleMap));
+    }
+
+    // 로그인 사용자 데이터 반영
+    if (user.isLoggedIn && user.uid) {
+      empData.push({
+        id: 'me',
+        initials: '나',
+        name: user.username,
+        position: user.part,
+        birthday: '-',
+        age: '-',
+        height: '-',
+        gen: '-',
+        fullname: '-',
+        engname: '-',
+        nationality: '-',
+        etc: '',
+      });
+
+      const groupIndex = groupedParts.findIndex(g => g.groupName === user.part);
+      circleColors['나'] = groupedParts[groupIndex].color;
+      borderColors['나'] = groupedParts[groupIndex].borderColor;
+      newGroups[groupIndex].push('나');
+      setVisibleGroups(newGroups);
+
+      const { data: callDoc, error } = await supabase
+        .from("employees")
+        .select("calling, called")
+        .eq("id", user.uid)
+        .single();
+
+      if (!error && callDoc) {
+        const { calling = {}, called = {} } = callDoc;
+
+        Object.entries(calling).forEach(([to, text]) => {
+          if (!titleMap['나']) titleMap['나'] = {};
+          if (!titleMap['나'][to]) titleMap['나'][to] = [];
+          titleMap['나'][to].push({ text, isSpoiler: false });
         });
-        const groupIndex = groupedParts.findIndex(g => g.groupName === user.part);
-        circleColors['나'] = groupedParts[groupIndex].color;
-        borderColors['나'] = groupedParts[groupIndex].borderColor;
-        newGroups[groupIndex].push('나');
-        setVisibleGroups(newGroups);
-        
-        const { data: callDoc, error } = await supabase
-          .from("employees")
-          .select("calling, called")
-          .eq("id", user.uid)  // <-- uid로 수정 필요
-          .single();
 
-        if (!error && callDoc) {
-          const { calling = {}, called = {} } = callDoc;
+        Object.entries(called).forEach(([from, text]) => {
+          if (!titleMap[from]) titleMap[from] = {};
+          if (!titleMap[from]['나']) titleMap[from]['나'] = [];
+          titleMap[from]['나'].push({ text, isSpoiler: false });
+        });
+      }
+    }
 
-          Object.entries(calling).forEach(([to, text]) => {
-            if (!titleMap['나']) titleMap['나'] = {};
-            if (!titleMap['나'][to]) titleMap['나'][to] = [];
-            titleMap['나'][to].push({
-              text,
-              isSpoiler: false
-            });
-          });
+    setEmployees(empData);
+    setTitles(titleMap);
+  };
 
-          Object.entries(called).forEach(([from, text]) => {
-            if (!titleMap[from]) titleMap[from] = {};
-            if (!titleMap[from]['나']) titleMap[from]['나'] = [];
-            titleMap[from]['나'].push({
-              text,
-              isSpoiler: false
-            });
-          });
-        }
-      };
-   
-      setEmployees(empData);
-      setTitles(titleMap);
-    };
+  fetchCSVData();
+}, [user.userid]);
 
-    fetchCSVData();
-  }, [user.userid]);
 
 
   
@@ -314,7 +321,7 @@ function MemberIntroPage() {
               </div>
             </div>
           )}
-          {user.isLoggedIn() && (
+          {user.isLoggedIn && (
             <button
               className="bg-[#404040] text-white px-2 py-1 rounded mb-10"
               onClick={() => setEditModalOpen(true)}

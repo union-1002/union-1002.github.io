@@ -1,64 +1,32 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from 'react-router';
 import { useUser } from '@/shared/user';
 import MainLayout from '@/shared/MainLayout';
-import supabase from '@/shared/supabase'; // supabase client 파일 만들어야 함
 
 function LoginPage() {
   const navigate = useNavigate();
   const user = useUser();
 
-  const [userid, setUserid] = useState('');
+  const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const [selectedDept, setSelectedDept] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!userid || !password || !selectedDept) {
+    if (!userId || !password || !selectedDept) {
       alert('아이디, 비밀번호, 부서를 모두 입력해주세요.');
       return;
     }
 
-    const email = `${userid}@union-1002.com`;
-    // const email = userid
-
-    const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    });
-
-    if (authError || !authData.user) {
-      alert("로그인에 실패했습니다. 아이디 또는 비밀번호를 확인하세요.");
+    try {
+      await user.login(selectedDept, userId, password);
+    }
+    catch (e) {
+      alert(e.message);
       return;
     }
 
-    const uid = authData.user.id;
-    const { data: profileData, error: profileError } = await supabase
-      .from('members')
-      .select('username, part, role')
-      .eq('id', uid)
-      .single();
-
-    if (profileError || !profileData) {
-      alert("사용자 정보를 불러오지 못했습니다.");
-      return;
-    }
-
-    if (profileData.part !== selectedDept) {
-      alert("선택한 부서가 일치하지 않습니다.");
-      return;
-    }
-
-    const userData = {
-      userid,
-      username: profileData.username,
-      part: profileData.part,
-      isAdmin: profileData.role === 'admin',
-    };
-
-    user.login(userData);
-    sessionStorage.setItem("user", JSON.stringify(userData));
     navigate('/');
   };
 
@@ -83,9 +51,9 @@ function LoginPage() {
                 <input
                   type="text"
                   placeholder="아이디를 입력하세요"
-                  value={userid}
+                  value={userId}
                   maxLength={50}
-                  onChange={(e) => setUserid(e.target.value)}
+                  onChange={(e) => setUserId(e.target.value)}
                   className="w-full px-4 py-3 border border-[#456EBF] focus:outline-none focus:ring-2 focus:ring-[#456EBF] text-base"
                 />
               </div>
