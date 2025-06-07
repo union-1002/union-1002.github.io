@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Disable dark theme */
+@custom-variant dark (&:where(.dark, .dark *));
 
 @font-face {
   font-family: 'GangwonEduSaeeum_OTFMediumA';
