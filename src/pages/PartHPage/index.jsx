@@ -31,11 +31,11 @@ function PartHPage() {
             <div className="bg-[#f9f9f9] p-2 rounded w-full max-w-3xl mx-auto">
               
               {/* 흰색 콘텐츠 박스 + 파란 테두리 */}
-              <div className="border-1 border-[#1369a3] shadow flex">
+              <div className="border-1 border-[#1369a3] shadow flex flex-col lg:flex-row">
                 
                 {/* 왼쪽 파란색 박스 */}
-                <div className="w-25 bg-[#1369a3] flex items-center justify-center text-white text-center px-6 py-6 text-lg font-bold whitespace-nowrap">
-                  S급<br />게이트
+                <div className="lg:w-25 bg-[#1369a3] flex items-center justify-center text-white text-center px-6 py-2 text-lg font-bold break-keep">
+                  S급 게이트
                 </div>
 
                 {/* 오른쪽 콘텐츠 */}
@@ -89,11 +89,11 @@ function PartHPage() {
             <div className="bg-[#f9f9f9] p-2 rounded w-full max-w-3xl mx-auto">
               
               {/* 흰색 콘텐츠 박스 + 파란 테두리 */}
-              <div className="border-1 border-[#808080] shadow flex">
+              <div className="border-1 border-[#808080] shadow flex flex-col lg:flex-row">
                 
                 {/* 왼쪽 파란색 박스 */}
-                <div className="w-25 bg-[#808080] flex items-center justify-center text-white text-center px-6 py-6 text-lg font-bold whitespace-nowrap">
-                  A급<br />게이트
+                <div className="lg:w-25 bg-[#808080] flex items-center justify-center text-white text-center px-6 py-2 text-lg font-bold break-keep">
+                  A급 게이트
                 </div>
 
                 {/* 오른쪽 콘텐츠 */}
@@ -139,10 +139,10 @@ function PartHPage() {
             <div className="bg-[#f9f9f9] p-2 rounded w-full max-w-3xl mx-auto">
               
               {/* 흰색 콘텐츠 박스 + 파란 테두리 */}
-              <div className="border-1 border-[#ffc801] shadow flex">
+              <div className="border-1 border-[#ffc801] shadow flex flex-col lg:flex-row">
                 
                 {/* 왼쪽 파란색 박스 */}
-                <div className="w-25  bg-[#ffc801] flex items-center justify-center text-white text-center px-6 py-6 text-lg font-bold whitespace-nowrap">
+                <div className="lg:w-25 bg-[#ffc801] flex items-center justify-center text-white text-center px-6 py-2 text-lg font-bold break-keep">
                   조사
                 </div>
 
@@ -182,10 +182,10 @@ function PartHPage() {
             <div className="bg-[#f9f9f9] p-2 rounded w-full max-w-3xl mx-auto">
               
               {/* 흰색 콘텐츠 박스 + 파란 테두리 */}
-              <div className="border-1 border-[#ffc801] shadow flex">
+              <div className="border-1 border-[#ffc801] shadow flex flex-col lg:flex-row">
                 
                 {/* 왼쪽 파란색 박스 */}
-                <div className="w-25  bg-[#ffc801] flex items-center justify-center text-white text-center px-6 py-6 text-lg font-bold whitespace-nowrap">
+                <div className="lg:w-25 bg-[#ffc801] flex items-center justify-center text-white text-center px-6 py-2 text-lg font-bold break-keep">
                   순찰
                 </div>
 

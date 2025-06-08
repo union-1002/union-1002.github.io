@@ -38,7 +38,7 @@ function PartWPage() {
                 statusBackground="#3ab8de"
                 status={<span className="text-white">완료</span>}
               />
-              <div className="bg-[#efefef] mx-10 px-3 py-5">
+              <div className="bg-[#efefef] mx-4 lg:mx-10 px-3 py-5">
                 <div className="text-sm border-gray-400">
                   <div className="grid grid-cols-[4rem_1fr] py-1 border-b border-gray-300">
                     <div className="font-semibold text-center">비광</div>
@@ -76,7 +76,7 @@ function PartWPage() {
               />
 
 
-              <div className="bg-[#efefef] mx-10 px-3 py-5">
+              <div className="bg-[#efefef] mx-4 lg:mx-10 px-3 py-5">
                 <div className="text-sm border-gray-400">
                   <div className="grid grid-cols-[4rem_1fr] py-1 border-b border-gray-300">
                     <div className="font-semibold text-center">M</div>
@@ -116,7 +116,7 @@ function PartWPage() {
               />
 
 
-              <div className="bg-[#efefef] mx-10 px-3 py-5">
+              <div className="bg-[#efefef] mx-4 lg:mx-10 px-3 py-5">
                 <div className="text-sm border-gray-400">
                   <div className="grid grid-cols-[4rem_1fr] py-1 border-b border-gray-300">
                     <div className="font-semibold text-center">I</div>
@@ -150,7 +150,7 @@ function PartWPage() {
                 status={<span className="text-white">진행중</span>}
               />
 
-              <div className="bg-[#efefef] mx-10 px-3 py-5">
+              <div className="bg-[#efefef] mx-4 lg:mx-10 px-3 py-5">
                 <div className="text-sm border-gray-400">
                   <div className="grid grid-cols-[4rem_1fr] py-1 border-b border-gray-300">
                     <div className="font-semibold text-center">테리</div>

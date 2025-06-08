@@ -101,7 +101,7 @@ function scale(size, ratio) {
 };
 
 function MissionCard({ className, title, subtitle, status, children }) {
-  const headlineHeight = '1rem';
+  const headlineHeight = '0.75rem';
   const cardCornerTL = '5rem';
   const cardCornerTR = '1rem';
   const storkeWidth = '0.2rem';
