@@ -19,8 +19,8 @@ function NoticePage() {
 
         {/* 게시글 목록 */}
         {[
-          { link: "notice", id: 10, title: "[사회공헌팀] 스타레인 실버 교육 컴퓨터 교실 신청 안내", author: "이글아이", date: "2025.06.03" },
-          { link: "monthlyMember", id: 9, title: "이달의 우수 사원", author: "이글아이", date: "2025.05.02" },
+          { link: "notice", id: 10, title: "[사회공헌팀] 스타레인 실버 교육 컴퓨터 교실 신청 안내", author: "이글아이", date: "2025.06.08" },
+          { link: "monthlyMember", id: 9, title: "이달의 우수 사원", author: "이글아이", date: "2025.06.08" },
           { link: "notice", id: 8, title: "인사 이동 공지", author: "이글아이", date: "2025.05.01" },
           { link: "notice", id: 7, title: "상반기 신입 사원 오리엔테이션", author: "드라칼", date: "2025.04.30" },
           { link: "notice", id: 6, title: "1분기 게이트 현황 공식 발표", author: "헌터즈", date: "2025.04.30" },

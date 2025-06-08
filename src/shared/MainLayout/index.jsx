@@ -40,11 +40,11 @@ const MainLayout = ({ children }) => {
       <NoteModal isOpen={isNoteModalOpen} handleClose={toggleNoteModal} />
 
       {/* 알림바 */}
-      <div className="w-full bg-[#42000F] text-center text-sm py-1 font-sans font-normal text-[#ffffff]">
-        게이트 위험 수준 [심각] 단계입니다. *집합 금지 발령*
+      <div className="w-full bg-[var(--light-purple)] text-center text-sm py-1 font-sans font-normal">
+        게이트 위험 수준 [안전] 단계입니다.
       </div>
       
-      {/* var(--light-purple) */}
+      {/* 심각 #42000F*/}
 
       {/* 메뉴바 */}
       <div className="w-full border-b border-b-gray-400 border-b-[0.5px]">
