@@ -18,10 +18,12 @@ function SitePage() {
           <h2 className="text-xl font-bold text-[#435373]">유니온 공식 홈페이지</h2>
           <p className="text-base text-gray-700 leading-relaxed">
             이 사이트는 스타레인 세계관을 기반으로 하며, 현실의 인물/사건/배경과 무관합니다.<br/>
-            오류 제보, 기능 아이디어 제안은 개발자에게 전달해주세요!<br/><br/>
+            회원가입 문의, 오류 제보, 기능 아이디어 제안은 공홈지기에게 전달해주세요!<br/><br/>
 
-            - 기획/개발: <Link to="https://x.com/hush_sos" target="_blank">소소</Link><br/>
-            - 기획/감수: <Link to="https://x.com/r0binthebird" target="_blank">로빈</Link><br/>
+            - 공식 X: <Link to="https://x.com/union_1002" target="_blank">유니온 공홈지기</Link><br/>
+            - 기획/개발: <Link to="https://x.com/so_for_so" target="_blank">소소</Link><br/>
+            - 디자인: <Link to="https://x.com/HorangE474" target="_blank">호댕</Link><br/>
+            - 원작/감수: <Link to="https://x.com/r0binthebird" target="_blank">로빈</Link><br/>
             (닉네임 클릭시 X 계정으로 이동합니다.)
           </p>
         </div>
@@ -30,8 +32,7 @@ function SitePage() {
         <div className="w-full max-w-3xl text-left space-y-2">
           <h2 className="text-xl font-bold text-[#435373]">이스터 에그</h2>
           <p className="text-base text-gray-700 leading-relaxed">
-            - 로그인 하여 쪽지를 확인하고 게시판을 둘러보세요. (이름 등 정보는 저장되지 않습니다. DB 서버 미보유)<br/>
-            - 언더 그라운드로 로그인 해보세요.<br/>
+            - 로그인 하여 쪽지를 확인하고 게시판을 둘러보세요.<br/>
             - 부서 소개에서 숨겨진 부서를 찾아보세요.<br/>
             - 유니온의 보안을 뚫어보세요. (보안 해제시 스포일러 절대 주의!)<br/>
           </p>

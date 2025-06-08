@@ -3,6 +3,9 @@ import MainLayout from '@/shared/MainLayout';
 import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
 import Papa from "papaparse";
+import { useUser } from '@/shared/user';
+import supabase from '@/shared/supabase';
+// import { Dialog, DialogTitle, DialogContent, DialogFooter } from '@/components/ui/dialog';
 
 
 const groups = [
@@ -11,50 +14,63 @@ const groups = [
   ['M', '테', 'A', 'I', '비'],
   ['J', '미'],
   ['R', 'Y', 'X'],
-  ['라', '루', 'P', '느', 'T', 'F',],
+  ['라', '루', 'P', '느', 'T', '아',],
+  ['F', '사',]
 ];
 
-const colorGroups = {
-  green: ['E', 'N', 'S', '오'],
-  purple: ['H', 'L'],
-  blue: ['M', '테', 'A', 'I', '비'],
-  grayBlue: ['J', '미'],
-  red: ['R', 'Y', 'X'],
-  gray: ['라', '루', 'P', '느', 'T', 'F',],
-};
+const groupedParts = [
+  {
+    groupName: "헌터즈",
+    parts: ['E', 'N', 'S', '오'],
+    color: "#fff9e6",
+    borderColor: "#ffc801"
+  },
+  {
+    groupName: "이글아이",
+    parts: ['H', 'L'],
+    color: "#f2ebfd",
+    borderColor: "#7640ee"
+  },
+  {
+    groupName: "울프독",
+    parts: ['M', '테', 'A', 'I', '비'],
+    color: "#ecf7fb",
+    borderColor: "#3ab8de"
+  },
+  {
+    groupName: "드라칼",
+    parts: ['J', '미'],
+    color: "#ebeffa",
+    borderColor: "#2f61d4"
+  },
+  {
+    groupName: "언더 그라운드",
+    parts: ['R', 'Y', 'X'],
+    color: "#fff0ed",
+    borderColor: "#ff7147"
+  },
+  {
+    groupName: "그림 리퍼",
+    parts: ['라', '루', 'P', '느', 'T', '아',],
+    color: "#eae9ef",
+    borderColor: "#25265e"
+  },
+  {
+    groupName: "빌런",
+    parts: ['F', '사',],
+    color: "#eae9ef",
+    borderColor: "#25265e"
+  },
+];
 
-const colorValues = {
-  green: "#a4b778",
-  purple: "#af9cb8",
-  blue: "#94b0b7",
-  grayBlue: "#aabacc",
-  red: "#b9a1a3",
-  gray: "#d1d5db",
-};
-
+// circleColors와 borderColors 동시 생성
 const circleColors = {};
-
-Object.entries(colorGroups).forEach(([groupName, initials]) => {
-  initials.forEach(initial => {
-    circleColors[initial] = colorValues[groupName];
-  });
-});
-
-
-const borderColorValues = {
-  green: "#595f4b",
-  purple: "#683c7a",
-  blue: "#316d7d",
-  grayBlue: "#5e7185",
-  red: "#8c323b",
-  gray: "#111111",
-};
-
 const borderColors = {};
 
-Object.entries(colorGroups).forEach(([groupName, initials]) => {
-  initials.forEach(initial => {
-    borderColors[initial] = borderColorValues[groupName];
+groupedParts.forEach(group => {
+  group.parts.forEach(initial => {
+    circleColors[initial] = group.color;
+    borderColors[initial] = group.borderColor;
   });
 });
 
@@ -71,56 +87,118 @@ const menuLinks = {
 
 
 function MemberIntroPage() {
-
+  const user = useUser();
   const [activeMenu, setActiveMenu] = useState('직원 소개'); // 현재 선택된 메뉴
 
   const [employees, setEmployees] = useState([]);
   const [titles, setTitles] = useState({});
 
+  const [visibleGroups, setVisibleGroups] = useState(groups.map(g => [...g]));
+
+
   useEffect(() => {
-    const fetchCSVData = async () => {
+  const newGroups = groups.map(group => [...group]);
+
+  const fetchCSVData = async () => {
+    const cachedEmpData = sessionStorage.getItem('cachedEmployees');
+    const cachedTitleData = sessionStorage.getItem('cachedTitles');
+
+    let empData = [];
+    let titleMap = {};
+
+    if (cachedEmpData && cachedTitleData) {
+      empData = JSON.parse(cachedEmpData);
+      titleMap = JSON.parse(cachedTitleData);
+    } else {
       const [empRes, titleRes] = await Promise.all([
         fetch('/data/employees.csv'),
         fetch('/data/titles.csv')
       ]);
-
       const [empText, titleText] = await Promise.all([
         empRes.text(),
         titleRes.text()
       ]);
-
-      // CSV 파싱
       const empResult = Papa.parse(empText, { header: true, skipEmptyLines: true });
       const titleResult = Papa.parse(titleText, { header: true, skipEmptyLines: true });
 
-      const empData = empResult.data;
+      empData = empResult.data;
       const titleData = titleResult.data;
 
-      empData.forEach(emp => {
-        if (emp.etc) {
-          emp.etc = emp.etc.replace(/\\n/g, '\n');  // 문자열 "\n" → 진짜 줄바꿈
-        }
-      });
-
-      // titles를 {from: {to: [{text, isSpoiler}]}} 형태로 변환
-      const titleMap = {};
       titleData.forEach(({ from, to, text, isSpoiler }) => {
         if (!titleMap[from]) titleMap[from] = {};
         if (!titleMap[from][to]) titleMap[from][to] = [];
         titleMap[from][to].push({
-          text,
+          text: text?.replace(/\\n/g, '\n'),
           isSpoiler: isSpoiler === "TRUE" || isSpoiler === true
         });
       });
 
-      setEmployees(empData);
-      setTitles(titleMap);
-    };
+      empData.forEach(emp => {
+        if (emp.etc) {
+          emp.etc = emp.etc.replace(/\\n/g, '\n');
+        }
+      });
 
-    fetchCSVData();
-  }, []);
+      sessionStorage.setItem('cachedEmployees', JSON.stringify(empData));
+      sessionStorage.setItem('cachedTitles', JSON.stringify(titleMap));
+    }
+
+    // 로그인 사용자 데이터 반영
+    if (user.isLoggedIn && user.uid) {
+      empData.push({
+        id: 'me',
+        initials: '나',
+        name: user.username,
+        position: user.part,
+        birthday: user.birthday,
+        age: user.age,
+        height: user.height,
+        gen: user.gen,
+        fullname: user.fullname,
+        engname: user.engname,
+        nationality: user.nationality,
+        etc: '',
+      });
+
+      const groupIndex = groupedParts.findIndex(g => g.groupName === user.part);
+      circleColors['나'] = groupedParts[groupIndex].color;
+      borderColors['나'] = groupedParts[groupIndex].borderColor;
+      newGroups[groupIndex].push('나');
+      setVisibleGroups(newGroups);
+
+      const { data: callDoc, error } = await supabase
+        .from("employees")
+        .select("calling, called")
+        .eq("id", user.uid)
+        .single();
+
+      if (!error && callDoc) {
+        const { calling = {}, called = {} } = callDoc;
+
+        Object.entries(calling).forEach(([to, text]) => {
+          if (!titleMap['나']) titleMap['나'] = {};
+          if (!titleMap['나'][to]) titleMap['나'][to] = [];
+          titleMap['나'][to].push({ text, isSpoiler: false });
+        });
+
+        Object.entries(called).forEach(([from, text]) => {
+          if (!titleMap[from]) titleMap[from] = {};
+          if (!titleMap[from]['나']) titleMap[from]['나'] = [];
+          titleMap[from]['나'].push({ text, isSpoiler: false });
+        });
+      }
+    }
+
+    setEmployees(empData);
+    setTitles(titleMap);
+  };
+
+  fetchCSVData();
+}, [user.userid]);
 
 
+
+  
   const [selected, setSelected] = useState(null);
   const [revealedTitles, setRevealedTitles] = useState(new Set());
   const handleReveal = (sel, target, idx) => {
@@ -132,7 +210,70 @@ function MemberIntroPage() {
     nationality: false,
   });
 
-  
+  const [editModalOpen, setEditModalOpen] = useState(false);
+
+  const refreshTitles = async () => {
+    const { data: callDoc, error } = await supabase
+      .from("employees")
+      .select("calling, called")
+      .eq("id", user.uid)
+      .single();
+
+    if (!error && callDoc) {
+      const { calling = {}, called = {} } = callDoc;
+
+      const newTitleMap = { ...titles };
+
+      Object.entries(calling).forEach(([to, text]) => {
+        if (!newTitleMap['나']) newTitleMap['나'] = {};
+        newTitleMap['나'][to] = [{ text, isSpoiler: false }];
+        });
+
+      Object.entries(called).forEach(([from, text]) => {
+        if (!newTitleMap[from]) newTitleMap[from] = {};
+        newTitleMap[from]['나'] = [{ text, isSpoiler: false }];
+      });
+
+      setTitles(newTitleMap);
+    }
+  };
+
+  const [calling, setCalling] = useState({});
+  const [called, setCalled] = useState({});
+
+  useEffect(() => {
+    if (!editModalOpen || !user.uid) return;
+    const fetchCallData = async () => {
+      const { data, error } = await supabase
+        .from("employees")
+        .select("calling, called")
+        .eq("id", user.uid)
+        .single();
+      if (!error && data) {
+        setCalling(data.calling || {});
+        setCalled(data.called || {});
+      } else {
+        setCalling({});
+        setCalled({});
+      }
+    };
+    fetchCallData();
+  }, [editModalOpen, user.uid]);
+
+  const handleSave = async () => {
+    const { error } = await supabase
+      .from("employees")
+      .upsert({
+        id: user.uid,
+        calling,
+        called
+      });
+    
+    if (!error) {
+      await refreshTitles();
+      setEditModalOpen(false);
+    }
+  };
 
 
   return (
@@ -142,39 +283,104 @@ function MemberIntroPage() {
         sidebar={MENU_PROPS['유니온 소개']}
       >
         <div className="flex flex-col items-center space-y-4 w-full">
-          <div className="mb-3"></div>
-          {groups.map((row, rowIndex) => (
+          {editModalOpen && (
+            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+              <div className="bg-white p-6 rounded shadow w-[90vw] max-w-xl">
+                <h2 className="text-xl font-bold mb-4">상호 호칭 수정</h2>
+
+                <div className="max-h-[60vh] overflow-y-auto space-y-4">
+                  {groups.flat().map(initial => (
+                    <div key={initial}>
+                      <div className="text-sm font-medium">{initial}</div>
+                      <input
+                        className="border w-full rounded px-2 py-1 mt-1 mb-2"
+                        placeholder="내가 부르는 호칭"
+                        value={calling[initial] || ''}
+                        maxLength={10}
+                        onChange={e => setCalling({ ...calling, [initial]: e.target.value })}
+                      />
+                      <input
+                        className="border w-full rounded px-2 py-1"
+                        placeholder="나를 부르는 호칭"
+                        value={called[initial] || ''}
+                        maxLength={10}
+                        onChange={e => setCalled({ ...called, [initial]: e.target.value })}
+                      />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex justify-end gap-2 mt-6">
+                  <button
+                    className="px-4 py-2 border rounded"
+                    onClick={() => setEditModalOpen(false)}
+                  >
+                    취소
+                  </button>
+                  <button
+                    className="px-4 py-2 bg-blue-500 text-white rounded"
+                    onClick={handleSave}
+                  >
+                    저장
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+          {user.isLoggedIn && (
+            <button
+              className="bg-[#404040] text-white px-2 py-1 rounded mb-10"
+              onClick={() => setEditModalOpen(true)}
+            >
+              ◆
+            </button>
+          )}
+
+          {visibleGroups.map((row, rowIndex) => (
           <div key={rowIndex} className="flex justify-center flex-wrap max-w-4xl w-full">
             {row.map((initial) => {
               const emp = employees.find(e => e.initials === initial);
               if (!emp) return null;
               return (
-                <div key={emp.id} className="flex flex-col items-center" style={{minWidth:"9rem", minHeight:"10rem", alignItems: "center"}}>
-                  <button
-                    onClick={() => 
-                      {
-                        setSelected(emp);
-                        setRevealedFields({
-                          fullname: false,
-                          nationality: false,
-                        });    
-                      }             
-                    }
-                    className={`w-20 h-20 flex items-center justify-center text-xl font-bold`}
-                    style={{
-                      backgroundColor: circleColors[initial],
-                      border: selected?.initials === initial ? `3px solid ${borderColors[initial]}` : "none",
-                      borderRadius: "9999px",
-                    }}
-                  >
-                    {emp.initials}
-                  </button>
+                <div key={emp.id} className="flex flex-col items-center" style={{minWidth:"9rem", maxWidth: "9rem", minHeight:"10rem", alignItems: "center"}}>
+                  <div className="relative">
+                    <button
+                      onClick={() => 
+                        {
+                          setSelected(emp);
+                          setRevealedFields({
+                            fullname: false,
+                            nationality: false,
+                          });    
+                        }             
+                      }
+                      className={`w-20 h-20 flex items-center justify-center text-xl font-bold shadow-md`}
+                      style={{
+                        backgroundColor: circleColors[initial],
+                        border: `2px solid ${borderColors[initial]}`,
+                        borderRadius: "9999px",
+                      }}
+                    >
+                      {emp.initials}
+                    </button>
+                    {/* 선택된 경우 작은 동그라미 표시 */}
+                    {selected?.initials === emp.initials && (
+                      <div
+                        className="absolute -top-1 left-0.5 w-7 h-7 rounded-full"
+                        style={{
+                          backgroundColor: borderColors[initial],
+                          border: "2px solid white",
+                        }}
+                      />
+                    )}
+                  </div>
+                  
                   {selected && selected.initials !== emp.initials && (
                     <div className="mt-2 text-xs text-gray-700 flex flex-col items-center">
                       {(titles[selected.initials]?.[emp.initials] || [{ text: '-', isSpoiler: false }]).map((title, idx) => (
                         <div
                           key={`${title.text}-${idx}`}
-                          className={`cursor-pointer ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler
+                          className={`whitespace-pre-line text-center cursor-pointer ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler
                             ? 'transition-all duration-300 blur-none'
                             : 'transition-none blur-xs'}`}
                           onClick={() => handleReveal(selected.initials, emp.initials, idx)}

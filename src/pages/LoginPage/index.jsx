@@ -7,18 +7,26 @@ function LoginPage() {
   const navigate = useNavigate();
   const user = useUser();
 
-  const [username, setUsername] = useState('');
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
   const [selectedDept, setSelectedDept] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!username || !selectedDept) {
-      alert('이름과 부서를 모두 입력해주세요.');
+    if (!userId || !password || !selectedDept) {
+      alert('아이디, 비밀번호, 부서를 모두 입력해주세요.');
       return;
     }
 
-    user.login(username, selectedDept);
+    try {
+      await user.login(selectedDept, userId, password);
+    }
+    catch (e) {
+      alert(e.message);
+      return;
+    }
+
     navigate('/');
   };
 
@@ -27,36 +35,40 @@ function LoginPage() {
       <div className="flex justify-center mt-16 px-4 lg:px-8">
         <div className="w-full max-w-[720px] p-8 bg-white shadow-md">
 
-          {/* 제목 */}
           <h2 className="text-2xl font-bold text-center text-[#456EBF] mb-2">
             UNION 구성원 로그인
           </h2>
 
-          {/* 부제 */}
           <p className="text-center text-sm text-[#435373] mb-10">
-            본 시스템은 고도화된 <Link to="/hackerLogin">보안 기술</Link>을 <p className="lg:inline">적용하고 있습니다.</p>
+            본 시스템은 고도화된 <Link to="/hackerLogin">보안 기술</Link>을 <span className="lg:inline">적용하고 있습니다.</span>
           </p>
 
-          {/* 폼 전체 */}
           <form onSubmit={handleLogin} className="flex flex-col lg:flex-row gap-4">
-
-            {/* 왼쪽 입력 영역 */}
             <div className="flex-1 flex flex-col gap-6">
 
-              {/* 이름 입력 */}
               <div>
-                <label className="block mb-2 text-sm font-semibold text-[#456EBF]">이름</label>
+                <label className="block mb-2 text-sm font-semibold text-[#456EBF]">아이디</label>
                 <input
                   type="text"
-                  placeholder="이름을 입력하세요"
-                  value={username}
-                  maxLength={6}
-                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="아이디를 입력하세요"
+                  value={userId}
+                  maxLength={50}
+                  onChange={(e) => setUserId(e.target.value)}
                   className="w-full px-4 py-3 border border-[#456EBF] focus:outline-none focus:ring-2 focus:ring-[#456EBF] text-base"
                 />
               </div>
 
-              {/* 소속 부서 선택 */}
+              <div>
+                <label className="block mb-2 text-sm font-semibold text-[#456EBF]">비밀번호</label>
+                <input
+                  type="password"
+                  placeholder="비밀번호를 입력하세요"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-4 py-3 border border-[#456EBF] focus:outline-none focus:ring-2 focus:ring-[#456EBF] text-base"
+                />
+              </div>
+
               <div>
                 <label className="block mb-2 text-sm font-semibold text-[#456EBF]">소속 부서</label>
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -91,15 +103,13 @@ function LoginPage() {
 
             </div>
 
-            {/* 오른쪽 로그인 버튼 (높이 꽉 채우고 가로 줄임) */}
             <div className="flex items-stretch">
-            <button
-              type="submit"
-              className="px-8 w-full h-14 lg:w-28 lg:h-auto bg-[#435373] text-white text-lg font-semibold hover:bg-[#3457A0] transition flex justify-center items-center"
-            >
-              <span className="writing-mode-vertical">로그인</span>
-            </button>
-
+              <button
+                type="submit"
+                className="px-8 w-full h-14 lg:w-28 lg:h-auto bg-[#435373] text-white text-lg font-semibold hover:bg-[#3457A0] transition flex justify-center items-center"
+              >
+                <span className="writing-mode-vertical">로그인</span>
+              </button>
             </div>
 
           </form>

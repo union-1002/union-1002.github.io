@@ -22,10 +22,10 @@ function MainPage() {
               {[
                 { grade: 'EX', count: 0, className: 'ex' },
                 { grade: 'S', count: 1, className: 's' },
-                { grade: 'A', count: 5, className: 'a' },
-                { grade: 'B', count: 9, className: 'b' },
-                { grade: 'C', count: 10, className: 'c' },
-                { grade: 'D', count: 101, className: 'd' },
+                { grade: 'A', count: 2, className: 'a' },
+                { grade: 'B', count: 4, className: 'b' },
+                { grade: 'C', count: 7, className: 'c' },
+                { grade: 'D', count: 6, className: 'd' },
               ].map(({ grade, count, className }, idx) => (
                 <div key={idx} className={`status-card ${className}`}>
                   <div className="label-section">{grade}</div>

@@ -1,613 +1,743 @@
-﻿from,to,text,isSpoiler
-E,J,J 군,FALSE
-E,J,작은 와이즈맨,TRUE
-E,R,R 군,FALSE
-E,R,하이넬,TRUE
-E,테,테리,FALSE
-E,F,F,FALSE
-E,A,베르너 군,TRUE
-E,L,라비,TRUE
-E,L,L 군,FALSE
-E,N,N,FALSE
-E,N,큰 와이즈맨,TRUE
-E,Y,Y,FALSE
-E,Y,백,TRUE
-E,M,레지오,TRUE
-E,X,X 군,FALSE
-E,오,오르티,FALSE
-E,라,그 녀석,FALSE
-E,루,그 녀석의 수하,FALSE
-E,P,P 군,FALSE
-E,느,작은 아이?,FALSE
-E,S,S,FALSE
-E,S,딸 같은 아이,FALSE
-E,I,가여운 청년,FALSE
-E,H,H 군,FALSE
-E,H,슈나이더 군,TRUE
-E,T,T 군,FALSE
-E,비,비광 군,FALSE
-E,미,아스텔 군,TRUE
-N,J,야,FALSE
-N,J,너,FALSE
-N,J,저 새끼,FALSE
-N,R,미친 새끼,FALSE
-N,R,브루주아 놈,FALSE
-N,테,테리,FALSE
-N,F,에런,TRUE
-N,F,절친,FALSE
-N,A,Kiddo,FALSE
-N,L,토끼,FALSE
-N,E,선배,FALSE
-N,E,삼촌,FALSE
-N,Y,하얀 말랑이,FALSE
-N,M,가면남,FALSE
-N,X,그 미친 놈,FALSE
-N,오,오르티,FALSE
-N,오,용용이,FALSE
-N,라,또라이,FALSE
-N,루,광대,FALSE
-N,P,영웅?,FALSE
-N,느,상어토끼,FALSE
-N,S,솜사탕,FALSE
-N,I,슬럼의 걔,FALSE
-N,H,헤베,TRUE
-N,T,개새끼,FALSE
-N,비,도박쟁이,FALSE
-N,미,책벌레,FALSE
-S,J,드라칼 리더님,FALSE
-S,R,무시무시한 분!,FALSE
-S,테,테리 오빠,FALSE
-S,F,영웅,FALSE
-S,A,베르링,TRUE
-S,L,폭신토끼,FALSE
-S,E,선배,FALSE
-S,E,삼촌,FALSE
-S,E,리더 님,FALSE
-S,N,언니,FALSE
-S,Y,백 오빠,TRUE
-S,M,안경 오빠,FALSE
-S,X,마른 사람,FALSE
-S,오,오르링,FALSE
-S,오,용용이,FALSE
-S,라,기분 나쁜 사람,FALSE
-S,루,무서운 광대!,FALSE
-S,P,영웅…?,FALSE
-S,느,뾰족상어,FALSE
-S,H,H 선생님!,FALSE
-S,I,이삭 오빠,TRUE
-S,T,연꽃 오빠,FALSE
-S,비,비광 오빠,FALSE
-S,미,미키,FALSE
-오,J,까망이!,FALSE
-오,R,화르륵!,FALSE
-오,테,짜릿짜릿!,FALSE
-오,F,팔락이,FALSE
-오,F,하피,FALSE
-오,A,딱딱이,FALSE
-오,L,리퍼가 따라한 인간,FALSE
-오,E,반짝이,FALSE
-오,N,누나,FALSE
-오,N,초콜릿 잘 주는 인간,FALSE
-오,N,쌩쌩이,FALSE
-오,Y,하양이,FALSE
-오,M,슬라임,FALSE
-오,X,하늘이,FALSE
-오,라,비린내 나는 인간,FALSE
-오,루,펑펑이,FALSE
-오,P,으르렁!,FALSE
-오,느,뾰족이,FALSE
-오,느,이 몸의 백성?,TRUE
-오,S,폭신이!,FALSE
-오,I,둥실이,FALSE
-오,H,쑥쑥이,FALSE
-오,T,꽃돌이!,FALSE
-오,비,이몸의 친구!,FALSE
-오,미,게티아의 사서,FALSE
-오,미,태초의 집행자,TRUE
-H,J,J,FALSE
-H,J,작은 와이즈맨,TRUE
-H,R,R,FALSE
-H,R,하이넬,TRUE
-H,테,테리,FALSE
-H,테,제일 많이 다치는 걔,FALSE
-H,F,F,FALSE
-H,F,영웅,FALSE
-H,A,병원이 리스폰 장소,FALSE
-H,A,인 줄 아는 멍청이,FALSE
-H,L,쪼꼬미,FALSE
-H,E,형님,FALSE
-H,N,N,FALSE
-H,N,큰 와이즈맨,TRUE
-H,Y,Y,FALSE
-H,Y,소화제 받아가는 걔,FALSE
-H,M,M,FALSE
-H,M,레지오,TRUE
-H,X,나갔으면 좋겠는 걔,FALSE
-H,라,거슬리는 놈,FALSE
-H,루,현장 뛰게 만드는,FALSE
-H,루,광대놈,FALSE
-H,P,피에르,TRUE
-H,느,꼬맹이,FALSE
-H,S,건강한 애,FALSE
-H,I,요주의 인물,FALSE
-H,오,용용이,FALSE
-H,T,요,TRUE
-H,비,야,FALSE
-H,비,너,FALSE
-H,비,야나기,TRUE
-H,미,꼬맹이,FALSE
-L,J,형,FALSE
-L,R,아저씨,FALSE
-L,R,삼촌,FALSE
-L,R,리리,TRUE
-L,테,테리테리,FALSE
-L,F,형,FALSE
-L,A,A 씨,FALSE
-L,A,헤시,TRUE
-L,A,형,FALSE
-L,E,삼촌,FALSE
-L,N,누나,FALSE
-L,Y,형,FALSE
-L,M,형,FALSE
-L,X,형,FALSE
-L,X,가끔 누나,FALSE
-L,오,오리오리,FALSE
-L,라,불쌍한 사람,FALSE
-L,루,연결된 사람,FALSE
-L,P,형,FALSE
-L,P,뽀삐,FALSE
-L,느,뱀,FALSE
-L,S,누나,FALSE
-L,I,삶이 보이는 자,FALSE
-L,H,삼촌,FALSE
-L,T,겁쟁이,FALSE
-L,비,아저씨,FALSE
-L,비,연결되신 분,FALSE
-L,미,아스텔,TRUE
-M,J,와이즈맨,TRUE
-M,J,J,FALSE
-M,R,R 씨,FALSE
-M,테,테리 군,FALSE
-M,F,F,FALSE
-M,A,A 군,FALSE
-M,L,L,FALSE
-M,L,어린 아이,FALSE
-M,E,선배님,FALSE
-M,N,N 씨,FALSE
-M,Y,Y 씨,FALSE
-M,X,그 미친놈,FALSE
-M,오,드래곤?,FALSE
-M,오,용?,FALSE
-M,라,라멘타,FALSE
-M,루,루두스,FALSE
-M,P,P,FALSE
-M,느,제사장,FALSE
-M,S,S 양,FALSE
-M,I,I 군,FALSE
-M,H,H 씨,FALSE
-M,T,리엔,TRUE
-M,비,비광 씨,FALSE
-M,비,형님,FALSE
-M,미,작은 새,FALSE
-테,J,형,FALSE
-테,R,슨배임,FALSE
-테,F,배신자,FALSE
-테,F,에런,TRUE
-테,A,저 새끼,FALSE
-테,A,그 새끼,FALSE
-테,A,베르너,TRUE
-테,L,라비라비,TRUE
-테,E,선배,FALSE
-테,E,대부님,FALSE
-테,N,누님,FALSE
-테,Y,와이와이,FALSE
-테,M,형님,FALSE
-테,X,형,FALSE
-테,X,은인,FALSE
-테,오,용용이,FALSE
-테,라,씨발 새끼,FALSE
-테,루,광대,FALSE
-테,P,선배,FALSE
-테,느,라비라비랑,TRUE
-테,느,비슷하게 생긴 걔,FALSE
-테,S,슈시,TRUE
-테,I,아이쟝,TRUE
-테,I,이작,TRUE
-테,I,아이아이,FALSE
-테,H,형님,FALSE
-테,T,배신자,FALSE
-테,비,슨배임,FALSE
-테,비,형,FALSE
-테,미,미카미카,FALSE
-테,미,미카엘,FALSE
-A,J,선배님,FALSE
-A,J,J 님,FALSE
-A,R,선배님,FALSE
-A,R,R 님,FALSE
-A,테,그 새끼,FALSE
-A,테,저 새끼,FALSE
-A,테,도버만,FALSE
-A,F,선배,FALSE
-A,F,배신자,FALSE
-A,L,L 군,FALSE
-A,L,당신,FALSE
-A,L,블리,TRUE
-A,E,선배님,FALSE
-A,E,E 님,FALSE
-A,N,누님,FALSE
-A,Y,Y 씨,FALSE
-A,M,선배님,FALSE
-A,M,M 씨,FALSE
-A,X,그 남자,FALSE
-A,오,오르티,FALSE
-A,라,악인,FALSE
-A,루,시끄러운 광대,FALSE
-A,P,강아지,FALSE
-A,느,처분대상,FALSE
-A,S,슈시,TRUE
-A,S,(테리가 따라한 거),FALSE
-A,I,아이작,TRUE
-A,H,H 선배님,FALSE
-A,T,사살 대상,FALSE
-A,비,선배님,FALSE
-A,미,작은 사서,FALSE
-I,J,선배님,FALSE
-I,R,R 선배,FALSE
-I,테,테리,FALSE
-I,F,영웅이었던 것,FALSE
-I,L,토끼 친구,FALSE
-I,E,선배님,FALSE
-I,N,그 여자,FALSE
-I,Y,흰 친구,FALSE
-I,M,선배,FALSE
-I,X,예술가 친구,FALSE
-I,X,기분 나쁜 것,TRUE
-I,오,오르티,FALSE
-I,오,용용이,FALSE
-I,라,미친 새끼,FALSE
-I,루,광대,FALSE
-I,P,가죽만 남은 것,FALSE
-I,느,상어토끼,FALSE
-I,S,슈슈,TRUE
-I,A,베르너,TRUE
-I,H,의사 쌤,FALSE
-I,T,기분 나쁜 녀석,FALSE
-I,비,형님,FALSE
-I,비,그 아저씨,FALSE
-I,미,경계대상,TRUE
-J,R,R,FALSE
-J,R,그 사람,FALSE
-J,R,R씨,FALSE
-J,테,테리,FALSE
-J,F,그,FALSE
-J,F,F,FALSE
-J,F,에런/페피,TRUE
-J,A,A 군,FALSE
-J,L,L,FALSE
-J,L,라비,TRUE
-J,E,선배님,FALSE
-J,E,E 님,FALSE
-J,N,야,FALSE
-J,N,걔,FALSE
-J,N,가끔 누나,FALSE
-J,Y,Y 군,FALSE
-J,M,레지오,TRUE
-J,X,X 씨,FALSE
-J,오,오르티,FALSE
-J,라,사살 대상,FALSE
-J,루,루두스,FALSE
-J,P,P,FALSE
-J,느,느베야,FALSE
-J,S,S 양,FALSE
-J,I,I 군,FALSE
-J,H,형님,FALSE
-J,T,T,FALSE
-J,비,형님,FALSE
-J,미,미카엘,FALSE
-J,미,동생,FALSE
-R,J,J,FALSE
-R,J,그 사람,FALSE
-R,J,J 씨,FALSE
-R,테,도버만 군,FALSE
-R,F,그거,FALSE
-R,A,A 군,FALSE
-R,L,블랑쉬,TRUE
-R,L,라비,TRUE
-R,L,L,FALSE
-R,E,선배님,FALSE
-R,N,미친 여자,FALSE
-R,N,N,FALSE
-R,Y,Y 군,FALSE
-R,M,M,FALSE
-R,X,걔,FALSE
-R,오,작은 용,FALSE
-R,라,쓰레기 하나,FALSE
-R,루,시끄러운 놈,FALSE
-R,P,P,FALSE
-R,P,시체,FALSE
-R,느,까다로운 것,FALSE
-R,S,솜사탕,FALSE
-R,I,영입 대상,FALSE
-R,H,의사,FALSE
-R,H,헤리,TRUE
-R,T,시든 꽃,FALSE
-R,비,너,FALSE
-R,비,걔,FALSE
-R,미,미카엘,FALSE
-R,미,아스텔,TRUE
-R,미,걔,FALSE
-Y,J,J 선배님,FALSE
-Y,R,R 선배님,FALSE
-Y,테,선배님,FALSE
-Y,테,형님,FALSE
-Y,F,영웅,FALSE
-Y,A,선배님,FALSE
-Y,A,형님,FALSE
-Y,L,L 님,FALSE
-Y,E,선배님,FALSE
-Y,N,누님,FALSE
-Y,M,선배님,FALSE
-Y,X,챙겨줘야 하는 선배님,FALSE
-Y,오,용용이,FALSE
-Y,라,이상하신 분,FALSE
-Y,루,영웅님의 서방님…?,FALSE
-Y,P,영웅,FALSE
-Y,느,어린 아이…?,FALSE
-Y,S,잘 먹는 아씨,FALSE
-Y,I,박카스 챙겨드려야,FALSE
-Y,I,하는 분,FALSE
-Y,H,항상 감사한 선배님,FALSE
-Y,T,연꽃 님,FALSE
-Y,비,일본 분,TRUE
-Y,비,비광 님,FALSE
-Y,미,성장기인 분,FALSE
-X,J,선배,FALSE
-X,J,형,FALSE
-X,R,주인님,FALSE
-X,테,테리,FALSE
-X,F,형님,FALSE
-X,A,베르너,TRUE
-X,L,작고 귀여운 아이,FALSE
-X,E,선배님,FALSE
-X,N,언니,FALSE
-X,N,누나,FALSE
-X,Y,Y 군,FALSE
-X,M,개새끼,FALSE
-X,오,오르티,FALSE
-X,라,예술가,FALSE
-X,루,연출가,FALSE
-X,P,P,FALSE
-X,느,열매,FALSE
-X,S,동생,FALSE
-X,I,동류,FALSE
-X,H,튕기는 분,FALSE
-X,T,예술가,FALSE
-X,비,선배님,FALSE
-X,미,꼬마 친구,FALSE
-F,J,주다스,TRUE
-F,J,주디,TRUE
-F,R,리하르트,TRUE
-F,R,개새끼,FALSE
-F,테,로이드,TRUE
-F,A,배트맨,FALSE
-F,L,라비,TRUE
-F,L,작은 토끼,FALSE
-F,E,형님,FALSE
-F,N,니니,FALSE
-F,N,내 절친,FALSE
-F,Y,어리고 하얀 친구,FALSE
-F,M,레지오,TRUE
-F,X,예예,TRUE
-F,오,오르토스,FALSE
-F,라,그 양반,FALSE
-F,루,루디,FALSE
-F,P,피에르,TRUE
-F,느,작은 상어 토끼,FALSE
-F,S,슈시,TRUE
-F,S,복숭아 토끼,FALSE
-F,I,새 영웅?,FALSE
-F,H,헤리,TRUE
-F,T,엔엔/엔자기,TRUE
-F,비,비광,FALSE
-F,비,야니,TRUE
-F,미,미카,FALSE
-F,미,아스텔,TRUE
-라,J,깨닫지 못한 자,FALSE
-라,R,닮되 닮지 못한 자,FALSE
-라,테,어리석은 개,FALSE
-라,F,위대한 존재를 잇는 자,FALSE
-라,A,길가를 나도는 개,FALSE
-라,L,선악과,FALSE
-라,E,잘못된 신념을 품은 자,FALSE
-라,N,진창에 빠짐을 모르는 자,FALSE
-라,Y,눈이 가려진 가여운 자,FALSE
-라,M,잃어버린 자,FALSE
-라,X,이해자,FALSE
-라,오,위대한 존재 중 하나,FALSE
-라,루,나의 오른팔,FALSE
-라,P,나의 맹수,FALSE
-라,느,내 아이,TRUE
-라,S,탐식에 눈이 가려진 자,FALSE
-라,I,앞길을 보지 못하는 자,FALSE
-라,H,생명의 근원 되는 자,FALSE
-라,T,깨달은 어린 양,FALSE
-라,비,진리를 보는 자,FALSE
-라,미,열쇠를 쥔 자,FALSE
-루,J,쇼를 방해하는 과묵하신 분,FALSE
-루,R,가장 거슬리는 분,FALSE
-루,테,멍청한 강아지,FALSE
-루,F,내 사랑의 옛 동료,FALSE
-루,A,처음 보는 개,FALSE
-루,L,관전자,FALSE
-루,E,안타까우신 분,FALSE
-루,N,쇼를 망치는 분,FALSE
-루,Y,보물을 숨긴 분,FALSE
-루,M,화려한 배우,FALSE
-루,X,연출가,FALSE
-루,오,위대하신 분,FALSE
-루,라,교주님,FALSE
-루,P,내 사랑,FALSE
-루,P,나의 맹수,FALSE
-루,느,위대한 제사장,FALSE
-루,S,대단한 능력을 지닌 분,FALSE
-루,I,가면을 쓴 분,FALSE
-루,H,나타나면 방해되는 분,FALSE
-루,T,형제 님,FALSE
-루,T,무대의 꽃,FALSE
-루,비,명확히 거슬리는 분,FALSE
-루,비,암살 대상,FALSE
-루,미,재밌는 것을 쥔 분,FALSE
-루,미,'알면서',TRUE
-P,J,깜짝 놀라는 애,FALSE
-P,R,뜨거운 애,FALSE
-P,테,멍멍이!,FALSE
-P,F,하피~ 하피!,FALSE
-P,A,공 던져주는 애,FALSE
-P,L,친구?,FALSE
-P,E,따뜻한 아저씨,FALSE
-P,N,같이 놀아주는 친구,FALSE
-P,Y,밥을 챙겨주는 좋은 사람,FALSE
-P,M,사탕을 주는 인간,FALSE
-P,X,인형놀이 친구,FALSE
-P,오,용용이,FALSE
-P,라,교주님,FALSE
-P,루,내 사랑,FALSE
-P,느,느베야! 느베야!,FALSE
-P,S,매일 맛있는 걸 주는 인간!,FALSE
-P,I,왜 그런 눈으로 보는지,FALSE
-P,I,모를 인간,FALSE
-P,H,맛없는 사탕 인간,FALSE
-P,T,좋은 냄새!,FALSE
-P,비,재밌는 마술사!,FALSE
-P,미,책 읽어주는 동생!,FALSE
-P,미,익숙한 친구,TRUE
-P,미,포근포근이,FALSE
-느,J,선글라스 바보,FALSE
-느,J,억제하는 자,TRUE
-느,R,화르륵 삐죽이,FALSE
-느,R,단죄하는 자,TRUE
-느,테,따끔따끔 바보!,FALSE
-느,테,눈 가려진 자,TRUE
-느,F,하피!,FALSE
-느,F,위대한 피를 이은 자,TRUE
-느,A,무시무시한 애!,FALSE
-느,A,꿰뚫는 자,TRUE
-느,L,싫은 애,FALSE
-느,L,선악과,TRUE
-느,E,안경 쓴 번쩍이,FALSE
-느,E,흔들고 싶은 자,TRUE
-느,N,치타같은 누나,FALSE
-느,N,빛을 잇는 자,TRUE
-느,Y,온통 하얀 친구,FALSE
-느,Y,위대한 종족을 숨기는 자,TRUE
-느,M,재밌는 애,FALSE
-느,M,레지오,TRUE
-느,X,이상한 애,FALSE
-느,X,홀리고 싶은 애,TRUE
-느,오,기분 나쁜 애,FALSE
-느,오,위대한 군주,TRUE
-느,라,파파,TRUE
-느,루,루디,FALSE
-느,루,연결된 존재,TRUE
-느,P,뽀삐,FALSE
-느,P,심겨진 자,TRUE
-느,S,말랑한 애,FALSE
-느,S,친해지고 싶은 애!,TRUE
-느,I,속일 수 없는 애,FALSE
-느,I,가면쓴 자,TRUE
-느,H,피곤해 보이는 아저씨,FALSE
-느,H,위대한 생명의 싹,TRUE
-느,T,가능성을 준 친구,FALSE
-느,비,무서운 애,FALSE
-느,미,경계대상,FALSE
-T,J,와이즈맨 공,TRUE
-T,R,하이넬 공,TRUE
-T,테,테리 공,FALSE
-T,F,펠리체,TRUE
-T,F,형제,FALSE
-T,A,A 공,FALSE
-T,L,작은 열매,FALSE
-T,E,리더 님,FALSE
-T,N,N 공,FALSE
-T,Y,아해,FALSE
-T,M,그이,FALSE
-T,M,모르페우스,TRUE
-T,M,나의 벗,TRUE
-T,X,범부,FALSE
-T,오,두려운 자,FALSE
-T,라,교주님,FALSE
-T,루,형제,FALSE
-T,P,뽀삐,FALSE
-T,P,피에르,TRUE
-T,S,아해,FALSE
-T,I,I 공,FALSE
-T,H,생불,FALSE
-T,느,위대하신 분,FALSE
-T,느,제사장,FALSE
-T,비,선배님,FALSE
-T,미,미카엘 공,FALSE
-비,J,J,FALSE
-비,J,주다스,TRUE
-비,R,그 녀석,FALSE
-비,R,리하르트,TRUE
-비,R,R,FALSE
-비,테,테리,FALSE
-비,테,로이드,TRUE
-비,F,펠리체,TRUE
-비,F,F,FALSE
-비,A,베르너,TRUE
-비,L,꼬맹이,FALSE
-비,L,아이,FALSE
-비,E,형님,FALSE
-비,N,날치기,FALSE
-비,Y,한국인 꼬마,TRUE
-비,Y,도련님,FALSE
-비,M,깍쟁이,FALSE
-비,M,레지오,TRUE
-비,X,X,FALSE
-비,오,좋은 만담 콤비,FALSE
-비,라,희생자,FALSE
-비,루,견제하는 녀석,FALSE
-비,루,사살 대상,FALSE
-비,P,뽀삐,FALSE
-비,P,피에르,TRUE
-비,S,분홍 토끼,FALSE
-비,I,젊은 친구,FALSE
-비,I,론의 후배,TRUE
-비,H,야,FALSE
-비,H,너,FALSE
-비,H,헤르베르트,TRUE
-비,느,꼬마 친구,FALSE
-비,T,개자식,FALSE
-비,미,미카엘,FALSE
-미,J,형,FALSE
-미,J,선배,FALSE
-미,R,R 선배,FALSE
-미,R,형,FALSE
-미,R,삼촌,FALSE
-미,테,테리 형,FALSE
-미,테,형아,FALSE
-미,F,펠리체 형아,TRUE
-미,F,형,FALSE
-미,A,베르너 씨,TRUE
-미,L,블랑쉬,TRUE
-미,E,삼촌,FALSE
-미,N,무서운 누나,FALSE
-미,Y,Y 형,FALSE
-미,M,선배,FALSE
-미,X,형,FALSE
-미,S,잘 드시는 누나,FALSE
-미,I,쥐새끼,TRUE
-미,비,아저씨?,FALSE
-미,H,아저씨,FALSE
-미,오,위대한 군주,FALSE
-미,라,미친 교주,FALSE
-미,루,개새끼,TRUE
-미,루,죽일 새끼,TRUE
-미,P,뽀삐,FALSE
-미,P,형?,TRUE
-미,P,엘와,TRUE
-미,P,(저건 형이 아니야),TRUE
-미,느,이상한 애,FALSE
-미,느,책에 가둘 녀석,TRUE
-미,T,배신자 새끼,FALSE
+﻿from,to,text,isSpoiler,,,
+E,J,J 군,FALSE,,,
+E,J,작은 와이즈맨,TRUE,,,
+E,R,R 군,FALSE,,,
+E,R,하이넬,TRUE,,,
+E,테,테리,FALSE,,,
+E,F,F,FALSE,,,
+E,A,베르너 군,TRUE,,,
+E,L,라비,TRUE,,,
+E,L,L 군,FALSE,,,
+E,N,N,FALSE,,,
+E,N,큰 와이즈맨,TRUE,,,
+E,Y,Y,FALSE,,,
+E,Y,백,TRUE,,,
+E,M,레지오,TRUE,,,
+E,X,X 군,FALSE,,,
+E,오,오르티,FALSE,,,
+E,라,그 녀석,FALSE,,,
+E,루,그 녀석의 수하,FALSE,,,
+E,P,P 군,FALSE,,,
+E,느,작은 아이?,FALSE,,,
+E,S,S,FALSE,,,
+E,S,딸 같은 아이,FALSE,,,
+E,I,가여운 청년,FALSE,,,
+E,H,H 군,FALSE,,,
+E,H,슈나이더 군,TRUE,,,
+E,T,T 군,FALSE,,,
+E,비,비광 군,FALSE,,,
+E,미,에스텔 군,TRUE,,,
+E,아,꺼림칙한 청년,FALSE,,,
+E,사,슬럼의 패군,FALSE,,,
+E,사,은거한 영웅,TRUE,,,
+N,J,야,FALSE,,,
+N,J,너,FALSE,,,
+N,J,저 새끼,FALSE,,,
+N,R,미친 새끼,FALSE,,,
+N,R,브루주아 놈,FALSE,,,
+N,테,테리,FALSE,,,
+N,F,에런,TRUE,,,
+N,F,절친,FALSE,,,
+N,A,Kiddo,FALSE,,,
+N,L,토끼,FALSE,,,
+N,E,선배,FALSE,,,
+N,E,삼촌,FALSE,,,
+N,Y,하얀 말랑이,FALSE,,,
+N,M,가면남,FALSE,,,
+N,X,그 미친 놈,FALSE,,,
+N,오,오르티,FALSE,,,
+N,오,용용이,FALSE,,,
+N,라,또라이,FALSE,,,
+N,루,광대,FALSE,,,
+N,P,영웅?,FALSE,,,
+N,느,상어토끼,FALSE,,,
+N,S,솜사탕,FALSE,,,
+N,I,슬럼의 걔,FALSE,,,
+N,H,헤베,TRUE,,,
+N,T,개새끼,FALSE,,,
+N,비,도박쟁이,FALSE,,,
+N,미,책벌레,FALSE,,,
+N,아,프릴 주렁주렁 달린 애,FALSE,,,
+N,사,백사자,FALSE,,,
+N,사,어르신,TRUE,,,
+S,J,드라칼 리더님,FALSE,,,
+S,R,무시무시한 분!,FALSE,,,
+S,테,테리 오빠,FALSE,,,
+S,F,영웅,FALSE,,,
+S,A,베르링,TRUE,,,
+S,L,폭신토끼,FALSE,,,
+S,E,선배,FALSE,,,
+S,E,삼촌,FALSE,,,
+S,E,리더 님,FALSE,,,
+S,N,언니,FALSE,,,
+S,Y,백 오빠,TRUE,,,
+S,M,안경 오빠,FALSE,,,
+S,X,마른 사람,FALSE,,,
+S,오,오르링,FALSE,,,
+S,오,용용이,FALSE,,,
+S,라,기분 나쁜 사람,FALSE,,,
+S,루,무서운 광대!,FALSE,,,
+S,P,영웅…?,FALSE,,,
+S,느,뾰족상어,FALSE,,,
+S,H,H 선생님!,FALSE,,,
+S,I,이삭 오빠,TRUE,,,
+S,T,연꽃 오빠,FALSE,,,
+S,비,비광 오빠,FALSE,,,
+S,미,미키,FALSE,,,
+S,아,이상한 냄새가 나는 오빠,FALSE,,,
+S,사,어르신,TRUE,,,
+오,J,까망이!,FALSE,,,
+오,R,화르륵!,FALSE,,,
+오,테,짜릿짜릿!,FALSE,,,
+오,F,팔락이,FALSE,,,
+오,F,하피,FALSE,,,
+오,A,딱딱이,FALSE,,,
+오,L,리퍼가 따라한 인간,FALSE,,,
+오,E,반짝이,FALSE,,,
+오,N,누나,FALSE,,,
+오,N,초콜릿 잘 주는 인간,FALSE,,,
+오,N,쌩쌩이,FALSE,,,
+오,Y,하양이,FALSE,,,
+오,M,슬라임,FALSE,,,
+오,X,하늘이,FALSE,,,
+오,라,비린내 나는 인간,FALSE,,,
+오,루,펑펑이,FALSE,,,
+오,P,으르렁!,FALSE,,,
+오,느,뾰족이,FALSE,,,
+오,느,이 몸의 백성?,TRUE,,,
+오,S,폭신이!,FALSE,,,
+오,I,둥실이,FALSE,,,
+오,H,쑥쑥이,FALSE,,,
+오,T,꽃돌이!,FALSE,,,
+오,비,이몸의 친구!,FALSE,,,
+오,미,게티아의 사서,FALSE,,,
+오,미,태초의 집행자,TRUE,,,
+오,아,사랑이?,FALSE,,,
+오,사,까칠이,FALSE,,,
+H,J,J,FALSE,,,
+H,J,작은 와이즈맨,TRUE,,,
+H,R,R,FALSE,,,
+H,R,하이넬,TRUE,,,
+H,테,테리,FALSE,,,
+H,테,제일 많이 다치는 걔,FALSE,,,
+H,F,F,FALSE,,,
+H,F,영웅,FALSE,,,
+H,A,병원이 리스폰 장소,FALSE,,,
+H,A,인 줄 아는 멍청이,FALSE,,,
+H,L,쪼꼬미,FALSE,,,
+H,E,형님,FALSE,,,
+H,N,N,FALSE,,,
+H,N,큰 와이즈맨,TRUE,,,
+H,Y,Y,FALSE,,,
+H,Y,소화제 받아가는 걔,FALSE,,,
+H,M,M,FALSE,,,
+H,M,레지오,TRUE,,,
+H,X,나갔으면 좋겠는 걔,FALSE,,,
+H,라,거슬리는 놈,FALSE,,,
+H,루,현장 뛰게 만드는 놈,FALSE,,,
+H,루,광대놈,FALSE,,,
+H,P,피에르,TRUE,,,
+H,느,꼬맹이,FALSE,,,
+H,S,건강한 애,FALSE,,,
+H,I,요주의 인물,FALSE,,,
+H,오,용용이,FALSE,,,
+H,T,요,TRUE,,,
+H,비,야,FALSE,,,
+H,비,너,FALSE,,,
+H,비,야나기,TRUE,,,
+H,미,꼬맹이,FALSE,,,
+H,아,정상은 아닌 애,FALSE,,,
+H,아,내 동료 내놔.,TRUE,,,
+H,사,슬럼의 왕,FALSE,,,
+H,사,은둔한 영웅,TRUE,,,
+L,J,형,FALSE,,,
+L,R,아저씨,FALSE,,,
+L,R,삼촌,FALSE,,,
+L,R,리리,TRUE,,,
+L,테,테리테리,FALSE,,,
+L,F,형,FALSE,,,
+L,A,A 씨,FALSE,,,
+L,A,헤시,TRUE,,,
+L,A,형,FALSE,,,
+L,E,삼촌,FALSE,,,
+L,N,누나,FALSE,,,
+L,Y,형,FALSE,,,
+L,M,형,FALSE,,,
+L,X,형,FALSE,,,
+L,X,가끔 누나,FALSE,,,
+L,오,오리오리,FALSE,,,
+L,라,불쌍한 사람,FALSE,,,
+L,루,연결된 사람,FALSE,,,
+L,P,형,FALSE,,,
+L,P,뽀삐,FALSE,,,
+L,느,뱀,FALSE,,,
+L,S,누나,FALSE,,,
+L,I,삶이 보이는 자,FALSE,,,
+L,H,삼촌,FALSE,,,
+L,T,겁쟁이,FALSE,,,
+L,비,아저씨,FALSE,,,
+L,비,연결되신 분,FALSE,,,
+L,미,에스텔,TRUE,,,
+L,아,되살리는 분,FALSE,,,
+L,사,무서운 분,FALSE,,,
+L,사,숨은 영웅,TRUE,,,
+M,J,와이즈맨,TRUE,,,
+M,J,J,FALSE,,,
+M,R,R 씨,FALSE,,,
+M,테,테리 군,FALSE,,,
+M,F,F,FALSE,,,
+M,A,A 군,FALSE,,,
+M,L,L,FALSE,,,
+M,L,어린 아이,FALSE,,,
+M,E,선배님,FALSE,,,
+M,N,N 씨,FALSE,,,
+M,Y,Y 씨,FALSE,,,
+M,X,그 미친놈,FALSE,,,
+M,오,드래곤?,FALSE,,,
+M,오,용?,FALSE,,,
+M,라,라멘타,FALSE,,,
+M,루,루두스,FALSE,,,
+M,P,P,FALSE,,,
+M,느,제사장,FALSE,,,
+M,S,S 양,FALSE,,,
+M,I,I 군,FALSE,,,
+M,H,H 씨,FALSE,,,
+M,T,리엔,TRUE,,,
+M,비,비광 씨,FALSE,,,
+M,비,형님,FALSE,,,
+M,미,작은 새,FALSE,,,
+M,아,아가페,FALSE,,,
+M,아,정말 살릴 수 있나?,TRUE,,,
+M,사,슬럼의 패군,FALSE,,,
+M,사,굴 속에 숨은 영웅,TRUE,,,
+테,J,형,FALSE,,,
+테,R,슨배임,FALSE,,,
+테,F,배신자,FALSE,,,
+테,F,에런,TRUE,,,
+테,A,저 새끼,FALSE,,,
+테,A,그 새끼,FALSE,,,
+테,A,베르너,TRUE,,,
+테,L,라비라비,TRUE,,,
+테,E,선배,FALSE,,,
+테,E,대부님,FALSE,,,
+테,N,누님,FALSE,,,
+테,Y,와이와이,FALSE,,,
+테,M,형님,FALSE,,,
+테,X,형,FALSE,,,
+테,X,은인,FALSE,,,
+테,오,용용이,FALSE,,,
+테,라,씨발 새끼,FALSE,,,
+테,루,광대,FALSE,,,
+테,P,선배,FALSE,,,
+테,느,라비라비랑,TRUE,,,
+테,느,비슷하게 생긴 걔,FALSE,,,
+테,S,슈시,TRUE,,,
+테,I,아이쟝,TRUE,,,
+테,I,이작,TRUE,,,
+테,I,아이아이,FALSE,,,
+테,H,형님,FALSE,,,
+테,T,배신자,FALSE,,,
+테,비,슨배임,FALSE,,,
+테,비,형,FALSE,,,
+테,미,미카미카,FALSE,,,
+테,미,미카엘,FALSE,,,
+테,아,시체팔이,TRUE,,,
+테,사,패왕,FALSE,,,
+테,사,형을 도와준 사람.,TRUE,,,
+A,J,선배님,FALSE,,,
+A,J,J 님,FALSE,,,
+A,R,선배님,FALSE,,,
+A,R,R 님,FALSE,,,
+A,테,그 새끼,FALSE,,,
+A,테,저 새끼,FALSE,,,
+A,테,도버만,FALSE,,,
+A,F,선배,FALSE,,,
+A,F,배신자,FALSE,,,
+A,L,L 군,FALSE,,,
+A,L,당신,FALSE,,,
+A,L,블리,TRUE,,,
+A,E,선배님,FALSE,,,
+A,E,E 님,FALSE,,,
+A,N,누님,FALSE,,,
+A,Y,Y 씨,FALSE,,,
+A,M,선배님,FALSE,,,
+A,M,M 씨,FALSE,,,
+A,X,그 남자,FALSE,,,
+A,오,오르티,FALSE,,,
+A,라,악인,FALSE,,,
+A,루,시끄러운 광대,FALSE,,,
+A,P,강아지,FALSE,,,
+A,느,처분대상,FALSE,,,
+A,S,슈시,TRUE,,,
+A,S,(테리가 따라한 거),FALSE,,,
+A,I,아이작,TRUE,,,
+A,H,H 선배님,FALSE,,,
+A,T,사살 대상,FALSE,,,
+A,비,선배님,FALSE,,,
+A,미,작은 사서,FALSE,,,
+A,아,시취 나는 자,FALSE,,,
+A,사,패군,FALSE,,,
+A,사,그분,TRUE,,,
+I,J,선배님,FALSE,,,
+I,R,R 선배,FALSE,,,
+I,테,테리,FALSE,,,
+I,F,영웅이었던 것,FALSE,,,
+I,L,토끼 친구,FALSE,,,
+I,E,선배님,FALSE,,,
+I,N,그 여자,FALSE,,,
+I,Y,흰 친구,FALSE,,,
+I,M,선배,FALSE,,,
+I,X,예술가 친구,FALSE,,,
+I,X,기분 나쁜 것,TRUE,,,
+I,오,오르티,FALSE,,,
+I,오,용용이,FALSE,,,
+I,라,미친 새끼,FALSE,,,
+I,루,광대,FALSE,,,
+I,P,가죽만 남은 것,FALSE,,,
+I,느,상어토끼,FALSE,,,
+I,S,슈슈,TRUE,,,
+I,A,베르너,TRUE,,,
+I,H,의사 쌤,FALSE,,,
+I,T,기분 나쁜 녀석,FALSE,,,
+I,비,형님,FALSE,,,
+I,비,그 아저씨,FALSE,,,
+I,미,경계대상,TRUE,,,
+I,아,고인 모독자,FALSE,,,
+I,아,정말 살릴 수 있어?,TRUE,,,
+I,사,늙은 사자,TRUE,,,
+I,사,패군,FALSE,,,
+J,R,R,FALSE,,,
+J,R,그 사람,FALSE,,,
+J,R,R씨,FALSE,,,
+J,테,테리,FALSE,,,
+J,F,그,FALSE,,,
+J,F,F,FALSE,,,
+J,F,에런/페피,TRUE,,,
+J,A,A 군,FALSE,,,
+J,L,L,FALSE,,,
+J,L,라비,TRUE,,,
+J,E,선배님,FALSE,,,
+J,E,E 님,FALSE,,,
+J,N,야,FALSE,,,
+J,N,걔,FALSE,,,
+J,N,가끔 누나,FALSE,,,
+J,Y,Y 군,FALSE,,,
+J,M,레지오,TRUE,,,
+J,X,X 씨,FALSE,,,
+J,오,오르티,FALSE,,,
+J,라,사살 대상,FALSE,,,
+J,루,루두스,FALSE,,,
+J,P,P,FALSE,,,
+J,느,느베야,FALSE,,,
+J,S,S 양,FALSE,,,
+J,I,I 군,FALSE,,,
+J,H,형님,FALSE,,,
+J,T,T,FALSE,,,
+J,비,형님,FALSE,,,
+J,미,미카엘,FALSE,,,
+J,미,동생,FALSE,,,
+J,아,능멸하는 자,FALSE,,,
+J,사,슬럼의 패군,FALSE,,,
+J,사,알려지지 않은 영웅,TRUE,,,
+R,J,J,FALSE,,,
+R,J,그 사람,FALSE,,,
+R,J,J 씨,FALSE,,,
+R,테,도버만 군,FALSE,,,
+R,F,그거,FALSE,,,
+R,A,A 군,FALSE,,,
+R,L,블랑쉬,TRUE,,,
+R,L,라비,TRUE,,,
+R,L,L,FALSE,,,
+R,E,선배님,FALSE,,,
+R,N,미친 여자,FALSE,,,
+R,N,N,FALSE,,,
+R,Y,Y 군,FALSE,,,
+R,M,M,FALSE,,,
+R,X,걔,FALSE,,,
+R,오,작은 용,FALSE,,,
+R,라,쓰레기 하나,FALSE,,,
+R,루,시끄러운 놈,FALSE,,,
+R,P,P,FALSE,,,
+R,P,시체,FALSE,,,
+R,느,까다로운 것,FALSE,,,
+R,S,솜사탕,FALSE,,,
+R,I,영입 대상,FALSE,,,
+R,H,의사,FALSE,,,
+R,H,헤리,TRUE,,,
+R,T,시든 꽃,FALSE,,,
+R,비,너,FALSE,,,
+R,비,걔,FALSE,,,
+R,미,미카엘,FALSE,,,
+R,미,에스텔,TRUE,,,
+R,미,걔,FALSE,,,
+R,아,시체 성애자,FALSE,,,
+R,사,슬럼의 패군,FALSE,,,
+R,사,조용한 영웅,TRUE,,,
+Y,J,J 선배님,FALSE,,,
+Y,R,R 선배님,FALSE,,,
+Y,테,선배님,FALSE,,,
+Y,테,형님,FALSE,,,
+Y,F,영웅,FALSE,,,
+Y,A,선배님,FALSE,,,
+Y,A,형님,FALSE,,,
+Y,L,L 님,FALSE,,,
+Y,E,선배님,FALSE,,,
+Y,N,누님,FALSE,,,
+Y,M,선배님,FALSE,,,
+Y,X,챙겨줘야 하는 선배님,FALSE,,,
+Y,오,용용이,FALSE,,,
+Y,라,이상하신 분,FALSE,,,
+Y,루,영웅님의 서방님…?,FALSE,,,
+Y,P,영웅,FALSE,,,
+Y,느,어린 아이…?,FALSE,,,
+Y,S,잘 먹는 아씨,FALSE,,,
+Y,I,박카스 챙겨드려야,FALSE,,,
+Y,I,하는 분,FALSE,,,
+Y,H,항상 감사한 선배님,FALSE,,,
+Y,T,연꽃 님,FALSE,,,
+Y,비,일본 분,TRUE,,,
+Y,비,비광 님,FALSE,,,
+Y,미,성장기인 분,FALSE,,,
+Y,아,잘 안 드시는 분,FALSE,,,
+Y,사,슬럼의… 그분,FALSE,,,
+Y,사,손이 가요 손이 가…?,TRUE,,,
+X,J,선배,FALSE,,,
+X,J,형,FALSE,,,
+X,R,주인님,FALSE,,,
+X,테,테리,FALSE,,,
+X,F,형님,FALSE,,,
+X,A,베르너,TRUE,,,
+X,L,작고 귀여운 아이,FALSE,,,
+X,E,선배님,FALSE,,,
+X,N,언니,FALSE,,,
+X,N,누나,FALSE,,,
+X,Y,Y 군,FALSE,,,
+X,M,개새끼,FALSE,,,
+X,오,오르티,FALSE,,,
+X,라,예술가,FALSE,,,
+X,루,연출가,FALSE,,,
+X,P,P,FALSE,,,
+X,느,열매,FALSE,,,
+X,S,동생,FALSE,,,
+X,I,동류,FALSE,,,
+X,H,튕기는 분,FALSE,,,
+X,T,예술가,FALSE,,,
+X,비,선배님,FALSE,,,
+X,미,꼬마 친구,FALSE,,,
+X,아,완벽한 뮤즈,TRUE,,,
+X,아,재료,FALSE,,,
+X,사,슬럼의 흰 사자,FALSE,,,
+X,사,숨어버린 사자,TRUE,,,
+F,J,주다스,TRUE,,,
+F,J,주디,TRUE,,,
+F,R,리하르트,TRUE,,,
+F,R,개새끼,FALSE,,,
+F,테,로이드,TRUE,,,
+F,A,배트맨,FALSE,,,
+F,L,라비,TRUE,,,
+F,L,작은 토끼,FALSE,,,
+F,E,형님,FALSE,,,
+F,N,니니,FALSE,,,
+F,N,내 절친,FALSE,,,
+F,Y,어리고 하얀 친구,FALSE,,,
+F,M,레지오,TRUE,,,
+F,X,예예,TRUE,,,
+F,오,오르토스,FALSE,,,
+F,라,그 양반,FALSE,,,
+F,루,루디,FALSE,,,
+F,P,피에르,TRUE,,,
+F,느,작은 상어 토끼,FALSE,,,
+F,S,슈시,TRUE,,,
+F,S,복숭아 토끼,FALSE,,,
+F,I,새 영웅?,FALSE,,,
+F,H,헤리,TRUE,,,
+F,T,엔엔/엔자기,TRUE,,,
+F,비,비광,FALSE,,,
+F,비,야니,TRUE,,,
+F,미,미카,FALSE,,,
+F,미,에스텔,TRUE,,,
+F,아,아피,FALSE,,,
+F,사,숨은 영웅 형씨,FALSE,,,
+라,J,깨닫지 못한 자,FALSE,,,
+라,R,닮되 닮지 못한 자,FALSE,,,
+라,테,어리석은 개,FALSE,,,
+라,F,위대한 존재를 잇는 자,FALSE,,,
+라,A,길가를 나도는 개,FALSE,,,
+라,L,선악과,FALSE,,,
+라,E,잘못된 신념을 품은 자,FALSE,,,
+라,N,진창에 빠짐을 모르는 자,FALSE,,,
+라,Y,눈이 가려진 가여운 자,FALSE,,,
+라,M,잃어버린 자,FALSE,,,
+라,X,이해자,FALSE,,,
+라,오,위대한 존재 중 하나,FALSE,,,
+라,루,나의 오른팔,FALSE,,,
+라,P,나의 맹수,FALSE,,,
+라,느,내 아이,TRUE,,,
+라,S,탐식에 눈이 가려진 자,FALSE,,,
+라,I,앞길을 보지 못하는 자,FALSE,,,
+라,H,생명의 근원 되는 자,FALSE,,,
+라,T,깨달은 어린 양,FALSE,,,
+라,비,진리를 보는 자,FALSE,,,
+라,미,열쇠를 쥔 자,FALSE,,,
+라,아,나의 사랑스러운 신도,FALSE,,,
+라,사,뒤로 물러난 자,FALSE,,,
+루,J,쇼를 방해하는 과묵하신 분,FALSE,,,
+루,R,가장 거슬리는 분,FALSE,,,
+루,테,멍청한 강아지,FALSE,,,
+루,F,내 사랑의 옛 동료,FALSE,,,
+루,A,처음 보는 개,FALSE,,,
+루,L,관전자,FALSE,,,
+루,E,안타까우신 분,FALSE,,,
+루,N,쇼를 망치는 분,FALSE,,,
+루,Y,보물을 숨긴 분,FALSE,,,
+루,M,화려한 배우,FALSE,,,
+루,X,연출가,FALSE,,,
+루,오,위대하신 분,FALSE,,,
+루,라,교주님,FALSE,,,
+루,P,내 사랑,FALSE,,,
+루,P,나의 맹수,FALSE,,,
+루,느,위대한 제사장,FALSE,,,
+루,S,대단한 능력을 지닌 분,FALSE,,,
+루,I,가면을 쓴 분,FALSE,,,
+루,H,나타나면 방해되는 분,FALSE,,,
+루,T,형제 님,FALSE,,,
+루,T,무대의 꽃,FALSE,,,
+루,비,명확히 거슬리는 분,FALSE,,,
+루,비,암살 대상,FALSE,,,
+루,미,재밌는 것을 쥔 분,FALSE,,,
+루,미,'알면서',TRUE,,,
+루,아,인형을 잘 만드시는 분,FALSE,,,
+루,아,아가페,TRUE,,,
+루,아,친구,TRUE,,,
+루,사,또다른 사자,FALSE,,,
+P,J,깜짝 놀라는 애,FALSE,,,
+P,R,뜨거운 애,FALSE,,,
+P,테,멍멍이!,FALSE,,,
+P,F,하피~ 하피!,FALSE,,,
+P,A,공 던져주는 애,FALSE,,,
+P,L,친구?,FALSE,,,
+P,E,따뜻한 아저씨,FALSE,,,
+P,N,같이 놀아주는 친구,FALSE,,,
+P,Y,밥을 챙겨주는 좋은 사람,FALSE,,,
+P,M,사탕을 주는 인간,FALSE,,,
+P,X,인형놀이 친구,FALSE,,,
+P,오,용용이,FALSE,,,
+P,라,교주님,FALSE,,,
+P,루,내 사랑,FALSE,,,
+P,느,느베야! 느베야!,FALSE,,,
+P,S,매일 맛있는 걸 주는 인간!,FALSE,,,
+P,I,왜 그런 눈으로 보는지,FALSE,,,
+P,I,모를 인간,FALSE,,,
+P,H,맛없는 사탕 인간,FALSE,,,
+P,T,좋은 냄새!,FALSE,,,
+P,비,재밌는 마술사!,FALSE,,,
+P,미,책 읽어주는 동생!,FALSE,,,
+P,미,익숙한 친구,TRUE,,,
+P,미,포근포근이,FALSE,,,
+P,아,달콤한 냄새가 나!,FALSE,,,
+P,사,너도 사자야?,FALSE,,,
+느,J,선글라스 바보,FALSE,,,
+느,J,억제하는 자,TRUE,,,
+느,R,화르륵 삐죽이,FALSE,,,
+느,R,단죄하는 자,TRUE,,,
+느,테,따끔따끔 바보!,FALSE,,,
+느,테,눈 가려진 자,TRUE,,,
+느,F,하피!,FALSE,,,
+느,F,위대한 피를 이은 자,TRUE,,,
+느,A,무시무시한 애!,FALSE,,,
+느,A,꿰뚫는 자,TRUE,,,
+느,L,싫은 애,FALSE,,,
+느,L,선악과,TRUE,,,
+느,E,안경 쓴 번쩍이,FALSE,,,
+느,E,흔들고 싶은 자,TRUE,,,
+느,N,치타같은 누나,FALSE,,,
+느,N,빛을 잇는 자,TRUE,,,
+느,Y,온통 하얀 친구,FALSE,,,
+느,Y,위대한 종족을 숨기는 자,TRUE,,,
+느,M,재밌는 애,FALSE,,,
+느,M,레지오,TRUE,,,
+느,X,이상한 애,FALSE,,,
+느,X,홀리고 싶은 애,TRUE,,,
+느,오,기분 나쁜 애,FALSE,,,
+느,오,위대한 군주,TRUE,,,
+느,라,파파,TRUE,,,
+느,루,루디,FALSE,,,
+느,루,연결된 존재,TRUE,,,
+느,P,뽀삐,FALSE,,,
+느,P,심겨진 자,TRUE,,,
+느,S,말랑한 애,FALSE,,,
+느,S,친해지고 싶은 애!,TRUE,,,
+느,I,속일 수 없는 애,FALSE,,,
+느,I,가면쓴 자,TRUE,,,
+느,H,피곤해 보이는 아저씨,FALSE,,,
+느,H,위대한 생명의 싹,TRUE,,,
+느,T,가능성을 준 친구,FALSE,,,
+느,비,무서운 애,FALSE,,,
+느,미,경계대상,FALSE,,,
+느,아,재밌는 걸 만들어주는 애,FALSE,,,
+느,사,파파가 뒷방 늙은이랬어!,TRUE,,,
+T,J,와이즈맨 공,TRUE,,,
+T,R,하이넬 공,TRUE,,,
+T,테,테리 공,FALSE,,,
+T,F,펠리체,TRUE,,,
+T,F,형제,FALSE,,,
+T,A,A 공,FALSE,,,
+T,L,작은 열매,FALSE,,,
+T,E,리더 님,FALSE,,,
+T,N,N 공,FALSE,,,
+T,Y,아해,FALSE,,,
+T,M,그이,FALSE,,,
+T,M,모르페우스,TRUE,,,
+T,M,나의 벗,TRUE,,,
+T,X,범부,FALSE,,,
+T,오,두려운 자,FALSE,,,
+T,라,교주님,FALSE,,,
+T,루,형제,FALSE,,,
+T,P,뽀삐,FALSE,,,
+T,P,피에르,TRUE,,,
+T,S,아해,FALSE,,,
+T,I,I 공,FALSE,,,
+T,H,생불,FALSE,,,
+T,느,위대하신 분,FALSE,,,
+T,느,제사장,FALSE,,,
+T,비,선배님,FALSE,,,
+T,미,미카엘 공,FALSE,,,
+T,아,부정하는 분,FALSE,,,
+T,사,슬럼의 패군,FALSE,,,
+비,J,J,FALSE,,,
+비,J,주다스,TRUE,,,
+비,R,그 녀석,FALSE,,,
+비,R,리하르트,TRUE,,,
+비,R,R,FALSE,,,
+비,테,테리,FALSE,,,
+비,테,로이드,TRUE,,,
+비,F,펠리체,TRUE,,,
+비,F,F,FALSE,,,
+비,A,베르너,TRUE,,,
+비,L,꼬맹이,FALSE,,,
+비,L,아이,FALSE,,,
+비,E,형님,FALSE,,,
+비,N,날치기,FALSE,,,
+비,Y,한국인 꼬마,TRUE,,,
+비,Y,도련님,FALSE,,,
+비,M,깍쟁이,FALSE,,,
+비,M,레지오,TRUE,,,
+비,X,X,FALSE,,,
+비,오,좋은 만담 콤비,FALSE,,,
+비,라,희생자,FALSE,,,
+비,루,견제하는 녀석,FALSE,,,
+비,루,사살 대상,FALSE,,,
+비,P,뽀삐,FALSE,,,
+비,P,피에르,TRUE,,,
+비,S,분홍 토끼,FALSE,,,
+비,I,젊은 친구,FALSE,,,
+비,I,론의 후배,TRUE,,,
+비,H,야,FALSE,,,
+비,H,너,FALSE,,,
+비,H,헤르베르트,TRUE,,,
+비,느,꼬마 친구,FALSE,,,
+비,T,개자식,FALSE,,,
+비,미,미카엘,FALSE,,,
+비,아,패션 센스가 대단한 사람,FALSE,,,
+비,아,동료의 복수를 위해\n죽여야 하는 사람,TRUE,,,
+비,사,슬럼의 패군,FALSE,,,
+비,사,숨은 영웅,TRUE,,,
+미,J,형,FALSE,,,
+미,J,선배,FALSE,,,
+미,R,R 선배,FALSE,,,
+미,R,형,FALSE,,,
+미,R,삼촌,FALSE,,,
+미,테,테리 형,FALSE,,,
+미,테,형아,FALSE,,,
+미,F,펠리체 형아,TRUE,,,
+미,F,형,FALSE,,,
+미,A,베르너 씨,TRUE,,,
+미,L,블랑쉬,TRUE,,,
+미,E,삼촌,FALSE,,,
+미,N,무서운 누나,FALSE,,,
+미,Y,Y 형,FALSE,,,
+미,M,선배,FALSE,,,
+미,X,형,FALSE,,,
+미,S,잘 드시는 누나,FALSE,,,
+미,I,쥐새끼,TRUE,,,
+미,비,아저씨?,FALSE,,,
+미,H,아저씨,FALSE,,,
+미,오,위대한 군주,FALSE,,,
+미,라,미친 교주,FALSE,,,
+미,루,개새끼,FALSE,,,
+미,루,죽일 새끼,FALSE,,,
+미,P,뽀삐,FALSE,,,
+미,P,형?,TRUE,,,
+미,P,엘와,TRUE,,,
+미,P,(저건 형이 아니야),TRUE,,,
+미,느,이상한 애,FALSE,,,
+미,느,책에 가둘 녀석,TRUE,,,
+미,T,배신자 새끼,FALSE,,,
+미,아,정말 엮이기 싫은 버러지,FALSE,,,
+미,사,무서운 슬럼의 아저씨,FALSE,,,
+아,J,꼭 사랑해보고 싶은 분,FALSE,,,
+아,R,화장을 시켜주시는 못된 분,FALSE,,,
+아,테,하피 님을 위해\n박제로 남기고 싶은 분,TRUE,,,
+아,테,사랑을 설파하고 싶은 분,FALSE,,,
+아,F,하피 님,FALSE,,,
+아,F,조류…?,TRUE,,,
+아,A,'사랑'을 망가뜨리는 분,FALSE,,,
+아,L,제사장 님의 친구 분\n(아니라고 하지만),FALSE,,,
+아,E,살려드리고 싶은 분이\n많은 분…,TRUE,,,
+아,E,헌터즈의 영웅 님,FALSE,,,
+아,N,사랑스러운 언니,FALSE,,,
+아,Y,온통 새하얀 분,FALSE,,,
+아,M,임시 리더 님,FALSE,,,
+아,M,형제님,TRUE,,,
+아,X,인형술사 님,FALSE,,,
+아,X,사랑을 이해하시는 분,TRUE,,,
+아,S,솜사탕 님,FALSE,,,
+아,I,쾌활한 영웅 님,FALSE,,,
+아,I,잘 구슬려볼까 하는 분,TRUE,,,
+아,비,두려운 분,FALSE,,,
+아,H,…살아계신 분?,FALSE,,,
+아,오,너무나도 위대하신 분!,FALSE,,,
+아,라,교주님,FALSE,,,
+아,라,너무나도 사랑하는 분,FALSE,,,
+아,루,루두스 님,FALSE,,,
+아,루,루디,TRUE,,,
+아,루,친구,TRUE,,,
+아,P,뽀삐 님,FALSE,,,
+아,느,제사장 님,FALSE,,,
+아,느,위대하신 저의 사랑,TRUE,,,
+아,T,T 님,FALSE,,,
+아,사,두려우신 패군 님,FALSE,,,
+사,J,드라칼의 리더,FALSE,,,
+사,J,암사자의 동생,TRUE,,,
+사,R,하이넬 가의 그 녀석,TRUE,,,
+사,R,비밀을 유지해줄 거라\n믿는 사람,TRUE,,,
+사,테,울프독의 맹견,FALSE,,,
+사,F,변질된 영웅,FALSE,,,
+사,A,변질자,FALSE,,,
+사,A,앙헬,TRUE,,,
+사,L,작은 토끼,FALSE,,,
+사,E,헌터즈의 리더,FALSE,,,
+사,N,니케,TRUE,,,
+사,N,암사자,TRUE,,,
+사,Y,작은 뱀,FALSE,,,
+사,Y,새우깡에 손이 가…?,TRUE,,,
+사,M,울프독의 임시 리더,FALSE,,,
+사,M,도망쳐 올 생각 마라.,TRUE,,,
+사,X,엮이면 피곤한 녀석,FALSE,,,
+사,S,분홍색 토끼,FALSE,,,
+사,S,슈슈,TRUE,,,
+사,I,변질자,FALSE,,,
+사,I,아이작,TRUE,,,
+사,H,이글아이의 리더,FALSE,,,
+사,H,얌전한 자,FALSE,,,
+사,비,시끄러운 자,FALSE,,,
+사,비,비광,FALSE,,,
+사,비,왜놈,TRUE,,,
+사,오,…용?,FALSE,,,
+사,라,광인,FALSE,,,
+사,루,광대,FALSE,,,
+사,P,사자,FALSE,,,
+사,느,…아이?,FALSE,,,
+사,T,불길한 녀석,FALSE,,,
+사,아,꺼졌으면 좋겠을 녀석,FALSE,,,
+사,미,어린 사서,FALSE,,,

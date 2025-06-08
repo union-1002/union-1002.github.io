@@ -6,6 +6,7 @@ import LoginPage from './pages/LoginPage';
 import HelloPage from './pages/HelloPage';
 import TimelinePage from './pages/TimelinePage';
 import TeamIntroPage from './pages/TeamIntroPage';
+import OrganizationPage from './pages/OrganizationPage';
 import MemberIntroPage from './pages/MemberIntroPage';
 import NoticePage from './pages/NoticePage';
 import SchedulePage from './pages/SchedulePage';
@@ -18,6 +19,12 @@ import HackerLoginPage from './pages/HackerLoginPage';
 import GoodPage from './pages/GoodPage';
 import WellPage from './pages/WellPage';
 import MonthPage from './pages/MonthPage';
+import AdminPage from './pages/AdminPasswordReset';
+import PartEPage from './pages/PartEPage';
+import PartDPage from './pages/PartDPage';
+import PartUPage from './pages/PartUPage';
+import PartHPage from './pages/PartHPage';
+import PartWPage from './pages/PartWPage';
 
 function AppProvider({ children }) {
   return (
@@ -38,6 +45,7 @@ function App() {
         <Route path="/hello" element={<HelloPage />} />
         <Route path="/timeline" element={<TimelinePage />} />
         <Route path="/teamIntro" element={<TeamIntroPage />} />
+        <Route path="/organization" element={<OrganizationPage />} />
         <Route path="/memberIntro" element={<MemberIntroPage />} />
         <Route path="/notice" element={<NoticePage />} />
         <Route path="/schedule" element={<SchedulePage />} />
@@ -49,6 +57,12 @@ function App() {
         <Route path="/minwonSubmit" element={<MinwonSubmitPage />} />
         <Route path="/siteIntro" element={<SitePage />} />
         <Route path="/monthlyMember" element={<MonthPage/>} />
+        <Route path="/unionAdmin" element={<AdminPage/>} />
+        <Route path="/eagleEye" element={<PartEPage/>} />
+        <Route path="/dracal" element={<PartDPage/>} />
+        <Route path="/underground" element={<PartUPage/>} />
+        <Route path="/hunters" element={<PartHPage/>} />
+        <Route path="/wolfdog" element={<PartWPage/>} />
       </Routes>
     </AppProvider>
   );

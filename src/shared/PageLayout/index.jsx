@@ -1,8 +1,8 @@
 import SideNavigationBar from '@/shared/SideNavigationBar';
 
-function PageLayout({ title, sidebar, children }) {
+function PageLayout({ ref, title, sidebar, children }) {
   return (
-    <div className="flex max-w-7xl mx-auto px-4 lg:px-8 mt-8 space-x-8 items-start">
+    <div ref={ref} className="flex max-w-7xl mx-auto px-4 lg:px-8 mt-8 space-x-8 items-start">
       {sidebar && <SideNavigationBar {...sidebar} />}
 
       {/* 본문 */}
