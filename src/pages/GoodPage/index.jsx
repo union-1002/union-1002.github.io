@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from 'react';
 import { useSessionStorage } from 'react-use';
 import _ from 'lodash';
 import { useSearchParams } from 'react-router';
@@ -6,14 +6,15 @@ import MainLayout from '@/shared/MainLayout';
 import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
 import { createPost, createReply, deletePost, deleteReply, makeContext, updatePost, updateReply, usePosts } from './hooks';
-import { useUser } from "@/shared/user";
-import { RenderdCheckbox, TextEdit, TextEditTailButton, ToggleButton } from "./components";
-import { FaCode } from "react-icons/fa6";
-import { FaUser } from "react-icons/fa6";
+import { useUser } from '@/shared/user';
+import { RenderdCheckbox, TextEdit, TextEditTailButton, ToggleButton } from './components';
+import { FaCode } from 'react-icons/fa6';
+import { FaUser } from 'react-icons/fa6';
 
 const BOARD_ID = 'good';
 
 function GoodPage() {
+  const boardRef = useRef(null);
   // URL 쿼리 파라미터
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number.parseInt(searchParams.get('page') ?? 1);
@@ -28,7 +29,10 @@ function GoodPage() {
   const pageListStart = Math.max(1, Math.min(nPages, page - pageListRange));
   const pageListEnd = Math.max(1, Math.min(nPages, page + pageListRange));
   const [currentCommandId, setCurrentCommandId] = useState(null);
-  const goToPage = (i) => setSearchParams(i ? { page: i } : {});
+  const goToPage = (i) => {
+    setSearchParams(i ? { page: i } : {});
+    boardRef.current.scrollIntoView();
+  };
   const updateOnCreatePost = async () => {
     if (page === 1) {
       await update();
@@ -46,6 +50,7 @@ function GoodPage() {
   return (
     <MainLayout>
       <PageLayout
+        ref={boardRef}
         title="칭찬합니다"
         sidebar={MENU_PROPS['직원 마당']}
       >
