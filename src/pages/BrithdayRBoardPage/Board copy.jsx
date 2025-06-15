@@ -1,36 +1,32 @@
 import { useState, useRef } from 'react';
-import { useSessionStorage } from 'react-use';
 import _ from 'lodash';
-import { useSearchParams } from 'react-router';
-import MainLayout from '@/shared/MainLayout';
-import PageLayout from '@/shared/PageLayout';
-import { MENU_PROPS } from '@/shared/SideNavigationBar';
 import { createPost, createReply, deletePost, deleteReply, makeContext, updatePost, updateReply, usePosts } from './hooks';
 import { useUser } from '@/shared/user';
-import { RenderdCheckbox, TextEdit, TextEditTailButton, ToggleButton } from './components';
+import { RenderdCheckbox, TextEdit, ToggleButton } from './components';
 import { FaCode } from 'react-icons/fa6';
 import { FaUser } from 'react-icons/fa6';
+import { useEffect } from 'react';
 
-const BOARD_ID = 'good';
-
-function GoodPage() {
+export default function Board({
+  boardId,
+  setPage,
+  userMode = true,              // 사용자가 쓴 글 보기
+  usernameModifiable = true,    // 사용자명 수정 가능
+  page = 1,                     // 현재 페이지 번호
+  pageSize = 10,                // 한 페이지에 보여질 글 개수 
+  pageListRange = 2,            // 현재 페이지 양 옆에 보여줄 번호 수
+}) {
   const boardRef = useRef(null);
-  // URL 쿼리 파라미터
-  const [searchParams, setSearchParams] = useSearchParams();
-  const page = Number.parseInt(searchParams.get('page') ?? 1);
   // 필터링 설정
   const user = useUser();
-  const [userMode, setUserMode] = useSessionStorage('good-userMode', false);
   const isWritableMode = user.isAdmin || (user.isAuthenticated && userMode);
   // 페이지 목록
-  const pageSize = 10;  // 한 페이지에 보여질 글 개수
-  const pageListRange = 2;  // 현재 페이지 양 옆에 보여줄 번호 수
-  const { loading, error, data: posts, update, nPages } = usePosts(BOARD_ID, page, pageSize, !userMode);
+  const { loading, error, data: posts, update, nPages } = usePosts(boardId, page, pageSize, !userMode);
   const pageListStart = Math.max(1, Math.min(nPages, page - pageListRange));
   const pageListEnd = Math.max(1, Math.min(nPages, page + pageListRange));
   const [currentCommandId, setCurrentCommandId] = useState(null);
   const goToPage = (i) => {
-    setSearchParams(i ? { page: i } : {});
+    setPage(i);
     boardRef.current.scrollIntoView();
   };
   const updateOnCreatePost = async () => {
@@ -42,106 +38,90 @@ function GoodPage() {
     }
   }
 
-  const handleUserModeToggleChange = (e) => {
-    setUserMode(e.target.checked);
-    goToPage(null);
-  }
-
   return (
-    <MainLayout>
-      <PageLayout
-        ref={boardRef}
-        title="칭찬합니다"
-        sidebar={MENU_PROPS['직원 마당']}
-      >
-        <div className="relative">
-          {error && <pre className="text-red-500 whitespace-pre-wrap">{JSON.stringify(error)}</pre>}
-          {loading && 
-            <div className="absolute w-full h-full z-10 flex justify-center items-center backdrop-brightness-90"><Loading /></div>
-          }
+    <div className="relative" ref={boardRef}>
+      {error && <pre className="text-red-500 whitespace-pre-wrap">{JSON.stringify(error)}</pre>}
+      {loading && 
+        <div className="absolute w-full h-full z-10 flex justify-center items-center backdrop-brightness-90"><Loading /></div>
+      }
 
-          {user.isAuthenticated &&
-            <div className="flex justify-end mb-1">
-              {/* 토글 */}
-              <ToggleButton value={userMode} onChange={handleUserModeToggleChange}></ToggleButton>
-            </div>
-          }
+      {isWritableMode &&
+        <PostWriter boardId={boardId} update={updateOnCreatePost} usernameModifiable={usernameModifiable || user.isAdmin} />
+      }
 
-          {isWritableMode &&
-            <PostWriter update={updateOnCreatePost} />
-          }
+      <div className="flex flex-wrap lg:flex-nowrap items-start text-sm font-semibold border-b border-gray-400 pb-4">
+        <div className="w-[50px] lg:w-[60px] text-center shrink-0">번호</div>
+        <div className="hidden lg:block w-[60px] text-center font-medium shrink-0">작성자</div>
+        <div className="flex justify-center items-center w-[calc(100%-50px)]  lg:flex-grow lg:mt-0 lg:ml-5">내용</div>
+      </div>
 
-          <div className="flex flex-wrap lg:flex-nowrap items-start text-sm font-semibold border-b border-gray-400 pb-4">
-            <div className="w-[50px] lg:w-[60px] text-center shrink-0">번호</div>
-            <div className="hidden lg:block w-[60px] text-center font-medium shrink-0">작성자</div>
-            <div className="flex justify-center items-center w-[calc(100%-50px)]  lg:flex-grow lg:mt-0 lg:ml-5">내용</div>
-          </div>
+      {/* 게시글 목록 */}
+      {posts.map((post, index) => (
+        <div
+          key={post.id}
+          className="border-gray-300 
+                    border-b 
+                    border-y-0"
+        >
+          {/* 메인 글 */}
+          <PostItem
+            boardId={boardId}
+            post={post}
+            update={update}
+            currentCommandId={currentCommandId}
+            setCurrentCommandId={setCurrentCommandId}
+            isRepliable={isWritableMode}
+            usernameModifiable={usernameModifiable || user.isAdmin}
+          />
 
-          {/* 게시글 목록 */}
-          {posts.map((post, index) => (
-            <div
-              key={post.id}
-              className="border-gray-300 
-                        border-b 
-                        border-y-0"
-            >
-              {/* 메인 글 */}
-              <PostItem
-                post={post}
-                update={update}
-                currentCommandId={currentCommandId}
-                setCurrentCommandId={setCurrentCommandId}
-                isRepliable={isWritableMode}
-              />
-
-              {/* 답글들 */}
-              {post.replies.map((reply) => (
-                <ReplyItem
-                  key={reply.id}
-                  reply={reply}
-                  update={update}
-                  currentCommandId={currentCommandId}
-                  setCurrentCommandId={setCurrentCommandId}
-                />
-              ))}
-            </div>
+          {/* 답글들 */}
+          {post.replies.map((reply) => (
+            <ReplyItem
+              boardId={boardId}
+              key={reply.id}
+              reply={reply}
+              update={update}
+              currentCommandId={currentCommandId}
+              setCurrentCommandId={setCurrentCommandId}
+              usernameModifiable={usernameModifiable || user.isAdmin}
+            />
           ))}
-
-          {/* 페이지 목록 */}
-          <div className="flex items-center justify-center space-x-2 mt-6">
-            <button
-              onClick={() => goToPage(page - 1)}
-              disabled={page <= 1}
-              className="px-3 py-1 rounded-md border text-sm select-none cursor-pointer disabled:cursor-default bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
-            >
-              이전
-            </button>
-
-            {_.range(pageListStart, pageListEnd+1).map((i) =>
-              <button
-                key={i}
-                onClick={() => goToPage(i)}
-                className={`px-3 py-1 rounded-md text-sm select-none cursor-pointer disabled:cursor-default ${
-                  i === page
-                    ? "bg-[#435373] text-white "
-                    : "bg-white text-gray-700 hover:bg-gray-100"
-                }`}
-              >
-                {i}
-              </button>
-            )}
-
-            <button
-              onClick={() => goToPage(page + 1)}
-              disabled={page >= nPages}
-              className="px-3 py-1 rounded-md border text-sm select-none cursor-pointer disabled:cursor-default bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
-            >
-              다음
-            </button>
-          </div>
         </div>
-      </PageLayout>
-    </MainLayout>
+      ))}
+
+      {/* 페이지 목록 */}
+      <div className="flex items-center justify-center space-x-2 mt-6">
+        <button
+          onClick={() => goToPage(page - 1)}
+          disabled={page <= 1}
+          className="px-3 py-1 rounded-md border text-sm select-none cursor-pointer disabled:cursor-default bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+        >
+          이전
+        </button>
+
+        {_.range(pageListStart, pageListEnd+1).map((i) =>
+          <button
+            key={i}
+            onClick={() => goToPage(i)}
+            className={`px-3 py-1 rounded-md text-sm select-none cursor-pointer disabled:cursor-default ${
+              i === page
+                ? "bg-[#435373] text-white "
+                : "bg-white text-gray-700 hover:bg-gray-100"
+            }`}
+          >
+            {i}
+          </button>
+        )}
+
+        <button
+          onClick={() => goToPage(page + 1)}
+          disabled={page >= nPages}
+          className="px-3 py-1 rounded-md border text-sm select-none cursor-pointer disabled:cursor-default bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+        >
+          다음
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -159,7 +139,7 @@ function renderText(text, context) {
   }
 }
 
-function PostItem({ post, update, currentCommandId, setCurrentCommandId, isRepliable }) {
+function PostItem({ boardId, post, update, currentCommandId, setCurrentCommandId, isRepliable, usernameModifiable }) {
   const COMMAND_EDIT_POST = `edit_post_${post.id}`;
   const COMMAND_WRITE_REPLY = `write_reply_${post.id}`;
 
@@ -173,10 +153,10 @@ function PostItem({ post, update, currentCommandId, setCurrentCommandId, isRepli
   const toggleReplyWriter = () => setCurrentCommandId(currentCommandId !== COMMAND_WRITE_REPLY ? COMMAND_WRITE_REPLY : null);
   
   const editMode = currentCommandId === COMMAND_EDIT_POST;
-  const [username, setUsername] = useState(isAdmin ? post.author : user.username);
+  const [username, setUsername] = useState(usernameModifiable ? post.author : user.username);
   const [jsMode, setJsMode] = useState(typeof post.text === 'function');
   const [editingText, setEditingText] = useState(typeof post.text === 'function' ? post.text.toString() : post.text);
-  const isUsernameEditable = isAdmin;
+  const isUsernameEditable = usernameModifiable;
   const isTextEditable = true;
 
   const handleReply = () => {
@@ -193,7 +173,7 @@ function PostItem({ post, update, currentCommandId, setCurrentCommandId, isRepli
     }
 
     try {
-      await deletePost(BOARD_ID, post.id);
+      await deletePost(boardId, post.id);
       await update();
     }
     catch (e) {
@@ -211,7 +191,7 @@ function PostItem({ post, update, currentCommandId, setCurrentCommandId, isRepli
     toggleEditMode();
 
     try {
-      await updatePost(BOARD_ID, post.id, user, username, jsMode, editingText);
+      await updatePost(boardId, post.id, user, username, jsMode, editingText);
       await update();
     }
     catch (e) {
@@ -267,14 +247,14 @@ function PostItem({ post, update, currentCommandId, setCurrentCommandId, isRepli
       </div>
       {currentCommandId === COMMAND_WRITE_REPLY &&
         <div className="px-4">
-          <ReplyWriter post={post} update={update} close={toggleReplyWriter} />
+          <ReplyWriter boardId={boardId} post={post} update={update} close={toggleReplyWriter} usernameModifiable={usernameModifiable} />
         </div>
       }
     </div>
   );
 }
 
-function PostWriter({ update }) {
+function PostWriter({ boardId, update, usernameModifiable }) {
   const [username, setUsername] = useState('');
   const [jsMode, setJsMode] = useState(false);
   const [text, setText] = useState('');
@@ -283,13 +263,17 @@ function PostWriter({ update }) {
   const isAdmin = user.isAdmin;
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (username.trim() == '') {
+      alert("작성자를 입력하세요.");
+      return;
+    }
     if (text.trim() == '') {
       alert("내용을 입력하세요.");
       return;
     }
 
     try {
-      await createPost(BOARD_ID, user, username, jsMode, text);
+      await createPost(boardId, user, username, jsMode, text);
       await update();
     }
     catch (e) {
@@ -297,16 +281,22 @@ function PostWriter({ update }) {
     }
     setText('');
   };
+
+  useEffect(() => {
+    setUsername(user.username);
+  }, [user]);
+
   return (
     <form className="mb-6">
-      {isAdmin &&
-        <div className="*:me-1 *:align-middle mb-1">
+      <div className="*:me-1 *:align-middle mb-1">
+        {isAdmin &&
           <div className="inline-block">
             <RenderdCheckbox className="p-1.5" title="JS Mode" value={jsMode} onChange={(e) => setJsMode(e.target.checked)}>
               <FaCode />
             </RenderdCheckbox>
           </div>
-
+        }
+        {usernameModifiable &&
           <TextEdit
             className="w-30"
             icon={<FaUser />}
@@ -314,8 +304,8 @@ function PostWriter({ update }) {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-        </div>
-      }
+        }
+      </div>
       <div className="flex">
         <textarea
           className="w-full min-h-9 block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -329,7 +319,7 @@ function PostWriter({ update }) {
   );
 }
 
-function ReplyItem({ reply, update, currentCommandId, setCurrentCommandId }) {
+function ReplyItem({ boardId, reply, update, currentCommandId, setCurrentCommandId, usernameModifiable }) {
   const COMMAND_EDIT_REPLY = `edit_reply_${reply.id}`;
 
   const user = useUser();
@@ -341,10 +331,10 @@ function ReplyItem({ reply, update, currentCommandId, setCurrentCommandId }) {
   const toggleEditMode = () => setCurrentCommandId(currentCommandId !== COMMAND_EDIT_REPLY ? COMMAND_EDIT_REPLY : null);
 
   const editMode = currentCommandId === COMMAND_EDIT_REPLY;
-  const [username, setUsername] = useState(isAdmin ? reply.author : user.username);
+  const [username, setUsername] = useState(usernameModifiable ? reply.author : user.username);
   const [jsMode, setJsMode] = useState(typeof reply.text === 'function');
   const [editingText, setEditingText] = useState(typeof reply.text === 'function' ? reply.text.toString() : reply.text);
-  const isUsernameEditable = isAdmin;
+  const isUsernameEditable = usernameModifiable;
   const isTextEditable = true;
 
   const handleDelete = async (e) => {
@@ -354,7 +344,7 @@ function ReplyItem({ reply, update, currentCommandId, setCurrentCommandId }) {
     }
 
     try {
-      await deleteReply(BOARD_ID, reply.id);
+      await deleteReply(boardId, reply.id);
       await update();
     }
     catch (e) {
@@ -369,6 +359,10 @@ function ReplyItem({ reply, update, currentCommandId, setCurrentCommandId }) {
 
   const handleEditSubmit = async (e) => {
     e.stopPropagation();
+    if (username.trim() == '') {
+      alert("작성자를 입력하세요.");
+      return;
+    }
     if (editingText.trim() == '') {
       alert("내용을 입력하세요.");
       return;
@@ -377,7 +371,7 @@ function ReplyItem({ reply, update, currentCommandId, setCurrentCommandId }) {
     toggleEditMode();
 
     try {
-      await updateReply(BOARD_ID, reply.id, user, username, jsMode, editingText);
+      await updateReply(boardId, reply.id, user, username, jsMode, editingText);
       await update();
     }
     catch (e) {
@@ -435,7 +429,7 @@ function ReplyItem({ reply, update, currentCommandId, setCurrentCommandId }) {
   );
 }
 
-function ReplyWriter({ post, update, close }) {
+function ReplyWriter({ boardId, post, update, close, usernameModifiable }) {
   const [jsMode, setJsMode] = useState(false);
   const [username, setUsername] = useState('');
   const [text, setText] = useState('');
@@ -444,13 +438,18 @@ function ReplyWriter({ post, update, close }) {
   const isAdmin = user.isAdmin;
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (username.trim() == '') {
+      alert("작성자를 입력하세요.");
+      return;
+    }
     if (text.trim() == '') {
       alert("내용을 입력하세요.");
       return;
     }
 
     try {
-      await createReply(BOARD_ID, post.id, user, username, jsMode, text);
+      console.log(boardId, post.id, user, username, jsMode, text)
+      await createReply(boardId, post.id, user, username, jsMode, text);
       await update();
     }
     catch (e) {
@@ -459,16 +458,22 @@ function ReplyWriter({ post, update, close }) {
     setText('');
     close();
   };
+  
+  useEffect(() => {
+    setUsername(user.username);
+  }, [user]);
+
   return (
     <form className="mb-6">
-      {isAdmin &&
-        <div className="*:me-1 *:align-middle mb-1">
+      <div className="*:me-1 *:align-middle mb-1">
+        {isAdmin &&
           <div className="inline-block">
             <RenderdCheckbox className="p-1.5" title="JS Mode" value={jsMode} onChange={(e) => setJsMode(e.target.checked)}>
               <FaCode />
             </RenderdCheckbox>
           </div>
-
+        }
+        {usernameModifiable &&
           <TextEdit
             className="w-30"
             icon={<FaUser />}
@@ -476,8 +481,8 @@ function ReplyWriter({ post, update, close }) {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
-        </div>
-      }
+        }
+      </div>
       <div className="flex">
         <textarea
           className="w-full min-h-9 block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -502,5 +507,3 @@ function Loading() {
     </div>
   );
 }
-
-export default GoodPage;

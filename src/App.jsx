@@ -25,6 +25,9 @@ import PartDPage from './pages/PartDPage';
 import PartUPage from './pages/PartUPage';
 import PartHPage from './pages/PartHPage';
 import PartWPage from './pages/PartWPage';
+import BrithdayRPage from './pages/BrithdayRPage';
+import BrithdayRBoardPage from './pages/BrithdayRBoardPage';
+import BrithdayRcoPage from './pages/BrithdayRcoPage';
 
 function AppProvider({ children }) {
   return (
@@ -63,6 +66,9 @@ function App() {
         <Route path="/underground" element={<PartUPage/>} />
         <Route path="/hunters" element={<PartHPage/>} />
         <Route path="/wolfdog" element={<PartWPage/>} />
+        <Route path="/happybdayR" element={<BrithdayRPage/>} />
+        <Route path="/happybdayRBoard" element={<BrithdayRBoardPage/>} />
+        <Route path="/happybdayRco" element={<BrithdayRcoPage/>} />
       </Routes>
     </AppProvider>
   );
