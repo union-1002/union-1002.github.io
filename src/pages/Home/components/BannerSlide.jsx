@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useUser } from '@/shared/user';
-import banner1 from '../images/banner1.png';
-import banner2 from '../images/banner2.png';
-import banner3 from '../images/banner3.png';
+import banner8 from '../images/banner8.jpg';
+import banner9 from '../images/banner9.jpg';
+import banner10 from '../images/banner10.gif';
+import banner11 from '../images/banner11.jpg';
 import banner7 from '../images/banner7.jpg';
 import banner5 from '../images/banner5.png';
 import banner_n from '../images/banner_n.png';
@@ -12,7 +13,6 @@ import banner_e from '../images/banner_e.jpg';
 import banner_u from '../images/banner_u.jpg';
 import banner_d from '../images/banner_d.jpg';
 import banner_hu from '../images/banner_hu.jpg';
-import banner_happy from '../images/banner_happy.jpg';
 
 
 
@@ -26,15 +26,15 @@ const BannerSlide = () => {
     ...(user.part === '새붉은 재앙' ? [banner_n] : []),
     ...(user.part === '울프독' ? [banner_w] : []),
     ...(user.part === '이글아이' ? [banner_e] : []),
-    ...(user.part === '언더 그라운드' ? [banner_happy] : []),
     ...(user.part === '언더 그라운드' ? [banner_u] : []),
     ...(user.part === '드라칼' ? [banner_d] : []),
     ...(user.part === '헌터즈' ? [banner_hu] : []),
     banner6,
     banner7,
-    banner1,
-    banner2,
-    banner3,
+    banner9,
+    banner8,
+    banner10,
+    banner11,
     banner5,
   ];
 
