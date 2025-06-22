@@ -11,7 +11,7 @@ import supabase from '@/shared/supabase';
 const groups = [
   ['E', 'N', 'S', '오'],
   ['H', 'L'],
-  ['M', '테', 'A', 'I', '비'],
+  ['M', '테', 'A', 'I', '비', '론'],
   ['J', '미'],
   ['R', 'Y', 'X'],
   ['라', '루', 'P', '느', 'T', '아',],
@@ -33,7 +33,7 @@ const groupedParts = [
   },
   {
     groupName: "울프독",
-    parts: ['M', '테', 'A', 'I', '비'],
+    parts: ['M', '테', 'A', 'I', '비', '론'],
     color: "#ecf7fb",
     borderColor: "#3ab8de"
   },
@@ -63,14 +63,23 @@ const groupedParts = [
   },
 ];
 
+const overrideColors = {
+  '론': { color: '#d5dee1', borderColor: '#849aa1' } // 예시 색상 (회색 톤)
+};
+
 // circleColors와 borderColors 동시 생성
 const circleColors = {};
 const borderColors = {};
 
 groupedParts.forEach(group => {
   group.parts.forEach(initial => {
-    circleColors[initial] = group.color;
-    borderColors[initial] = group.borderColor;
+    if (overrideColors[initial]) {
+      circleColors[initial] = overrideColors[initial].color;
+      borderColors[initial] = overrideColors[initial].borderColor;
+    } else {
+      circleColors[initial] = group.color;
+      borderColors[initial] = group.borderColor;
+    }
   });
 });
 
