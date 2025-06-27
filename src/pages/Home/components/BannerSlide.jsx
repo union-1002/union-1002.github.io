@@ -29,7 +29,6 @@ const BannerSlide = () => {
     ...(user.part === '언더 그라운드' ? [banner_u] : []),
     ...(user.part === '드라칼' ? [banner_d] : []),
     ...(user.part === '헌터즈' ? [banner_hu] : []),
-    banner6,
     banner7,
     banner9,
     banner8,
