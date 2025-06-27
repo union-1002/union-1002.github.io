@@ -192,7 +192,7 @@ function TimelinePage() {
             </div>
 
             <div className="text-slate-500">
-              Y: 울프독 → 언더그라운드
+              Y: 드라칼 → 언더그라운드
             </div>
           </div>
 
