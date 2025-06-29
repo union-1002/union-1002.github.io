@@ -28,6 +28,7 @@ import PartWPage from './pages/PartWPage';
 import BrithdayRPage from './pages/BrithdayRPage';
 import BrithdayRBoardPage from './pages/BrithdayRBoardPage';
 import BrithdayRcoPage from './pages/BrithdayRcoPage';
+import RankPage from './pages/RankPage';
 
 function AppProvider({ children }) {
   return (
@@ -69,6 +70,7 @@ function App() {
         <Route path="/happybdayR" element={<BrithdayRPage/>} />
         <Route path="/happybdayRBoard" element={<BrithdayRBoardPage/>} />
         <Route path="/happybdayRco" element={<BrithdayRcoPage/>} />
+        <Route path="/ranking_starrain" element={<RankPage/>} />
       </Routes>
     </AppProvider>
   );
