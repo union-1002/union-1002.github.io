@@ -115,7 +115,7 @@ function RankPage() {
 
   return (
     <div className="p-6 max-w-xl mx-auto text-center space-y-6">
-      <h1 className="text-2xl font-bold">스타레일 정실을 찾아서</h1>
+      <h1 className="text-2xl font-bold">스타레인 정실을 찾아서</h1>
       {pair[0] && pair[1] ? (
         <div className="flex justify-center items-center space-x-4">
           <button
