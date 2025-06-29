@@ -9,6 +9,7 @@ const initialCharacters = [
 ];
 
 const K = 32;
+const MAX_COUNT = 300;
 
 function expectedScore(ratingA, ratingB) {
   return 1 / (1 + Math.pow(10, (ratingB - ratingA) / 400));
@@ -150,7 +151,7 @@ function RankPage() {
 
 
       <div className="text-sm text-gray-500">
-        남은 비교 수: {remainingPairs.length} / {totalPairs}
+        남은 비교 수: {remainingPairs.length} / {MAX_COUNT}
       </div>
 
       <h2 className="text-xl font-semibold mt-6">현재 순위</h2>
