@@ -143,7 +143,7 @@ function RankPage() {
             <img
               src={`/images/rank/${pair[0]}.png`}
               alt={pair[0]}
-              className="w-full h-80 object-cover rounded-md mb-2"
+              className="w-full aspect-[9/16] object-cover rounded-md mb-2"
             />
             <div className="font-semibold">{pair[0]}</div>
           </button>
@@ -157,7 +157,7 @@ function RankPage() {
             <img
               src={`/images/rank/${pair[1]}.png`}
               alt={pair[1]}
-              className="w-full h-80 object-cover rounded-md mb-2"
+              className="w-full aspect-[9/16] object-cover rounded-md mb-2"
             />
             <div className="font-semibold">{pair[1]}</div>
           </button>
