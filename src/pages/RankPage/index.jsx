@@ -9,7 +9,6 @@ const initialCharacters = [
 ];
 
 const K = 32;
-const MIN_MATCHES_PER_CHARACTER = 12;
 
 function expectedScore(ratingA, ratingB) {
   return 1 / (1 + Math.pow(10, (ratingB - ratingA) / 400));
@@ -33,7 +32,12 @@ function generateAllPairs(characters) {
   const pairs = [];
   for (let i = 0; i < characters.length; i++) {
     for (let j = i + 1; j < characters.length; j++) {
-      pairs.push([characters[i], characters[j]]);
+      // 무작위로 순서를 뒤섞음
+      if (Math.random() < 0.5) {
+        pairs.push([characters[i], characters[j]]);
+      } else {
+        pairs.push([characters[j], characters[i]]);
+      }
     }
   }
   return pairs;
@@ -41,28 +45,6 @@ function generateAllPairs(characters) {
 
 function shuffleArray(array) {
   return [...array].sort(() => 0.5 - Math.random());
-}
-
-function generateFairPairs(characters, minMatches) {
-  const allPairs = shuffleArray(generateAllPairs(characters));
-  const appearances = {};
-  characters.forEach(c => appearances[c] = 0);
-
-  const selectedPairs = [];
-
-  for (const [a, b] of allPairs) {
-    if (
-      (appearances[a] < minMatches ||
-      appearances[b] < minMatches) &&
-      selectedPairs.length < 300
-    ) {
-      selectedPairs.push([a, b]);
-      appearances[a]++;
-      appearances[b]++;
-    }
-  }
-
-  return selectedPairs;
 }
 
 function RankPage() {
@@ -85,13 +67,13 @@ function RankPage() {
     } else {
       const initScores = {};
       initialCharacters.forEach(c => (initScores[c] = 1500));
-      const fairPairs = generateFairPairs(initialCharacters, MIN_MATCHES_PER_CHARACTER);
+      const allPairs = shuffleArray(generateAllPairs(initialCharacters));
       setScores(initScores);
-      setRemainingPairs(fairPairs);
-      setTotalPairs(fairPairs.length);
+      setRemainingPairs(allPairs);
+      setTotalPairs(allPairs.length);
       setCount(0);
       localStorage.setItem("eloScores", JSON.stringify(initScores));
-      localStorage.setItem("eloPairs", JSON.stringify(fairPairs));
+      localStorage.setItem("eloPairs", JSON.stringify(allPairs));
     }
   }, []);
 
@@ -118,22 +100,22 @@ function RankPage() {
   function handleReset() {
     const initScores = {};
     initialCharacters.forEach(c => (initScores[c] = 1500));
-    const fairPairs = generateFairPairs(initialCharacters, MIN_MATCHES_PER_CHARACTER);
+    const allPairs = shuffleArray(generateAllPairs(initialCharacters));
 
     setScores(initScores);
-    setRemainingPairs(fairPairs);
+    setRemainingPairs(allPairs);
     setCount(0);
-    setTotalPairs(fairPairs.length);
+    setTotalPairs(allPairs.length);
 
     localStorage.setItem("eloScores", JSON.stringify(initScores));
-    localStorage.setItem("eloPairs", JSON.stringify(fairPairs));
+    localStorage.setItem("eloPairs", JSON.stringify(allPairs));
   }
 
   const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
 
   return (
     <div className="p-6 max-w-xl mx-auto text-center space-y-6">
-      <h1 className="text-2xl font-bold">스타레인 -정실을 찾아서-</h1>
+      <h1 className="text-2xl font-bold">스타레일 정실을 찾아서</h1>
       {pair[0] && pair[1] ? (
         <div className="flex justify-center items-center space-x-4">
           <button
@@ -166,16 +148,10 @@ function RankPage() {
         <p className="text-green-600 font-semibold">🎉 모든 비교가 완료되었습니다!</p>
       )}
 
+
       <div className="text-sm text-gray-500">
         남은 비교 수: {remainingPairs.length} / {totalPairs}
       </div>
-
-      <button
-        onClick={handleReset}
-        className="text-blue-600 border border-blue-600 px-4 py-2 rounded-md hover:bg-blue-50"
-      >
-        다시 하기
-      </button>
 
       <h2 className="text-xl font-semibold mt-6">현재 순위</h2>
       <ol className="text-left space-y-1">
@@ -190,6 +166,12 @@ function RankPage() {
           </li>
         ))}
       </ol>
+      <button
+        onClick={handleReset}
+        className="text-blue-600 border border-blue-600 px-4 py-2 rounded-md hover:bg-blue-50"
+      >
+        처음부터 다시 하기
+      </button>
     </div>
   );
 }
