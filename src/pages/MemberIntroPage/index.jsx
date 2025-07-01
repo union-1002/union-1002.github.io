@@ -13,7 +13,7 @@ const groups = [
   ['H', 'L'],
   ['M', '테', 'A', 'I', '비', '론'],
   ['J', '미'],
-  ['R', 'Y', 'X'],
+  ['R', 'Y', 'X', 'C'],
   ['라', '루', 'P', '느', 'T', '아',],
   ['F', '사',]
 ];
@@ -45,7 +45,7 @@ const groupedParts = [
   },
   {
     groupName: "언더 그라운드",
-    parts: ['R', 'Y', 'X'],
+    parts: ['R', 'Y', 'X', 'C'],
     color: "#fff0ed",
     borderColor: "#ff7147"
   },
