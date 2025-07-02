@@ -56,7 +56,7 @@ function BirthdayMPage() {
 
   return (
     <div
-      className="w-full h-screen flex justify-center py-8 transition-colors duration-300"
+      className="w-full min-h-screen flex justify-center py-8 transition-colors duration-300"
       style={{ backgroundColor: isTriggered ? 'black' : 'white' }} // Tailwind bg-orange-100에 해당
     >
       <div className="w-4xl max-w-full px-4">
