@@ -51,7 +51,7 @@ function BirthdayMPage() {
     });
   };
 
-  const isTriggered = triggerIds.every((id) => clickedIds.includes(id));
+  const isTriggered = JSON.stringify([...clickedIds].sort()) === JSON.stringify([3, 7].sort());
   const currentNotes = isTriggered ? changeNotes : initialNotes;
 
   return (
