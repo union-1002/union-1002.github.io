@@ -24,7 +24,7 @@ function BirthdayMPage() {
     { id: 2, title: 'From. A', content: '앞으로도 잘 부탁드립니다.' },
     { id: 3, title: 'From. C', content: '오늘 하루는 심상의 불안 없이 평안하길 바라외다.' },
     { id: 4, title: 'From. I', content: '잊지 마, 친구! 내 이름은 I지 론이 아니라고.' },
-    { id: 5, title: 'From. X', content: '생일은 기억해도 원산지는 기억 못하는 불상사는 없길 바란답니다.' },
+    { id: 5, title: 'From. X', content: '생세일은 기억해도 원산지는 기억 못하는 불상사는 없길 바란답니다.' },
     { id: 6, title: 'From. J', content: '축하합니다. 앞으로도 부디 잘 이끌어주기를.' },
     { id: 7, title: 'From. 비광', content: '이거, 일팔광땡으로 판 휘어잡을 만큼 경사 아닌가? 축하하네!' },
     { id: 8, title: 'From. D', content: '오늘은 사고 안 칠게요.' },
