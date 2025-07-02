@@ -79,7 +79,7 @@ function BirthdayMPage() {
                 style={{ backgroundColor: isClicked ? undefined : '#d8dede' }}
                 onClick={() => toggleCard(note.id)}
               >
-                <h3 className="text-lg font-bold text-gray-800">{note.title}</h3>
+                <h3 className="font-semibold text-gray-800">{note.title}</h3>
                 <p className="text-sm text-gray-700 mt-2 whitespace-pre-line">{note.content}</p>
               </div>
             );
