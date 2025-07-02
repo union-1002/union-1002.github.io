@@ -13,6 +13,7 @@ import banner_e from '../images/banner_e.jpg';
 import banner_u from '../images/banner_u.jpg';
 import banner_d from '../images/banner_d.jpg';
 import banner_hu from '../images/banner_hu.jpg';
+import banner_nn from '../images/banner_n.jpg';
 
 
 
@@ -26,8 +27,8 @@ const BannerSlide = () => {
     ...(user.part === '새붉은 재앙' ? [banner_n] : []),
     ...(user.part === '울프독' ? [banner_w] : []),
     ...(user.part === '이글아이' ? [banner_e] : []),
-    ...(user.part === '언더 그라운드' ? [banner_u] : []),
     ...(user.part === '드라칼' ? [banner_d] : []),
+    ...(user.part === '헌터즈' ? [banner_nn] : []),
     ...(user.part === '헌터즈' ? [banner_hu] : []),
     banner7,
     banner9,
