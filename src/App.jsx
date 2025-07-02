@@ -29,6 +29,9 @@ import BrithdayRPage from './pages/BrithdayRPage';
 import BrithdayRBoardPage from './pages/BrithdayRBoardPage';
 import BrithdayRcoPage from './pages/BrithdayRcoPage';
 import RankPage from './pages/RankPage';
+import BirthdayWPage from './pages/BirthdayWPage';
+import BirthdayMPage from './pages/BirthdayMPage';
+import BirthdayBPage from './pages/BirthdayBPage';
 
 function AppProvider({ children }) {
   return (
@@ -71,6 +74,9 @@ function App() {
         <Route path="/happybdayRBoard" element={<BrithdayRBoardPage/>} />
         <Route path="/happybdayRco" element={<BrithdayRcoPage/>} />
         <Route path="/ranking_starrain" element={<RankPage/>} />
+        <Route path="/happybdayW" element={<BirthdayWPage/>} />
+        <Route path="/happybdayM" element={<BirthdayMPage/>} />
+        <Route path="/happybdayBK" element={<BirthdayBPage/>} />
       </Routes>
     </AppProvider>
   );
