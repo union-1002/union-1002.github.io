@@ -49,7 +49,7 @@ const getCombinationName = (selected) => {
     const three = a.num === 3 ? a : b;
     if (three.isGwang) return "땡잡이";
   }
-  
+
   if (namedCombos[comboKey]) return namedCombos[comboKey];
 
   // 4. 끗 (그 외)
@@ -210,7 +210,7 @@ function BirthdayBPage() {
             <div
               key={idx}
               onClick={() => toggleCard(idx)}
-              className={`h-25 cursor-pointer p-4 rounded-lg border text-center font-semibold
+              className={`h-25 cursor-pointer p-1 rounded-lg border text-center font-semibold
                 ${selected.includes(idx) ? "bg-red-300 text-white" : "bg-white hover:bg-gray-100"}
               `}
             >
