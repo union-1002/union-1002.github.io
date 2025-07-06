@@ -39,7 +39,7 @@ function BirthdayWPage() {
             ← 리더 생일
           </Link>
           <Link
-            to="/happybdayW"
+            to="/happybdayBK"
             className="inline-block px-10 py-10 text-white/60 border border-white/60 hover:text-white hover:border-white transition rounded-md"
           >
             비광 생일 →

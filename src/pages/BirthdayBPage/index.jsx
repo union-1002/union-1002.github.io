@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 
 
 const rawCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -174,6 +175,14 @@ function BirthdayBPage() {
     <div className='w-full min-h-screen bg-gray-900'>
       <div className="p-6 max-w-md mx-auto space-y-4">
         <div className='flex justify-center'>
+          <Link
+            to="/happybdayW"
+            className="inline-block px-5 py-2 text-white/60 border border-white/60 hover:text-white hover:border-white transition rounded-md"
+          >
+            울프독 생일 페이지 돌아가기
+          </Link>
+        </div>
+        <div className='flex justify-center'>
             <img
               src='/images/happyBK.png'
               alt="생일 축하 이미지"
@@ -210,7 +219,7 @@ function BirthdayBPage() {
             <div
               key={idx}
               onClick={() => toggleCard(idx)}
-              className={`h-25 cursor-pointer p-1 rounded-lg border text-center font-semibold
+              className={`h-25 cursor-pointer p-1 rounded-lg border text-center font-semibold justify-center
                 ${selected.includes(idx) ? "bg-red-300 text-white" : "bg-white hover:bg-gray-100"}
               `}
             >

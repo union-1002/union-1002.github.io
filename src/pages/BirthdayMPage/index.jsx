@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import MainLayout from '@/shared/MainLayout';
-import { Link, useSearchParams } from 'react-router';
-import { useUser } from '@/shared/user';
-import { IoCheckmarkCircleOutline } from 'react-icons/io5';
-import { Alert, Banner, BannerCollapseButton, Button, createTheme, Dropdown, DropdownItem, ThemeProvider } from "flowbite-react";
+import { Link } from 'react-router';
 
 
 const partImageMap = {
@@ -38,7 +34,7 @@ function BirthdayMPage() {
     { id: 5, title: 'From. 루두스', content: '놀랍게도, 오늘은 생일이니 정시 퇴근이겠죠. 언제 퇴근합니까? 술이나 마시죠?' },
     { id: 6, title: 'From. 느베야', content: '유니온보다 우리가 좋지?? 느베야가 케이크 사놨어!!' },
     { id: 7, title: 'From. 하피', content: '자기야, 달링. 숨겨줘서 항상 고마워. 앞으로도 잘 숨어보자.' },
-    { id: 8, title: 'From. ?', content: '?' },
+    { id: 8, title: 'From. ?', content: '그렇지만 광잡이는 늘 존재하지. 일팔이면 더욱이.' },
   ];
 
   const [clickedIds, setClickedIds] = useState([]);
@@ -60,6 +56,14 @@ function BirthdayMPage() {
       style={{ backgroundColor: isTriggered ? 'black' : 'white' }} // Tailwind bg-orange-100에 해당
     >
       <div className="w-4xl max-w-full px-4">
+        <div className='flex justify-center'>
+          <Link
+            to="/happybdayW"
+            className="inline-block px-5 py-2 text-black/60 border border-black/60 hover:text-black hover:border-black transition rounded-md"
+          >
+            울프독 생일 페이지 돌아가기
+          </Link>
+        </div>
         <div className='flex justify-center'>
           <img
             src={isTriggered ? '/images/happyM2.png' : '/images/happyM1.png'}
