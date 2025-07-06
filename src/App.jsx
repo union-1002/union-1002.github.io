@@ -75,7 +75,7 @@ function App() {
         <Route path="/happybdayRco" element={<BrithdayRcoPage/>} />
         <Route path="/ranking_starrain" element={<RankPage/>} />
         <Route path="/happybdayW" element={<BirthdayWPage/>} />
-        <Route path="/happybdayM" element={<BirthdayMPage/>} />
+        {/* <Route path="/happybdayM" element={<BirthdayMPage/>} /> */}
         {/* <Route path="/happybdayBK" element={<BirthdayBPage/>} /> */}
       </Routes>
     </AppProvider>
