@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 const patients = [
   {
     name: '테리',
-    age: 27,
+    age: 24,
     speak: (symptoms) => `으... 즈 ${symptoms.map(s => `${s}`).join(', ')} 있어여... 어케 함까...?`
   },
   {
@@ -56,7 +56,7 @@ const patients = [
   },
   {
     name: 'M',
-    age: 25,
+    age: 26,
     speak: (symptoms) => `아파서 왔습니다. ${symptoms.map(s => `${s}`).join(', ')}. 하아, 리더의 무게는 가볍지 않군요.`
   },
 
