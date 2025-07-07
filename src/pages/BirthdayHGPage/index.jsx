@@ -180,7 +180,7 @@ function shuffle(arr) {
 
 function BirthdayHGPage() {
   const [started, setStarted] = useState(false);
-  const [timer, setTimer] = useState(180);
+  const [timer, setTimer] = useState(240);
   const [cases, setCases] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selectedPrescriptions, setSelectedPrescriptions] = useState([]);
@@ -298,10 +298,10 @@ function BirthdayHGPage() {
 
   let resultImage = '';
 
-  if (timer === 0) {
-    resultImage = '/images/h_time.png';
-  } else if (correctCount >= 9) {
+  if (correctCount >= 9) {
     resultImage = '/images/h_goto.png';
+  } else if (timer === 0) {
+    resultImage = '/images/h_time.png';
   } else {
     resultImage = '/images/h_fail.png';
   }
@@ -335,7 +335,7 @@ function BirthdayHGPage() {
         {started && finished && (
           <div className="text-center bg-white/40 py-4">
             <h2 className="text-xl font-bold mb-2">🧾 게임 종료</h2>
-            <p className="mb-1">{timer > 0 ? `성공 치료: ${correctCount} / 10` : ''}</p>
+            <p className="mb-1">성공 치료: {correctCount} / 10</p>
             <p className="mb-4">{timer > 0 ? `⏱ 남은 시간: ${timer}초` : '⛔ Time Over!'}</p>
 
             {/* ✅ 결과 이미지 표시 */}
