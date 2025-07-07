@@ -32,6 +32,7 @@ import RankPage from './pages/RankPage';
 import BirthdayWPage from './pages/BirthdayWPage';
 import BirthdayMPage from './pages/BirthdayMPage';
 import BirthdayBPage from './pages/BirthdayBPage';
+import BirthdayHGPage from './pages/BirthdayHGPage';
 
 function AppProvider({ children }) {
   return (
@@ -77,6 +78,7 @@ function App() {
         <Route path="/happybdayW" element={<BirthdayWPage/>} />
         <Route path="/happybdayM" element={<BirthdayMPage/>} />
         <Route path="/happybdayBK" element={<BirthdayBPage/>} />
+        <Route path="/happybdayHG" element={<BirthdayHGPage/>} />
       </Routes>
     </AppProvider>
   );
