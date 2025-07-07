@@ -180,7 +180,7 @@ function shuffle(arr) {
 
 function BirthdayHGPage() {
   const [started, setStarted] = useState(false);
-  const [timer, setTimer] = useState(240);
+  const [timer, setTimer] = useState(210);
   const [cases, setCases] = useState([]);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [selectedPrescriptions, setSelectedPrescriptions] = useState([]);
