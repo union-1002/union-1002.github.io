@@ -972,9 +972,9 @@ D,E,부럽다,TRUE
 D,E,헌터즈 리더 님,FALSE
 D,N,누나,FALSE
 D,N,니케 누나,TRUE
-D,Y,연아,FALSE
-D,Y,살 날리고 싶은 우리 연이,FALSE
-D,Y,"꼬대각시야, 꼬대각시야…\n우리 친구지?",TRUE
+D,Y,연아,TRUE
+D,Y,살 날리고 싶은 우리 연이,TRUE
+D,Y,"꼬대각시야, 꼬대각시야…\n우리 친구지?",FALSE
 D,M,몇 개나 섞이신 거예요?,TRUE
 D,M,형아,FALSE
 D,X,별로인 분,FALSE
