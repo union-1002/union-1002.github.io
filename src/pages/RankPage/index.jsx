@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 
 const initialCharacters = [
   "E", "N", "S", "오르티", "H", "L",
-  "M", "테리", "A", "I", "비광", "론",
-  "J", "미카엘", "R", "Y", "X",
+  "M", "테리", "A", "I", "비광", "론", "D",
+  "J", "미카엘", "R", "Y", "X", "C",
   "라멘타", "루두스", "뽀삐", "느베야", "T", "아가페",
   "하피", "사"
 ];
