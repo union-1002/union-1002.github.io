@@ -9,7 +9,8 @@ const initialCharacters = [
 ];
 
 const K = 32;
-const MAX_COUNT = 300;
+const CHAR_COUNT = initialCharacters.length;
+const MAX_COUNT = (CHAR_COUNT * (CHAR_COUNT - 1)) / 2;
 
 function expectedScore(ratingA, ratingB) {
   return 1 / (1 + Math.pow(10, (ratingB - ratingA) / 400));
