@@ -11,7 +11,7 @@ import supabase from '@/shared/supabase';
 const groups = [
   ['E', 'N', 'S', '오'],
   ['H', 'L'],
-  ['M', '테', 'A', 'I', '비', '론'],
+  ['M', '테', 'A', 'I', '비', 'D', '론'],
   ['J', '미'],
   ['R', 'Y', 'X', 'C'],
   ['라', '루', 'P', '느', 'T', '아',],
@@ -33,7 +33,7 @@ const groupedParts = [
   },
   {
     groupName: "울프독",
-    parts: ['M', '테', 'A', 'I', '비', '론'],
+    parts: ['M', '테', 'A', 'I', '비', 'D', '론'],
     color: "#ecf7fb",
     borderColor: "#3ab8de"
   },
