@@ -36,6 +36,7 @@ E,C,안타까운 청년,FALSE
 E,C,자네를 용서하는 건\n시민의 판단일세.,TRUE
 E,D,애정에 목마른 아이,TRUE
 E,D,현 군,TRUE
+E,마,그 나이에 결혼은 미친 짓일세.,FALSE
 N,J,야,FALSE
 N,J,너,FALSE
 N,J,저 새끼,FALSE
@@ -71,6 +72,8 @@ N,C,말 시원하게 잘 통하는 놈,FALSE
 N,C,미친새끼가\n눈 판 건 아니지?,TRUE
 N,D,병아리,TRUE
 N,D,그 선무당은 죽었냐?,TRUE
+N,마,졸졸 따라다니는 늑대,FALSE
+N,마,나 부럽다는 애,TRUE
 S,J,드라칼 리더님,FALSE
 S,R,무시무시한 분!,FALSE
 S,테,테리 오빠,FALSE
@@ -102,6 +105,7 @@ S,C,포키가 좋아하는\n무기를 들고있어!,FALSE
 S,C,눈을 가린 오빠?,FALSE
 S,D,도재도재,TRUE
 S,D,내 친구!,FALSE
+S,마,늑대 언니?,FALSE
 오,J,까망이!,FALSE
 오,R,화르륵!,FALSE
 오,테,짜릿짜릿!,FALSE
@@ -135,6 +139,8 @@ S,D,내 친구!,FALSE
 오,C,"군주에게서 저항하다니,\n대단한지고.",TRUE
 오,D,인간의 새끼가\n왜 그런 몰골로 네 뒤에?,TRUE
 오,D,무서운 이야기를 아노라!,FALSE
+오,마,빨강이!,FALSE
+오,마,죽은 몬스터의 냄새가 나는 자,TRUE
 H,J,J,FALSE
 H,J,작은 와이즈맨,TRUE
 H,R,R,FALSE
@@ -176,6 +182,8 @@ H,C,이상하게 크게 다쳐오는 놈,FALSE
 H,C,이건 아니다 싶으면\n언제든 신고해라.,TRUE
 H,D,그 피비린내 네 거 아니지?,TRUE
 H,D,그만 좀 싸워 와라.,FALSE
+H,마,머리에 꽃 단 애,FALSE
+H,마,결혼장려하는 애,FALSE
 L,J,형,FALSE
 L,R,아저씨,FALSE
 L,R,삼촌,FALSE
@@ -213,6 +221,7 @@ L,C,많이 아팠죠오……?,FALSE
 L,C,깨닫고 뉘우치신 분,TRUE
 L,D,무서운 얘기를 하시는 형,FALSE
 L,D,제 눈에도 다 보여요오……,TRUE
+L,마,불완전하신 분,TRUE
 M,J,와이즈맨,TRUE
 M,J,J,FALSE
 M,R,R 씨,FALSE
@@ -248,6 +257,8 @@ M,C,겉도는 사람,FALSE
 M,C,어디에도 발 붙일 곳\n없는 처지,TRUE
 M,D,D 군,FALSE
 M,D,제발 슬럼에서 사고치지 마,TRUE
+M,마,요주의 인물,FALSE
+M,마,저는 왜 태양이 아닙니까?,TRUE
 테,J,형,FALSE
 테,R,슨배임,FALSE
 테,F,배신자,FALSE
@@ -288,6 +299,8 @@ M,D,제발 슬럼에서 사고치지 마,TRUE
 테,C,용서하기 어려워여,TRUE
 테,D,검은 말랑이…?,FALSE
 테,D,허공에 대고 대화하는 애,TRUE
+테,마,무시무시한 늑대,FALSE
+테,마,양 잡아먹은 늑대는\n배를 갈라야져,TRUE
 A,J,선배님,FALSE
 A,J,J 님,FALSE
 A,R,선배님,FALSE
@@ -327,6 +340,8 @@ A,C,겉도는 분,FALSE
 A,C,약을 가끔 던져주시는 분,FALSE
 A,D,도재,TRUE
 A,D,현 군,TRUE
+A,마,제정신은 아닌 사람,FALSE
+A,마,얼마나 잡아먹은 겁니까?,TRUE
 I,J,선배님,FALSE
 I,R,R 선배,FALSE
 I,테,테리,FALSE
@@ -361,6 +376,7 @@ I,C,눈 가리고 다니는 친구,FALSE
 I,C,…패군이랑 친한 것 같던데?,TRUE
 I,D,패군 뒤 쫓던 병아리,TRUE
 I,D,조용한 악귀?,FALSE
+I,마,이상한 여자,FALSE
 J,R,R,FALSE
 J,R,그 사람,FALSE
 J,R,R씨,FALSE
@@ -400,6 +416,8 @@ J,C,C 씨,FALSE
 J,C,…신뢰는 잘 가지 않는 사람,TRUE
 J,D,슬럼에서 본 적이 있습니다.,TRUE
 J,D,어린… 무당?,FALSE
+J,마,마니아,FALSE
+J,마,설마 누나를…?,TRUE
 R,J,J,FALSE
 R,J,그 사람,FALSE
 R,J,J 씨,FALSE
@@ -440,6 +458,7 @@ R,C,빛 보지 못할 개새끼,FALSE
 R,C,용서는 죽은 자에게\n구할 수가 없을 텐데?,TRUE
 R,D,다시 데려갈까?,FALSE
 R,D,보이든 말든 상관 없습니다.,TRUE
+R,마,붉은 개새끼,FALSE
 Y,J,J 선배님,FALSE
 Y,R,R 선배님,FALSE
 Y,테,선배님,FALSE
@@ -476,6 +495,8 @@ Y,D,왜 새끼야,FALSE
 Y,D,애는 착…하지도 않아,FALSE
 Y,D,누구보고 친구래,TRUE
 Y,D,진짜 싫은 애,TRUE
+Y,마,왜 결혼이란 선택을…?,FALSE
+Y,마,새색시……??,FALSE
 X,J,선배,FALSE
 X,J,형,FALSE
 X,R,주인님,FALSE
@@ -509,6 +530,7 @@ X,C,시체 처리견,FALSE
 X,C,흥미로운 재료,TRUE
 X,D,기분 나쁜 녀석,TRUE
 X,D,왜 거기 계실까요?,FALSE
+X,마,숭고한 척 하시는 분,FALSE
 F,J,주다스,TRUE
 F,J,주디,TRUE
 F,R,리하르트,TRUE
@@ -545,6 +567,8 @@ F,C,여러 의미로 대단한 달링,FALSE
 F,C,나도 좋아서 있는 건\n아니거든.,TRUE
 F,D,향 태우지 말아줄래?,TRUE
 F,D,저승사자 달링,FALSE
+F,마,"축의금은 안 낼거야, 달링.",FALSE
+F,마,가엾은 달링.,TRUE
 라,J,깨닫지 못한 자,FALSE
 라,R,닮되 닮지 못한 자,FALSE
 라,테,어리석은 개,FALSE
@@ -574,6 +598,7 @@ F,D,저승사자 달링,FALSE
 라,C,네가 흘린 피와 원성이\n땅에 스몄거늘.,TRUE
 라,D,어디까지 볼 수 있느뇨?,TRUE
 라,D,이단,FALSE
+라,마,가장 완전해질 자,FALSE
 루,J,쇼를 방해하는 과묵하신 분,FALSE
 루,R,가장 거슬리는 분,FALSE
 루,테,멍청한 강아지,FALSE
@@ -608,6 +633,7 @@ F,D,저승사자 달링,FALSE
 루,C,배신자는 반드시\n목을 바쳐야지요.,TRUE
 루,D,우리 맹수는 안 됩니다.,TRUE
 루,D,쇼를 뒤집는 분,FALSE
+루,마,매력적인 마드모아젤,FALSE
 P,J,깜짝 놀라는 애,FALSE
 P,R,뜨거운 애,FALSE
 P,테,멍멍이!,FALSE
@@ -640,6 +666,7 @@ P,C,익숙한 냄새!,FALSE
 P,C,왜 싫지?,TRUE
 P,D,왜 그런 눈으로 봐?,TRUE
 P,D,무서운 냄새가 나.,FALSE
+P,마,꽈당이,FALSE
 느,J,선글라스 바보,FALSE
 느,J,억제하는 자,TRUE
 느,R,화르륵 삐죽이,FALSE
@@ -685,6 +712,8 @@ P,D,무서운 냄새가 나.,FALSE
 느,C,왜 느베야를 떠났어?,TRUE
 느,D,무서워!,TRUE
 느,D,온통 까만 애!,FALSE
+느,마,미미,FALSE
+느,마,죽은 몬스터 냄새!,TRUE
 T,J,와이즈맨 공,TRUE
 T,R,하이넬 공,TRUE
 T,테,테리 공,FALSE
@@ -718,6 +747,8 @@ T,C,보이지 않는 분,FALSE
 T,C,무상한 자,TRUE
 T,D,악귀,FALSE
 T,D,보통내기가 아닌 분,TRUE
+T,마,자매,FALSE
+T,마,재앙의 신부,FALSE
 비,J,J,FALSE
 비,J,주다스,TRUE
 비,R,그 녀석,FALSE
@@ -762,6 +793,8 @@ T,D,보통내기가 아닌 분,TRUE
 비,C,스스로의 도박이\n확실하게 먹힌 사람,TRUE
 비,D,사신인감?,FALSE
 비,D,왜 여기 왔지?\n명부에 없는데?,TRUE
+비,마,새색시,FALSE
+비,마,아가씨?,FALSE
 미,J,형,FALSE
 미,J,선배,FALSE
 미,R,R 선배,FALSE
@@ -799,6 +832,8 @@ T,D,보통내기가 아닌 분,TRUE
 미,C,외로워 보이는 아저씨,FALSE
 미,D,사념들이 반응하는 형,TRUE
 미,D,저승사자?,FALSE
+미,마,이상한 누나,FALSE
+미,마,게티아가 심하게 반응하는 여자,TRUE
 아,J,꼭 사랑해보고 싶은 분,FALSE
 아,R,화장을 시켜주시는 못된 분,FALSE
 아,테,하피 님을 위해\n박제로 남기고 싶은 분,TRUE
@@ -837,6 +872,8 @@ T,D,보통내기가 아닌 분,TRUE
 아,C,반드시 박제하고 싶은 분,FALSE
 아,D,목소리가 들린다는 분,FALSE
 아,D,들리니까 당신도 박제로…,TRUE
+아,마,사랑의 동맹♥,FALSE
+아,마,박제로 만들 수 없는 분,TRUE
 사,J,드라칼의 리더,FALSE
 사,J,암사자의 동생,TRUE
 사,R,하이넬 가의 그 녀석,TRUE
@@ -877,6 +914,7 @@ T,D,보통내기가 아닌 분,TRUE
 사,C,율이,TRUE
 사,D,도재,TRUE
 사,D,병아리,TRUE
+사,마,신부,FALSE
 론,J,친구,FALSE
 론,J,"어휴, 깍쟁이!",TRUE
 론,R,그렇게 나쁜 사람은\n아닌 것 같던데?,TRUE
@@ -910,6 +948,7 @@ T,D,보통내기가 아닌 분,TRUE
 론,C,"혼자 겉돌길래,\n안타까웠던 사람.",FALSE
 론,D,외로운 친구,FALSE
 론,D,"차마 떠날 수가 없네,\n 미안.",TRUE
+론,마,구했더라면 달랐을까.,FALSE
 C,J,와이즈맨 씨,TRUE
 C,J,J 님,FALSE
 C,R,리더 님,FALSE
@@ -956,7 +995,9 @@ C,사,화씨,TRUE
 C,론,안타까운 자,FALSE
 C,D,도재,TRUE
 C,D,아해,FALSE
-D,J,주다스 님,TRUE
+C,마,마니아,FALSE
+C,마,찾아다녔소?,TRUE
+D,J,주다스 님,FALSE
 D,J,짓눌린 거 다 보이는 형님,FALSE
 D,R,원귀가 많네,TRUE
 D,R,리하르트 님,TRUE
@@ -972,10 +1013,10 @@ D,E,부럽다,TRUE
 D,E,헌터즈 리더 님,FALSE
 D,N,누나,FALSE
 D,N,니케 누나,TRUE
-D,Y,연아,TRUE
-D,Y,살 날리고 싶은 우리 연이,TRUE
+D,Y,연아,FALSE
+D,Y,살 날리고 싶은 우리 연이,FALSE
 D,Y,"꼬대각시야, 꼬대각시야…\n우리 친구지?",TRUE
-D,M,몇 개나 섞이신 거예요?,TRUE
+D,M,몇 개나 섞이신 거예요?,FALSE
 D,M,형아,FALSE
 D,X,별로인 분,FALSE
 D,X,누구세요? 모른 척 할게요.,FALSE
@@ -1008,3 +1049,52 @@ D,론,아직도 미련 못 놓구,TRUE
 D,론,이만 가셔야지요.,TRUE
 D,C,형아,FALSE
 D,C,귀가 많으신 분,TRUE
+D,마,몬스터의 원념이 보이네,FALSE
+마,J,드라칼의 리더 님,FALSE
+마,R,언더 그라운드의 리더 님,FALSE
+마,R,불은 싫어요! 소각은 싫어요!,TRUE
+마,테,푸른 늑대 님,FALSE
+마,테,제 동생을 닮았네요?,TRUE
+마,F,하피 님,FALSE
+마,F,원수같은 동생 동지,TRUE
+마,A,배트맨?,FALSE
+마,L,귀여운 토끼 님,FALSE
+마,E,헌터즈의 리더 님,FALSE
+마,E,결혼이 왜 미친 짓이에요?!,TRUE
+마,N,무서운 암사자 님!,FALSE
+마,N,부러운 언니……,TRUE
+마,Y,새하얀… 어린애?,FALSE
+마,Y,대체 얼마나 더 챙겨주시는…?,FALSE
+마,M,울프독의 임시 리더 님,FALSE
+마,M,"조심하세요,\n달은 하티가 삼키니까.",TRUE
+마,X,거기 계실 분은\n아닌 것 같은데.,FALSE
+마,S,보들보들 말랑한 분,FALSE
+마,S,맛있는 걸 챙겨주세요!,FALSE
+마,I,기분 나쁜 분,FALSE
+마,I,"어머, 죽은 사람을 따라하네요?",TRUE
+마,H,결혼 하셔야죠!,FALSE
+마,H,이글아이 리더 님,FALSE
+마,비,루두스 님의 라이벌,FALSE
+마,오,본능이 거부하는\n위대하신 분,TRUE
+마,라,교주님,FALSE
+마,라,구원자,TRUE
+마,루,루두스 님,FALSE
+마,루,루디!,FALSE
+마,P,뽀삐 님,FALSE
+마,P,복슬뽀삐!,FALSE
+마,느,제사장 님,FALSE
+마,느,베야베야,FALSE
+마,T,T 님,FALSE
+마,T,탄탄,TRUE
+마,아,아가삐♥,FALSE
+마,아,사랑의 동맹,FALSE
+마,미,책 좀 치워주면 좋겠는데.,TRUE
+마,사,패군,FALSE
+마,사,절 죽이는 법은 아시나요?,TRUE
+마,론,론 님,FALSE
+마,론,저도 구해주시지.,TRUE
+마,C,C 님,FALSE
+마,C,얼마나 찾았는데요!,TRUE
+마,C,오라버니,TRUE
+마,D,새카만 분,FALSE
+마,D,진짜 보이나요?,TRUE
