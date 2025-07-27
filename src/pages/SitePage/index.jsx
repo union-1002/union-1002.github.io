@@ -18,7 +18,8 @@ function SitePage() {
           <h2 className="text-xl font-bold text-[#435373]">유니온 공식 홈페이지</h2>
           <p className="text-base text-gray-700 leading-relaxed">
             이 사이트는 스타레인 세계관을 기반으로 하며, 현실의 인물/사건/배경과 무관합니다.<br/>
-            회원가입 문의, 오류 제보, 기능 아이디어 제안은 공홈지기에게 전달해주세요!<br/><br/>
+            회원가입 문의, 오류 제보, 기능 아이디어 제안은 공홈지기에게 전달해주세요!<br/>
+            (세미) 공식으로, 모든 컨텐츠는 원작자의 감수를 받은 뒤에 업로드됩니다.<br/><br/>
 
             - 공식 X: <Link to="https://x.com/union_1002" target="_blank">유니온 공홈지기</Link><br/>
             - 기획/개발: <Link to="https://x.com/so_for_so" target="_blank">소소</Link><br/>
