@@ -10,12 +10,12 @@ import supabase from '@/shared/supabase';
 
 const groups = [
   ['E', 'N', 'S', '오'],
-  ['H', 'L'],
+  ['H', 'L', '네'],
   ['M', '테', 'A', 'I', '비', 'D', '론'],
-  ['J', '미'],
+  ['J', '미', 'G'],
   ['R', 'Y', 'X', 'C'],
   ['라', '루', 'P', '느', 'T', '아', '마',],
-  ['F', '사',]
+  ['F', '사', '금']
 ];
 
 const groupedParts = [
@@ -27,7 +27,7 @@ const groupedParts = [
   },
   {
     groupName: "이글아이",
-    parts: ['H', 'L'],
+    parts: ['H', 'L', '네'],
     color: "#f2ebfd",
     borderColor: "#7640ee"
   },
@@ -39,7 +39,7 @@ const groupedParts = [
   },
   {
     groupName: "드라칼",
-    parts: ['J', '미'],
+    parts: ['J', '미', 'G'],
     color: "#ebeffa",
     borderColor: "#2f61d4"
   },
@@ -57,7 +57,7 @@ const groupedParts = [
   },
   {
     groupName: "빌런",
-    parts: ['F', '사',],
+    parts: ['F', '사', '금'],
     color: "#eae9ef",
     borderColor: "#25265e"
   },
