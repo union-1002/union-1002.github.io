@@ -18,6 +18,7 @@ import banner_hday from '../images/banner_hday.jpg';
 import banner_mday from '../images/banner_mday.gif';
 import banner_d1 from '../images/banner_d1.png';
 import banner_d2 from '../images/banner_d2.png';
+import banner_d3 from '../images/banner_d3.png';
 
 
 
@@ -30,6 +31,7 @@ const BannerSlide = () => {
   const images = [
     banner_d1,
     banner_d2,
+    banner_d3,
     // ...(user.part === '새붉은 재앙' ? [banner_n] : []),
     // ...(user.part === '울프독' ? [banner_mday] : []),
     // ...(user.part === '울프독' ? [banner_w] : []),
