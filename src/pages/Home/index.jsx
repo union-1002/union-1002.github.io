@@ -17,15 +17,16 @@ function MainPage() {
           {/* 게이트 현황 */}
           <div className="panel gate-status w-full rounded-md">
             <h2 className='text-5xl'>주간 게이트 현황</h2>
+            <p className='text-sm text-gray-300 text-center'>게이트 측정 시스템에 오류가 발생하였습니다</p>
             <div className="w-full h-px bg-[#B6C5F2] my-5"></div>
             <div className="status-grid grid grid-cols-3 xl:grid-cols-6 gap-2 justify-items-center">
               {[
-                { grade: 'EX', count: 0, className: 'ex' },
-                { grade: 'S', count: 1, className: 's' },
-                { grade: 'A', count: 2, className: 'a' },
-                { grade: 'B', count: 4, className: 'b' },
-                { grade: 'C', count: 7, className: 'c' },
-                { grade: 'D', count: 6, className: 'd' },
+                { grade: 'EX', count: "?", className: 'ex' },
+                { grade: 'S', count: "?", className: 's' },
+                { grade: 'A', count: "?", className: 'a' },
+                { grade: 'B', count: "?", className: 'b' },
+                { grade: 'C', count: "?", className: 'c' },
+                { grade: 'D', count: "?", className: 'd' },
               ].map(({ grade, count, className }, idx) => (
                 <div key={idx} className={`status-card ${className}`}>
                   <div className="label-section">{grade}</div>
@@ -34,7 +35,7 @@ function MainPage() {
               ))}
             </div>
           </div>
-          <div className="flex flex-col gap-2 flex-row">
+          <div className="flex flex-row gap-2">
             <div className="flex-1 h-26 bg-[#B6C5F2] flex flex-col items-center justify-center">
               {/* 왼쪽 아이콘 */}
               <img
