@@ -10,16 +10,16 @@ import supabase from '@/shared/supabase';
 function DeathoutPage() {
   const user = useUser();
 
-  const [outsideUrl, setOutsideUrl] = useState("");
+  // const [outsideUrl, setOutsideUrl] = useState("");
 
-  useEffect(() => {
-    const { data } = supabase
-      .storage
-      .from("death")
-      .getPublicUrl("outside.jpg");
+  // useEffect(() => {
+  //   const { data } = supabase
+  //     .storage
+  //     .from("death")
+  //     .getPublicUrl("outside.jpg");
 
-    setOutsideUrl(data.publicUrl);
-  }, []);
+  //   setOutsideUrl(data.publicUrl);
+  // }, []);
 
   const [time, setTime] = useState("");
 
@@ -93,7 +93,7 @@ function DeathoutPage() {
     <div className="relative w-screen h-screen overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-20"
-        style={{ backgroundImage: `url('${outsideUrl}')` }}
+        style={{ backgroundImage: "url('images/outside.jpg')" }}
       />
       <div className="absolute inset-0 bg-black/60 -z-10" />
       <div className="w-full h-full flex flex-col items-center overflow-auto py-6 px-2">
