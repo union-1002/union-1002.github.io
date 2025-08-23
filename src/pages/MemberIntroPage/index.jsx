@@ -24,8 +24,8 @@ const groups = [
   ['M', 'X', '비', '론',],
   ['금'],
   ['L'],
-  ['라', '느', '아', '마',],
-  ['사', ]
+  ['라', '느', '아', '마', 'C'],
+  ['사', 'I']
 ];
 
 const groupedParts = [
@@ -61,13 +61,13 @@ const groupedParts = [
   },
   {
     groupName: "그림 리퍼",
-    parts: ['라', '느', '아', '마',],
+    parts: ['라', '느', '아', '마', 'C'],
     color: "#eae9ef",
     borderColor: "#25265e"
   },
   {
     groupName: "빌런",
-    parts: ['사', ],
+    parts: ['사', 'I'],
     color: "#eae9ef",
     borderColor: "#25265e"
   },
@@ -418,7 +418,12 @@ function MemberIntroPage() {
                           });    
                         }             
                       }
-                      className={`w-20 h-20 flex items-center justify-center text-xl font-bold shadow-md`}
+                      className={`w-20 h-20 flex items-center justify-center text-xl font-bold shadow-md transition-opacity duration-300 ${
+                        initial === "C" || initial === "I"
+                          ? "opacity-0 hover:opacity-100"
+                          : "opacity-100"
+                      }`}
+                      // className={`w-20 h-20 flex items-center justify-center text-xl font-bold shadow-md`}
                       style={{
                         backgroundColor: circleColors[initial],
                         border: `2px solid ${borderColors[initial]}`,
@@ -426,6 +431,7 @@ function MemberIntroPage() {
                       }}
                     >
                       {emp.initials}
+
                     </button>
                     {/* 선택된 경우 작은 동그라미 표시 */}
                     {selected?.initials === emp.initials && (
@@ -444,9 +450,16 @@ function MemberIntroPage() {
                       {(titles[selected.initials]?.[emp.initials] || [{ text: '-', isSpoiler: false }]).map((title, idx) => (
                         <div
                           key={`${title.text}-${idx}`}
-                          className={`whitespace-pre-line text-center cursor-pointer ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler
+                          className={`whitespace-pre-line text-center cursor-pointer
+                            transition-opacity duration-300
+                            ${(emp.initials === "C" || emp.initials === "I")
+                              ? "opacity-0 hover:opacity-100" // C/I는 무조건 숨겨두기
+                              : "opacity-100"
+                            }
+                            ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler
                             ? 'transition-all duration-300 blur-none'
-                            : 'transition-none blur-xs'}`}
+                            : 'transition-none blur-xs'}
+                            `}
                           onClick={() => handleReveal(selected.initials, emp.initials, idx)}
                         >
                           {title.text}
