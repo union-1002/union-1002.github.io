@@ -46,20 +46,20 @@ function DeathoutPage() {
 
   useEffect(() => {
     const fetchPosts = async () => {
+      const nowKST = new Date().toLocaleString("sv-SE", {
+        timeZone: "Asia/Seoul"
+      });
+
       const { data, error } = await supabase
         .from("death_inside")
         .select("*")
-        .eq("enable", true)
-        .in("location", ["outside", "both"])
-        .order("created_at", { ascending: false })
-        .limit(3);
-
-      if (error) {
-        console.error("Error fetching posts:", error);
-      } else {
-        setPosts(data || []);
-      }
-    };
+        .lte("publish_at", nowKST) // 현재 KST 시각 이전 게시물만
+        .in("location", ["inside", "both"])
+        .order("created_at", { ascending: false });
+      
+      if (error) console.error(error);
+      else setPosts(data);
+      };
 
     fetchPosts();
   }, []);
