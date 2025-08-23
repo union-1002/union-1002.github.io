@@ -139,39 +139,52 @@ function DeathoutPage() {
                 {members.map((m) => (
                   <div
                     key={m.id}
-                    className={`w-full flex p-4 rounded-2xl items-center bg-black/40 ${
+                    className={`w-full flex flex-col p-4 rounded-2xl bg-black/40 ${
                       m.company === "그림 리퍼" ? "shadow-[0_0_10px_rgba(200,0,0,0.2)]" : "shadow-[0_0_10px_rgba(35,144,255,0.2)]"
-                    }`}>    
-                    <div className="">
-                      <img
-                        src={`images/death/${m.name}.png`}
-                        className="w-30 h-30 rounded-md"/>
+                    }`}>
+                    <div className="flex flex-row items-center">
+                      <div className="">
+                        <img
+                          src={`images/death/${m.name}.png`}
+                          className="w-30 h-30 rounded-md"/>
+                      </div>
+                      <div className="flex-1 ml-4">
+                        <div className="w-full border-b-1 border-white flex flex-row justify-between px-1 items-end">
+                          <div className="font-semibold text-2xl">
+                            {m.name}
+                          </div>
+                          <div className="text-sm">
+                            {m.status}
+                          </div>
+                        </div>
+                        <div className="text-left mt-1.5">
+                          나이 - {m.age}
+                        </div>
+                        <div className="text-left">
+                          능력 - {m.ability}
+                        </div>
+                        <div className="mt-1.5 hidden lg:block">
+                          <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
+                            <div
+                              className={`h-full absolute left-0 top-0 ${
+                                  m.company === "그림 리퍼" ? "bg-[#cf4747]" : "bg-[#1759cc]"}
+                                  `}
+                              style={{ width: `${m.hp}%` }}
+                            />
+                            <span className="z-10 text-white text-sm font-bold">HP</span>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex-1 ml-4">
-                      <div className="w-full border-b-1 border-white flex flex-row justify-between px-1 items-end">
-                        <div className="font-semibold text-2xl">
-                          {m.name}
-                        </div>
-                        <div className="text-sm">
-                          {m.status}
-                        </div>
-                      </div>
-                      <div className="text-left mt-1.5">
-                        나이 - {m.age}
-                      </div>
-                      <div className="text-left">
-                        능력 - {m.ability}
-                      </div>
-                      <div className="mt-1.5">
-                        <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
-                          <div
-                            className={`h-full absolute left-0 top-0 ${
-                                m.company === "그림 리퍼" ? "bg-[#cf4747]" : "bg-[#1759cc]"}
-                                `}
-                            style={{ width: `${m.hp}%` }}
-                          />
-                          <span className="z-10 text-white text-sm font-bold">HP</span>
-                        </div>
+                    <div className="mt-1.5 block lg:hidden w-full">
+                      <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
+                        <div
+                          className={`h-full absolute left-0 top-0 ${
+                              m.company === "그림 리퍼" ? "bg-[#cf4747]" : "bg-[#1759cc]"}
+                              `}
+                          style={{ width: `${m.hp}%` }}
+                        />
+                        <span className="z-10 text-white text-sm font-bold">HP</span>
                       </div>
                     </div>
                   </div>

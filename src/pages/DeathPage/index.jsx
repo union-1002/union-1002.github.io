@@ -159,44 +159,64 @@ function DeathPage() {
                 {members.map((m) => (
                   <div
                     key={m.id}
-                    className="w-full flex p-4 rounded-2xl items-center  bg-black/40 shadow-[0_0_10px_rgba(255,255,255,0.2)]">
-                    <div className="">
-                      <img
-                        src={`images/death/${m.name}.png`}
-                        className="w-30 h-30 rounded-md"/>
-                    </div>
-                    <div className="flex-1 ml-4">
-                      <div className="w-full border-b-1 border-white flex flex-row justify-between px-1 items-end">
-                        <div className="font-semibold text-2xl">
-                          {m.name}
-                        </div>
-                        <div className="text-sm">
-                          {m.status}
-                        </div>
+                    className="w-full flex flex-col p-4 rounded-2xl bg-black/40 shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                    <div className="flex flex-row items-center">
+                      <div className="">
+                        <img
+                          src={`images/death/${m.name}.png`}
+                          className="w-30 h-30 rounded-md"/>
                       </div>
-                      <div className="text-left mt-1.5">
-                        나이 - {m.age}
-                      </div>
-                      <div className="text-left">
-                        능력 - {m.ability}
-                      </div>
-                      <div className="mt-1.5">
-                        {m.name === "F" && (
-                          <div className="w-full h-3 bg-gray-700 rounded-xs overflow-hidden flex items-center justify-center relative mb-1 opacity-0 hover:opacity-100 transition duration-300">
-                            <div
-                              className="h-full absolute left-0 top-0 bg-[#3f1c1c]"
-                              style={{ width: `${m.marker}%` }}
-                            />
-                            <span className="z-10 text-white text-xs">?</span>
+                      <div className="flex-1 ml-4">
+                        <div className="w-full border-b-1 border-white flex flex-row justify-between px-1 items-end">
+                          <div className="font-semibold text-2xl">
+                            {m.name}
                           </div>
-                        )}
-                        <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
-                          <div
-                            className="h-full bg-[#1759cc] absolute left-0 top-0"
-                            style={{ width: `${m.hp}%` }}
-                          />
-                          <span className="z-10 text-white text-sm font-bold">HP</span>
+                          <div className="text-sm">
+                            {m.status}
+                          </div>
                         </div>
+                        <div className="text-left mt-1.5">
+                          나이 - {m.age}
+                        </div>
+                        <div className="text-left">
+                          능력 - {m.ability}
+                        </div>
+                        <div className="mt-1.5 hidden lg:block">
+                          {m.name === "F" && (
+                            <div className="w-full h-3 bg-gray-700 rounded-xs overflow-hidden flex items-center justify-center relative mb-1 opacity-0 hover:opacity-100 transition duration-300">
+                              <div
+                                className="h-full absolute left-0 top-0 bg-[#3f1c1c]"
+                                style={{ width: `${m.marker}%` }}
+                              />
+                              <span className="z-10 text-white text-xs">?</span>
+                            </div>
+                          )}
+                          <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
+                            <div
+                              className="h-full bg-[#1759cc] absolute left-0 top-0"
+                              style={{ width: `${m.hp}%` }}
+                            />
+                            <span className="z-10 text-white text-sm font-bold">HP</span>
+                          </div>
+                        </div>                  
+                      </div>
+                    </div>
+                    <div className="mt-1.5 block lg:hidden w-full">
+                      {m.name === "F" && (
+                        <div className="w-full h-3 bg-gray-700 rounded-xs overflow-hidden flex items-center justify-center relative mb-1 opacity-0 hover:opacity-100 transition duration-300">
+                          <div
+                            className="h-full absolute left-0 top-0 bg-[#3f1c1c]"
+                            style={{ width: `${m.marker}%` }}
+                          />
+                          <span className="z-10 text-white text-xs">?</span>
+                        </div>
+                      )}
+                      <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
+                        <div
+                          className="h-full bg-[#1759cc] absolute left-0 top-0"
+                          style={{ width: `${m.hp}%` }}
+                        />
+                        <span className="z-10 text-white text-sm font-bold">HP</span>
                       </div>
                     </div>
                   </div>
