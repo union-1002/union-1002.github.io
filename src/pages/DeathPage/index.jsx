@@ -85,6 +85,8 @@ function DeathPage() {
     fetchMembers();
   }, []);
 
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="relative w-screen h-screen overflow-hidden">
       <div
@@ -92,9 +94,9 @@ function DeathPage() {
         style={{ backgroundImage: `url('${insideUrl}')` }}
       />
       <div className="absolute inset-0 bg-black/60 -z-10" />
-      <div className="w-full h-full flex flex-col items-center overflow-auto py-4 px-2">
+      <div className="w-full h-full flex flex-col items-center overflow-auto py-6 px-2">
         <div className="lg:w-3xl w-full flex flex-col items-center text-center text-white gap-8">
-          <div className="">
+          <div className="text-2xl">
             EX급 게이트(임시) 현황판
           </div>
           <div className="w-full p-2 border-b-1 border-t-1 border-white flex flex-row justify-between">
@@ -123,46 +125,59 @@ function DeathPage() {
             )}
           </div>
           <div className="w-full">
-            <div className="">
-              참전자 리스트
+            <div
+              className="cursor-pointer font-semibold"
+              onClick={() => setOpen(!open)}
+            >
+              참전자 리스트 {open ? "[닫기]" : "[열기]"}
             </div>
-            {members.map((m) => (
-              <div key={m.id} className="w-full flex p-4 rounded-2xl items-center  bg-black/40 shadow-[0_0_10px_rgba(255,255,255,0.2)]">
-                <div className="">
-                  <img
-                    src={`images/death/${m.name}.png`}
-                    className="w-30 h-30 rounded-md"/>
-                </div>
-                <div className="flex-1 ml-4">
-                  <div className="w-full border-b-1 border-white flex flex-row justify-between px-1 items-end">
-                    <div className="font-semibold text-2xl">
-                      {m.name}
+            {open && (
+              <div className="mt-2 flex flex-col gap-2">
+                {members.map((m) => (
+                  <div key={m.id} className="w-full flex p-4 rounded-2xl items-center  bg-black/40 shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                    <div className="">
+                      <img
+                        src={`images/death/${m.name}.png`}
+                        className="w-30 h-30 rounded-md"/>
                     </div>
-                    <div className="text-sm">
-                      {m.status}
+                    <div className="flex-1 ml-4">
+                      <div className="w-full border-b-1 border-white flex flex-row justify-between px-1 items-end">
+                        <div className="font-semibold text-2xl">
+                          {m.name}
+                        </div>
+                        <div className="text-sm">
+                          {m.status}
+                        </div>
+                      </div>
+                      <div className="text-left mt-1.5">
+                        나이 - {m.age}
+                      </div>
+                      <div className="text-left">
+                        능력 - {m.ability}
+                      </div>
+                      <div className="mt-1.5">
+                        {m.name === "F" && (
+                          <div className="w-full h-3 bg-gray-700 rounded-xs overflow-hidden flex items-center justify-center relative mb-1 opacity-0 hover:opacity-100 transition duration-300">
+                            <div
+                              className="h-full bg-[#3f1c1c] absolute left-0 top-0"
+                              style={{ width: `${m.marker}%` }}
+                            />
+                            <span className="z-10 text-white text-xs">?</span>
+                          </div>
+                        )}
+                        <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
+                          <div
+                            className="h-full bg-[#1759cc] absolute left-0 top-0"
+                            style={{ width: `${m.hp}%` }}
+                          />
+                          <span className="z-10 text-white text-sm font-bold">HP</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="text-left mt-1.5">
-                    나이 - {m.age}
-                  </div>
-                  <div className="text-left">
-                    능력 - {m.ability}
-                  </div>
-                  <div className="mt-1.5">
-                    <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
-                      <div
-                        className="h-full bg-[#1759cc] absolute left-0 top-0"
-                        style={{ width: `${m.hp}%` }}  // ← 여기 %만 바꾸면 체력 조절됨
-                      />
-                      <span className="z-10 text-white text-sm font-bold">HP</span>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
-          <div className="">
-            댓글 들어갈 곳
+            )}
           </div>
         </div>        
       </div>
