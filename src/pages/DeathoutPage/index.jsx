@@ -7,18 +7,18 @@ import supabase from '@/shared/supabase';
 
 
 
-function DeathPage() {
+function DeathoutPage() {
   const user = useUser();
 
-  const [insideUrl, setInsideUrl] = useState("");
+  const [outsideUrl, setOutsideUrl] = useState("");
 
   useEffect(() => {
     const { data } = supabase
       .storage
       .from("death")
-      .getPublicUrl("inside.jpg");
+      .getPublicUrl("outside.jpg");
 
-    setInsideUrl(data.publicUrl);
+    setOutsideUrl(data.publicUrl);
   }, []);
 
   const [time, setTime] = useState("");
@@ -50,7 +50,7 @@ function DeathPage() {
         .from("death_inside")
         .select("*")
         .eq("enable", true)
-        .in("location", ["inside", "both"])
+        .in("location", ["outside", "both"])
         .order("created_at", { ascending: false })
         .limit(3);
 
@@ -74,7 +74,7 @@ function DeathPage() {
       const { data, error } = await supabase
         .from("death_member")
         .select("*")
-        .eq("location", "inside")
+        .eq("location", "outside")
         .order("id", { ascending: true });
 
       if (error) {
@@ -93,15 +93,15 @@ function DeathPage() {
     <div className="relative w-screen h-screen overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-20"
-        style={{ backgroundImage: `url('${insideUrl}')` }}
+        style={{ backgroundImage: `url('${outsideUrl}')` }}
       />
       <div className="absolute inset-0 bg-black/60 -z-10" />
       <div className="w-full h-full flex flex-col items-center overflow-auto py-6 px-2">
         <div className="lg:w-3xl w-full flex flex-col items-center text-center text-white gap-8">
           <div className="text-2xl">
-            EX급 게이트(내부) 현황판
+            EX급 게이트(외부) 현황판
           </div>
-          <Link to="/notice_outgate" className="-mt-5 border-1 text-white/60  border-white/60 hover:text-white hover:border-white transition text-sm p-1 rounded-sm">외부 현황 바로가기</Link>
+          <Link to="/notice_ingate" className="-mt-5 border-1 text-white/60  border-white/60 hover:text-white hover:border-white transition text-sm p-1 rounded-sm">내부 현황 바로가기</Link>
           <div className="w-full p-2 border-b-1 border-t-1 border-white flex flex-row justify-between">
             <div className="">2020.08.24</div>
             <div className="">{time}</div>
@@ -139,7 +139,9 @@ function DeathPage() {
                 {members.map((m) => (
                   <div
                     key={m.id}
-                    className="w-full flex p-4 rounded-2xl items-center  bg-black/40 shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                    className={`w-full flex p-4 rounded-2xl items-center bg-black/40 ${
+                      m.company === "그림 리퍼" ? "shadow-[0_0_10px_rgba(200,0,0,0.2)]" : "shadow-[0_0_10px_rgba(35,144,255,0.2)]"
+                    }`}>    
                     <div className="">
                       <img
                         src={`images/death/${m.name}.png`}
@@ -161,18 +163,11 @@ function DeathPage() {
                         능력 - {m.ability}
                       </div>
                       <div className="mt-1.5">
-                        {m.name === "F" && (
-                          <div className="w-full h-3 bg-gray-700 rounded-xs overflow-hidden flex items-center justify-center relative mb-1 opacity-0 hover:opacity-100 transition duration-300">
-                            <div
-                              className="h-full absolute left-0 top-0 bg-[#3f1c1c]"
-                              style={{ width: `${m.marker}%` }}
-                            />
-                            <span className="z-10 text-white text-xs">?</span>
-                          </div>
-                        )}
                         <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
                           <div
-                            className="h-full bg-[#1759cc] absolute left-0 top-0"
+                            className={`h-full absolute left-0 top-0 ${
+                                m.company === "그림 리퍼" ? "bg-[#cf4747]" : "bg-[#1759cc]"}
+                                `}
                             style={{ width: `${m.hp}%` }}
                           />
                           <span className="z-10 text-white text-sm font-bold">HP</span>
@@ -190,4 +185,4 @@ function DeathPage() {
   );
 }
 
-export default DeathPage;
+export default DeathoutPage;

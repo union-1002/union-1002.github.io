@@ -36,6 +36,7 @@ import BirthdayHGPage from './pages/BirthdayHGPage';
 import Happy40HPage from './pages/Happy40HPage';
 import HodaengPage from './pages/HodaengPage';
 import DeathPage from './pages/DeathPage';
+import DeathoutPage from './pages/DeathoutPage';
 
 function AppProvider({ children }) {
   return (
@@ -85,6 +86,7 @@ function App() {
         <Route path="/happy40H" element={<Happy40HPage/>} />
         <Route path="/hodaeng_babo" element={<HodaengPage/>} />
         <Route path="/notice_ingate" element={<DeathPage/>} />
+        <Route path="/notice_outgate" element={<DeathoutPage/>} />
       </Routes>
     </AppProvider>
   );
