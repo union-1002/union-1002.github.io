@@ -16,6 +16,8 @@ import banner_hu from '../images/banner_hu.jpg';
 import banner_nn from '../images/banner_n.jpg';
 import banner_hday from '../images/banner_hday.jpg';
 import banner_mday from '../images/banner_mday.gif';
+import banner_d1 from '../images/banner_d1.png';
+import banner_d2 from '../images/banner_d2.png';
 
 
 
@@ -26,20 +28,22 @@ const BannerSlide = () => {
   const [current, setCurrent] = useState(0);
 
   const images = [
-    ...(user.part === '새붉은 재앙' ? [banner_n] : []),
-    ...(user.part === '울프독' ? [banner_mday] : []),
-    ...(user.part === '울프독' ? [banner_w] : []),
-    ...(user.part === '이글아이' ? [banner_hday] : []),
-    ...(user.part === '이글아이' ? [banner_e] : []),
-    ...(user.part === '드라칼' ? [banner_d] : []),
-    ...(user.part === '헌터즈' ? [banner_nn] : []),
-    ...(user.part === '헌터즈' ? [banner_hu] : []),
-    banner7,
-    banner9,
-    banner8,
-    banner10,
-    banner11,
-    banner5,
+    banner_d1,
+    banner_d2,
+    // ...(user.part === '새붉은 재앙' ? [banner_n] : []),
+    // ...(user.part === '울프독' ? [banner_mday] : []),
+    // ...(user.part === '울프독' ? [banner_w] : []),
+    // ...(user.part === '이글아이' ? [banner_hday] : []),
+    // ...(user.part === '이글아이' ? [banner_e] : []),
+    // ...(user.part === '드라칼' ? [banner_d] : []),
+    // ...(user.part === '헌터즈' ? [banner_nn] : []),
+    // ...(user.part === '헌터즈' ? [banner_hu] : []),
+    // banner7,
+    // banner9,
+    // banner8,
+    // banner10,
+    // banner11,
+    // banner5,
   ];
 
   // 5초마다 자동 이동
