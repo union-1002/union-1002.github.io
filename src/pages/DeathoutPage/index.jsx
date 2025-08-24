@@ -55,7 +55,8 @@ function DeathoutPage() {
         .select("*")
         .lte("publish_at", nowKST) // 현재 KST 시각 이전 게시물만
         .in("location", ["inside", "both"])
-        .order("created_at", { ascending: false });
+        .order("created_at", { ascending: false })
+        .limit(3);
       
       if (error) console.error(error);
       else setPosts(data);
