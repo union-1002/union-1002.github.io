@@ -194,7 +194,9 @@ function DeathPage() {
                           )}
                           <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
                             <div
-                              className="h-full bg-[#1759cc] absolute left-0 top-0"
+                              className={`h-full absolute left-0 top-0 ${
+                                  m.company === "그림 리퍼" ? "bg-[#cf4747]" : "bg-[#1759cc]"}
+                                  `}
                               style={{ width: `${m.hp}%` }}
                             />
                             <span className="z-10 text-white text-sm font-bold">HP</span>
@@ -214,7 +216,9 @@ function DeathPage() {
                       )}
                       <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
                         <div
-                          className="h-full bg-[#1759cc] absolute left-0 top-0"
+                          className={`h-full absolute left-0 top-0 ${
+                              m.company === "그림 리퍼" ? "bg-[#cf4747]" : "bg-[#1759cc]"}
+                              `}
                           style={{ width: `${m.hp}%` }}
                         />
                         <span className="z-10 text-white text-sm font-bold">HP</span>
