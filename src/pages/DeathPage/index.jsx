@@ -184,7 +184,7 @@ function DeathPage() {
                         </div>
                         <div className="mt-1.5 hidden lg:block">
                           {m.name === "F" && (
-                            <div className="w-full h-3 bg-gray-700 rounded-xs overflow-hidden flex items-center justify-center relative mb-1 opacity-0 hover:opacity-100 transition duration-300">
+                            <div className="w-full h-3 bg-gray-700 rounded-xs overflow-hidden flex items-center justify-center relative mb-1">
                               <div
                                 className="h-full absolute left-0 top-0 bg-[#3f1c1c]"
                                 style={{ width: `${m.marker}%` }}
@@ -206,7 +206,7 @@ function DeathPage() {
                     </div>
                     <div className="mt-1.5 block lg:hidden w-full">
                       {m.name === "F" && (
-                        <div className="w-full h-3 bg-gray-700 rounded-xs overflow-hidden flex items-center justify-center relative mb-1 opacity-0 hover:opacity-100 transition duration-300">
+                        <div className="w-full h-3 bg-gray-700 rounded-xs overflow-hidden flex items-center justify-center relative mb-1">
                           <div
                             className="h-full absolute left-0 top-0 bg-[#3f1c1c]"
                             style={{ width: `${m.marker}%` }}
