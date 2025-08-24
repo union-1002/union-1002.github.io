@@ -104,7 +104,7 @@ function DeathoutPage() {
           </div>
           <Link to="/notice_ingate" className="-mt-5 border-1 text-white/60  border-white/60 hover:text-white hover:border-white transition text-sm p-1 rounded-sm">내부 현황 바로가기</Link>
           <div className="w-full p-2 border-b-1 border-t-1 border-white flex flex-row justify-between">
-            <div className="">2020.08.24</div>
+            <div className="">2020.08.25</div>
             <div className="">{time}</div>
           </div>
           <div className="w-full">
