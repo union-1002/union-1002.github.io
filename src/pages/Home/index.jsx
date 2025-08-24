@@ -17,11 +17,11 @@ function MainPage() {
           {/* 게이트 현황 */}
           <div className="panel gate-status w-full rounded-md">
             <h2 className='text-5xl'>주간 게이트 현황</h2>
-            <p className='text-sm text-gray-300 text-center'>게이트 측정 시스템에 오류가 발생하였습니다</p>
+            <p className='text-sm text-gray-300 text-center -mt-2'>안전한 장소로 즉시 대피하십시오</p>
             <div className="w-full h-px bg-[#B6C5F2] my-5"></div>
             <div className="status-grid grid grid-cols-3 xl:grid-cols-6 gap-2 justify-items-center">
               {[
-                { grade: 'EX', count: "?", className: 'ex' },
+                { grade: 'EX', count: "1", className: 'ex' },
                 { grade: 'S', count: "?", className: 's' },
                 { grade: 'A', count: "?", className: 'a' },
                 { grade: 'B', count: "?", className: 'b' },
