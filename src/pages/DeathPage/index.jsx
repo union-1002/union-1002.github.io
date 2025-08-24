@@ -189,7 +189,7 @@ function DeathPage() {
                                 className="h-full absolute left-0 top-0 bg-[#3f1c1c]"
                                 style={{ width: `${m.marker}%` }}
                               />
-                              <span className="z-10 text-white text-xs">?</span>
+                              <span className="z-10 text-white text-xs">오염도</span>
                             </div>
                           )}
                           <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
@@ -211,7 +211,7 @@ function DeathPage() {
                             className="h-full absolute left-0 top-0 bg-[#3f1c1c]"
                             style={{ width: `${m.marker}%` }}
                           />
-                          <span className="z-10 text-white text-xs">?</span>
+                          <span className="z-10 text-white text-xs">오염도</span>
                         </div>
                       )}
                       <div className="w-full h-6 bg-gray-700 rounded-sm overflow-hidden flex items-center justify-center relative">
