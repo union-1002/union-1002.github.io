@@ -54,7 +54,7 @@ function DeathoutPage() {
         .from("death_inside")
         .select("*")
         .lte("publish_at", nowKST) // 현재 KST 시각 이전 게시물만
-        .in("location", ["inside", "both"])
+        .in("location", ["outside", "both"])
         .order("created_at", { ascending: false })
         .limit(3);
       
