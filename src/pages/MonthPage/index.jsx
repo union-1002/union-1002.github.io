@@ -69,7 +69,7 @@ function MonthPage() {
         { id: 11, author: "R", image: "/images/hunters1.png", text: "땅을 딛고 있기에 하늘의 추락을 걱정할 수 있는 법입니다, F. 모두가 당신처럼 아슬아슬한 창공을 유영하며 살 수는 없으니까요. 누군가는 그 추락의 파편을 맞지 않도록, 아래에서 굳건히 대비하고 있어야 하지 않겠습니까? 그것이 저와 같은 사람들의 역할이겠지요. 당신의 단 하나의 달이라는 것도, 결국은 땅 위에 서 있을 테고." },
         { id: 11, author: "론", image: "/images/wolfdog1.png", text: "좋은 날인데 좋은 말씀만 나눠요~" },
         { id: 11, author: "J", image: "/images/hunters1.png", text: "두 분 모두 그만하십시오. 이곳은 사적인 감정을 배설하는 공간이 아닙니다. F, 저녁 약속은 예정대로 진행하겠습니다. R씨, 불필요한 논쟁은 삼가시길 바랍니다." },
-        // { id: 11, author: "R", image: "/images/underground1.png", text: "내가 뭐랬습니까" },
+        { id: 11, author: "R", image: "/images/underground1.png", text: "내가 뭐랬습니까" },
       ],
     },
     {
@@ -83,7 +83,7 @@ function MonthPage() {
         { id: 11, author: "론", image: "/images/wolfdog1.png", text: "내 댓글에서는 싸우기 금지! 둘이 또 화해 의자에 앉아있을 거야?" },
         { id: 11, author: "F", image: "/images/hunters1.png", text: "울프독엔 화해 의자ㅋㅋ가 있어?" },
         { id: 11, author: "비광", image: "/images/wolfdog1.png", text: "안에서 새는 바가지들 또 샜구먼." },
-        // { id: 11, author: "X", image: "/images/underground1.png", text: "이것도 추억이라면 추억일까요...." },
+        { id: 11, author: "X", image: "/images/underground1.png", text: "이것도 추억이라면 추억일까요...." },
       ],
     },
     {
@@ -93,7 +93,7 @@ function MonthPage() {
       image: "/images/hunters1.png", 
       replies: [
         { id: 11, author: "미카엘", image: "/images/hunters1.png", text: "F 형아 축하해!!! 근데 형 나도 용돈 받고 싶은데" },
-        // { id: 11, author: "미카엘", image: "/images/dracal1.png", text: "용돈 같은 거 안 줘도 되니까" },
+        { id: 11, author: "미카엘", image: "/images/dracal1.png", text: "용돈 같은 거 안 줘도 되니까" },
       ],
     },
     {
@@ -123,55 +123,55 @@ function MonthPage() {
         { id: 11, author: "F", image: "/images/hunters1.png", text: "엔자기도 항상 평온하길" },
       ],
     },
-    // {
-    //   id: 7,
-    //   author: "?",
-    //   text: "■■■알 수 없는 오류가 발생하였습니다■■■",
-    //   image: "/images/union.png", 
-    //   replies: [
-    //   ],
-    // },
-    // {
-    //   id: 7,
-    //   author: "테리",
-    //   text: "이게 왜 뜬 검까? 뭔데 이거;",
-    //   image: "/images/wolfdog1.png", 
-    //   replies: [
-    //     { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "씨발 진짜 어이가 없네" },
-    //     { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "왜 5년 전 거가 지금 뜨는데요" },
-    //     { id: 11, author: "J", image: "/images/dracal1.png", text: "테리, DB가 잘못 송출되고 있는 것 같은데 이글아이에 정식으로 문의를 넣어야지 욕을 써선 안돼." },
-    //     { id: 11, author: "F", image: "/images/hunters1.png", text: "말뽄새 봐라 로이드" },
-    //     { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "그 계정으로 나한테 답글 달지마" },
-    //   ],
-    // },
-    // {
-    //   id: 7,
-    //   author: "N",
-    //   text: "이렇게 된 거 걍 한 번 더 주자ㅋㅋ",
-    //   image: "/images/hunters1.png", 
-    //   replies: [
-    //     { id: 11, author: "F", image: "/images/hunters1.png", text: "ㅋㅋㅋㅋㅋㅋ 상금 받으면 술 사줌" },
-    //   ],
-    // },
-    // {
-    //   id: 7,
-    //   author: "R",
-    //   text: "금일 오후 3시에 정식으로 항의할 예정입니다.",
-    //   image: "/images/underground1.png", 
-    //   replies: [
-    //     { id: 11, author: "I", image: "/images/wolfdog1.png", text: "같이 가도 되나요?" },
-    //     { id: 11, author: "H", image: "/images/eagleeye1.png", text: "둘 다 오지마 해결중이야" },
-    //   ],
-    // },
-    // {
-    //   id: 7,
-    //   author: "미네르바",
-    //   text: "미안하네",
-    //   image: "/images/eagleeye1.png",
-    //   replies: [
-    //     { id: 11, author: "F", image: "/images/hunters1.png", text: "이제와서" },
-    //   ],
-    // },
+    {
+      id: 7,
+      author: "?",
+      text: "■■■알 수 없는 오류가 발생하였습니다■■■",
+      image: "/images/union.png", 
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "테리",
+      text: "이게 왜 뜬 검까? 뭔데 이거;",
+      image: "/images/wolfdog1.png", 
+      replies: [
+        { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "씨발 진짜 어이가 없네" },
+        { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "왜 5년 전 거가 지금 뜨는데요" },
+        { id: 11, author: "J", image: "/images/dracal1.png", text: "테리, DB가 잘못 송출되고 있는 것 같은데 이글아이에 정식으로 문의를 넣어야지 욕을 써선 안돼." },
+        { id: 11, author: "F", image: "/images/hunters1.png", text: "말뽄새 봐라 로이드" },
+        { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "그 계정으로 나한테 답글 달지마" },
+      ],
+    },
+    {
+      id: 7,
+      author: "N",
+      text: "이렇게 된 거 걍 한 번 더 주자ㅋㅋ",
+      image: "/images/hunters1.png", 
+      replies: [
+        { id: 11, author: "F", image: "/images/hunters1.png", text: "ㅋㅋㅋㅋㅋㅋ 상금 받으면 술 사줌" },
+      ],
+    },
+    {
+      id: 7,
+      author: "R",
+      text: "금일 오후 3시에 정식으로 항의할 예정입니다.",
+      image: "/images/underground1.png", 
+      replies: [
+        { id: 11, author: "I", image: "/images/wolfdog1.png", text: "같이 가도 되나요?" },
+        { id: 11, author: "H", image: "/images/eagleeye1.png", text: "둘 다 오지마 해결중이야" },
+      ],
+    },
+    {
+      id: 7,
+      author: "미네르바",
+      text: "미안하네",
+      image: "/images/eagleeye1.png",
+      replies: [
+        { id: 11, author: "F", image: "/images/hunters1.png", text: "이제와서" },
+      ],
+    },
   ];
   
   const grimmerReaperPosts = [
@@ -238,8 +238,8 @@ function MonthPage() {
         { id: 11, author: "R", image: "/images/hunters1.png", text: "땅을 딛고 있기에 하늘의 추락을 걱정할 수 있는 법입니다, F. 모두가 당신처럼 아슬아슬한 창공을 유영하며 살 수는 없으니까요. 누군가는 그 추락의 파편을 맞지 않도록, 아래에서 굳건히 대비하고 있어야 하지 않겠습니까? 그것이 저와 같은 사람들의 역할이겠지요. 당신의 단 하나의 달이라는 것도, 결국은 땅 위에 서 있을 테고." },
         { id: 11, author: "론", image: "/images/wolfdog1.png", text: "좋은 날인데 좋은 말씀만 나눠요~" },
         { id: 11, author: "J", image: "/images/hunters1.png", text: "두 분 모두 그만하십시오. 이곳은 사적인 감정을 배설하는 공간이 아닙니다. F, 저녁 약속은 예정대로 진행하겠습니다. R씨, 불필요한 논쟁은 삼가시길 바랍니다." },
-        // { id: 11, author: "R", image: "/images/underground1.png", text: "내가 뭐랬습니까" },
-        // { id: 11, author: "하피", image: "/images/gr.png", text: "개새끼" },
+        { id: 11, author: "R", image: "/images/underground1.png", text: "내가 뭐랬습니까" },
+        { id: 11, author: "하피", image: "/images/gr.png", text: "개새끼" },
       ],
     },
     {
@@ -253,7 +253,7 @@ function MonthPage() {
         { id: 11, author: "론", image: "/images/wolfdog1.png", text: "내 댓글에서는 싸우기 금지! 둘이 또 화해 의자에 앉아있을 거야?" },
         { id: 11, author: "F", image: "/images/hunters1.png", text: "울프독엔 화해 의자ㅋㅋ가 있어?" },
         { id: 11, author: "비광", image: "/images/wolfdog1.png", text: "안에서 새는 바가지들 또 샜구먼." },
-        // { id: 11, author: "X", image: "/images/underground1.png", text: "이것도 추억이라면 추억일까요...." },
+        { id: 11, author: "X", image: "/images/underground1.png", text: "이것도 추억이라면 추억일까요...." },
       ],
     },
     {
@@ -263,8 +263,8 @@ function MonthPage() {
       image: "/images/hunters1.png", 
       replies: [
         { id: 11, author: "미카엘", image: "/images/hunters1.png", text: "F 형아 축하해!!! 근데 형 나도 용돈 받고 싶은데" },
-        // { id: 11, author: "미카엘", image: "/images/dracal1.png", text: "용돈 같은 거 안 줘도 되니까" },
-        // { id: 11, author: "뽀삐", image: "/images/gr.png", text: "이상하게 익숙해!" },
+        { id: 11, author: "미카엘", image: "/images/dracal1.png", text: "용돈 같은 거 안 줘도 되니까" },
+        { id: 11, author: "뽀삐", image: "/images/gr.png", text: "이상하게 익숙해!" },
       ],
     },
     {
@@ -292,69 +292,69 @@ function MonthPage() {
       image: "/images/hunters1.png", 
       replies: [
         { id: 11, author: "F", image: "/images/hunters1.png", text: "엔자기도 항상 평온하길" },
-        // { id: 11, author: "하피", image: "/images/gr.png", text: "추억이다 자기야" },
-        // { id: 11, author: "T", image: "/images/gr.png", text: "모든 것이 화무십일홍이옵니다" },
+        { id: 11, author: "하피", image: "/images/gr.png", text: "추억이다 자기야" },
+        { id: 11, author: "T", image: "/images/gr.png", text: "모든 것이 화무십일홍이옵니다" },
       ],
     },
-    // {
-    //   id: 7,
-    //   author: "?",
-    //   text: "■■■알 수 없는 오류가 발생하였습니다■■■",
-    //   image: "/images/union.png", 
-    //   replies: [
-    //   ],
-    // },
-    // {
-    //   id: 7,
-    //   author: "테리",
-    //   text: "이게 왜 뜬 검까? 뭔데 이거;",
-    //   image: "/images/wolfdog1.png", 
-    //   replies: [
-    //     { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "씨발 진짜 어이가 없네" },
-    //     { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "왜 5년 전 거가 지금 뜨는데요" },
-    //     { id: 11, author: "J", image: "/images/dracal1.png", text: "테리, DB가 잘못 송출되고 있는 것 같은데 이글아이에 정식으로 문의를 넣어야지 욕을 써선 안돼." },
-    //     { id: 11, author: "F", image: "/images/hunters1.png", text: "말뽄새 봐라 로이드" },
-    //     { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "그 계정으로 나한테 답글 달지마" },
-    //   ],
-    // },
-    // {
-    //   id: 7,
-    //   author: "N",
-    //   text: "이렇게 된 거 걍 한 번 더 주자ㅋㅋ",
-    //   image: "/images/hunters1.png", 
-    //   replies: [
-    //     { id: 11, author: "F", image: "/images/hunters1.png", text: "ㅋㅋㅋㅋㅋㅋ 상금 받으면 술 사줌" },
-    //   ],
-    // },
-    // {
-    //   id: 7,
-    //   author: "R",
-    //   text: "금일 오후 3시에 정식으로 항의할 예정입니다.",
-    //   image: "/images/underground1.png", 
-    //   replies: [
-    //     { id: 11, author: "I", image: "/images/wolfdog1.png", text: "같이 가도 되나요?" },
-    //     { id: 11, author: "H", image: "/images/eagleeye1.png", text: "둘 다 오지마 해결중이야" },
-    //   ],
-    // },
-    // {
-    //   id: 7,
-    //   author: "루두스",
-    //   text: "영웅의 찬란한 과거인가요!",
-    //   image: "/images/gr.png",
-    //   replies: [
-    //     { id: 11, author: "하피", image: "/images/gr.png", text: "멍청했던 과거라고 해줄래, 루디?" },
-    //   ],
-    // },
-    // {
-    //   id: 7,
-    //   author: "미네르바",
-    //   text: "미안하네",
-    //   image: "/images/eagleeye1.png",
-    //   replies: [
-    //     { id: 11, author: "F", image: "/images/hunters1.png", text: "이제와서" },
-    //     { id: 11, author: "하피", image: "/images/gr.png", text: "너무 늦지 않았나요" },
-    //   ],
-    // },
+    {
+      id: 7,
+      author: "?",
+      text: "■■■알 수 없는 오류가 발생하였습니다■■■",
+      image: "/images/union.png", 
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "테리",
+      text: "이게 왜 뜬 검까? 뭔데 이거;",
+      image: "/images/wolfdog1.png", 
+      replies: [
+        { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "씨발 진짜 어이가 없네" },
+        { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "왜 5년 전 거가 지금 뜨는데요" },
+        { id: 11, author: "J", image: "/images/dracal1.png", text: "테리, DB가 잘못 송출되고 있는 것 같은데 이글아이에 정식으로 문의를 넣어야지 욕을 써선 안돼." },
+        { id: 11, author: "F", image: "/images/hunters1.png", text: "말뽄새 봐라 로이드" },
+        { id: 11, author: "테리", image: "/images/wolfdog1.png", text: "그 계정으로 나한테 답글 달지마" },
+      ],
+    },
+    {
+      id: 7,
+      author: "N",
+      text: "이렇게 된 거 걍 한 번 더 주자ㅋㅋ",
+      image: "/images/hunters1.png", 
+      replies: [
+        { id: 11, author: "F", image: "/images/hunters1.png", text: "ㅋㅋㅋㅋㅋㅋ 상금 받으면 술 사줌" },
+      ],
+    },
+    {
+      id: 7,
+      author: "R",
+      text: "금일 오후 3시에 정식으로 항의할 예정입니다.",
+      image: "/images/underground1.png", 
+      replies: [
+        { id: 11, author: "I", image: "/images/wolfdog1.png", text: "같이 가도 되나요?" },
+        { id: 11, author: "H", image: "/images/eagleeye1.png", text: "둘 다 오지마 해결중이야" },
+      ],
+    },
+    {
+      id: 7,
+      author: "루두스",
+      text: "영웅의 찬란한 과거인가요!",
+      image: "/images/gr.png",
+      replies: [
+        { id: 11, author: "하피", image: "/images/gr.png", text: "멍청했던 과거라고 해줄래, 루디?" },
+      ],
+    },
+    {
+      id: 7,
+      author: "미네르바",
+      text: "미안하네",
+      image: "/images/eagleeye1.png",
+      replies: [
+        { id: 11, author: "F", image: "/images/hunters1.png", text: "이제와서" },
+        { id: 11, author: "하피", image: "/images/gr.png", text: "너무 늦지 않았나요" },
+      ],
+    },
   ];
 
   const postsToShow = user.part === "새붉은 재앙" ? grimmerReaperPosts : defaultPosts;

@@ -17,16 +17,16 @@ function MainPage() {
           {/* 게이트 현황 */}
           <div className="panel gate-status w-full rounded-md">
             <h2 className='text-5xl'>주간 게이트 현황</h2>
-            <p className='text-sm text-gray-300 text-center -mt-2'>안전한 장소로 즉시 대피하십시오</p>
+            {/* <p className='text-sm text-gray-300 text-center -mt-2'>안전한 장소로 즉시 대피하십시오</p> */}
             <div className="w-full h-px bg-[#B6C5F2] my-5"></div>
             <div className="status-grid grid grid-cols-3 xl:grid-cols-6 gap-2 justify-items-center">
               {[
                 { grade: 'EX', count: "1", className: 'ex' },
-                { grade: 'S', count: "?", className: 's' },
-                { grade: 'A', count: "?", className: 'a' },
-                { grade: 'B', count: "?", className: 'b' },
-                { grade: 'C', count: "?", className: 'c' },
-                { grade: 'D', count: "?", className: 'd' },
+                { grade: 'S', count: "0", className: 's' },
+                { grade: 'A', count: "0", className: 'a' },
+                { grade: 'B', count: "0", className: 'b' },
+                { grade: 'C', count: "0", className: 'c' },
+                { grade: 'D', count: "0", className: 'd' },
               ].map(({ grade, count, className }, idx) => (
                 <div key={idx} className={`status-card ${className}`}>
                   <div className="label-section">{grade}</div>

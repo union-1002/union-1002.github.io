@@ -8,118 +8,64 @@ import supabase from '@/shared/supabase';
 // import { Dialog, DialogTitle, DialogContent, DialogFooter } from '@/components/ui/dialog';
 
 
-// const groups = [
-//   ['E', 'N', 'S', '오'],
-//   ['H', 'L', '네'],
-//   ['M', '테', 'A', 'I', '비', 'D', '론'],
-//   ['J', '미', 'G'],
-//   ['R', 'Y', 'X', 'C'],
-//   ['라', '루', 'P', '느', 'T', '아', '마',],
-//   ['F', '사', '금']
-// ];
-
 const groups = [
-  ['E', 'F', 'J', 'R', 'P', 'T', '테', '미'],
-  ['H', 'G'],
-  ['M', 'X', '비', '론',],
-  ['금'],
-  ['L'],
-  ['라', '느', '아', '마', 'C'],
-  ['사', 'I']
+  ['E', 'N', 'S', '오'],
+  ['H', 'L', '네'],
+  ['M', '테', 'A', 'I', '비', 'D', '론'],
+  ['J', '미', 'G'],
+  ['R', 'Y', 'X', 'C'],
+  ['라', '루', 'P', '느', 'T', '아', '마',],
+  ['F', '사', '금']
 ];
+
 
 const groupedParts = [
   {
     groupName: "헌터즈",
-    parts: ['E', 'F', 'J', 'R', 'P', 'T', '테', '미'],
+    parts: ['E', 'N', 'S', '오'],
     color: "#fff9e6",
     borderColor: "#ffc801"
   },
   {
     groupName: "이글아이",
-    parts: ['H', 'G'],
+    parts: ['H', 'L', '네'],
     color: "#f2ebfd",
     borderColor: "#7640ee"
   },
   {
     groupName: "울프독",
-    parts: ['M', 'X', '비', '론',],
+    parts: ['M', '테', 'A', 'I', '비', 'D', '론'],
     color: "#ecf7fb",
     borderColor: "#3ab8de"
   },
   {
     groupName: "드라칼",
-    parts: ['금'],
+    parts: ['J', '미', 'G'],
     color: "#ebeffa",
     borderColor: "#2f61d4"
   },
   {
-    groupName: "유니온",
-    parts: ['L'],
-    color: "#edf7ff",
-    borderColor: "#47a2ff"
+    groupName: "언더 그라운드",
+    parts: ['R', 'Y', 'X', 'C'],
+    color: "#fff0ed",
+    borderColor: "#ff7147"
   },
   {
     groupName: "그림 리퍼",
-    parts: ['라', '느', '아', '마', 'C'],
+    parts: ['라', '루', 'P', '느', 'T', '아', '마'],
     color: "#eae9ef",
     borderColor: "#25265e"
   },
   {
     groupName: "빌런",
-    parts: ['사', 'I'],
+    parts: ['F', '사', '금'],
     color: "#eae9ef",
     borderColor: "#25265e"
   },
 ];
 
-// const groupedParts = [
-//   {
-//     groupName: "헌터즈",
-//     parts: ['E', 'N', 'S', '오'],
-//     color: "#fff9e6",
-//     borderColor: "#ffc801"
-//   },
-//   {
-//     groupName: "이글아이",
-//     parts: ['H', 'L', '네'],
-//     color: "#f2ebfd",
-//     borderColor: "#7640ee"
-//   },
-//   {
-//     groupName: "울프독",
-//     parts: ['M', '테', 'A', 'I', '비', 'D', '론'],
-//     color: "#ecf7fb",
-//     borderColor: "#3ab8de"
-//   },
-//   {
-//     groupName: "드라칼",
-//     parts: ['J', '미', 'G'],
-//     color: "#ebeffa",
-//     borderColor: "#2f61d4"
-//   },
-//   {
-//     groupName: "언더 그라운드",
-//     parts: ['R', 'Y', 'X', 'C'],
-//     color: "#fff0ed",
-//     borderColor: "#ff7147"
-//   },
-//   {
-//     groupName: "그림 리퍼",
-//     parts: ['라', '루', 'P', '느', 'T', '아', '마'],
-//     color: "#eae9ef",
-//     borderColor: "#25265e"
-//   },
-//   {
-//     groupName: "빌런",
-//     parts: ['F', '사', '금'],
-//     color: "#eae9ef",
-//     borderColor: "#25265e"
-//   },
-// ];
-
 const overrideColors = {
-  // '론': { color: '#d5dee1', borderColor: '#849aa1' } // 예시 색상 (회색 톤)
+  '론': { color: '#d5dee1', borderColor: '#849aa1' } // 예시 색상 (회색 톤)
 };
 
 // circleColors와 borderColors 동시 생성
@@ -418,11 +364,7 @@ function MemberIntroPage() {
                           });    
                         }             
                       }
-                      className={`w-20 h-20 flex items-center justify-center text-xl font-bold shadow-md transition-opacity duration-300 ${
-                        initial === "C" || initial === "I"
-                          ? "opacity-0 hover:opacity-100"
-                          : "opacity-100"
-                      }`}
+                      className={`w-20 h-20 flex items-center justify-center text-xl font-bold shadow-md`}
                       // className={`w-20 h-20 flex items-center justify-center text-xl font-bold shadow-md`}
                       style={{
                         backgroundColor: circleColors[initial],
@@ -452,10 +394,6 @@ function MemberIntroPage() {
                           key={`${title.text}-${idx}`}
                           className={`whitespace-pre-line text-center cursor-pointer
                             transition-opacity duration-300
-                            ${(emp.initials === "C" || emp.initials === "I")
-                              ? "opacity-0 hover:opacity-100" // C/I는 무조건 숨겨두기
-                              : "opacity-100"
-                            }
                             ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler
                             ? 'transition-all duration-300 blur-none'
                             : 'transition-none blur-xs'}

@@ -41,14 +41,14 @@ const MainLayout = ({ children }) => {
 
       {/* 알림바 */}
       <div className="w-full bg-black text-white text-center text-sm py-1 font-sans font-normal">
-        EX급 게이트 즉시 대피령 발령
+        EX급 게이트 희생자를 애도합니다
         {/* var(--light-purple) */}
       </div>
       
       {/* 심각 #42000F*/}
 
       {/* 메뉴바 */}
-      <div className="w-full border-b border-b-gray-400 border-b-[0.5px]">
+      <div className="w-full border-b-gray-400 border-b-[0.5px]">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between px-0 lg:px-8">
           <div className="flex text-base">
             <button className="px-4 py-2 flex items-center lg:border-l-[0.5px] border-gray-400 cursor-pointer">조직도 안내</button>

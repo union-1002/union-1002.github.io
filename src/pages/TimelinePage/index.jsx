@@ -93,7 +93,7 @@ function TimelinePage() {
           </div>
 
 
-          {/* <div className="relative pl-8 sm:pl-32 pb-12 group">
+          <div className="relative pl-8 sm:pl-32 pb-12 group">
 
               <div className="font-ink font-base text-xl text-indigo-500 mb-1 sm:mb-0">The First</div>
 
@@ -172,9 +172,9 @@ function TimelinePage() {
             <div className="text-slate-500">
               
             </div>
-          </div> */}
+          </div>
 
-          {/* <div className="relative pl-8 sm:pl-32 pb-12 group">
+          <div className="relative pl-8 sm:pl-32 pb-12 group">
 
             <div className="font-ink font-medium text-2xl text-indigo-500 mb-1 sm:mb-0">The Death Side</div>
 
@@ -292,7 +292,7 @@ function TimelinePage() {
               오르티의 UNION 가입<br/>
               F의 빌런 활동, P의 그림 리퍼 활동 시작
             </div>
-          </div> */}
+          </div>
 
           
 
