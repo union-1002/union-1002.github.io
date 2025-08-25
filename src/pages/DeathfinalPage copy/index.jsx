@@ -14,7 +14,8 @@ function DeathfinalPage() {
       const { data, error } = await supabase
         .from('death_inside')
         .select('*')
-        .order('publish_at', { ascending: true });
+        .order('publish_at', { ascending: true })
+        .order("location", { ascending: true });
 
       if (!mounted) return;
       if (error) {
