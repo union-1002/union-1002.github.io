@@ -189,7 +189,7 @@ function generateOneCard(fromPoolKey) {
   return {
     upKey: a,
     downKey: b,
-    upAmount: randInt(1, 30),
+    upAmount: randInt(1, 20),
     downAmount: randInt(1, 40),
   };
 }
@@ -228,6 +228,47 @@ function applyEffect(stats, effect) {
 }
 
 function BirthdayTerryPage() {
+
+  const DEV = true;
+
+  function stopTurnTimer() {
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
+    }
+  }
+
+  // 테스트: 엔딩 1 강제
+  function forceEnding1() {
+    stopTurnTimer();
+    setEnding({
+      type: 1,
+      title: "아, 물어와 놀이임까? '어떻게든' 물어오기만 하면 되는거져?",
+      message: "깨어났을 적 마주한 것은 평화로운 하늘이었지만, 세상은 결코 평화롭지 않았다.\n안타깝게 명을 달리한 희생자로 인해 세상은 가라앉아 있었고,\n특히 데스 사이드 내부에서 전사한 요원들의 소식에 많은 시민들은 슬픔을 금치 못했다.\n\n당시 진입하지 못했던 것은, 모두 '자신을 막아세운 빌런' 탓이었다.\n게이트 외부 희생자들의 사망 요인은 몬스터의 습격만이 아닌, 혼란을 틈탄 범죄 조직의 지분도 상당수를 차지했기에.\n\n자신이 게이트 내부로 들어갔더라면, 조금이라도 희생자가 줄었을지도 모르는 일인데.\n망설이지 않았으면 누구도 죽지 않았을 텐데.\n……먼저 죽여버리면 될 일이었을 텐데!\n\n“어? 그러네.”\n\n멍하니 바라보던 파란 하늘이 빌어먹을 만큼 아름다웠다.",
+      bg: "images/terry_ending1.jpg",
+    });
+    setScreen("ending");
+  }
+
+  // 테스트: 엔딩 2 강제
+  function forceEnding2() {
+    stopTurnTimer();
+    setEnding({
+      type: 2,
+      title: "너, 너! 진짜 즈 손에 잡히기만 해 봐여!!",
+      message: "깨어났을 적 마주한 것은 평화로운 하늘이었지만, 세상은 결코 평화롭지 않았다.\n안타깝게 명을 달리한 희생자로 인해 세상은 가라앉아 있었고,\n특히 데스 사이드 내부에서 전사한 요원들의 소식에 많은 시민들은 슬픔을 금치 못했다.\n\n자신 때문이다. 자신이 조금만 더 일찍 게이트에 들어갔더라면.\n게이트에 들어가지 않았더라도 조금만 더 일찍 지원에 나섰더라면.\n시민도, 형제도 지키지 못했다는 자괴감에 빠져 무너져가던 테리는, 하늘을 올려다 보았다.\n\n형을 보내는 세상은 빌어먹게도 아름다웠다. 전부 부수고 싶을 만큼.\n\n우리는 여기에 새롭게 살아가고, 세상은 변한다.\n아무리 괴롭다 한들 산 자는 살아가야 했다.\n그리고, 무엇보다.\n\n나는 그들과는 다르기에. 내가 이곳에 속하여 일하는 것은,\n사랑하는 가족만이 아닌 사랑하는 사람들을 위하기 때문이니까.\n당신 또한 내가 이렇게 크길 바라겠지. 사랑하는 나의 형제, ■■■.",
+      bg: "images/terry_ending2.jpg",
+    });
+    setScreen("ending");
+  }
+
+  // 이미지 토글
+  const [isOn, setIsOn] = useState(false);
+
+  const handleToggle = () => {
+    setIsOn((prev) => !prev);
+  };
+
   // 화면 상태: start | game | reveal | ending
   const [screen, setScreen] = useState("start");
 
@@ -330,8 +371,8 @@ function BirthdayTerryPage() {
       setTimeout(() => {
         setEnding({
           type: 1,
-          title: "엔딩 1 — IF 테리",
-          message: "자신이 게이트 내부로 들어갔더라면, 조금이라도 희생자가 줄었을지도 모르는 일인데.\n망설이지 않았으면 누구도 죽지 않았을 텐데.\n……먼저 죽여버리면 될 일이었을 텐데!\n“어? 그러네.”\n멍하니 바라보던 파란 하늘이 빌어먹을 만큼 아름다웠다.",
+          title: "아, 물어와 놀이임까? '어떻게든' 물어오기만 하면 되는거져?",
+          message: "깨어났을 적 마주한 것은 평화로운 하늘이었지만, 세상은 결코 평화롭지 않았다.\n안타깝게 명을 달리한 희생자로 인해 세상은 가라앉아 있었고,\n특히 데스 사이드 내부에서 전사한 요원들의 소식에 많은 시민들은 슬픔을 금치 못했다.\n\n당시 진입하지 못했던 것은, 모두 '자신을 막아세운 빌런' 탓이었다.\n게이트 외부 희생자들의 사망 요인은 몬스터의 습격만이 아닌, 혼란을 틈탄 범죄 조직의 지분도 상당수를 차지했기에.\n\n자신이 게이트 내부로 들어갔더라면, 조금이라도 희생자가 줄었을지도 모르는 일인데.\n망설이지 않았으면 누구도 죽지 않았을 텐데.\n……먼저 죽여버리면 될 일이었을 텐데!\n\n“어? 그러네.”\n\n멍하니 바라보던 파란 하늘이 빌어먹을 만큼 아름다웠다.",
           bg: "images/terry_ending1.jpg",
         });
         setScreen("ending");
@@ -342,8 +383,8 @@ function BirthdayTerryPage() {
       setTimeout(() => {
         setEnding({
           type: 2,
-          title: "엔딩 2 — 극복",
-          message: "한 수치를 가득 채웠습니다. 당신은 견뎌냈어요.",
+          title: "너, 너! 진짜 즈 손에 잡히기만 해 봐여!!",
+          message: "깨어났을 적 마주한 것은 평화로운 하늘이었지만, 세상은 결코 평화롭지 않았다.\n안타깝게 명을 달리한 희생자로 인해 세상은 가라앉아 있었고,\n특히 데스 사이드 내부에서 전사한 요원들의 소식에 많은 시민들은 슬픔을 금치 못했다.\n\n자신 때문이다. 자신이 조금만 더 일찍 게이트에 들어갔더라면.\n게이트에 들어가지 않았더라도 조금만 더 일찍 지원에 나섰더라면.\n시민도, 형제도 지키지 못했다는 자괴감에 빠져 무너져가던 테리는, 하늘을 올려다 보았다.\n\n형을 보내는 세상은 빌어먹게도 아름다웠다. 전부 부수고 싶을 만큼.\n\n우리는 여기에 새롭게 살아가고, 세상은 변한다.\n아무리 괴롭다 한들 산 자는 살아가야 했다.\n그리고, 무엇보다.\n\n나는 그들과는 다르기에. 내가 이곳에 속하여 일하는 것은,\n사랑하는 가족만이 아닌 사랑하는 사람들을 위하기 때문이니까.\n당신 또한 내가 이렇게 크길 바라겠지. 사랑하는 나의 형제, ■■■.",
           bg: "images/terry_ending2.jpg",
         });
         setScreen("ending");
@@ -364,15 +405,15 @@ function BirthdayTerryPage() {
       if (zeroOrBelow) {
         setEnding({
           type: 1,
-          title: "엔딩 1 — IF 테리",
-          message: "자신이 게이트 내부로 들어갔더라면, 조금이라도 희생자가 줄었을지도 모르는 일인데.\n망설이지 않았으면 누구도 죽지 않았을 텐데.\n……먼저 죽여버리면 될 일이었을 텐데!\n“어? 그러네.”\n멍하니 바라보던 파란 하늘이 빌어먹을 만큼 아름다웠다.",
+          title: "아, 물어와 놀이임까? '어떻게든' 물어오기만 하면 되는거져?",
+          message: "깨어났을 적 마주한 것은 평화로운 하늘이었지만, 세상은 결코 평화롭지 않았다.\n안타깝게 명을 달리한 희생자로 인해 세상은 가라앉아 있었고,\n특히 데스 사이드 내부에서 전사한 요원들의 소식에 많은 시민들은 슬픔을 금치 못했다.\n\n당시 진입하지 못했던 것은, 모두 '자신을 막아세운 빌런' 탓이었다.\n게이트 외부 희생자들의 사망 요인은 몬스터의 습격만이 아닌, 혼란을 틈탄 범죄 조직의 지분도 상당수를 차지했기에.\n\n자신이 게이트 내부로 들어갔더라면, 조금이라도 희생자가 줄었을지도 모르는 일인데.\n망설이지 않았으면 누구도 죽지 않았을 텐데.\n……먼저 죽여버리면 될 일이었을 텐데!\n\n“어? 그러네.”\n\n멍하니 바라보던 파란 하늘이 빌어먹을 만큼 아름다웠다.",
           bg: "images/terry_ending1.jpg",
         });
       } else {
         setEnding({
           type: 2,
-          title: "엔딩 2 — 극복",
-          message: "모든 수치가 1 이상입니다. 무너지지 않았습니다.",
+          title: "너, 너! 진짜 즈 손에 잡히기만 해 봐여!!",
+          message: "깨어났을 적 마주한 것은 평화로운 하늘이었지만, 세상은 결코 평화롭지 않았다.\n안타깝게 명을 달리한 희생자로 인해 세상은 가라앉아 있었고,\n특히 데스 사이드 내부에서 전사한 요원들의 소식에 많은 시민들은 슬픔을 금치 못했다.\n\n자신 때문이다. 자신이 조금만 더 일찍 게이트에 들어갔더라면.\n게이트에 들어가지 않았더라도 조금만 더 일찍 지원에 나섰더라면.\n시민도, 형제도 지키지 못했다는 자괴감에 빠져 무너져가던 테리는, 하늘을 올려다 보았다.\n\n형을 보내는 세상은 빌어먹게도 아름다웠다. 전부 부수고 싶을 만큼.\n\n우리는 여기에 새롭게 살아가고, 세상은 변한다.\n아무리 괴롭다 한들 산 자는 살아가야 했다.\n그리고, 무엇보다.\n\n나는 그들과는 다르기에. 내가 이곳에 속하여 일하는 것은,\n사랑하는 가족만이 아닌 사랑하는 사람들을 위하기 때문이니까.\n당신 또한 내가 이렇게 크길 바라겠지. 사랑하는 나의 형제, ■■■.",
           bg: "images/terry_ending2.jpg",
         });
       }
@@ -404,8 +445,8 @@ function BirthdayTerryPage() {
     if (zeroOrBelow) {
       setEnding({
         type: 1,
-        title: "엔딩 1 — IF 테리",
-        message: "자신이 게이트 내부로 들어갔더라면, 조금이라도 희생자가 줄었을지도 모르는 일인데.\n망설이지 않았으면 누구도 죽지 않았을 텐데.\n……먼저 죽여버리면 될 일이었을 텐데!\n“어? 그러네.”\n멍하니 바라보던 파란 하늘이 빌어먹을 만큼 아름다웠다.",
+        title: "아, 물어와 놀이임까? '어떻게든' 물어오기만 하면 되는거져?",
+        message: "깨어났을 적 마주한 것은 평화로운 하늘이었지만, 세상은 결코 평화롭지 않았다.\n안타깝게 명을 달리한 희생자로 인해 세상은 가라앉아 있었고,\n특히 데스 사이드 내부에서 전사한 요원들의 소식에 많은 시민들은 슬픔을 금치 못했다.\n\n당시 진입하지 못했던 것은, 모두 '자신을 막아세운 빌런' 탓이었다.\n게이트 외부 희생자들의 사망 요인은 몬스터의 습격만이 아닌, 혼란을 틈탄 범죄 조직의 지분도 상당수를 차지했기에.\n\n자신이 게이트 내부로 들어갔더라면, 조금이라도 희생자가 줄었을지도 모르는 일인데.\n망설이지 않았으면 누구도 죽지 않았을 텐데.\n……먼저 죽여버리면 될 일이었을 텐데!\n\n“어? 그러네.”\n\n멍하니 바라보던 파란 하늘이 빌어먹을 만큼 아름다웠다.",
         bg: "images/terry_ending1.jpg",
       });
       setScreen("ending");
@@ -414,8 +455,8 @@ function BirthdayTerryPage() {
     if (fullReached) {
       setEnding({
         type: 2,
-        title: "엔딩 2 — 극복",
-        message: "한 수치를 가득 채웠습니다. 당신은 견뎌냈어요.",
+        title: "너, 너! 진짜 즈 손에 잡히기만 해 봐여!!",
+        message: "깨어났을 적 마주한 것은 평화로운 하늘이었지만, 세상은 결코 평화롭지 않았다.\n안타깝게 명을 달리한 희생자로 인해 세상은 가라앉아 있었고,\n특히 데스 사이드 내부에서 전사한 요원들의 소식에 많은 시민들은 슬픔을 금치 못했다.\n\n자신 때문이다. 자신이 조금만 더 일찍 게이트에 들어갔더라면.\n게이트에 들어가지 않았더라도 조금만 더 일찍 지원에 나섰더라면.\n시민도, 형제도 지키지 못했다는 자괴감에 빠져 무너져가던 테리는, 하늘을 올려다 보았다.\n\n형을 보내는 세상은 빌어먹게도 아름다웠다. 전부 부수고 싶을 만큼.\n\n우리는 여기에 새롭게 살아가고, 세상은 변한다.\n아무리 괴롭다 한들 산 자는 살아가야 했다.\n그리고, 무엇보다.\n\n나는 그들과는 다르기에. 내가 이곳에 속하여 일하는 것은,\n사랑하는 가족만이 아닌 사랑하는 사람들을 위하기 때문이니까.\n당신 또한 내가 이렇게 크길 바라겠지. 사랑하는 나의 형제, ■■■.",
         bg: "images/terry_ending2.jpg",
       });
       setScreen("ending");
@@ -491,6 +532,7 @@ function BirthdayTerryPage() {
     );
   };
 
+
   /** ===== 화면별 렌더링 ===== */
   const StartScreen = () => (
     <div className="relative w-full min-h-screen overflow-y-auto">
@@ -501,7 +543,10 @@ function BirthdayTerryPage() {
       <div className="w-full min-h-screen flex flex-col items-center justify-center p-4">
         <div className="max-w-3xl">
           <img
-            src="/images/terry_title24.png" />
+            src={isOn ? "/images/terry_title19.png" : "/images/terry_title24.png"}
+            alt="테리야생일축하해"
+            onClick={handleToggle}
+          />
         </div>
         <div className="bg-black/40 border border-white/20 rounded-3xl p-8 text-white text-center max-w-xl w-[95%] shadow-[0_0_30px_rgba(255, 255, 255, 0.9)]">
           <div className="text-2xl font-bold mb-3">Happy Terry Day</div>
@@ -522,6 +567,7 @@ function BirthdayTerryPage() {
   );
 
   const GameScreen = () => (
+    
     <div className="relative w-screen h-screen overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-20"
@@ -561,6 +607,24 @@ function BirthdayTerryPage() {
           <div className="text-sm opacity-80">
             제한시간 {TURN_TIMEOUT_SEC}초 내에 카드를 고르세요. 미선택 시 자동 선택됩니다.
           </div>
+          {DEV && (
+            <div className="mt-2 text-xs text-left w-full max-w-3xl">
+              <div className="inline-flex gap-2 bg-white/10 border border-white/20 rounded-xl p-2">
+                <button
+                  onClick={forceEnding1}
+                  className="px-3 py-1 rounded-lg bg-rose-500/90 hover:bg-rose-500 text-white"
+                >
+                  ▶ 테스트: 엔딩 1
+                </button>
+                <button
+                  onClick={forceEnding2}
+                  className="px-3 py-1 rounded-lg bg-emerald-500/90 hover:bg-emerald-500 text-black"
+                >
+                  ▶ 테스트: 엔딩 2
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -578,19 +642,20 @@ function BirthdayTerryPage() {
         <div className="absolute inset-0 bg-black/70 -z-10" />
         <div className="w-full h-full flex items-center justify-center p-4">
           <div className="bg-white/10 border border-white/20 rounded-3xl p-8 text-white text-center max-w-md w-[90%] shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-            <div className="text-xl font-bold mb-2">자동 선택됨</div>
+            <div className="text-xl font-bold mb-2">운명이 흘러갑니다</div>
+            {/* 자동 선택 */}
             {c.title && <div className="text-lg font-bold mb-1 text-left">{c.title}</div>}
             {c.desc && <div className="text-sm opacity-80 mb-3 whitespace-pre-line text-left">{c.desc}</div>}
-            <div className="text-left space-y-2 font-mono">
+            <div className="text-left space-y-2">
               <div>
                 <span className="opacity-80 mr-2">{STAT_LABEL[c.upKey]}:</span>
-                <span className="text-emerald-300 mr-2">+{c.upAmount}</span>
-                <span>{triangles(c.upAmount, true)}</span>
+                {/* <span className="text-emerald-300 mr-2">+{c.upAmount}</span> */}
+                <span className="text-emerald-300">{triangles(c.upAmount, true)}</span>
               </div>
               <div>
                 <span className="opacity-80 mr-2">{STAT_LABEL[c.downKey]}:</span>
-                <span className="text-rose-300 mr-2">-{c.downAmount}</span>
-                <span>{triangles(c.downAmount, false)}</span>
+                {/* <span className="text-rose-300 mr-2">-{c.downAmount}</span> */}
+                <span className="text-rose-300">{triangles(c.downAmount, false)}</span>
               </div>
             </div>
             <div className="mt-4 text-sm opacity-80">다음 카드로 넘어갑니다…</div>
@@ -603,21 +668,21 @@ function BirthdayTerryPage() {
   const EndingScreen = () => {
     if (!ending) return null;
     return (
-      <div className="relative w-screen h-screen overflow-hidden">
+      <div className="relative w-full min-h-screen overflow-y-auto">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat -z-20"
           style={{ backgroundImage: `url('${ending.bg}')` }}
         />
-        <div className="absolute inset-0 bg-black/60 -z-10" />
-        <div className="w-full h-full flex items-center justify-center p-4">
-          <div className="bg-white/10 border border-white/20 rounded-3xl p-8 text-white text-center max-w-xl w-[95%] shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-            <div className="text-2xl font-bold mb-2">{ending.title}</div>
+        {/* <div className="absolute inset-0 bg-black/60 -z-10" /> */}
+        <div className="w-full min-h-screen flex items-center justify-center p-4">
+          <div className=" border border-white/20 rounded-3xl p-8 text-white text-center max-w-2xl w-[95%] shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+            <div className="text-lg font-bold mb-2">{ending.title}</div>
             <div className="opacity-90 mb-6 whitespace-pre-line text-left">{ending.message}</div>
 
             {/* 최종 스탯(데모 표기) */}
             <div className="grid grid-cols-3 gap-3 text-left mb-6">
               {STAT_KEYS.map((k) => (
-                <div key={k} className="bg-white/5 rounded-xl p-3">
+                <div key={k} className="bg-white/15 rounded-xl p-3">
                   <div className="text-sm opacity-80 mb-1">{STAT_LABEL[k]}</div>
                   <div className="font-mono">{stats[k]}</div>
                 </div>
