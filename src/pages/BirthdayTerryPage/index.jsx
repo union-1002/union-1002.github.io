@@ -548,7 +548,7 @@ function BirthdayTerryPage() {
             onClick={handleToggle}
           />
         </div>
-        <div className="bg-black/40 border border-white/20 rounded-3xl p-8 text-white text-center max-w-xl w-[95%] shadow-[0_0_30px_rgba(255, 255, 255, 0.9)]">
+        <div className="bg-black/5 border border-white/20 rounded-3xl p-8 text-gray-900 text-center max-w-2xl w-[95%] shadow-[0_0_30px_rgba(0,0,0,0.5)]">
           <div className="text-2xl font-bold mb-3">Happy Terry Day</div>
           <div className="opacity-90 mb-6">
             15턴 동안 카드로 테리의 운명을 선택하세요.
@@ -557,7 +557,7 @@ function BirthdayTerryPage() {
           </div>
           <button
             onClick={startGame}
-            className="px-5 py-3 rounded-xl bg-[#8BFEFE] hover:bg-[#B4FDFD] text-black font-semibold"
+            className="px-5 py-3 rounded-xl bg-[#8BFEFE] hover:bg-[#B4FDFD] text-gray-900 font-semibold"
           >
             게임 시작
           </button>
@@ -675,9 +675,9 @@ function BirthdayTerryPage() {
         />
         {/* <div className="absolute inset-0 bg-black/60 -z-10" /> */}
         <div className="w-full min-h-screen flex items-center justify-center p-4">
-          <div className=" border border-white/20 rounded-3xl p-8 text-white text-center max-w-2xl w-[95%] shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+          <div className="bg-black/10 border border-white/20 rounded-3xl p-8 text-white text-center max-w-3xl w-[95%] shadow-[0_0_30px_rgba(0,0,0,0.5)]">
             <div className="text-lg font-bold mb-2">{ending.title}</div>
-            <div className="opacity-90 mb-6 whitespace-pre-line text-left">{ending.message}</div>
+            <div className="opacity-90 my-6 whitespace-pre-line text-left">{ending.message}</div>
 
             {/* 최종 스탯(데모 표기) */}
             <div className="grid grid-cols-3 gap-3 text-left mb-6">
@@ -692,7 +692,7 @@ function BirthdayTerryPage() {
             <div className="flex gap-3 justify-center">
               <button
                 onClick={restartGame}
-                className="px-4 py-2 rounded-xl bg-[#8BFEFE] hover:bg-[#B4FDFD] text-black font-semibold"
+                className="px-4 py-2 rounded-xl bg-[#8BFEFE] hover:bg-[#B4FDFD] text-gray-900 font-semibold"
               >
                 다시하기
               </button>
