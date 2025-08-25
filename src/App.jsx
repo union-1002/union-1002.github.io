@@ -38,6 +38,7 @@ import HodaengPage from './pages/HodaengPage';
 import DeathPage from './pages/DeathPage';
 import DeathoutPage from './pages/DeathoutPage';
 import BirthdayTerryPage from './pages/BirthdayTerryPage';
+import DeathfinalPage from './pages/DeathfinalPage copy';
 
 function AppProvider({ children }) {
   return (
@@ -89,6 +90,7 @@ function App() {
         <Route path="/notice_ingate" element={<DeathPage/>} />
         <Route path="/notice_outgate" element={<DeathoutPage/>} />
         <Route path="/terryday" element={<BirthdayTerryPage/>} />
+        <Route path="/deathsscythe" element={<DeathfinalPage/>} />
       </Routes>
     </AppProvider>
   );
