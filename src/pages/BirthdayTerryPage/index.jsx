@@ -229,7 +229,7 @@ function applyEffect(stats, effect) {
 
 function BirthdayTerryPage() {
 
-  const DEV = true;
+  const DEV = false;
 
   function stopTurnTimer() {
     if (timerRef.current) {
