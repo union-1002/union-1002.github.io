@@ -41,7 +41,7 @@ const MainLayout = ({ children }) => {
 
       {/* 알림바 */}
       <div className="w-full bg-black text-white text-center text-sm py-1 font-sans font-normal">
-        EX급 게이트 희생자를 애도합니다
+        데스사이드 게이트 희생자를 애도합니다
         {/* var(--light-purple) */}
       </div>
       
@@ -327,3 +327,4 @@ const MainLayout = ({ children }) => {
 };
 
 export default MainLayout;
+
