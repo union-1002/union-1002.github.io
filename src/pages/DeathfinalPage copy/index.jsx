@@ -15,7 +15,7 @@ function DeathfinalPage() {
         .from('death_inside')
         .select('*')
         .order('publish_at', { ascending: true })
-        .order("location", { ascending: true });
+        .order("id", { ascending: true });
 
       if (!mounted) return;
       if (error) {
@@ -68,7 +68,7 @@ function DeathfinalPage() {
               </div>
             )}
 
-            {post.id === 104 && (
+            {post.id === 108 && (
               <div className="w-fit mx-auto mt-10 mb-10 py-1 px-3 text-center text-sm text-white font-mono border border-white/15 bg-white/20">
                 08/25
               </div>
