@@ -21,12 +21,12 @@ function MainPage() {
             <div className="w-full h-px bg-[#B6C5F2] my-5"></div>
             <div className="status-grid grid grid-cols-3 xl:grid-cols-6 gap-2 justify-items-center">
               {[
-                { grade: 'EX', count: "1", className: 'ex' },
-                { grade: 'S', count: "0", className: 's' },
-                { grade: 'A', count: "0", className: 'a' },
-                { grade: 'B', count: "0", className: 'b' },
-                { grade: 'C', count: "0", className: 'c' },
-                { grade: 'D', count: "0", className: 'd' },
+                { grade: 'EX', count: "0", className: 'ex' },
+                { grade: 'S', count: "3", className: 's' },
+                { grade: 'A', count: "11", className: 'a' },
+                { grade: 'B', count: "9", className: 'b' },
+                { grade: 'C', count: "7", className: 'c' },
+                { grade: 'D', count: "4", className: 'd' },
               ].map(({ grade, count, className }, idx) => (
                 <div key={idx} className={`status-card ${className}`}>
                   <div className="label-section">{grade}</div>
@@ -36,7 +36,7 @@ function MainPage() {
             </div>
           </div>
           <div className="flex flex-row gap-2">
-            <div className="flex-1 h-26 bg-[#B6C5F2] flex flex-col items-center justify-center">
+            <Link to='/deathsscythe' className="flex-1 h-26 bg-[#B6C5F2] flex flex-col items-center justify-center">
               {/* 왼쪽 아이콘 */}
               <img
                 src="./images/phonecall.png" 
@@ -47,7 +47,7 @@ function MainPage() {
               <div className="text-sm font-semibold text-center">
                 게이트 발생 제보 →
               </div>
-            </div>
+            </Link>
             <Link to='/good' className='cursor-pointer flex-1 h-26 bg-[#B6C5F2] flex flex-col items-center justify-center'>
             
               {/* 왼쪽 아이콘 */}

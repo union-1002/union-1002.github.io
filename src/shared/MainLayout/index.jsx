@@ -40,8 +40,8 @@ const MainLayout = ({ children }) => {
       <NoteModal isOpen={isNoteModalOpen} handleClose={toggleNoteModal} />
 
       {/* 알림바 */}
-      <div className="w-full bg-black text-white text-center text-sm py-1 font-sans font-normal">
-        데스사이드 게이트 희생자를 애도합니다
+      <div className="w-full bg-[var(--light-purple)] text-center text-sm py-1 font-sans font-normal">
+        게이트 위험 수준 [안전] 단계입니다.
         {/* var(--light-purple) */}
       </div>
       
@@ -61,7 +61,7 @@ const MainLayout = ({ children }) => {
 
 
       {/* 메인영역 */}
-      <div className="w-full border-b border-b-gray-400 border-b-[0.5px]">
+      <div className="w-full border-b-gray-400 border-b-[0.5px]">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-4 relative">
           {/* 왼쪽 빈 공간 */}
           <div className="flex-1 lg:hidden"></div>
