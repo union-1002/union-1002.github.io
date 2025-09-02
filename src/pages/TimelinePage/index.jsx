@@ -17,13 +17,13 @@ function TimelinePage() {
               <div className="font-ink font-base text-xl text-indigo-500 mb-1 sm:mb-0">The First</div>
 
               <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-indigo-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
-                  <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-22 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">10년 전 늦봄</time>
+                  <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-22 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">10년 전 3/18</time>
                   <div className="text-xl font-book text-slate-900">첫 게이트 발생</div>
               </div>
 
               <div className="text-slate-500">
-                첫 게이트 각성: J / R / F / L / E / X / P / I / H / T / 비광 / 미카엘 / 사<br/>
-                번외: 라멘타 각성
+                첫 게이트 각성: J / R / F / L / E / X / P / I / H / T / 비광 / 미카엘 / 사 / G<br/>
+                번외: 라멘타 / 아가페 각성
               </div>
           </div>
           
@@ -32,7 +32,7 @@ function TimelinePage() {
               <div className="font-ink font-medium text-2xl text-indigo-500 mb-1 sm:mb-0">The Rise</div>
 
               <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-indigo-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
-                  <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-22 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">10년 전 늦가을</time>
+                  <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-22 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 rounded-full">10년 전 11/2</time>
                   <div className="text-xl font-book text-slate-900">UNION 설립</div>
               </div>
 
@@ -106,7 +106,7 @@ function TimelinePage() {
 
             <div className="text-slate-500">
               데스사이드 발생 / 그림 리퍼의 민간인 학살(제물 의식)<br/>
-              각성: A / N / S(2세대의 시작)<br/>
+              각성: A / N / S / D(2세대의 시작)<br/>
               사망: F / P
             </div>
           </div>
