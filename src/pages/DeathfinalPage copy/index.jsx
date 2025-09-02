@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-// import { Link } from 'react-router-dom'; // 지금 안 쓰면 지워도 됨
+import { Link } from 'react-router'; // 지금 안 쓰면 지워도 됨
 import supabase from '@/shared/supabase';
 
 const PX_PER_MIN = 4;
@@ -54,6 +54,14 @@ function DeathfinalPage() {
       />
       <div className="fixed inset-0 bg-black/60 -z-10" />
       <div className="mx-auto max-w-4xl w-full px-4 py-6 space-y-6">
+        <div className="flex justify-center gap-2">
+          <Link to="/" className="w-fit bg-black/20 border border-white/15 hover:bg-pink-300/20 transition p-1.5">
+            🏠️
+          </Link>
+          <Link to="https://bangool.tistory.com/121" target="_blank" className="w-fit bg-black/20 border border-white/15 hover:bg-pink-300/20 transition p-1.5">
+            🤖
+          </Link>
+        </div>
         {posts.map((post, idx) => (
           <div key={post.id || idx}>
             {idx > 0 && (
