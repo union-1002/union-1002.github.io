@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 
 const initialCharacters = [
   "E", "N", "S", "오르티", "H", "L",
-  "M", "테리", "A", "I", "비광", "론", "D",
+  "M", "테리", "A", "I", "비광", "론", "D", "살라딘",
   "J", "미카엘", "G", "금예", "R", "Y", "X", "C",
   "라멘타", "루두스", "뽀삐", "느베야", "T", "아가페", "마니아",
-  "하피", "사"
+  "하피", "사", "네메아",
 ];
 
 const K = 32;
@@ -16,17 +16,39 @@ function expectedScore(ratingA, ratingB) {
   return 1 / (1 + Math.pow(10, (ratingB - ratingA) / 400));
 }
 
-function updateElo(winner, loser, scores) {
-  const Ra = scores[winner];
-  const Rb = scores[loser];
+// function updateElo(winner, loser, scores) {
+//   const Ra = scores[winner];
+//   const Rb = scores[loser];
+
+//   const Ea = expectedScore(Ra, Rb);
+//   const Eb = 1 - Ea;
+
+//   return {
+//     ...scores,
+//     [winner]: Ra + K * (1 - Ea),
+//     [loser]: Rb + K * (0 - Eb)
+//   };
+// }
+function updateEloResult(playerA, playerB, result, scores) {
+  const Ra = scores[playerA];
+  const Rb = scores[playerB];
 
   const Ea = expectedScore(Ra, Rb);
   const Eb = 1 - Ea;
 
+  let Sa, Sb;
+  if (result === "A") {
+    Sa = 1; Sb = 0; // A 승
+  } else if (result === "B") {
+    Sa = 0; Sb = 1; // B 승
+  } else {
+    Sa = 0.5; Sb = 0.5; // 무승부
+  }
+
   return {
     ...scores,
-    [winner]: Ra + K * (1 - Ea),
-    [loser]: Rb + K * (0 - Eb)
+    [playerA]: Ra + K * (Sa - Ea),
+    [playerB]: Rb + K * (Sb - Eb)
   };
 }
 
@@ -87,8 +109,21 @@ function RankPage() {
     }
   }, [remainingPairs]);
 
-  function handleVote(winner, loser) {
-    const newScores = updateElo(winner, loser, scores);
+  // function handleVote(winner, loser) {
+  //   const newScores = updateElo(winner, loser, scores);
+  //   const newPairs = remainingPairs.slice(1);
+
+  //   setScores(newScores);
+  //   setRemainingPairs(newPairs);
+  //   setCount(count + 1);
+
+  //   localStorage.setItem("eloScores", JSON.stringify(newScores));
+  //   localStorage.setItem("eloPairs", JSON.stringify(newPairs));
+  // }
+
+  function handleVote(result) {
+    const [a, b] = pair;
+    const newScores = updateEloResult(a, b, result, scores);
     const newPairs = remainingPairs.slice(1);
 
     setScores(newScores);
@@ -98,6 +133,7 @@ function RankPage() {
     localStorage.setItem("eloScores", JSON.stringify(newScores));
     localStorage.setItem("eloPairs", JSON.stringify(newPairs));
   }
+
 
   function handleReset() {
     const initScores = {};
@@ -121,7 +157,7 @@ function RankPage() {
       {pair[0] && pair[1] ? (
         <div className="flex justify-center items-center space-x-4">
           <button
-            onClick={() => handleVote(pair[0], pair[1])}
+            onClick={() => handleVote("A")}
             className="flex-1 border rounded-xl p-4 hover:bg-gray-100 shadow-md"
           >
             <img
@@ -132,10 +168,17 @@ function RankPage() {
             <div className="font-semibold">{pair[0]}</div>
           </button>
 
-          <div className="text-xl font-bold text-gray-500">VS</div>
+          {/* <div className="text-xl font-bold text-gray-500">VS</div> */}
 
           <button
-            onClick={() => handleVote(pair[1], pair[0])}
+            onClick={() => handleVote("D")}
+            className="px-4 py-6 border rounded-full bg-gray-50 hover:bg-gray-200 text-lg font-bold shadow-md"
+          >
+            무승부
+          </button>
+
+          <button
+            onClick={() => handleVote("B")}
             className="flex-1 border rounded-xl p-4 hover:bg-gray-100 shadow-md"
           >
             <img
