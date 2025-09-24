@@ -145,7 +145,7 @@ const MainLayout = ({ children }) => {
               {/* 드롭다운 메뉴 */}
               <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-0 ${openId === 'menu3' ? 'flex' : 'hidden'} group-hover:flex flex-col bg-white border-2 border-[#877b93] rounded-lg w-[8rem] p-2 z-20 text-base text-center`}>
                 
-                {user.isLoggedIn && (user.isAdmin || user.part === "헌터즈") && (
+                {/* {user.isLoggedIn && (user.isAdmin || user.part === "헌터즈") && ( */}
                   <Link to="/hunters" className="py-1 hover:bg-[var(--light-purple)] rounded flex justify-center items-center h-[1.75rem]">
                      <img
                       src="/images/hunters1.png"
@@ -153,9 +153,9 @@ const MainLayout = ({ children }) => {
                       className="h-[1.25rem] w-auto object-contain"
                     />
                   </Link>
-                )}
+                {/* )} */}
 
-                {user.isLoggedIn && (user.isAdmin || user.part === "울프독") && (
+                {/* {user.isLoggedIn && (user.isAdmin || user.part === "울프독") && ( */}
                   <Link to="/wolfdog" className="py-1 hover:bg-[var(--light-purple)] rounded flex justify-center items-center h-[1.75rem]">
                      <img
                       src="/images/wolfdog1.png"
@@ -163,9 +163,9 @@ const MainLayout = ({ children }) => {
                       className="h-[1.25rem] w-auto object-contain"
                     />
                   </Link>
-                )}
+                {/* )} */}
                 
-                {user.isLoggedIn && (user.isAdmin || user.part === "이글아이") && (
+                {/* {user.isLoggedIn && (user.isAdmin || user.part === "이글아이") && ( */}
                   <Link to="/eagleEye" className="py-1 hover:bg-[var(--light-purple)] rounded flex justify-center items-center h-[1.75rem]">
                      <img
                       src="/images/eagleeye1.png"
@@ -173,8 +173,8 @@ const MainLayout = ({ children }) => {
                       className="h-[1.25rem] w-auto object-contain"
                     />
                   </Link>
-                )}
-                {user.isLoggedIn && (user.isAdmin || user.part === "드라칼") && (
+                {/* )} */}
+                {/* {user.isLoggedIn && (user.isAdmin || user.part === "드라칼") && ( */}
                   <Link to="/dracal" className="py-1 hover:bg-[var(--light-purple)] rounded flex justify-center items-center h-[1.75rem]">
                      <img
                       src="/images/dracal1.png"
@@ -182,8 +182,8 @@ const MainLayout = ({ children }) => {
                       className="h-[1.25rem] w-auto object-contain"
                     />
                   </Link>
-                )}
-                {user.isLoggedIn && (user.isAdmin || user.part === "언더 그라운드") && (
+                {/* )} */}
+                {/* {user.isLoggedIn && (user.isAdmin || user.part === "언더 그라운드") && ( */}
                   <Link to="/underground" className="py-1 hover:bg-[var(--light-purple)] rounded flex justify-center items-center h-[1.75rem]">
                      <img
                       src="/images/underground1.png"
@@ -191,7 +191,7 @@ const MainLayout = ({ children }) => {
                       className="h-[1.25rem] w-auto object-contain"
                     />
                   </Link>
-                )}
+                {/* )} */}
                 <Link to="/wellfare" className="py-1 hover:bg-[var(--light-purple)] rounded">직원 복지</Link>
                 <Link to="/good" className="py-1 hover:bg-[var(--light-purple)] rounded">칭찬합니다</Link>
                 <Link to="/nojo" className="py-1 hover:bg-[var(--light-purple)] rounded">노동조합</Link>
