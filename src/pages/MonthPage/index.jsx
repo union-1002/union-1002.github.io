@@ -64,7 +64,7 @@ function MonthPage() {
       id: 7,
       author: "테리",
       text: "대부님 수상을 진심으로 축하드려여👍🏻🌟 제 마음 속 영원한 영웅은 선배님 뿐!",
-      image: "/images/hunters1.png", 
+      image: "/images/wolfdog1.png", 
       replies: [
         { id: 11, author: "E", image: "/images/hunters1.png", text: "테리, 항상 몸 조심하고. 믿고 있다." },
 
