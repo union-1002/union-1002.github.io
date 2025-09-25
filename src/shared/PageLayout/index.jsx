@@ -23,9 +23,9 @@ function PageLayout({ ref, title, sidebar, children }) {
 
           
       </div>
-      <div className="mt-10 mb-20">
-            <AdBottom />
-      </div>
+      {/* <div className="mt-10 mb-20">
+        <AdBottom />
+      </div> */}
     </div>
   );
 }
