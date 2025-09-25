@@ -1,4 +1,5 @@
 import SideNavigationBar from '@/shared/SideNavigationBar';
+import AdBottom from "../../components/AdBottom";
 
 function PageLayout({ ref, title, sidebar, children }) {
   return (
@@ -18,6 +19,10 @@ function PageLayout({ ref, title, sidebar, children }) {
         {/* 본문 내용 */}
           <div className="w-full text-left px-2">
             {children}
+          </div>
+
+          <div className="mt-10">
+            <AdBottom />
           </div>
       </div>
     </div>
