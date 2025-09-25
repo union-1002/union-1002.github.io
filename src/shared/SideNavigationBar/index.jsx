@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import AdBanner from "../../components/AdBanner";
 
 export const MENU_PROPS = {
   '유니온 소개': {
@@ -63,6 +64,10 @@ function SideNavigationBar({ title, links }) {
             {menu}
           </Link>
         ))}
+      </div>
+
+      <div>
+        <AdBanner/>
       </div>
 
     </div>

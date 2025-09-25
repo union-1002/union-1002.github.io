@@ -258,7 +258,7 @@ function BirthdayFPage() {
                 <img
                   src="/images/F_F_img.png"
                   alt="게임 실패"
-                  className="w-300px h-auto mx-auto mb-4"
+                  className="w-300 h-auto mx-auto mb-4"
                 />
                 <button
                   onClick={startGame}
