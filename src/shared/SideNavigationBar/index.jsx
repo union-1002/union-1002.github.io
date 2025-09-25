@@ -39,8 +39,8 @@ export const MENU_PROPS = {
 
 function SideNavigationBar({ title, links }) {
   return (
-    <div>
-      <div className="hidden lg:flex flex-col w-60 rounded-md border-[0.5px] border-[#435373]">
+    <div className="hidden lg:flex">
+      <div className="flex-col w-60 rounded-md border-[0.5px] border-[#435373]">
 
         {/* 대제목 */}
         <div className=" bg-[#435373] h-40 flex items-center justify-center">
