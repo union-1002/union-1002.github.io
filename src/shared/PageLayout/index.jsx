@@ -7,7 +7,7 @@ function PageLayout({ ref, title, sidebar, children }) {
       {sidebar && <SideNavigationBar {...sidebar} />}
 
       {/* 본문 */}
-      <div className="flex-1 flex flex-col items-center space-y-8 mb-20">
+      <div className="flex-1 flex flex-col items-center space-y-8">
 
         {/* 제목 */}
           <div className="w-full text-left mt-8 mb-20">
@@ -21,9 +21,10 @@ function PageLayout({ ref, title, sidebar, children }) {
             {children}
           </div>
 
-          <div className="mt-10">
+          
+      </div>
+      <div className="mt-10 mb-20">
             <AdBottom />
-          </div>
       </div>
     </div>
   );
