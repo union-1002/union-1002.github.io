@@ -20,7 +20,7 @@ function PageLayout({ ref, title, sidebar, children }) {
           <div className="w-full text-left px-2">
             {children}
           </div>
-          <div className="mt-10 mb-20 w-full px-2">
+          <div className="max-w-[640px] mx-auto px-4">
 
             <AdBottom />
 
