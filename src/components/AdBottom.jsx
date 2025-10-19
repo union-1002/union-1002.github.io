@@ -13,7 +13,8 @@ export default function AdBottom() {
     <ins
       className="adsbygoogle"
       style={{
-          display: "block"
+          display: "block",
+          width: "100%"
         }}
       data-ad-client="ca-pub-9529288575559798"
       data-ad-slot="1725311174"  // 새 슬롯 ID
