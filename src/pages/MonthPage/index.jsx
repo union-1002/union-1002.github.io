@@ -143,6 +143,22 @@ function MonthPage() {
       replies: [
       ],
     },
+    {
+      id: 7,
+      author: "마니아",
+      text: "슬슬 올 때 안 되었나요?",
+      image: "/images/gr.png", 
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "아가페",
+      text: "조금만 더 기다릴까요…?",
+      image: "/images/gr.png", 
+      replies: [
+      ],
+    },
     
     
   ];
