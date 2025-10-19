@@ -21,9 +21,9 @@ function PageLayout({ ref, title, sidebar, children }) {
             {children}
           </div>
           <div className="mt-10 mb-20 w-full px-2">
-            <div className="w-full">
-              <AdBottom />
-            </div>
+
+            <AdBottom />
+
           </div>
           
       </div>
