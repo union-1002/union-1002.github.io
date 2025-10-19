@@ -11,11 +11,12 @@ import supabase from '@/shared/supabase';
 const groups = [
   ['E', 'N', 'S', '오'],
   ['H', 'L', '네'],
-  ['M', '테', 'A', 'I', '비', 'D', '론'],
+  ['M', '테', 'A', 'I', '비', 'D', '론', '살'],
   ['J', '미', 'G'],
   ['R', 'Y', 'X', 'C'],
   ['라', '루', 'P', '느', 'T', '아', '마',],
-  ['F', '사', '금']
+  ['F', '사', '금',],
+  ['메'],
 ];
 
 
@@ -34,7 +35,7 @@ const groupedParts = [
   },
   {
     groupName: "울프독",
-    parts: ['M', '테', 'A', 'I', '비', 'D', '론'],
+    parts: ['M', '테', 'A', 'I', '비', 'D', '론', '살'],
     color: "#ecf7fb",
     borderColor: "#3ab8de"
   },
@@ -58,14 +59,20 @@ const groupedParts = [
   },
   {
     groupName: "빌런",
-    parts: ['F', '사', '금'],
-    color: "#eae9ef",
-    borderColor: "#25265e"
+    parts: ['F', '사', '금', '메'],
+    color: "#f9eff7",
+    borderColor: "#a8749e"
+  },
+  {
+    groupName: "군주",
+    parts: ['메'],
+    color: "#e3f5f3",
+    borderColor: "#8ccfc8"
   },
 ];
 
 const overrideColors = {
-  '론': { color: '#d5dee1', borderColor: '#849aa1' } // 예시 색상 (회색 톤)
+  '론': { color: '#dfe5e7', borderColor: '#78c1d7' } // 예시 색상 (회색 톤)
 };
 
 // circleColors와 borderColors 동시 생성
@@ -392,11 +399,10 @@ function MemberIntroPage() {
                       {(titles[selected.initials]?.[emp.initials] || [{ text: '-', isSpoiler: false }]).map((title, idx) => (
                         <div
                           key={`${title.text}-${idx}`}
-                          className={`whitespace-pre-line text-center cursor-pointer
-                            transition-opacity duration-300
+                          className={`whitespace-pre-line text-center cursor-pointer transition-[filter] duration-300 ease-out
                             ${revealedTitles.has(`${selected.initials}-${emp.initials}-${idx}`) || !title.isSpoiler
-                            ? 'transition-all duration-300 blur-none'
-                            : 'transition-none blur-xs'}
+                            ? 'blur-none'
+                            : '[filter:blur(5px)]'}
                             `}
                           onClick={() => handleReveal(selected.initials, emp.initials, idx)}
                         >
