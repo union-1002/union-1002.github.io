@@ -235,8 +235,8 @@ function MonthPage() {
             ))}
           </div>
         ))}
-        <div className="w-full">
-          <AdBottom />
+        <div className="w-full mt-10">
+          <AdMonth />
         </div>
       </div>
 
