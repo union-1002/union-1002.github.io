@@ -7,10 +7,10 @@ function PartEPage() {
 
   return (
     <MainLayout>
-      {(user.isLoggedIn == false || (user.isAdmin == false && user.part != "이글아이")) && (
+      {/* {(user.isLoggedIn == false || (user.isAdmin == false && user.part != "이글아이")) && (
         <div className='mt-10 p-20 text-center bg-[#f2ebfd]'>염탐할 생각 하지 마라 인마</div>
       )}
-      {(user.isLoggedIn && (user.isAdmin || user.part === "이글아이")) && (
+      {(user.isLoggedIn && (user.isAdmin || user.part === "이글아이")) && ( */}
         <div>
 
           <div className="relative w-full mt-10 mb-10">
@@ -85,7 +85,7 @@ function PartEPage() {
 
           </div>
         </div>
-      )}
+      {/* )} */}
 
     </MainLayout>
   );

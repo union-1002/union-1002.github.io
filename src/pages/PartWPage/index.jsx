@@ -8,10 +8,10 @@ function PartWPage() {
 
   return (
     <MainLayout>
-      {(user.isLoggedIn == false || (user.isAdmin == false && user.part != "울프독")) && (
+      {/* {(user.isLoggedIn == false || (user.isAdmin == false && user.part != "울프독")) && (
         <div className='mt-10 p-20 text-center bg-[#ecf7fb]'>울프독 아니면 못들어옴다</div>
       )}
-      {user.isLoggedIn && (user.isAdmin || user.part === "울프독") && (
+      {user.isLoggedIn && (user.isAdmin || user.part === "울프독") && ( */}
         <div>
           <div className="relative w-full mt-10 mb-10">
             {/* 배경 박스 */}
@@ -184,7 +184,7 @@ function PartWPage() {
 
           </div>
         </div>
-      )}
+      {/* )} */}
     </MainLayout>
   );
 }

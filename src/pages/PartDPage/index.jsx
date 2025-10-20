@@ -7,10 +7,10 @@ function PartDPage() {
 
   return (
     <MainLayout>
-      {(user.isLoggedIn == false || (user.isAdmin == false && user.part != "드라칼")) && (
+      {/* {(user.isLoggedIn == false || (user.isAdmin == false && user.part != "드라칼")) && (
         <div className='mt-10 p-20 text-center bg-[#ebeffa]'>본인 부서 일에 더 신경씁시다.</div>
       )}
-      {(user.isLoggedIn && (user.isAdmin || user.part === "드라칼")) && (
+      {(user.isLoggedIn && (user.isAdmin || user.part === "드라칼")) && ( */}
         <div>
 
           <div className="relative w-full mt-10 mb-10">
@@ -222,7 +222,7 @@ function PartDPage() {
 
           </div>
         </div>
-      )}
+      {/* )} */}
     </MainLayout>
   );
 }

@@ -9,10 +9,10 @@ function PartUPage() {
   return (
     <MainLayout>
 
-      {(user.isLoggedIn == false || (user.isAdmin == false && user.part != "언더 그라운드")) && (
+      {/* {(user.isLoggedIn == false || (user.isAdmin == false && user.part != "언더 그라운드")) && (
         <div className='mt-10 p-20 text-center text-white bg-black'>이 페이지는 허가 받은 인원외에 절대 접근할 수 없습니다.</div>
       )}
-      {(user.isLoggedIn && (user.isAdmin || user.part === "언더 그라운드")) && (
+      {(user.isLoggedIn && (user.isAdmin || user.part === "언더 그라운드")) && ( */}
         <div className="bg-gray-100">
           <div className="relative w-full pt-50">
             {/* 배경 박스 */}
@@ -91,7 +91,7 @@ function PartUPage() {
 
           </div>
         </div>
-      )}
+      {/* )} */}
     </MainLayout>
   );
 }

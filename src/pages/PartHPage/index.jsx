@@ -7,10 +7,10 @@ function PartHPage() {
 
   return (
     <MainLayout>
-      {(user.isLoggedIn == false || (user.isAdmin == false && user.part != "헌터즈")) && (
+      {/* {(user.isLoggedIn == false || (user.isAdmin == false && user.part != "헌터즈")) && (
         <div className='mt-10 p-20 text-center bg-[#fff9e6]'>헌터즈 부서 이동 문의는 N에게 -E-</div>
       )}
-      {(user.isLoggedIn && (user.isAdmin || user.part === "헌터즈")) && (
+      {(user.isLoggedIn && (user.isAdmin || user.part === "헌터즈")) && ( */}
         <div>
           <div className="relative w-full mt-10 mb-10">
             {/* 배경 박스 */}
@@ -227,7 +227,7 @@ function PartHPage() {
 
           </div>
         </div>
-      )}
+      {/* )} */}
     </MainLayout>
   );
 }
