@@ -1,6 +1,8 @@
 import MainLayout from '@/shared/MainLayout';
 import { Link } from 'react-router';
 import { useUser } from '@/shared/user';
+import AdBottom from "../../components/AdBottom";
+
 
 function PartDPage() {
   const user = useUser();
@@ -218,7 +220,9 @@ function PartDPage() {
 
 
 
-
+            <div className="w-full flex justify-center mt-10">
+              <AdBottom />
+            </div>
 
           </div>
         </div>

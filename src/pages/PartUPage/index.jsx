@@ -2,6 +2,8 @@ import MainLayout from '@/shared/MainLayout';
 import _ from 'lodash';
 import { useUser } from '@/shared/user';
 import { IoCheckmarkCircleOutline } from 'react-icons/io5';
+import AdBottom from "../../components/AdBottom";
+
 
 function PartUPage() {
   const user = useUser();
@@ -88,6 +90,10 @@ function PartUPage() {
                 </div>
               </div>
             </MissionCard>
+
+            <div className="w-full flex justify-center mt-10">
+              <AdBottom />
+            </div>
 
           </div>
         </div>
