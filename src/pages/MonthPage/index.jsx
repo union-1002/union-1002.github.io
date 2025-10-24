@@ -3,6 +3,7 @@ import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
 import { useUser } from '@/shared/user';
 import AdMonth from "../../components/AdMonth";
+import { useState } from "react";
 
 function MonthPage() {
   const user = useUser();
@@ -159,11 +160,100 @@ function MonthPage() {
       replies: [
       ],
     },
+    {
+      id: 7,
+      author: "아가페",
+      text: "오래 기다리셨다구요💚",
+      image: "/images/gr.png", 
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "하피",
+      text: "너어는 진짜",
+      image: "/images/gr.png", 
+      replies: [
+        { id: 11, author: "아가페", image: "/images/gr.png", text: "제가 뭐요???" },
+
+      ],
+    },
+    {
+      id: 7,
+      author: "뽀삐",
+      text: "호박 수프 냄새가 나! 뽀삐 익숙해!",
+      image: "/images/gr.png", 
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "에로스",
+      text: "✭❋✜ㅈㅣ금 입장✮시 ☞웰컴 드링크 증정☜ ❘룰렜 1호ㅣ무$료 ☎100% 당첨 보장 ㅈㅣ금 ㅂr✥로 화끈한 어른♨들의 노ㄹㅣ터♚ 슬♔럼 아亼모♨ㄷㅔ우亼✫로➲",
+      image: "/images/gr2.png", 
+      replies: [
+        { id: 11, author: "M", image: "/images/gr.png", text: "제사장님, 차단 부탁드립니다." },
+      ],
+    },
+    {
+      id: 7,
+      author: "라멘타",
+      text: "실로 안타까운 개죽음이로구나.",
+      image: "/images/gr2.png", 
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "마니아",
+      text: "정말… 결혼이 미친 짓인가요…?🥺",
+      image: "/images/gr.png", 
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "T",
+      text: "…",
+      image: "/images/gr2.png", 
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "M",
+      text: "황당해서 말도 나오지 않는군요.",
+      image: "/images/gr.png", 
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "매드헤터",
+      text: "이게 인간들의 사랑이라는 건가요? 브라보! 눈물 없인 볼 수 없는 이야기로군요.",
+      image: "/images/gr.png", 
+      replies: [
+      ],
+    },
+    {
+      id: 7,
+      author: "느베야",
+      text: "있지~ 불쌍한 것 같지 않아? 그런가~ 싶잖아?😏 ",
+      image: "/images/gr.png", 
+      replies: [
+      ],
+    },
     
     
   ];
 
   const postsToShow = user.part === "새붉은 재앙" ? grimmerReaperPosts : defaultPosts;
+
+  const [showMari, setShowMari] = useState(false);
+
+  const handleToggleMari = () => {
+    setShowMari((prev) => !prev);
+  }
 
   
   return (
@@ -173,38 +263,76 @@ function MonthPage() {
 
         {/* 타이틀 */}
         <h1 className="text-3xl font-extrabold font-book text-[#435373] mb-2">
-        👑{user.part === '새붉은 재앙' ? '이달의 사살 대상' : '이달의 우수 사원'}👑
+        {user.part === '새붉은 재앙' ? '5년동안 조각 보관중💚' : '👑이달의 우수 사원👑'}
         </h1>
         <p className="text-gray-600 text-sm mb-10">          
-          {user.part === '새붉은 재앙' ? '매달 유니온의 가장 하찮은 개를 소개합니다.' : '매달 유니온의 가장 빛나는 별을 소개합니다.'}
+          {user.part === '새붉은 재앙' ? '유니온 때문에 희생당한 민간인을 소개합니다🥺🙏🏻' : '매달 유니온의 가장 빛나는 별을 소개합니다.'}
         </p>
 
         {/* 우수 사원 카드 */}
         <div className='px-2'>
-        <div className="bg-white shadow-xl rounded-lg overflow-hidden max-w-md mx-auto">
-          <img
-            src="/images/rank/E.png"
-            alt="이달의 우수 사원"
-            className="w-full h-180 object-cover"
-          />
-          <div className="p-6">
-            <h2 className="text-xl font-bold text-[#456EBF] mb-1">E</h2>
-            <p className="text-sm text-gray-500 mb-2">헌터즈</p>
-            <p className="text-sm text-gray-700 leading-relaxed text-left">
-              이 영광을 제게 주신 유니온과 동료 여러분께 먼저 감사드립니다.<br/><br/>
+          <div className="bg-white shadow-xl rounded-lg overflow-hidden max-w-md mx-auto">
+            <img
+              src={
+                user.part === '새붉은 재앙'
+                  ? "/images/로즈.png"
+                  : "/images/rank/E.png"
+              }
+              alt="이달의 우수 사원"
+              className="w-full h-180 object-cover"
+            />
+            <div className="p-6">
+              <h2
+                className="text-xl font-bold text-[#456EBF] mb-1"
+                onClick={() => {
+                  if (user.part === "새붉은 재앙") handleToggleMari();
+                }}
+              >
+                {user.part === "새붉은 재앙" ? "로즈" : "E"}
+              </h2>
+              <p className="text-sm text-gray-500 mb-2">{user.part === '새붉은 재앙' ? '결혼 때문에 인생 망한 군인' : '헌터즈'}</p>
+              <p className="text-sm text-gray-700 leading-relaxed">
+                {user.part === '새붉은 재앙' ? (
+                  <>
+                    너무나도 가여우신 분<br/>
 
-              하지만 이 상은 결코 저 혼자만의 것이 아님을 잘 알고 있습니다. 위험을 무릅쓰고 현장에서 함께 싸워준 모든 헌터즈 팀원, 보이지 않는 곳에서 헌신적으로 지원해준 이글아이 게이트 상황실, 그리고 무엇보다 헌터즈를 믿고 지지해주시는 시민 여러분이 있었기에 가능한 일이었습니다.<br/><br/>
+                    역시 빨간 머리에겐 뭐가 있나?
+                  </>
+                ) : (
+                  <>
+                    이 영광을 제게 주신 유니온과 동료 여러분께 먼저 감사드립니다.<br/><br/>
 
-              저는 그저 제가 마땅히 해야 할 일을 했을 뿐입니다. 리더로서, 한 명의 에스퍼로서, 저의 역할은 모두가 각자의 자리에서 최상의 역량을 발휘할 수 있도록 돕고, 모든 위험으로부터 그들을 지키는 방패가 되는 것입니다.<br/><br/>
+                하지만 이 상은 결코 저 혼자만의 것이 아님을 잘 알고 있습니다. 위험을 무릅쓰고 현장에서 함께 싸워준 모든 헌터즈 팀원, 보이지 않는 곳에서 헌신적으로 지원해준 이글아이 게이트 상황실, 그리고 무엇보다 헌터즈를 믿고 지지해주시는 시민 여러분이 있었기에 가능한 일이었습니다.<br/><br/>
 
-              최근, 저의 방식이 최선이었는지에 대해 돌아볼 기회가 있었습니다. 때로는 저의 신념이 동료들에게 보이지 않는 벽이 되지는 않았는지, 과도한 책임감이 오히려 그들의 가능성을 가두는 족쇄가 되지는 않았는지 자문하게 되었습니다. 아직 저는 배울 것이 많은 부족한 리더입니다.<br/><br/>
+                저는 그저 제가 마땅히 해야 할 일을 했을 뿐입니다. 리더로서, 한 명의 에스퍼로서, 저의 역할은 모두가 각자의 자리에서 최상의 역량을 발휘할 수 있도록 돕고, 모든 위험으로부터 그들을 지키는 방패가 되는 것입니다.<br/><br/>
 
-              이번 수상을 더 나은 리더가 되라는 채찍질로 여기겠습니다. 동료들을 더 믿고, 그들의 목소리에 더 귀 기울이며, 함께 나아가는 헌터즈를 만들겠습니다.<br/><br/>
+                최근, 저의 방식이 최선이었는지에 대해 돌아볼 기회가 있었습니다. 때로는 저의 신념이 동료들에게 보이지 않는 벽이 되지는 않았는지, 과도한 책임감이 오히려 그들의 가능성을 가두는 족쇄가 되지는 않았는지 자문하게 되었습니다. 아직 저는 배울 것이 많은 부족한 리더입니다.<br/><br/>
 
-              다시 한번 말씀드리지만, 이 상은 헌터즈 모두의 것입니다. 저희는 앞으로도 평화로운 하늘 아래, 시민들을 위한 방패가 될 것을 약속드립니다. 감사합니다.
-            </p>
+                이번 수상을 더 나은 리더가 되라는 채찍질로 여기겠습니다. 동료들을 더 믿고, 그들의 목소리에 더 귀 기울이며, 함께 나아가는 헌터즈를 만들겠습니다.<br/><br/>
+
+                다시 한번 말씀드리지만, 이 상은 헌터즈 모두의 것입니다. 저희는 앞으로도 평화로운 하늘 아래, 시민들을 위한 방패가 될 것을 약속드립니다. 감사합니다.
+                  </>
+                )}
+              </p>
+            </div>
           </div>
-        </div>
+
+          {user.part === "새붉은 재앙" && showMari && (
+            <div className="bg-white shadow-xl rounded-lg overflow-hidden max-w-md mx-auto mt-2">
+              <img
+                src="/images/마리.png"
+                alt="이달의 우수 사원"
+                className="w-full h-180 object-cover"
+              />
+              <div className="p-6">
+                <h2 className="text-xl font-bold text-[#456EBF] mb-1">마리</h2>
+                {/* <p className="text-sm text-gray-500 mb-2">?</p>
+                <p className="text-sm text-gray-700 leading-relaxed text-left">
+                  
+                </p> */}
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="flex justify-center items-center text-sm font-semibold text-gray-700 border-t border-b border-gray-500 mt-20 py-2">
