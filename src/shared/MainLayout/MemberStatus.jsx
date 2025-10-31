@@ -34,7 +34,7 @@ function MemberStatus({ className, openNoteModal }) {
             </span>&nbsp;
             { user.part === '새붉은 재앙'
               ? (<span>새붉은 재앙의 자녀 {user.username} 님 환영합니다!</span>)
-              : (<span>{user.part} {user.username} 님 환영합니다!</span>)
+              : (<span>{user.group.group_name} {user.username} 님 환영합니다!</span>)
             }
           </div>
           <div className="">

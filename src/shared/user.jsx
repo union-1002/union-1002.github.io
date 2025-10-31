@@ -8,7 +8,7 @@ const defaultUser = {
   userId: null,
   uid: null,
   username: null,
-  part: null,
+  group:null,
   isAdmin: false,
   hasNewNotes: false,
   fullname: null,
@@ -52,14 +52,17 @@ export function UserProvider({ children }) {
 
       const { data: profileData, error: profileError } = await supabase
         .from('members')
-        .select('username, part, role, fullname, engname, birthday, nationality, gen, age, height')
+        .select(`
+          username, role, fullname, engname, birthday, nationality, gen, age, height,
+          groups ( id, group_name, color, border_color, order_index )
+        `)
         .eq('id', authData.user.id)
         .single();
       if (profileError || !profileData) {
         await supabase.auth.signOut();
         throw new Error("사용자 정보를 불러오지 못했습니다.");
       }
-      if (profileData.part !== part) {
+      if (profileData.groups?.group_name !== part) {
         await supabase.auth.signOut();
         throw new Error("선택한 부서가 일치하지 않습니다.");
       }
@@ -68,7 +71,7 @@ export function UserProvider({ children }) {
         userId,
         uid: authData.user.id,
         username: profileData.username,
-        part: profileData.part,
+        group: profileData.groups,
         fullname: profileData.fullname,
         engname: profileData.engname,
         birthday: profileData.birthday,
