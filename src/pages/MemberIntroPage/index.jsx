@@ -7,9 +7,10 @@ import supabase from '@/shared/supabase';
 import { useMemberData } from './hooks/useMemberData';
 import CharacterList from './CharacterList';
 import CharacterDetail from './CharacterDetail';
-import EditModal from './EditModal';
 import CharacterFormModal from './CharacterFormModal';
 import UserTitleEditModal from './UserTitleEditModal';
+import CharacterTitleModal from './CharacterTitleModal';
+
 
 export default function MemberIntroPage() {
   const user = useUser();
@@ -23,6 +24,9 @@ export default function MemberIntroPage() {
   const [modalMode, setModalMode] = useState('add'); // add | edit
 
   const [isUserEditModalOpen, setUserEditModalOpen] = useState(false); // 유저 상호호칭 수정
+  const [isTitleModalOpen, setTitleModalOpen] = useState(false);
+
+  const nameMap = Object.fromEntries(employees.map(e => [e.initials, e.name]));
 
 
 
@@ -94,15 +98,24 @@ export default function MemberIntroPage() {
           />
 
           {selected && user.isAdmin && (
-            <button
-              className="px-4 py-2 bg-gray-700 text-white rounded"
-              onClick={() => {
-                setModalMode('edit');
-                setCharModalOpen(true);
-              }}
-            >
-              수정
-            </button>
+            <div className="gap-0.5 flex">
+              <button
+                className="px-3 py-1 bg-gray-700 text-white rounded"
+                onClick={() => {
+                  setModalMode('edit');
+                  setCharModalOpen(true);
+                }}
+              >
+                수정
+              </button>
+              <button
+                className="bg-gray-700 text-white px-3 py-1 rounded"
+                onClick={() => setTitleModalOpen(true)}
+              >
+                상호호칭 수정
+              </button>
+            </div>
+            
           )}
           {/* 공용 모달 */}
           {isCharModalOpen && (
@@ -113,6 +126,17 @@ export default function MemberIntroPage() {
               onSave={refreshList}
             />
           )}
+          {isTitleModalOpen && selected && (
+            <CharacterTitleModal
+              character={selected}
+              nameMap={nameMap}
+              allInitials={allInitials}
+              onClose={() => setTitleModalOpen(false)}
+              onSave={() => console.log('저장 완료')}
+            />
+          )}
+
+
         </div>
       </PageLayout>
     </MainLayout>
