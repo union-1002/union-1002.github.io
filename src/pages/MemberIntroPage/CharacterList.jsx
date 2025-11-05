@@ -1,3 +1,17 @@
+import CrownIcon from './CrownIcon';
+
+const leaderInitials = ['E', 'H', 'M', 'J', 'R', '라', '사',];
+
+const leaderGemColors = {
+  E: '#60A5FA',
+  H: '#0B0C10',
+  M: '#9B5DE5',
+  J: '#0F52BA',
+  R: '#DF564E',
+  라: '#A41313',
+  사: '#E6E6FA',
+};
+
 export default function CharacterList({ groupedByGroup, selected, onSelect, getTitlesForPair, revealedTitles, handleReveal }) {
   return (
     <>
@@ -26,6 +40,18 @@ export default function CharacterList({ groupedByGroup, selected, onSelect, getT
                         border: '2px solid white',
                       }}
                     />
+                  )}
+
+                  {/* 👑 리더 왕관 추가 */}
+                  {leaderInitials.includes(emp.initials) && (
+                    <div className="absolute -top-5 left-1/2 -translate-x-1/2 drop-shadow">
+                      <CrownIcon
+                        className="w-7 h-7"
+                        color={emp.groups?.color}
+                        border={emp.groups?.border_color}
+                        gemColor={leaderGemColors[emp.initials]}
+                      />
+                    </div>
                   )}
                 </div>
 
