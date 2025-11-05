@@ -85,60 +85,94 @@ export default function CharacterTitleModal({ nameMap, character, allInitials = 
     const payloads = [];
     const deleteIds = [];
 
+    // 1️⃣ 현재 입력 상태를 payloads로 변환
     Object.entries(titleData).forEach(([to, { calling, called }]) => {
-      calling.forEach(({ id, text, is_spoiler }) => {
+        calling.forEach(({ id, text, is_spoiler }) => {
         if (text.trim()) {
-          payloads.push({
-            id: id || undefined,
+            payloads.push({
+            id: id || null,
             from_initials: character.initials,
             to_initials: to,
             text,
             is_spoiler: !!is_spoiler,
-          });
+            });
         } else if (id) {
-          deleteIds.push(id);
+            deleteIds.push(id);
         }
-      });
+        });
 
-      called.forEach(({ id, text, is_spoiler }) => {
+        called.forEach(({ id, text, is_spoiler }) => {
         if (text.trim()) {
-          payloads.push({
-            id: id || undefined,
+            payloads.push({
+            id: id || null,
             from_initials: to,
             to_initials: character.initials,
             text,
             is_spoiler: !!is_spoiler,
-          });
+            });
         } else if (id) {
-          deleteIds.push(id);
+            deleteIds.push(id);
         }
-      });
+        });
     });
 
-    // 1️⃣ 삭제
+    // 2️⃣ 삭제 먼저
     if (deleteIds.length > 0) {
-      const { error: delError } = await supabase
-        .from('titles')
-        .delete()
-        .in('id', deleteIds);
-      if (delError) console.error('❌ 삭제 실패:', delError);
+        const { error: delErr } = await supabase.from('titles').delete().in('id', deleteIds);
+        if (delErr) console.error('❌ 삭제 실패:', delErr);
     }
 
-    // 2️⃣ 저장/수정
-    if (payloads.length > 0) {
-      const { error } = await supabase
-        .from('titles')
-        .upsert(payloads, { onConflict: 'id' });
-      if (error) {
-        console.error('❌ 저장 실패:', error);
-        alert('저장 실패');
+    if (payloads.length === 0) {
+        onClose();
         return;
-      }
+    }
+
+    // 3️⃣ 기존 데이터 가져와서 변경 감지 (dirty check)
+    const { data: existingRows, error: fetchErr } = await supabase
+        .from('titles')
+        .select('id, from_initials, to_initials, text, is_spoiler')
+        .or(`from_initials.eq.${character.initials},to_initials.eq.${character.initials}`);
+
+    if (fetchErr) {
+        console.error('❌ 기존 데이터 로드 실패:', fetchErr);
+    }
+
+    // 4️⃣ insert / update 분리 + 변경된 것만 업데이트
+    const newRows = payloads.filter(p => !p.id);
+    const changedRows = payloads.filter(p => {
+        const old = existingRows?.find(r => r.id === p.id);
+        return old && (old.text !== p.text || old.is_spoiler !== p.is_spoiler);
+    });
+
+
+    // 🧩 insert
+    if (newRows.length > 0) {
+        const cleanedNew = newRows.map(({ id, ...rest }) => rest);
+        console.log('INSERT rows:', cleanedNew);
+        const { error: insertErr } = await supabase.from('titles').insert(cleanedNew);
+        if (insertErr) {
+        console.error('❌ insert 실패:', insertErr);
+        alert(`추가 실패\n${insertErr.message}`);
+        return;
+        }
+    }
+
+    // 🧩 update (변경된 행만)
+    if (changedRows.length > 0) {
+        const { error: updateErr } = await supabase
+        .from('titles')
+        .upsert(changedRows, { onConflict: 'id' });
+        if (updateErr) {
+        console.error('❌ update 실패:', updateErr);
+        alert(`수정 실패\n${updateErr.message}`);
+        return;
+        }
     }
 
     onSave?.();
     onClose();
-  };
+    };
+
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -150,7 +184,7 @@ export default function CharacterTitleModal({ nameMap, character, allInitials = 
             .filter(init => init !== character.initials)
             .map(init => (
               <div key={init} className="border-b pb-3">
-                <div className="text-sm font-medium mb-2">{init}</div>
+                <div className="text-sm font-medium mb-2">{nameMap[init]}</div>
 
                 {/* 🔹 내가 상대를 부르는 호칭 */}
                 {(titleData[init]?.calling || []).map(({ id, text, is_spoiler }, idx) => (
