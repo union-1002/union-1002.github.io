@@ -1,4 +1,5 @@
 import CrownIcon from './CrownIcon';
+import RibbonIcon from './RibbonIcon';
 
 const leaderInitials = ['E', 'H', 'M', 'J', 'R', '라', '사',];
 
@@ -12,14 +13,23 @@ const leaderGemColors = {
   사: '#E6E6FA',
 };
 
+const grimStaffsInitials = ['루', '느', 'T', '에'];
+
+const ribbonColors = {
+  루: '#A50328',
+  느: '#CADCDE',
+  T: '#8EBCAF',
+  에: '#9CF3D4',
+};
+
 export default function CharacterList({ groupedByGroup, selected, onSelect, getTitlesForPair, revealedTitles, handleReveal }) {
   return (
     <>
       {Object.entries(groupedByGroup).map(([groupName, members]) => (
-        <div key={groupName} className="mb-8 w-full flex justify-center">
+        <div key={groupName} className="w-full flex justify-center">
           <div className="flex justify-center flex-wrap max-w-4xl w-full">
             {members.map(emp => (
-              <div key={emp.id} className="flex flex-col items-center" style={{ minWidth: '9rem', maxWidth: '9rem', minHeight: '10rem' }}>
+              <div key={emp.id} className="flex flex-col items-center mb-8" style={{ minWidth: '9rem', maxWidth: '9rem', minHeight: '10rem' }}>
                 <div className="relative">
                   <button
                     onClick={() => onSelect(emp)}
@@ -50,6 +60,15 @@ export default function CharacterList({ groupedByGroup, selected, onSelect, getT
                         color={emp.color}
                         border={emp.border_color}
                         gemColor={leaderGemColors[emp.initials]}
+                      />
+                    </div>
+                  )}
+                  {grimStaffsInitials.includes(emp.initials) && (
+                    <div className="absolute -top-5 left-1/2 -translate-x-1/2 drop-shadow">
+                      <RibbonIcon
+                        color={ribbonColors[emp.initials]}
+                        border={emp.border_color}
+                        size={28}
                       />
                     </div>
                   )}
