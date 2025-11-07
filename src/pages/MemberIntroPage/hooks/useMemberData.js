@@ -11,8 +11,9 @@ export function useMemberData(user) {
   // ===============================================================
   const fetchCharacters = async () => {
     const { data, error } = await supabase
-      .from('characters')
-      .select(`*, groups ( group_name, color, border_color, order_index )`)
+      .from('characters_with_groups')
+      .select('*')
+      .order('order_index', { ascending: true })
       .order('id', { ascending: true });
 
     if (error) {
@@ -24,9 +25,9 @@ export function useMemberData(user) {
 
     // ✅ 로그인한 유저가 있을 경우 "나" 항목 추가
     if (user.isLoggedIn && user.uid) {
-      const myGroup =
-        user.group ||
-        list.find(e => e.groups?.group_name === user.group?.group_name)?.groups;
+      const myGroupInfo = list.find(
+        e => e.group_name === user.group?.group_name
+      );
 
       const me = {
         id: 'me',
@@ -35,18 +36,16 @@ export function useMemberData(user) {
         fullname: user.fullname,
         engname: user.engname,
         nationality: user.nationality,
-        position: myGroup?.group_name || '소속 없음',
+        position: myGroupInfo?.group_name || '소속 없음',
         birthday: user.birthday,
         age: user.age,
         height: user.height,
         gen: user.gen,
         etc: '',
-        groups:
-          myGroup || {
-            group_name: '소속 없음',
-            color: '#f0f0f0',
-            border_color: '#999',
-          },
+        group_name: myGroupInfo?.group_name,
+        color: myGroupInfo?.color,
+        border_color: myGroupInfo?.border_color,
+        order_index: myGroupInfo?.order_index
       };
 
       list = [...list, me];
@@ -134,8 +133,9 @@ export function useMemberData(user) {
   useEffect(() => {
     const fetchInitials = async () => {
       const { data, error } = await supabase
-        .from('characters')
+        .from('characters_with_groups')
         .select('initials')
+        .order('order_index', { ascending: true })
         .order('id', { ascending: true });
 
       if (!error && data) {

@@ -31,7 +31,7 @@ export default function MemberIntroPage() {
 
 
   const groupedByGroup = employees.reduce((acc, emp) => {
-    const groupName = emp.groups?.group_name || '기타';
+    const groupName = emp.group_name || '기타';
     if (!acc[groupName]) acc[groupName] = [];
     acc[groupName].push(emp);
     return acc;

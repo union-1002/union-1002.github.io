@@ -25,8 +25,8 @@ export default function CharacterList({ groupedByGroup, selected, onSelect, getT
                     onClick={() => onSelect(emp)}
                     className="w-20 h-20 flex items-center justify-center text-xl font-bold shadow-md"
                     style={{
-                      backgroundColor: emp.groups?.color || '#eee',
-                      border: `2px solid ${emp.groups?.border_color || '#999'}`,
+                      backgroundColor: emp.color || '#eee',
+                      border: `2px solid ${emp.border_color || '#999'}`,
                       borderRadius: '9999px',
                     }}
                   >
@@ -36,7 +36,7 @@ export default function CharacterList({ groupedByGroup, selected, onSelect, getT
                     <div
                       className="absolute -top-1 left-0.5 w-7 h-7 rounded-full"
                       style={{
-                        backgroundColor: emp.groups?.border_color || '#999',
+                        backgroundColor: emp.border_color || '#999',
                         border: '2px solid white',
                       }}
                     />
@@ -47,8 +47,8 @@ export default function CharacterList({ groupedByGroup, selected, onSelect, getT
                     <div className="absolute -top-5 left-1/2 -translate-x-1/2 drop-shadow">
                       <CrownIcon
                         className="w-7 h-7"
-                        color={emp.groups?.color}
-                        border={emp.groups?.border_color}
+                        color={emp.color}
+                        border={emp.border_color}
                         gemColor={leaderGemColors[emp.initials]}
                       />
                     </div>
