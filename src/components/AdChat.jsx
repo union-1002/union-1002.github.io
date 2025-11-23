@@ -1,7 +1,7 @@
 // src/components/AdBanner.jsx
 import { useEffect } from "react";
 
-export default function AdBanner() {
+export default function AdChat() {
   useEffect(() => {
     try {
       (window.adsbygoogle = window.adsbygoogle || []).push({});

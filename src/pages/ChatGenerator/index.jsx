@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { toPng } from "html-to-image";
-import AdChat from "../../components/AdChat";
+import AdChat from "@/components/AdChat";
 
 export default function ChatGenerator() {
   const [input, setInput] = useState("");
@@ -25,6 +25,7 @@ export default function ChatGenerator() {
       profileColor: "bg-blue-300",
       nameColor: "text-blue-700",
       timeColor: "text-gray-400",
+      areaBgColor: "#f3f4f6",    // gray-100
     },
 
     green: {
@@ -38,6 +39,7 @@ export default function ChatGenerator() {
       profileColor: "bg-green-300",
       nameColor: "text-green-700",
       timeColor: "text-gray-400",
+      areaBgColor: "#f0fdf4",    // green-50
     },
 
     dark: {
@@ -51,6 +53,7 @@ export default function ChatGenerator() {
       profileColor: "bg-gray-600",
       nameColor: "text-gray-300",
       timeColor: "text-gray-500",
+      areaBgColor: "#111827",    // gray-900
     },
 
     kakao: {
@@ -64,19 +67,23 @@ export default function ChatGenerator() {
       profileColor: "bg-yellow-200",
       nameColor: "text-yellow-700",
       timeColor: "text-gray-500",
+      areaBgColor: "#fefce8",    // yellow-50
     },
 
     mint: {
-      meBg: "bg-[#B4FDFD]",        
+      meBg: "bg-[#B4FDFD]",        // 나 버블
       meText: "text-black",
       otherBg: "bg-white",
       otherText: "text-gray-900",
-      areaBg: "bg-[#EFFFFF]",      
-      headerBg: "bg-[#A3F5F5]",    
+
+      areaBg: "bg-[#EFFFFF]",      // 전체 배경 - 좀 더 은은한 톤
+      headerBg: "bg-[#A3F5F5]",    // 헤더
       headerText: "text-black",
-      profileColor: "bg-[#99F0F0]",
-      nameColor: "text-[#009999]", 
-      timeColor: "text-[#66A0A0]", 
+
+      profileColor: "bg-[#99F0F0]", // 프로필 기본색
+
+      nameColor: "text-[#009999]",  // 이름 색 (민트 대비 어두운 청록)
+      timeColor: "text-[#66A0A0]",  // 시간 색
     },
   };
 
@@ -88,55 +95,101 @@ export default function ChatGenerator() {
   const parseMessages = (inputText) => {
     if (!inputText.trim()) return [];
 
-    const lines = inputText.split("\n").map((l) => l.trim());
+    const normalized = inputText
+      .replace(/>\s*\[/g, ">\n[")
+      .replace(/\]\s*</g, "]\n<");
+
+    const lines = normalized.split("\n").map((l) => l.trim());
 
     const messages = [];
     let currentHeader = null;
+    let pendingBody = null;
 
     for (let line of lines) {
       if (!line) continue;
 
-      // --- 1) 헤더 판별 (문장 맨 앞이 '<' 이어야 함)
-      const headerMatch = line.match(/^<([^>]+)>$/);
+      // ---- HEADER ----
+      const headerMatch = line.match(/^<\s*([^>]+?)\s*>\s*$/);
       if (headerMatch) {
-        const header = headerMatch[1].trim();
-        const parts = header.split("/").map((s) => s.trim());
+        // 이전 메시지 flush
+        if (currentHeader && pendingBody !== null) {
+          messages.push({
+            from: currentHeader.from,
+            time: currentHeader.time,
+            to: currentHeader.to,
+            body: pendingBody.trim(),
+          });
+        }
 
-        const from = parts[0] || "";
-        const time = parts[1] || "";
-        const to   = parts[2] || "";
+        const parts = headerMatch[1]
+          .split("/")
+          .map((s) => s.trim());
 
-        currentHeader = { from, time, to };
+        currentHeader = {
+          from: parts[0] || "",
+          time: parts[1] || "",
+          to: parts[2] || "",
+        };
+
+        pendingBody = null;
         continue;
       }
 
-      // --- 2) 본문 메시지 처리 (여러 [ ] 각각 별도 메시지)
-      const bodyMatch = line.match(/^\[(.*)\]$/s);
-      if (bodyMatch && currentHeader) {
-        messages.push({
-          from: currentHeader.from,
-          time: currentHeader.time,
-          to: currentHeader.to,
-          body: bodyMatch[1].trim(),
-        });
+      // ---- MESSAGE START ----
+      if (line.startsWith("[")) {
+        const withoutStartBracket = line.substring(1); // [ 제거
+        if (line.endsWith("]")) {
+          // 단일줄 메시지
+          const content = withoutStartBracket.slice(0, -1); // ] 제거
+          messages.push({
+            from: currentHeader?.from || "",
+            time: currentHeader?.time || "",
+            to: currentHeader?.to || "",
+            body: content.trim(),
+          });
+          pendingBody = null;
+        } else {
+          // 멀티라인 시작
+          pendingBody = withoutStartBracket;
+        }
         continue;
       }
 
-      // HTML 태그 있는 메시지도 안전하게 처리
-      // (예: [<b><span ...>텍스트</span></b>])
-      const complexBodyMatch = line.match(/^\[(.+)\]$/);
-      if (complexBodyMatch && currentHeader) {
-        messages.push({
-          from: currentHeader.from,
-          time: currentHeader.time,
-          to: currentHeader.to,
-          body: complexBodyMatch[1].trim(),
-        });
+      // ---- MULTILINE 메시지 처리 ----
+      if (pendingBody !== null) {
+        if (line.endsWith("]")) {
+          const withoutEndBracket = line.slice(0, -1);
+          pendingBody += "\n" + withoutEndBracket;
+
+          messages.push({
+            from: currentHeader.from,
+            time: currentHeader.time,
+            to: currentHeader.to,
+            body: pendingBody.trim(),
+          });
+
+          pendingBody = null;
+        } else {
+          pendingBody += "\n" + line;
+        }
+        continue;
       }
+    }
+
+    // 마지막 메시지 flush
+    if (currentHeader && pendingBody !== null) {
+      messages.push({
+        from: currentHeader.from,
+        time: currentHeader.time,
+        to: currentHeader.to,
+        body: pendingBody.trim(),
+      });
     }
 
     return messages;
   };
+
+
 
 
 
@@ -251,10 +304,10 @@ const waitForImages = () =>
   return (
     <div className="p-8 flex flex-col items-center gap-6 w-full">
 
-      <AdChat/>
-
       {/* --- 테마 선택 + 내 이름 선택 --- */}
       <div className="w-full max-w-xl flex flex-col gap-4 mt-2">
+
+        <AdChat />
 
         <div className="flex gap-4">
           <div className="flex-1">
