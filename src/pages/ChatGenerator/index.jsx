@@ -140,6 +140,25 @@ export default function ChatGenerator() {
       timeColor: "text-blue-500",
     },
 
+    F: {
+      meBg: "bg-[#FFBC84]",
+      meText: "text-[#4A2E1F]",
+
+      otherBg: "bg-[#91A8D0]",
+      otherText: "text-[#1B2330]",
+
+      areaBg: "bg-[#D7ECFF]",
+
+      headerBg: "bg-[#A7BEE0]",
+      headerText: "text-[#2C3549]",
+
+      profileColor: "bg-[#C8B5CE]",
+
+      nameColor: "text-[#6A4B68]",
+      timeColor: "text-[#4F5A6A]",
+    },
+
+
 
   };
 
@@ -427,11 +446,12 @@ const waitForImages = () =>
                 <option value="blue">파랑 테마</option>
                 <option value="green">초록 테마</option>
                 <option value="dark">다크 테마</option>
-                <option value="kakao">카카오톡 스타일</option>
+                <option value="kakao">나랑노랑</option>
                 <option value="mint">즈!!!</option>
                 <option value="roseGold">내기할텐가?</option>
                 <option value="M">까르보나라엔 크림이 한 방울도 들어가지 않습니다</option>
                 <option value="J">민트초코</option>
+                <option value="F">별</option>
               </select>
             </div>
 
