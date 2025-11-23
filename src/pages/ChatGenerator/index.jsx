@@ -87,6 +87,60 @@ export default function ChatGenerator() {
       nameColor: "text-[#009999]",  // 이름 색 (민트 대비 어두운 청록)
       timeColor: "text-[#66A0A0]",  // 시간 색
     },
+
+    roseGold: {
+      meBg: "bg-[#CF5D5D]",
+      meText: "text-white",
+
+      otherBg: "bg-white",
+      otherText: "text-[#2A2A2A]",
+
+      areaBg: "bg-[#ECECEC]",
+
+      headerBg: "bg-[#D8CBB8]",
+      headerText: "text-[#3A2F2A]",
+
+      profileColor: "bg-[#B7BFC9]",
+
+      nameColor: "text-[#766B60]",
+      timeColor: "text-[#A3A3A3]",
+    },
+
+    M: {
+      meBg: "bg-[#0F2F2E]",       
+      meText: "text-white",
+
+      otherBg: "bg-[#11211F]",
+      otherText: "text-gray-200",
+
+      areaBg: "bg-[#0A1A18]",     
+
+      headerBg: "bg-[#0D2624]",   
+      headerText: "text-[#CBB4FF]",
+
+      profileColor: "bg-[#103A35]",
+
+      nameColor: "text-[#BFA3FF]",
+      timeColor: "text-[#6A4CAA]",
+    },
+    J: {
+      meBg: "bg-[#0033CC]",
+      meText: "text-white",
+      otherBg: "bg-gray-800",
+      otherText: "text-gray-100",
+
+      areaBg: "bg-gray-900",
+
+      headerBg: "bg-gray-950",
+      headerText: "text-blue-200",
+
+      profileColor: "bg-gray-700",
+
+      nameColor: "text-blue-300",
+      timeColor: "text-blue-500",
+    },
+
+
   };
 
 
@@ -303,16 +357,58 @@ const waitForImages = () =>
     reader.readAsDataURL(file);
   };
 
+  const [copyText, setCopyText] = useState("복사하기");
+
+  const handleCopy = () => {
+    const text = document.getElementById("copy-content").innerText;
+    navigator.clipboard.writeText(text);
+
+    // 버튼 문구 변경
+    setCopyText("복사됨!");
+
+    // 1.5초 뒤 원래대로
+    setTimeout(() => {
+      setCopyText("복사하기");
+    }, 1500);
+  };
+
 
   return (
     <div className="flex flex-col items-center gap-6 w-full py-8">
 
-      <div className="lg:p-8 p-2 flex flex-col items-center gap-6 w-full">
-
+      <div className="lg:p-8 p-2 flex flex-col max-w-xl items-center gap-6 w-full">
+        
         {/* 상단 페이지 제목 */}
         <h1 className="text-xl font-bold text-gray-800 text-center">
           챗 OOC 제너레이터
         </h1>
+
+        {/* --- 복사 영역 (맨 위) --- */}
+        <div className="w-full">
+          <div className="text-sm font-medium">OOC From 이루룽 X @Iru_rurung</div>
+          <div
+            id="copy-content"
+            className="text-xs opacity-80 bg-white mt-1 px-3 py-2 rounded border border-gray-300 text-center whitespace-pre-line"
+          >
+            {`*[OOC: NPC와 PC의 평범한 문자내역을 출력한다. 일상적인 내용이나, 서로의 문자메세지를 메모장으로 쓰거나, 다른사람에게 보낼 문자, 그 외 문자(예시: 장난스럽거나, 심각하거나, 놀리는 문자, 혹은 실수로 보내거나 등)일 수 있다.
+
+문자는
+< 보낸사람 / 발신시간 / 받는사람 >
+[ 메시지 내용 ]
+으로 묘사한다.
+
+대괄호 내부의 내용은 PC와 NPC의 감정이나 느낌에 따라 html형식(글씨크기변동, 볼드체, 기울임체, 취소선)사용 가능. 필요할 경우 오타를 내도 괜찮다.
+사담없이 문자메세지들만 출력할 것, 최소 700단어 이상 서술할 것.]*`}
+          </div>
+
+          <button
+            className="text-xs mt-2 px-3 py-1 bg-gray-800 text-white rounded hover:bg-black transition"
+            onClick={handleCopy}
+          >
+            {copyText}
+          </button>
+        </div>
+
       
 
         
@@ -333,6 +429,9 @@ const waitForImages = () =>
                 <option value="dark">다크 테마</option>
                 <option value="kakao">카카오톡 스타일</option>
                 <option value="mint">즈!!!</option>
+                <option value="roseGold">내기할텐가?</option>
+                <option value="M">까르보나라엔 크림이 한 방울도 들어가지 않습니다</option>
+                <option value="J">민트초코</option>
               </select>
             </div>
 
@@ -456,11 +555,12 @@ const waitForImages = () =>
           className="w-full max-w-xl h-60 p-4 border rounded-md shadow-sm bg-white"
           placeholder={`예시 형식:
 
-  < M / PM 12:28 >
-  [상황 보고 바랍니다…]
-
-  < 비광 / PM 12:29 >
-  [실패. 동일한 수법…]`}
+  < 다야 / AM 10:19 / M >
+  [물 타서 아메리카노 해먹으면 딱이겠네~ 🧊☕ ]
+  
+  < M / AM 10:20 / 다야 >
+  [ 커피에 물을 타서 희석시킨다는 발상은 도대체 어디서 나오는 겁니까? ]
+  `}
           value={input}
           onChange={handleInputChange}
         />
@@ -593,9 +693,12 @@ const waitForImages = () =>
                   >
 
                     <div
-                      dangerouslySetInnerHTML={{ __html: m.body }}
                       className="leading-relaxed"
+                      dangerouslySetInnerHTML={{
+                        __html: m.body.replace(/\n/g, "<br>")
+                      }}
                     />
+
                   </div>
 
                   {/* 시간 */}
@@ -630,7 +733,8 @@ const waitForImages = () =>
 
       {/* --- Thanks to --- */}
       <div className="text-center text-xs opacity-60 mt-6">
-        OOC 개발자 - 룽 - 에게 감사의 인사를 남깁니다.
+        OOC 원작자 - 룽 - 에게 감사의 인사를 남깁니다.<br/>
+        개발한 사람: 중중
       </div>
     </div>
   );
