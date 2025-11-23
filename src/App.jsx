@@ -40,6 +40,7 @@ import DeathoutPage from './pages/DeathoutPage';
 import BirthdayTerryPage from './pages/BirthdayTerryPage';
 import DeathfinalPage from './pages/DeathfinalPage copy';
 import BirthdayFPage from './pages/BirthdayFPage';
+import ChatGenerator from './pages/ChatGenerator';
 
 function AppProvider({ children }) {
   return (
@@ -93,6 +94,7 @@ function App() {
         <Route path="/terryday" element={<BirthdayTerryPage/>} />
         <Route path="/deathsscythe" element={<DeathfinalPage/>} />
         <Route path="/FistheHero" element={<BirthdayFPage/>} />
+        <Route path="/chatGenerator" element={<ChatGenerator/>} />
       </Routes>
     </AppProvider>
   );
