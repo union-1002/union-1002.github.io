@@ -3,6 +3,8 @@ import { toPng } from "html-to-image";
 import AdChat from "@/components/AdChat";
 
 export default function ChatGenerator() {
+  const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
   const [theme, setTheme] = useState("blue");
@@ -127,7 +129,7 @@ export default function ChatGenerator() {
 
         currentHeader = {
           from: parts[0] || "",
-          time: parts[1] || "",
+          time: (parts[1] || "").replace(/:$/, ""),
           to: parts[2] || "",
         };
 
@@ -205,16 +207,17 @@ export default function ChatGenerator() {
 
     // 초기 myName 설정
 
-    if (parsed.length > 0 && !myName) {
+    // 새로운 입력이 들어오면 내 이름도 다시 잡아준다
+    if (parsed.length > 0) {
       if (senders.length === 2) {
-        // 두 명이라면 “첫 번째 발신자 = 상대방”
-        // “두 번째 발신자 = 나”
+        // 두 명일 때는 두 번째가 '나'
         setMyName(senders[1]);
       } else {
-        // 3명 이상일 때는 첫 번째를 ‘나’로 둬도 무방
+        // 세 명 이상이면 첫 번째를 '나'로
         setMyName(senders[0]);
       }
     }
+
 
     // 기본 customNames 초기화
     const newNames = {};
@@ -305,13 +308,18 @@ const waitForImages = () =>
     <div className="flex flex-col items-center gap-6 w-full py-8">
 
       <div className="lg:p-8 p-2 flex flex-col items-center gap-6 w-full">
+
+        {/* 상단 페이지 제목 */}
+        <h1 className="text-xl font-bold text-gray-800 text-center">
+          챗 OOC 제너레이터
+        </h1>
       
 
-        {/* --- 테마 선택 + 내 이름 선택 --- */}
-        <div className="w-full max-w-xl flex flex-col gap-4 mt-2">
+        
+        <div className="w-full max-w-xl flex flex-col gap-4">
 
           <AdChat />
-
+          {/* --- 테마 선택 + 내 이름 선택 --- */}
           <div className="flex gap-4">
             <div className="flex-1">
               <label className="text-sm font-medium">테마 선택</label>
@@ -462,7 +470,7 @@ const waitForImages = () =>
       {/* --- 채팅 UI 본문 --- */}
       <div
         ref={chatRef}
-        className={`${t.areaBg} rounded-xl w-full max-w-xl shadow-lg overflow-hidden`}
+        className={`${t.areaBg} rounded-xl w-full max-w-xl ${isiOS ? "" : "shadow-lg"} overflow-hidden`}
       >
         {/* 헤더 */}
         <div
@@ -575,13 +583,15 @@ const waitForImages = () =>
                   {/* 말풍선 */}
                   <div
                     className={`
-                      px-4 py-2 rounded-2xl text-sm shadow
+                      px-4 py-2 rounded-2xl text-sm
+                      ${isiOS ? "" : "shadow"}
                       ${isMe ? `${t.meBg} ${t.meText}` : `${t.otherBg} ${t.otherText}`}
                       ${isFirstOfGroup && !isMe ? "rounded-tl-none" : ""}
                       ${isFirstOfGroup && isMe ? "rounded-tr-none" : ""}
                       ${!isLastOfGroup ? "mb-0.5" : "mb-1"}
                     `}
                   >
+
                     <div
                       dangerouslySetInnerHTML={{ __html: m.body }}
                       className="leading-relaxed"
@@ -617,6 +627,11 @@ const waitForImages = () =>
       >
         이미지로 다운로드
       </button>
+
+      {/* --- Thanks to --- */}
+      <div className="text-center text-xs opacity-60 mt-6">
+        OOC 개발자 - 룽 - 에게 감사의 인사를 남깁니다.
+      </div>
     </div>
   );
 }
