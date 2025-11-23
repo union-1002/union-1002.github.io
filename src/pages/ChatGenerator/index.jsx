@@ -302,154 +302,162 @@ const waitForImages = () =>
 
 
   return (
-    <div className="p-8 flex flex-col items-center gap-6 w-full">
+    <div className="flex flex-col items-center gap-6 w-full py-8">
 
-      {/* --- 테마 선택 + 내 이름 선택 --- */}
-      <div className="w-full max-w-xl flex flex-col gap-4 mt-2">
+      <div className="lg:p-8 p-2 flex flex-col items-center gap-6 w-full">
+      
 
-        <AdChat />
+        {/* --- 테마 선택 + 내 이름 선택 --- */}
+        <div className="w-full max-w-xl flex flex-col gap-4 mt-2">
 
-        <div className="flex gap-4">
-          <div className="flex-1">
-            <label className="text-sm font-medium">테마 선택</label>
-            <select
-              className="w-full border p-2 rounded-md mt-1"
-              value={theme}
-              onChange={(e) => setTheme(e.target.value)}
-            >
-              <option value="blue">파랑 테마</option>
-              <option value="green">초록 테마</option>
-              <option value="dark">다크 테마</option>
-              <option value="kakao">카카오톡 스타일</option>
-              <option value="mint">즈!!!</option>
-            </select>
-          </div>
+          <AdChat />
 
-          <div className="flex-1">
-            <label className="text-sm font-medium">내 이름 선택</label>
-            <select
-              className="w-full border p-2 rounded-md mt-1"
-              value={myName}
-              onChange={(e) => handleMyNameChange(e.target.value)}
-            >
-              {senderList.length === 0 && <option>-</option>}
-              {senderList.map((s) => (
-                <option key={s} value={s}>
-                  {s}   {/* ✔ 원래 sender 이름만 표시 */}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
-
-        {/* 채팅방 이름 수정 */}
-        <div>
-          <label className="text-sm font-medium">채팅방 이름 수정</label>
-          <input
-            className="w-full border p-2 rounded-md mt-1"
-            value={roomName}
-            onChange={(e) => setRoomName(e.target.value)}
-          />
-        </div>
-      </div>
-
-      {/* --- 보내는 사람 이름 개별 수정 --- */}
-      {senderList.length > 0 && (
-        <div className="w-full max-w-xl p-4 border rounded-md bg-white shadow-sm">
-          <div className="text-sm font-medium mb-3">참여자 이름 변경</div>
-          {senderList.map((s) => (
-            <div key={s} className="flex items-center gap-3 mb-2">
-              <span className="w-20 text-sm">{s}</span>
-              <input
-                className="border p-1 rounded flex-1"
-                value={customNames[s] ?? s}
-                onChange={(e) => handleSenderRename(s, e.target.value)}
-              />
+          <div className="flex gap-4">
+            <div className="flex-1">
+              <label className="text-sm font-medium">테마 선택</label>
+              <select
+                className="w-full border p-2 rounded-md mt-1"
+                value={theme}
+                onChange={(e) => setTheme(e.target.value)}
+              >
+                <option value="blue">파랑 테마</option>
+                <option value="green">초록 테마</option>
+                <option value="dark">다크 테마</option>
+                <option value="kakao">카카오톡 스타일</option>
+                <option value="mint">즈!!!</option>
+              </select>
             </div>
-          ))}
+
+            <div className="flex-1">
+              <label className="text-sm font-medium">내 이름 선택</label>
+              <select
+                className="w-full border p-2 rounded-md mt-1"
+                value={myName}
+                onChange={(e) => handleMyNameChange(e.target.value)}
+              >
+                {senderList.length === 0 && <option>-</option>}
+                {senderList.map((s) => (
+                  <option key={s} value={s}>
+                    {s}   {/* ✔ 원래 sender 이름만 표시 */}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          {/* 채팅방 이름 수정 */}
+          <div>
+            <label className="text-sm font-medium">채팅방 이름 수정</label>
+            <input
+              className="w-full border p-2 rounded-md mt-1"
+              value={roomName}
+              onChange={(e) => setRoomName(e.target.value)}
+            />
+          </div>
         </div>
-      )}
 
-      {senderList.map(
-        (s) =>
-          s !== myName && (
-            <div key={s} className="flex items-center gap-3 py-2">
-              
-              {/* 프로필 + 업로드 버튼 */}
-              <div className="relative">
-                <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-                  {profileImages[s] ? (
-                    <img
-                      src={profileImages[s]}
-                      alt={s}
-                      crossOrigin="anonymous"
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className={`w-full h-full rounded-full ${t.profileColor}`} />
-                  )}
-                </div>
-
-                {/* 업로드 버튼 */}
-                <label
-                  htmlFor={`upload-${s}`}
-                  className="
-                    absolute bottom-0 right-0
-                    bg-black/60 hover:bg-black/80
-                    text-white
-                    w-5 h-5
-                    rounded-full
-                    flex items-center justify-center
-                    cursor-pointer
-                    transition
-                  "
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-3 w-3"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      d="M12 5v14m7-7H5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </label>
-
-                {/* 실제 input은 숨기기 */}
+        {/* --- 보내는 사람 이름 개별 수정 --- */}
+        {senderList.length > 0 && (
+          <div className="w-full max-w-xl p-4 border rounded-md bg-white shadow-sm">
+            <div className="text-sm font-medium mb-3">참여자 이름 변경</div>
+            {senderList.map((s) => (
+              <div key={s} className="flex flex-col mb-3">
+                <span className="text-sm mb-1">{s}</span>
                 <input
-                  id={`upload-${s}`}
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={(e) => handleUpload(s, e.target.files[0])}
+                  className="border p-2 rounded w-full"
+                  value={customNames[s] ?? s}
+                  onChange={(e) => handleSenderRename(s, e.target.value)}
                 />
               </div>
+            ))}
+          </div>
+        )}
 
-              {/* 이름 */}
-              <span className="text-sm w-20">{customNames[s] ?? s}</span>
-            </div>
-          )
-      )}
+        {senderList.map(
+          (s) =>
+            s !== myName && (
+              <div key={s} className="flex items-center gap-3 py-2">
+                
+                {/* 프로필 + 업로드 버튼 */}
+                <div className="relative">
+                  <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                    {profileImages[s] ? (
+                      <img
+                        src={profileImages[s]}
+                        alt={s}
+                        crossOrigin="anonymous"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className={`w-full h-full rounded-full ${t.profileColor}`} />
+                    )}
+                  </div>
+
+                  {/* 업로드 버튼 */}
+                  <label
+                    htmlFor={`upload-${s}`}
+                    className="
+                      absolute bottom-0 right-0
+                      bg-black/60 hover:bg-black/80
+                      text-white
+                      w-5 h-5
+                      rounded-full
+                      flex items-center justify-center
+                      cursor-pointer
+                      transition
+                    "
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-3 w-3"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        d="M12 5v14m7-7H5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </label>
+
+                  {/* 실제 input은 숨기기 */}
+                  <input
+                    id={`upload-${s}`}
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => handleUpload(s, e.target.files[0])}
+                  />
+                </div>
+
+                {/* 이름 */}
+                <span className="text-sm break-words max-w-[120px]">
+                  {customNames[s] ?? s}
+                </span>
+
+              </div>
+            )
+        )}
 
 
-      {/* --- 입력창 --- */}
-      <textarea
-        className="w-full max-w-xl h-60 p-4 border rounded-md shadow-sm bg-white"
-        placeholder={`예시 형식:
+        {/* --- 입력창 --- */}
+        <textarea
+          className="w-full max-w-xl h-60 p-4 border rounded-md shadow-sm bg-white"
+          placeholder={`예시 형식:
 
-< M / PM 12:28 >
-[상황 보고 바랍니다…]
+  < M / PM 12:28 >
+  [상황 보고 바랍니다…]
 
-< 비광 / PM 12:29 >
-[실패. 동일한 수법…]`}
-        value={input}
-        onChange={handleInputChange}
-      />
+  < 비광 / PM 12:29 >
+  [실패. 동일한 수법…]`}
+          value={input}
+          onChange={handleInputChange}
+        />
+      
+      </div>
 
       {/* --- 채팅 UI 본문 --- */}
       <div
@@ -490,10 +498,10 @@ const waitForImages = () =>
           <div className="flex-1 text-center truncate px-2">{roomName}</div>
 
           {/* Right: menu */}
-          <div className="w-8 flex justify-end opacity-80">
+          <div className="w-8 flex justify-end items-center opacity-80">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-5 w-5 block leading-none"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
@@ -503,7 +511,7 @@ const waitForImages = () =>
         </div>
 
         {/* 메시지 영역 */}
-        <div className="p-6">
+        <div className="lg:p-6 p-3 py-6">
           {messages.map((m, idx) => {
             const isMe = m.from === myName;
             const displayName = customNames[m.from] ?? m.from;
