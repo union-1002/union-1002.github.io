@@ -2,118 +2,95 @@ import MainLayout from '@/shared/MainLayout';
 import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
 import { useUser } from '@/shared/user';
-import AdMonth from "../../components/AdMonth";
-import { useState } from "react";
 
 function MonthPage() {
   const user = useUser();
   const defaultPosts = [
     {
       id: 7,
+      author: "울프독 공용 계정",
+      text: "1빠임다 ㅋㅋ",
+      image: "/images/wolfdog1.png",
+      replies: [
+        { id: 11, author: "I", image: "/images/wolfdog1.png", text: "아싸, 2빠. 베르너가 커피 사는 걸로." },
+        { id: 11, author: "A", image: "/images/wolfdog1.png", text: "야 관리자 계정으로 미리 오는 건 반칙 아닙니까?" },
+        { id: 11, author: "M", image: "/images/wolfdog1.png", text: "테리 군, 공용 계정으로 장난치지 마세요." },
+        { id: 11, author: "오르티", image: "/images/hunters1.png", text: "댜들ㅗ나이ㅅ갑ㅄ좀 하거라" },
+      ],
+    },
+    {
+      id: 7,
       author: "N",
-      text: "아미친",
+      text: "이야 우리 부서 연속으로 이달사 하는 거 봐. 최고의 부서 아니냐? 저기 재수 없는 민트초코 나부랭이보다 우리 용용이가 먼저 이달사 받는 거 보면 답 나오지.",
       image: "/images/hunters1.png",
       replies: [
+        { id: 11, author: "J", image: "/images/dracal1.png", text: "재수 없는 치토스." },
+        { id: 11, author: "N", image: "/images/hunters1.png", text: "뭐냐? 이 싸가지가. 너라고 한적 없는데?" },
+        { id: 11, author: "J", image: "/images/dracal1.png", text: "저도 누군가를 특정하고 한 이야기는 아닙니다." },
+        { id: 11, author: "N", image: "/images/hunters1.png", text: "어 재활용도 안되는 민트초코 껍데기" },
+        { id: 11, author: "J", image: "/images/dracal1.png", text: "응 재활용 해도 적자 나는 치토스 봉지." },
+        { id: 11, author: "오르티", image: "/images/hunters1.png", text: "재활ㄹ용은ㅓ 어디ㅓ게이트에 사는ㄴ 용이느냐ㅑ" },
 
-      ],
-    },
-    {
-      id: 7,
-      author: "N",
-      text: "아",
-      image: "/images/hunters1.png",
-      replies: [
-
-      ],
-    },
-    {
-      id: 7,
-      author: "N",
-      text: "드디어 유니온 이달사 심사위원들 대가리에 제대로 된 개념을 눌러담았네ㅡㅡ 울프독 이글아이 언그 리더들이 뭐 잘했다고 우리 선배보다 먼저 상을 타 가냐고😑",
-      image: "/images/hunters1.png", 
-      replies: [
-        { id: 11, author: "J", image: "/images/dracal1.png", text: "공개적인 게시판에서 다른 사람을 비방하는 행위는 삼가하기 바랍니다." },
-        { id: 11, author: "N", image: "/images/hunters1.png", text: "어? 이달사 못받은 리더도 답글 달 권한이 있냐?" },
-        { id: 11, author: "R", image: "/images/underground1.png", text: "자격 불충분한 보직장이 있다는 것에는 저 역시 동의합니다." },
-        { id: 11, author: "N", image: "/images/hunters1.png", text: "아 ㅅㅂ 저 유니온 탈퇴합니다" },
-      ],
-    },
-    {
-      id: 7,
-      author: "S",
-      text: "헐!!! 어뜩해요???? 리더님 너무너무너무너무너무 삼겹살 구이만큼 딸기 케이크만큼 봉골레 파스타만큼 피순대국밥만큼 까르보나라만큼 수플레 팬케이크만큼 축하드려요!!!",
-      image: "/images/hunters1.png", 
-      replies: [
-        { id: 11, author: "오르티", image: "/images/hunters1.png", text: "ㅍㅣ순ㄷ대 국ㄱ밥은 무엇이냐?? 이몸도ㅗ 궁금ㅁ하도ㅗ다" },
-        { id: 11, author: "Y", image: "/images/underground1.png", text: "밤늦게까지 계시길래 고향에서 온 순대를 한 번 대접해드린 적이 있는데 맛있게 드셔주셨어요. 감사합니다." },
-        { id: 11, author: "D", image: "/images/wolfdog1.png", text: "지 입만 입이구" },
-        { id: 11, author: "Y", image: "/images/underground1.png", text: "느 입은 주둥아리라는 걸 안다니 다행이다" },
-        { id: 11, author: "오르티", image: "/images/hunters1.png", text: "저번에 ㄱ가르보나라도 맜낫ㅅ노라!!1" },
-        { id: 11, author: "Y", image: "/images/underground1.png", text: "생크림 유통기한이 짧아 급히 만들어드린 건데 입맛에 맞으셨다니 기쁘네요." },
-        { id: 11, author: "M", image: "/images/wolfdog1.png", text: "까르보나라는 계란 노른자와 페코리노 치즈, 관찰레, 그리고 후추로만 만듭니다. 크림은 단 한 방울도 들어가지 않아요." },
-        { id: 11, author: "D", image: "/images/wolfdog1.png", text: "@Y 사과드려 빨리" },
       ],
     },
     {
       id: 7,
       author: "R",
-      text: "축하드립니다, 선배님. 완벽한 통제 아래 이루어진 완벽한 승리. 과연 선배님다운 결과입니다. 덕분에 골치 아픈 변수를 신경 쓸 필요 없이 맡은 바 임무에만 집중할 수 있으니, 이보다 더 이상적인 환경이 어디 있겠습니까. 앞으로도 변함없는 리더십을 기대하겠습니다.",
+      text: "고디바는 어떠십니까?",
       image: "/images/underground1.png", 
-      replies: [        
+      replies: [
+        { id: 11, author: "N", image: "/images/hunters1.png", text: "애 버릇 나빠진다고 했잖아 미친" },
+        { id: 11, author: "R", image: "/images/underground1.png", text: "제 알 바입니까?" },
+        { id: 11, author: "N", image: "/images/hunters1.png", text: "[신고 누적으로 가려진 댓글입니다.]" },
       ],
     },
     {
       id: 7,
-      author: "테리",
-      text: "대부님 수상을 진심으로 축하드려여👍🏻🌟 제 마음 속 영원한 영웅은 선배님 뿐!",
+      author: "살라딘",
+      text: "우리 막내가 해냈구나!",
       image: "/images/wolfdog1.png", 
       replies: [
-        { id: 11, author: "E", image: "/images/hunters1.png", text: "테리, 항상 몸 조심하고. 믿고 있다." },
-
+        { id: 11, author: "살라딘", image: "/images/wolfdog1.png", text: "장하기 짝이 없다." },
+        { id: 11, author: "오르티", image: "/images/hunters1.png", text: "ㅋㅋ아직ㄱ도 이달 사 못받은ㄴ 요원없제? ㅋㅋ" },
+        { id: 11, author: "E", image: "/images/hunters1.png", text: "이런 말투는 누가 가르친 겁니까?" },
       ],
     },
     {
       id: 7,
-      author: "H",
-      text: "형! 이렇게 많은 사람들 앞에서 고백해본다. 내 방패가 되어줄래? 이제 누가 공지해주냐.",
+      author: "미네르바",
+      text: "축하한다, 오르토스.",
       image: "/images/eagleeye1.png", 
+      replies: [        
+ 
+      ],
+    },
+    {
+      id: 7,
+      author: "P",
+      text: "위대하신 분의 고아한 행적에 박수를!",
+      image: "/images/hunters1.png", 
       replies: [
-        { id: 11, author: "L", image: "/images/eagleeye1.png", text: "삼촌…! 마지막 건 다른 사람이 적어줘야 해요 🥹🥹" },
-        { id: 11, author: "H", image: "/images/eagleeye1.png", text: "이거 삭제 어떻게 하냐?" },
-        { id: 11, author: "H", image: "/images/eagleeye1.png", text: "왜 삭제가 안 되는데" },
-        { id: 11, author: "관리자", image: "/images/union.png", text: "회원간 상호 비방 후 삭제하는 일이 많아 삭제 기능을 제한해두었으니 이용에 참고 부탁드립니다." },
-        { id: 11, author: "H", image: "/images/eagleeye1.png", text: "근데 나는 돼야 하지 않냐?" },
+        { id: 11, author: "미카엘", image: "/images/dracal1.png", text: "참다 참다 말하는 건데 이거 어떻게 할 수 없어요?" },
+        { id: 11, author: "P", image: "/images/hunters1.png", text: "[관리자에 의해 제재된 댓글(사유: 명예훼손)입니다.]" },
+        { id: 11, author: "미카엘", image: "/images/dracal1.png", text: "[관리자에 의해 제재된 댓글(사유: 욕설)입니다.]" },
+      ],
+    },
+    {
+      id: 7,
+      author: "비광",
+      text: "경사로구먼! 한 턱 쏘게!",
+      image: "/images/wolfdog1.png", 
+      replies: [
+        { id: 11, author: "오르티", image: "/images/hunters1.png", text: "ㅇㅠ유상종이노라!" },
       ],
     },
     {
       id: 7,
       author: "S",
-      text: "그럼 우리 오늘 회식하는 거예요? 회식????",
+      text: "🌙✨ 오르링~~~ 용용이~~~ ✨🌙 이달사 된 거 진짜루 축하해에에 🥳💛 역시 우리 오르링은 맛있는 고기처럼 씹을수록 대단한 사람이라니까아 🤤🔥",
       image: "/images/hunters1.png", 
       replies: [
-        { id: 11, author: "N", image: "/images/hunters1.png", text: "코드 레드 코드 레드" },
-        { id: 11, author: "E", image: "/images/hunters1.png", text: "그래, 자네가 먹고 싶은 데로 가도록 하지." },
-      ],
-    },
-    {
-      id: 7,
-      author: "F",
-      text: "살아서 축하할 일이 있다는 건 여전히 새삼스럽네요.",
-      image: "/images/hunters1.png", 
-      replies: [
-        { id: 11, author: "비광", image: "/images/wolfdog1.png", text: "자네 다음 테러 위치는 어디인감? 힌트라도 주게" },
-        { id: 11, author: "M", image: "/images/wolfdog1.png", text: "비광 씨, 유니온은 테러범과 협상하지 않습니다." },
-      ],
-    },
-    {
-      id: 7,
-      author: "J",
-      text: "축하드립니다, 선배님. 제 누나가 춤과 노래를 준비했다고 하니 부디 기쁘게 감상하여 주시기 바랍니다.",
-      image: "/images/dracal1.png", 
-      replies: [
-        { id: 11, author: "N", image: "/images/hunters1.png", text: "ㅈ까 내가 언제" },
-        { id: 11, author: "E", image: "/images/hunters1.png", text: "기대했는데, 아니라니 아쉽네." },
-        { id: 11, author: "N", image: "/images/hunters1.png", text: "최고의 무대로 준비하겠습니다." },
+
       ],
     },
     
@@ -122,217 +99,158 @@ function MonthPage() {
   const grimmerReaperPosts = [
     {
       id: 7,
-      author: "하피",
-      text: "흐으음 이번 달은 별 거 없네?",
-      image: "/images/gr.png",
-      replies: [
-      ],
-    },
-    {
-      id: 7,
-      author: "아가페",
-      text: "별 거 없다니요🖤 사랑스러운 걸 준비하고 있답니다💚",
-      image: "/images/gr.png",
-      replies: [
-      ],
-    },
-    {
-      id: 7,
-      author: "루두스",
-      text: "이런, 깜짝 무대인가요! 관객의 흥미를 돋구는 요소로군요!",
-      image: "/images/gr2.png", 
-      replies: [
-      ],
-    },
-    {
-      id: 7,
-      author: "마니아",
-      text: "슬슬 올 때 안 되었나요?",
-      image: "/images/gr.png", 
-      replies: [
-      ],
-    },
-    {
-      id: 7,
-      author: "아가페",
-      text: "조금만 더 기다릴까요…?",
-      image: "/images/gr.png", 
-      replies: [
-      ],
-    },
-    {
-      id: 7,
-      author: "아가페",
-      text: "오래 기다리셨다구요💚",
-      image: "/images/gr.png", 
-      replies: [
-      ],
-    },
-    {
-      id: 7,
-      author: "하피",
-      text: "너어는 진짜",
-      image: "/images/gr.png", 
-      replies: [
-        { id: 11, author: "아가페", image: "/images/gr.png", text: "제가 뭐요???" },
-
-      ],
-    },
-    {
-      id: 7,
       author: "뽀삐",
-      text: "호박 수프 냄새가 나! 뽀삐 익숙해!",
-      image: "/images/gr.png", 
+      text: "용용이! 멋져! 축하해!",
+      image: "/images/gr.png",
       replies: [
+
       ],
     },
     {
       id: 7,
       author: "에로스",
-      text: "✭❋✜ㅈㅣ금 입장✮시 ☞웰컴 드링크 증정☜ ❘룰렜 1호ㅣ무$료 ☎100% 당첨 보장 ㅈㅣ금 ㅂr✥로 화끈한 어른♨들의 노ㄹㅣ터♚ 슬♔럼 아亼모♨ㄷㅔ우亼✫로➲",
+      text: "✧⟆ㅣ벤r트 폭주중✦ 초ㅌㅣ한정 입장만 해도 ☞보너스 칩 증정☜ 오늘 밤은 ♨어른들의 비밀정원♨ 슬♚럼 아스ㅁㅗ데우스에 서∽ㄱ 빠져봐 ➺ 바로가기",
       image: "/images/gr2.png", 
       replies: [
-        { id: 11, author: "M", image: "/images/gr.png", text: "제사장님, 차단 부탁드립니다." },
+
       ],
     },
     {
       id: 7,
-      author: "라멘타",
-      text: "실로 안타까운 개죽음이로구나.",
+      author: "아가페",
+      text: "제사장 님, 곤란한 일이 난 것 같은데요…….",
+      image: "/images/gr.png", 
+      replies: [
+
+      ],
+    },
+    {
+      id: 7,
+      author: "루두스",
+      text: "제사장, 어디간 겁니까? 형제들이 당신을 찾고 있습니다만, 주인공은 마지막에 등장하는 법인가요?",
       image: "/images/gr2.png", 
       replies: [
+
+      ],
+    },
+    {
+      id: 7,
+      author: "매드 헤터",
+      text: "우리 막내, 축하합니다!",
+      image: "/images/gr.png", 
+      replies: [        
       ],
     },
     {
       id: 7,
       author: "마니아",
-      text: "정말… 결혼이 미친 짓인가요…?🥺",
+      text: "베야 지금 제 품에서 떨고 있는데요?",
       image: "/images/gr.png", 
       replies: [
+        
       ],
     },
     {
       id: 7,
-      author: "T",
-      text: "…",
-      image: "/images/gr2.png", 
-      replies: [
-      ],
-    },
-    {
-      id: 7,
-      author: "M",
-      text: "황당해서 말도 나오지 않는군요.",
+      author: "C",
+      text: "아, 여기가 백신도 안 들어처먹는 바이러스 버러지 소굴인가요?",
       image: "/images/gr.png", 
       replies: [
+        { id: 11, author: "C", image: "/images/gr.png", text: "우글우글 기생하고 있는 꼴이 기가 차지도 않네요." },
+        { id: 11, author: "C", image: "/images/gr.png", text: "랜섬웨어 같은 새끼들." },
+        { id: 11, author: "라멘타", image: "/images/gr2.png", text: "가여운 어린양이여, 실은 이해할지니." },
       ],
     },
-    {
-      id: 7,
-      author: "매드헤터",
-      text: "이게 인간들의 사랑이라는 건가요? 브라보! 눈물 없인 볼 수 없는 이야기로군요.",
-      image: "/images/gr.png", 
-      replies: [
-      ],
-    },
-    {
-      id: 7,
-      author: "느베야",
-      text: "있지~ 불쌍한 것 같지 않아? 그런가~ 싶잖아?😏 ",
-      image: "/images/gr.png", 
-      replies: [
-      ],
-    },
-    
     
   ];
 
   const postsToShow = user.part === "새붉은 재앙" ? grimmerReaperPosts : defaultPosts;
 
-  const [showMari, setShowMari] = useState(false);
-
-  const handleToggleMari = () => {
-    setShowMari((prev) => !prev);
-  }
-
   
   return (
     <MainLayout>
-      
+      <style>{`
+        @keyframes rainbowFlow {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 200% 50%; }
+        }
+      `}</style>
       <div className="w-full max-w-3xl mx-auto px-2 lg:px-4 py-16 text-center">
 
         {/* 타이틀 */}
         <h1 className="text-3xl font-extrabold font-book text-[#435373] mb-2">
-        {user.part === '새붉은 재앙' ? '5년동안 조각 보관중💚' : '👑이달의 우수 사원👑'}
+        👑{user.part === '새붉은 재앙' ? '그림 리퍼 보거라' : '이달의 우수 사원'}👑
         </h1>
         <p className="text-gray-600 text-sm mb-10">          
-          {user.part === '새붉은 재앙' ? '유니온 때문에 희생당한 민간인을 소개합니다🥺🙏🏻' : '매달 유니온의 가장 빛나는 별을 소개합니다.'}
+          {user.part === '새붉은 재앙' ? '이몸의 멋진 모습!' : '매달 유니온의 가장 빛나는 별을 소개합니다.'}
         </p>
 
         {/* 우수 사원 카드 */}
         <div className='px-2'>
-          <div className="bg-white shadow-xl rounded-lg overflow-hidden max-w-md mx-auto">
-            <img
-              src={
-                user.part === '새붉은 재앙'
-                  ? "/images/로즈.png"
-                  : "/images/rank/E.png"
+        <div className="bg-white shadow-xl rounded-lg overflow-hidden max-w-md mx-auto">
+          <img
+            src={
+              user.part === '새붉은 재앙'
+                ? "/images/orti.png"
+                : "/images/rank/오르티.png"
+            }
+            alt="이달의 우수 사원"
+            className="w-full h-180 object-cover"
+          />
+          <div className="p-6">
+            <h2
+              className={
+                user.part === "새붉은 재앙"
+                  ? `
+                    text-xl font-bold mb-1
+                    bg-gradient-to-r
+                    from-red-400 via-yellow-400 via-green-400 via-blue-400 to-purple-500
+                    bg-clip-text text-transparent
+
+                    bg-[length:300%_100%]
+                    animate-[rainbowFlow_3s_linear_infinite]
+                  `
+                  : "text-xl font-bold text-[#456EBF] mb-1"
               }
-              alt="이달의 우수 사원"
-              className="w-full h-180 object-cover"
-            />
-            <div className="p-6">
-              <h2
-                className="text-xl font-bold text-[#456EBF] mb-1"
-                onClick={() => {
-                  if (user.part === "새붉은 재앙") handleToggleMari();
-                }}
-              >
-                {user.part === "새붉은 재앙" ? "로즈" : "E"}
-              </h2>
-              <p className="text-sm text-gray-500 mb-2">{user.part === '새붉은 재앙' ? '결혼 때문에 인생 망한 군인' : '헌터즈'}</p>
-              <p className="text-sm text-gray-700 leading-relaxed">
-                {user.part === '새붉은 재앙' ? (
-                  <>
-                    너무나도 가여우신 분<br/>
+            >
+              {user.part === "새붉은 재앙" ? "오르티로다!" : "오르티"}
+            </h2>
 
-                    역시 빨간 머리에겐 뭐가 있나?
-                  </>
-                ) : (
-                  <>
-                    이 영광을 제게 주신 유니온과 동료 여러분께 먼저 감사드립니다.<br/><br/>
 
-                하지만 이 상은 결코 저 혼자만의 것이 아님을 잘 알고 있습니다. 위험을 무릅쓰고 현장에서 함께 싸워준 모든 헌터즈 팀원, 보이지 않는 곳에서 헌신적으로 지원해준 이글아이 게이트 상황실, 그리고 무엇보다 헌터즈를 믿고 지지해주시는 시민 여러분이 있었기에 가능한 일이었습니다.<br/><br/>
+            <p className="text-sm text-gray-500 mb-2">{user.part === '새붉은 재앙' ? '킹왕짱 위대한 군주' : '헌터즈'}</p>
+            <p className="text-sm text-gray-700 leading-relaxed text-left">
+              {user.part === '새붉은 재앙' ? (
+                <>
+                  어이, ㄱㅓ기 음침한 구석ㅇㅇㅔ서  촛ㅅ불 켜놓ㄱ코 이상한 주문이나 외우는 너ㅓ희들! 잘 지냈느냐ㅑ??<br/>
+                  나 ㅇㅇㅟ대한 군주 오ㅗ르티 님이 직접 행차하셧ㅅ따!<br/>
+                  남의 사이틑ㅌ에 숨ㅁ어들어 하는 꼬라지가 한ㄴ심하도다!<br/><br/>
 
-                저는 그저 제가 마땅히 해야 할 일을 했을 뿐입니다. 리더로서, 한 명의 에스퍼로서, 저의 역할은 모두가 각자의 자리에서 최상의 역량을 발휘할 수 있도록 돕고, 모든 위험으로부터 그들을 지키는 방패가 되는 것입니다.<br/><br/>
+                  아무튼, 중요한 건ㄴ 그게 아ㅇ니다ㄴ!<br/>
+                  내가 오늘 아ㅈ주 기쁜 소식을 가져왓ㅇ따. 이몸이 가장 ㄸㅇ뤼어나다는 것을 유니온이 공식적으로 린ㄴ정했단 말이다!<br/><br/>
 
-                최근, 저의 방식이 최선이었는지에 대해 돌아볼 기회가 있었습니다. 때로는 저의 신념이 동료들에게 보이지 않는 벽이 되지는 않았는지, 과도한 책임감이 오히려 그들의 가능성을 가두는 족쇄가 되지는 않았는지 자문하게 되었습니다. 아직 저는 배울 것이 많은 부족한 리더입니다.<br/><br/>
+                  그러니ㄱ가 결론은 이거다.<br/><br/>
+                  그 음침한 짔ㅅ거리는 그만두고 유니온에 와서 내 팬크ㄹ럽 가입이나 해라. 아, 물론 가입비는 초ㅗ코로 받겠다.<br/><br/>
 
-                이번 수상을 더 나은 리더가 되라는 채찍질로 여기겠습니다. 동료들을 더 믿고, 그들의 목소리에 더 귀 기울이며, 함께 나아가는 헌터즈를 만들겠습니다.<br/><br/>
+                  이상, 우주 최강 귀염둥이 군주 오르티였다!<br/><br/>
 
-                다시 한번 말씀드리지만, 이 상은 헌터즈 모두의 것입니다. 저희는 앞으로도 평화로운 하늘 아래, 시민들을 위한 방패가 될 것을 약속드립니다. 감사합니다.
-                  </>
-                )}
-              </p>
-            </div>
-          </div>
-
-          {user.part === "새붉은 재앙" && showMari && (
-            <div className="bg-white shadow-xl rounded-lg overflow-hidden max-w-md mx-auto mt-2">
-              <img
-                src="/images/마리.png"
-                alt="이달의 우수 사원"
-                className="w-full h-180 object-cover"
-              />
-              <div className="p-6">
-                <h2 className="text-xl font-bold text-[#456EBF] mb-1">마리</h2>
-                {/* <p className="text-sm text-gray-500 mb-2">?</p>
-                <p className="text-sm text-gray-700 leading-relaxed text-left">
+                  P.S. 관리자ㅏ 비밀번호가 BloodGod1234라니, 너무 유치하지 않느냐? 내ㅐ가 ChocoLove로 바꿔놨으니 그리 알도록ㄱ!!
+                </>
+              ) : (
+                <>
+                  인간들! 아니, 동료 여러분!<br/><br/>
                   
-                </p> */}
-              </div>
-            </div>
-          )}
+                  이몸이, 위대한 군주 오르티가 이달의 가장 뛰어난 사원이 되었다는 소식을 들었노라! 처음엔 그저 반짝이는 황금 명패를 준다기에 좋다고 했지만, 이것이 너희가 나를 인정한다는 뜻이라니 기쁘기 그지없도다.<br/><br/>
+
+                  솔직히 말하자면, 몬스터들과 대화하는 건 내게 숨 쉬는 것처럼 쉬운 일이다. 너희가 길가에 핀 강아지풀에게 인사를 건네는 것과 다르지 않으니까! 하지만 그 작은 대화가 너희를 다치지 않게 하고, 웃게 만들었다니 참으로 신기하고 보람찬 일이 아닐 수 없다. 총장님과의 약속, 행복을 찾는 일이 이런 것인가 어렴풋이 알 것도 같다.<br/><br/>
+
+                  이 영광을 나에게 가장 맛있는 초콜릿을 가르쳐 준 나의 친구이자 짝꿍에게 돌리노라! 그리고 매일 잔소리하지만 밥은 잘 챙겨주는 살라딘 형아, 오토바이 태워주는 쌩쌩이 누나, 그리고 나를 무서워하지 않고 사탕을 건네준 1층 안내 데스크 직원에게도 고마움을 전한다.<br/><br/>
+
+                  부상으로 받은 백화점 상품권은 전부 초콜릿으로 바꿀 것이다! 다들 내 자리로 오면 하나씩 나눠주겠노라! 이상, 위대한 오르티였다!
+                </>
+              )}
+            </p>
+          </div>
+        </div>
         </div>
 
         <div className="flex justify-center items-center text-sm font-semibold text-gray-700 border-t border-b border-gray-500 mt-20 py-2">
@@ -379,9 +297,6 @@ function MonthPage() {
             ))}
           </div>
         ))}
-        <div className="w-full mt-10">
-          <AdMonth />
-        </div>
       </div>
 
 
