@@ -1,172 +1,159 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { toPng } from "html-to-image";
 import AdChat from "@/components/AdChat";
+import supabase from "@/shared/supabase";
 
 export default function ChatGenerator() {
   const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 
+  const [isAdminSectionOpen, setIsAdminSectionOpen] = useState(false);
+
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
-  const [theme, setTheme] = useState("blue");
   const [myName, setMyName] = useState("");
   const [roomName, setRoomName] = useState("");
   const [profileImages, setProfileImages] = useState({});
-  const [customNames, setCustomNames] = useState({}); // ← sender 이름 변경 기능
+  const [customNames, setCustomNames] = useState({});
   const chatRef = useRef(null);
 
-  // --- 테마 목록 ---
-  const themes = {
-    blue: {
-      meBg: "bg-blue-500",
-      meText: "text-white",
-      otherBg: "bg-white",
-      otherText: "text-gray-900",
-      areaBg: "bg-gray-100",
-      headerBg: "bg-blue-500",
-      headerText: "text-white",
-      profileColor: "bg-blue-300",
-      nameColor: "text-blue-700",
-      timeColor: "text-gray-400",
-      areaBgColor: "#f3f4f6",    // gray-100
-    },
+  /* -------------------------------
+    관리자 모드 상태
+  -------------------------------- */
+  const [isAdmin, setIsAdmin] = useState(
+    localStorage.getItem("isAdmin") === "true"
+  );
+  const [adminPassword, setAdminPassword] = useState("");
+  const [adminError, setAdminError] = useState("");
 
-    green: {
-      meBg: "bg-green-500",
-      meText: "text-white",
-      otherBg: "bg-white",
-      otherText: "text-gray-900",
-      areaBg: "bg-green-50",
-      headerBg: "bg-green-600",
-      headerText: "text-white",
-      profileColor: "bg-green-300",
-      nameColor: "text-green-700",
-      timeColor: "text-gray-400",
-      areaBgColor: "#f0fdf4",    // green-50
-    },
+  /* -------------------------------
+    관리자 로그인 함수
+    → 관리자 테마 불러오기 RPC 호출
+  -------------------------------- */
+  async function handleAdminLogin() {
+    setAdminError("");
 
-    dark: {
-      meBg: "bg-gray-800",
-      meText: "text-white",
-      otherBg: "bg-gray-700",
-      otherText: "text-gray-50",
-      areaBg: "bg-gray-900",
-      headerBg: "bg-gray-800",
-      headerText: "text-white",
-      profileColor: "bg-gray-600",
-      nameColor: "text-gray-300",
-      timeColor: "text-gray-500",
-      areaBgColor: "#111827",    // gray-900
-    },
+    // 관리자 테마까지 포함해 불러오는 RPC
+    const { data, error } = await supabase.rpc(
+      "text_ooc_get_themes_admin",
+      { pw: adminPassword }
+    );
 
-    kakao: {
-      meBg: "bg-yellow-300",
-      meText: "text-black",
-      otherBg: "bg-white",
-      otherText: "text-black",
-      areaBg: "bg-yellow-50",
-      headerBg: "bg-yellow-400",
-      headerText: "text-black",
-      profileColor: "bg-yellow-200",
-      nameColor: "text-yellow-700",
-      timeColor: "text-gray-500",
-      areaBgColor: "#fefce8",    // yellow-50
-    },
+    if (error) {
+      console.error(error);
+      if (error.message?.includes("Invalid password")) {
+        setAdminError("패스워드가 틀렸습니다.");
+      } else {
+        setAdminError("서버 오류");
+      }
+      return;
+    }
 
-    mint: {
-      meBg: "bg-[#B4FDFD]",        // 나 버블
-      meText: "text-black",
-      otherBg: "bg-white",
-      otherText: "text-gray-900",
+    if (data && data.length > 0) {
+      setIsAdmin(true);
+      localStorage.setItem("isAdmin", "true");
 
-      areaBg: "bg-[#EFFFFF]",      // 전체 배경 - 좀 더 은은한 톤
-      headerBg: "bg-[#A3F5F5]",    // 헤더
-      headerText: "text-black",
+      localStorage.setItem("admin_pw", adminPassword);
 
-      profileColor: "bg-[#99F0F0]", // 프로필 기본색
+      setDbThemes(data);
+      localStorage.setItem("ooc_themes", JSON.stringify(data));
 
-      nameColor: "text-[#009999]",  // 이름 색 (민트 대비 어두운 청록)
-      timeColor: "text-[#66A0A0]",  // 시간 색
-    },
+      if (!theme) setTheme(data[0].theme_name);
+    }
+  }
 
-    roseGold: {
-      meBg: "bg-[#CF5D5D]",
-      meText: "text-white",
+  async function reloadAdminThemes() {
+    const savedPw = localStorage.getItem("admin_pw");
+    if (!savedPw) return; // 저장된 PW 없으면 종료
 
-      otherBg: "bg-white",
-      otherText: "text-[#2A2A2A]",
+    const { data, error } = await supabase.rpc(
+      "text_ooc_get_themes_admin",
+      { pw: savedPw }
+    );
 
-      areaBg: "bg-[#ECECEC]",
+    if (error) {
+      console.error("관리자 테마 재로드 실패:", error);
+      return;
+    }
 
-      headerBg: "bg-[#D8CBB8]",
-      headerText: "text-[#3A2F2A]",
+    if (data && data.length > 0) {
+      setIsAdmin(true);
+      setDbThemes(data);
+      localStorage.setItem("ooc_themes", JSON.stringify(data));
 
-      profileColor: "bg-[#B7BFC9]",
-
-      nameColor: "text-[#766B60]",
-      timeColor: "text-[#A3A3A3]",
-    },
-
-    M: {
-      meBg: "bg-[#0F2F2E]",       
-      meText: "text-white",
-
-      otherBg: "bg-[#11211F]",
-      otherText: "text-gray-200",
-
-      areaBg: "bg-[#0A1A18]",     
-
-      headerBg: "bg-[#0D2624]",   
-      headerText: "text-[#CBB4FF]",
-
-      profileColor: "bg-[#103A35]",
-
-      nameColor: "text-[#BFA3FF]",
-      timeColor: "text-[#6A4CAA]",
-    },
-    J: {
-      meBg: "bg-[#0033CC]",
-      meText: "text-white",
-      otherBg: "bg-gray-800",
-      otherText: "text-gray-100",
-
-      areaBg: "bg-gray-900",
-
-      headerBg: "bg-gray-950",
-      headerText: "text-blue-200",
-
-      profileColor: "bg-gray-700",
-
-      nameColor: "text-blue-300",
-      timeColor: "text-blue-500",
-    },
-
-    F: {
-      meBg: "bg-[#FFBC84]",
-      meText: "text-[#4A2E1F]",
-
-      otherBg: "bg-[#91A8D0]",
-      otherText: "text-[#1B2330]",
-
-      areaBg: "bg-[#D7ECFF]",
-
-      headerBg: "bg-[#A7BEE0]",
-      headerText: "text-[#2C3549]",
-
-      profileColor: "bg-[#C8B5CE]",
-
-      nameColor: "text-[#6A4B68]",
-      timeColor: "text-[#4F5A6A]",
-    },
+      if (!theme) setTheme(data[0].theme_name);
+    }
+  }
 
 
 
-  };
+  /* -------------------------------
+    테마 목록 상태
+  -------------------------------- */
+  const [dbThemes, setDbThemes] = useState([]);
+  const [theme, setTheme] = useState("");
+
+  /* -------------------------------
+    첫 로드
+    → 캐시 있으면 캐시 사용
+    → 없으면 public RPC 사용
+  -------------------------------- */
+  useEffect(() => {
+    const cached = localStorage.getItem("ooc_themes");
+
+    if (cached) {
+      try {
+        const parsed = JSON.parse(cached);
+        setDbThemes(parsed);
+
+        if (parsed.length > 0 && !theme) {
+          setTheme(parsed[0].theme_name);
+        }
+        return;  
+      } catch (e) {
+        console.error("캐시 파싱 오류:", e);
+      }
+    }
+
+    // 캐시 없으면 public 버전 호출
+    loadPublicThemes();
+  }, []);
 
 
+  /* -------------------------------
+    일반 사용자용 — public 테마만 불러오기
+  -------------------------------- */
+  async function loadPublicThemes() {
+    const { data, error } = await supabase.rpc("text_ooc_get_themes_public");
 
-  const t = themes[theme];
+    if (error) {
+      console.error("public 테마 불러오기 실패:", error);
+      return;
+    }
 
-  // --- 파싱 ---
+    if (data) {
+      setDbThemes(data);
+      localStorage.setItem("ooc_themes", JSON.stringify(data));
+
+      if (data.length > 0 && !theme) {
+        setTheme(data[0].theme_name);
+      }
+    }
+  }
+
+
+  /* -------------------------------
+    테마 목록 분리
+  -------------------------------- */
+  const normalThemes = dbThemes.filter((t) => !t.is_admin_only);
+  const adminThemes = dbThemes.filter((t) => t.is_admin_only);
+
+
+  const activeTheme = dbThemes.find((t) => t.theme_name === theme) || null;
+
+
+  // ===============================
+  //           파싱 로직
+  // ===============================
   const parseMessages = (inputText) => {
     if (!inputText.trim()) return [];
 
@@ -183,10 +170,9 @@ export default function ChatGenerator() {
     for (let line of lines) {
       if (!line) continue;
 
-      // ---- HEADER ----
+      // --- HEADER ---
       const headerMatch = line.match(/^<\s*([^>]+?)\s*>\s*$/);
       if (headerMatch) {
-        // 이전 메시지 flush
         if (currentHeader && pendingBody !== null) {
           messages.push({
             from: currentHeader.from,
@@ -210,12 +196,12 @@ export default function ChatGenerator() {
         continue;
       }
 
-      // ---- MESSAGE START ----
+      // --- MESSAGE START ---
       if (line.startsWith("[")) {
-        const withoutStartBracket = line.substring(1); // [ 제거
+        const withoutStartBracket = line.substring(1);
+
         if (line.endsWith("]")) {
-          // 단일줄 메시지
-          const content = withoutStartBracket.slice(0, -1); // ] 제거
+          const content = withoutStartBracket.slice(0, -1);
           messages.push({
             from: currentHeader?.from || "",
             time: currentHeader?.time || "",
@@ -224,13 +210,12 @@ export default function ChatGenerator() {
           });
           pendingBody = null;
         } else {
-          // 멀티라인 시작
           pendingBody = withoutStartBracket;
         }
         continue;
       }
 
-      // ---- MULTILINE 메시지 처리 ----
+      // --- MULTILINE ---
       if (pendingBody !== null) {
         if (line.endsWith("]")) {
           const withoutEndBracket = line.slice(0, -1);
@@ -251,7 +236,6 @@ export default function ChatGenerator() {
       }
     }
 
-    // 마지막 메시지 flush
     if (currentHeader && pendingBody !== null) {
       messages.push({
         from: currentHeader.from,
@@ -264,11 +248,9 @@ export default function ChatGenerator() {
     return messages;
   };
 
-
-
-
-
-  // --- 입력 처리 ---
+  // ===============================
+  //         입력 처리
+  // ===============================
   const handleInputChange = (e) => {
     const value = e.target.value;
     setInput(value);
@@ -278,21 +260,14 @@ export default function ChatGenerator() {
 
     const senders = [...new Set(parsed.map((m) => m.from))];
 
-    // 초기 myName 설정
-
-    // 새로운 입력이 들어오면 내 이름도 다시 잡아준다
     if (parsed.length > 0) {
       if (senders.length === 2) {
-        // 두 명일 때는 두 번째가 '나'
         setMyName(senders[1]);
       } else {
-        // 세 명 이상이면 첫 번째를 '나'로
         setMyName(senders[0]);
       }
     }
 
-
-    // 기본 customNames 초기화
     const newNames = {};
     senders.forEach((s) => {
       newNames[s] = customNames[s] ?? s;
@@ -302,7 +277,6 @@ export default function ChatGenerator() {
     updateRoomName(newNames, myName, senders);
   };
 
-  // --- 룸네임 자동 생성 ---
   const updateRoomName = (namesMap, my, senders) => {
     if (senders.length <= 1) return;
 
@@ -314,15 +288,12 @@ export default function ChatGenerator() {
     }
   };
 
-  // --- 내 이름 선택 변경 시 룸네임 동기화 ---
   const handleMyNameChange = (newMyName) => {
     setMyName(newMyName);
-
     const senders = [...new Set(messages.map((m) => m.from))];
     updateRoomName(customNames, newMyName, senders);
   };
 
-  // --- sender 이름 변경 ---
   const handleSenderRename = (original, newName) => {
     const updated = {
       ...customNames,
@@ -334,17 +305,19 @@ export default function ChatGenerator() {
     updateRoomName(updated, myName, senders);
   };
 
-  // --- 이미지 다운로드 ---
-const waitForImages = () =>
-  Promise.all(
-    Array.from(chatRef.current.querySelectorAll("img")).map(
-      (img) =>
-        new Promise((resolve) => {
-          if (img.complete) resolve();
-          else img.onload = resolve;
-        })
-    )
-  );
+  // ===============================
+  //      이미지 다운로드
+  // ===============================
+  const waitForImages = () =>
+    Promise.all(
+      Array.from(chatRef.current.querySelectorAll("img")).map(
+        (img) =>
+          new Promise((resolve) => {
+            if (img.complete) resolve();
+            else img.onload = resolve;
+          })
+      )
+    );
 
   const handleDownload = async () => {
     if (!chatRef.current) return;
@@ -362,7 +335,6 @@ const waitForImages = () =>
     link.click();
   };
 
-
   const senderList = [...new Set(messages.map((m) => m.from))];
 
   const handleUpload = (sender, file) => {
@@ -370,54 +342,55 @@ const waitForImages = () =>
     reader.onload = () => {
       setProfileImages((prev) => ({
         ...prev,
-        [sender]: reader.result,  // ← Base64 DataURL
+        [sender]: reader.result,
       }));
     };
     reader.readAsDataURL(file);
   };
 
+  // ===============================
+  //      복사 기능
+  // ===============================
   const [copyText, setCopyText] = useState("복사하기");
 
   const handleCopy = () => {
     const text = document.getElementById("copy-content").innerText;
     navigator.clipboard.writeText(text);
 
-    // 버튼 문구 변경
     setCopyText("복사됨!");
-
-    // 1.5초 뒤 원래대로
     setTimeout(() => {
       setCopyText("복사하기");
     }, 1500);
   };
 
-
+  // ============================================================
+  // =========================  UI  ==============================
+  // ============================================================
   return (
     <div className="flex flex-col items-center gap-6 w-full py-8">
-
       <div className="lg:p-8 p-2 flex flex-col max-w-xl items-center gap-6 w-full">
-        
-        {/* 상단 페이지 제목 */}
+
         <h1 className="text-xl font-bold text-gray-800 text-center">
           챗 OOC 제너레이터
         </h1>
 
-        {/* --- 복사 영역 (맨 위) --- */}
+        {/* 복사 영역 */}
         <div className="w-full">
           <div className="text-sm font-medium">OOC From 이루룽 X @Iru_rurung</div>
+
           <div
             id="copy-content"
-            className="text-xs opacity-80 bg-white mt-1 px-3 py-2 rounded border border-gray-300 text-center whitespace-pre-line"
+            className="text-xs opacity-80 bg-white mt-1 px-3 py-2 rounded border border-gray-300 whitespace-pre-line"
           >
-            {`*[OOC: NPC와 PC의 평범한 문자내역을 출력한다. 일상적인 내용이나, 서로의 문자메세지를 메모장으로 쓰거나, 다른사람에게 보낼 문자, 그 외 문자(예시: 장난스럽거나, 심각하거나, 놀리는 문자, 혹은 실수로 보내거나 등)일 수 있다.
+            {`*[OOC: NPC와 PC의 평범한 문자내역을 출력한다. 일상적인 내용이나, 서로의 문자메세지를 메모장으로 쓰거나, 다른 사람에게 보낼 문자, 그 외 문자(예시: 장난스럽거나, 심각하거나, 놀리는 문자, 혹은 실수로 보내거나 등)일 수 있다.
 
-문자는
-< 보낸사람 / 발신시간 / 받는사람 >
-[ 메시지 내용 ]
-으로 묘사한다.
+            문자는
+            < 보낸사람 / 발신시간 / 받는사람 >
+            [ 메시지 내용 ]
+            으로 묘사한다.
 
-대괄호 내부의 내용은 PC와 NPC의 감정이나 느낌에 따라 html형식(글씨크기변동, 볼드체, 기울임체, 취소선)사용 가능. 필요할 경우 오타를 내도 괜찮다.
-사담없이 문자메세지들만 출력할 것, 최소 700단어 이상 서술할 것.]*`}
+            대괄호 내부의 내용은 PC와 NPC의 감정이나 느낌에 따라 html형식(글씨크기변동, 볼드체, 기울임체, 취소선)사용 가능. 필요할 경우 오타를 내도 괜찮다.
+            사담 없이 문자메세지들만 출력할 것, 최소 700단어 이상 서술할 것.]*`}
           </div>
 
           <button
@@ -428,13 +401,10 @@ const waitForImages = () =>
           </button>
         </div>
 
-      
-
-        
+        {/* 테마 선택 + 내 이름 */}
         <div className="w-full max-w-xl flex flex-col gap-4">
-
           <AdChat />
-          {/* --- 테마 선택 + 내 이름 선택 --- */}
+
           <div className="flex gap-4">
             <div className="flex-1">
               <label className="text-sm font-medium">테마 선택</label>
@@ -443,15 +413,11 @@ const waitForImages = () =>
                 value={theme}
                 onChange={(e) => setTheme(e.target.value)}
               >
-                <option value="blue">파랑 테마</option>
-                <option value="green">초록 테마</option>
-                <option value="dark">다크 테마</option>
-                <option value="kakao">나랑노랑</option>
-                <option value="mint">즈!!!</option>
-                <option value="roseGold">내기할텐가?</option>
-                <option value="M">까르보나라엔 크림이 한 방울도 들어가지 않습니다</option>
-                <option value="J">민트초코</option>
-                <option value="F">별</option>
+                {normalThemes.map((t) => (
+                  <option key={t.theme_name} value={t.theme_name}>
+                    {t.theme_name}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -465,14 +431,86 @@ const waitForImages = () =>
                 {senderList.length === 0 && <option>-</option>}
                 {senderList.map((s) => (
                   <option key={s} value={s}>
-                    {s}   {/* ✔ 원래 sender 이름만 표시 */}
+                    {s}
                   </option>
                 ))}
               </select>
             </div>
           </div>
 
-          {/* 채팅방 이름 수정 */}
+          {/* --- 후원자(관리자) 모드 토글 --- */}    
+          {!isAdmin && (
+            <div className="w-full max-w-xl mt-2">
+              <button
+                onClick={() => setIsAdminSectionOpen(!isAdminSectionOpen)}
+                className="w-full text-left px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-md font-medium transition text-sm"
+              >
+                {isAdminSectionOpen ? "▼ 후원자 모드 닫기" : "▶ 후원자 모드 열기"}
+              </button>
+
+              {/* 토글 시에만 관리자 로그인 폼 보여줌 */}
+              {isAdminSectionOpen && (
+                <div className="mt-2 p-3 border rounded bg-white shadow">
+
+                  <input
+                    type="password"
+                    className="border w-full px-3 py-1 rounded text-xs"
+                    placeholder="후원자 코드를 입력해주세요."
+                    value={adminPassword}
+                    onChange={(e) => setAdminPassword(e.target.value)}
+                  />
+
+                  {adminError && (
+                    <div className="text-red-500 text-xs mt-1">{adminError}</div>
+                  )}
+
+                  <button
+                    onClick={handleAdminLogin}
+                    className="mt-2 bg-gray-800 text-white px-3 py-1 rounded hover:bg-black text-xs"
+                  >
+                    로그인
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+
+
+          {isAdmin && (
+            <div className="">
+              <div className="text-sm font-medium mb-2">후원자 전용 테마</div>
+
+              <div className="grid grid-cols-3 gap-2">
+                {adminThemes.map((t) => (
+                  <button
+                    key={t.theme_name}
+                    onClick={() => setTheme(t.theme_name)}
+                    className="p-3 rounded-lg shadow text-xs font-medium"
+                    style={{
+                      background: t.area_bg_gradient
+                        ? `linear-gradient(145deg, ${t.area_bg}, ${t.area_bg_gradient})`
+                        : t.area_bg,
+                      color: t.name_color,
+                    }}
+                  >
+                    {t.theme_name}
+                  </button>
+                ))}
+              </div>
+              <div className="mt-2 flex justify-center">
+                <button
+                  onClick={reloadAdminThemes}
+                  className="px-3 py-1 bg-gray-700 text-white text-xs rounded hover:bg-gray-900 transition"
+                >
+                  테마 새로고침
+                </button>
+              </div>
+            </div>
+          )}
+
+
+          {/* 채팅방 이름 */}
           <div>
             <label className="text-sm font-medium">채팅방 이름 수정</label>
             <input
@@ -483,10 +521,11 @@ const waitForImages = () =>
           </div>
         </div>
 
-        {/* --- 보내는 사람 이름 개별 수정 --- */}
+        {/* 참여자 이름 변경 */}
         {senderList.length > 0 && (
           <div className="w-full max-w-xl p-4 border rounded-md bg-white shadow-sm">
             <div className="text-sm font-medium mb-3">참여자 이름 변경</div>
+
             {senderList.map((s) => (
               <div key={s} className="flex flex-col mb-3">
                 <span className="text-sm mb-1">{s}</span>
@@ -500,12 +539,11 @@ const waitForImages = () =>
           </div>
         )}
 
+        {/* 프로필 업로드 */}
         {senderList.map(
           (s) =>
             s !== myName && (
               <div key={s} className="flex items-center gap-3 py-2">
-                
-                {/* 프로필 + 업로드 버튼 */}
                 <div className="relative">
                   <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                     {profileImages[s] ? (
@@ -516,41 +554,23 @@ const waitForImages = () =>
                         className="w-full h-full object-cover"
                       />
                     ) : (
-                      <div className={`w-full h-full rounded-full ${t.profileColor}`} />
+                      <div
+                        className="w-full h-full rounded-full"
+                        style={{
+                          backgroundColor: activeTheme?.profile_color,
+                        }}
+                      />
                     )}
                   </div>
 
-                  {/* 업로드 버튼 */}
                   <label
                     htmlFor={`upload-${s}`}
-                    className="
-                      absolute bottom-0 right-0
-                      bg-black/60 hover:bg-black/80
-                      text-white
-                      w-5 h-5
-                      rounded-full
-                      flex items-center justify-center
-                      cursor-pointer
-                      transition
-                    "
+                    className="absolute bottom-0 right-0 bg-black/60 hover:bg-black/80
+                      text-white w-5 h-5 rounded-full flex items-center justify-center cursor-pointer transition"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-3 w-3"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <path
-                        d="M12 5v14m7-7H5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    +
                   </label>
 
-                  {/* 실제 input은 숨기기 */}
                   <input
                     id={`upload-${s}`}
                     type="file"
@@ -560,17 +580,14 @@ const waitForImages = () =>
                   />
                 </div>
 
-                {/* 이름 */}
                 <span className="text-sm break-words max-w-[120px]">
                   {customNames[s] ?? s}
                 </span>
-
               </div>
             )
         )}
 
-
-        {/* --- 입력창 --- */}
+        {/* 입력창 */}
         <textarea
           className="w-full max-w-xl h-60 p-4 border rounded-md shadow-sm bg-white"
           placeholder={`예시 형식:
@@ -580,65 +597,37 @@ const waitForImages = () =>
   
   < M / AM 10:20 / 다야 >
   [ 커피에 물을 타서 희석시킨다는 발상은 도대체 어디서 나오는 겁니까? ]
-  `}
+            `}
           value={input}
           onChange={handleInputChange}
         />
-      
       </div>
 
-      {/* --- 채팅 UI 본문 --- */}
+      {/* 채팅 메시지 UI */}
       <div
         ref={chatRef}
-        className={`${t.areaBg} rounded-xl w-full max-w-xl ${isiOS ? "" : "shadow-lg"} overflow-hidden`}
+        className="rounded-xl w-full max-w-xl overflow-hidden"
+        style={{
+          background: activeTheme?.area_bg_gradient
+            ? `linear-gradient(135deg, ${activeTheme.area_bg}, ${activeTheme.area_bg_gradient})`
+            : activeTheme?.area_bg,
+        }}
       >
+
         {/* 헤더 */}
         <div
-          className={`
-            ${t.headerBg} ${t.headerText}
-            px-4 py-4
-            flex items-center justify-between
-            border-b border-black/10
-            shadow-sm
-            text-[17px]
-            font-semibold
-          `}
+          className="px-4 py-4 flex items-center justify-between shadow-sm text-[17px] font-semibold"
+          style={{
+            backgroundColor: activeTheme?.header_bg,
+            color: activeTheme?.header_text,
+          }}
         >
-          {/* Left: Back icon */}
-          <div className="w-8 flex justify-start opacity-80">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </div>
-
-          {/* Title */}
+          <div className="w-8 flex justify-start opacity-80">←</div>
           <div className="flex-1 text-center truncate px-2">{roomName}</div>
-
-          {/* Right: menu */}
-          <div className="w-8 flex justify-end items-center opacity-80">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 block leading-none"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-            >
-              <path d="M10 3a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm0 7a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm0 7a1.5 1.5 0 110-3 1.5 1.5 0 010 3z" />
-            </svg>
-          </div>
+          <div className="w-8 flex justify-end opacity-80">⋮</div>
         </div>
 
-        {/* 메시지 영역 */}
+        {/* 메시지 */}
         <div className="lg:p-6 p-3 py-6">
           {messages.map((m, idx) => {
             const isMe = m.from === myName;
@@ -648,22 +637,19 @@ const waitForImages = () =>
             const next = messages[idx + 1];
 
             const isFirstOfGroup =
-              !prev ||
-              prev.from !== m.from ||
-              prev.time !== m.time; // ← 시간 달라도 새 그룹
+              !prev || prev.from !== m.from || prev.time !== m.time;
 
             const isLastOfGroup =
-              !next ||
-              next.from !== m.from ||
-              next.time !== m.time; // ← 시간 달라도 그룹 종료
-
+              !next || next.from !== m.from || next.time !== m.time;
 
             return (
               <div
                 key={idx}
-                className={`flex mb-1 ${isMe ? "justify-end" : "justify-start"} items-start`}
+                className={`flex mb-1 ${
+                  isMe ? "justify-end" : "justify-start"
+                } items-start`}
               >
-                {/* 왼쪽 프로필 (첫 메시지만) */}
+                {/* 프로필 */}
                 {!isMe && (
                   <div className="mr-2">
                     {isFirstOfGroup ? (
@@ -675,7 +661,12 @@ const waitForImages = () =>
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <div className={`w-full h-full rounded-full ${t.profileColor}`} />
+                          <div
+                            className="w-full h-full rounded-full"
+                            style={{
+                              backgroundColor: activeTheme?.profile_color,
+                            }}
+                          />
                         )}
                       </div>
                     ) : (
@@ -684,66 +675,76 @@ const waitForImages = () =>
                   </div>
                 )}
 
-                {/* 오른쪽 컬럼 (이름 + 말풍선 그룹) */}
+                {/* 메시지 버튼 */}
                 <div className="flex flex-col max-w-[70%]">
-
-                  {/* 이름 – 프로필과 수평 정렬되도록 bubble 밖에 둠 */}
+                  {/* 이름 */}
                   {!isMe && isFirstOfGroup && (
-                    <div className={`text-xs opacity-70 mb-1 ml-1 ${t.nameColor}`}>
+                    <div
+                      className="text-xs opacity-70 mb-1 ml-1"
+                      style={{ color: activeTheme?.name_color }}
+                    >
                       {displayName}
                     </div>
                   )}
 
                   {isMe && isFirstOfGroup && (
-                    <div className={`text-xs opacity-70 mb-1 text-right mr-1 ${t.nameColor}`}>
+                    <div
+                      className="text-xs opacity-70 mb-1 text-right mr-1"
+                      style={{ color: activeTheme?.name_color }}
+                    >
                       {displayName}
                     </div>
                   )}
 
-                  {/* 말풍선 */}
+                  {/* 버블 */}
                   <div
-                    className={`
-                      px-4 py-2 rounded-2xl text-sm
-                      ${isiOS ? "" : "shadow"}
-                      ${isMe ? `${t.meBg} ${t.meText}` : `${t.otherBg} ${t.otherText}`}
-                      ${isFirstOfGroup && !isMe ? "rounded-tl-none" : ""}
-                      ${isFirstOfGroup && isMe ? "rounded-tr-none" : ""}
-                      ${!isLastOfGroup ? "mb-0.5" : "mb-1"}
-                    `}
+                    className={`px-4 py-2 rounded-2xl text-sm ${
+                      isiOS ? "" : "shadow"
+                    } ${
+                      isFirstOfGroup && !isMe
+                        ? "rounded-tl-none"
+                        : ""
+                    } ${
+                      isFirstOfGroup && isMe
+                        ? "rounded-tr-none"
+                        : ""
+                    } ${!isLastOfGroup ? "mb-0.5" : "mb-1"}`}
+                    style={{
+                      backgroundColor: isMe
+                        ? activeTheme?.me_bg
+                        : activeTheme?.other_bg,
+                      color: isMe
+                        ? activeTheme?.me_text
+                        : activeTheme?.other_text,
+                    }}
                   >
-
                     <div
                       className="leading-relaxed"
                       dangerouslySetInnerHTML={{
-                        __html: m.body.replace(/\n/g, "<br>")
+                        __html: m.body.replace(/\n/g, "<br>"),
                       }}
                     />
-
                   </div>
 
                   {/* 시간 */}
                   {isLastOfGroup && (
                     <div
-                      className={`
-                        text-[10px] opacity-60 ${t.timeColor}
-                        ${isMe ? "text-left ml-1" : "text-right mr-1"}
-                      `}
+                      className={`text-[10px] opacity-60 ${
+                        isMe ? "text-left ml-1" : "text-right mr-1"
+                      }`}
+                      style={{ color: activeTheme?.time_color }}
                     >
                       {m.time}
                     </div>
                   )}
                 </div>
               </div>
-
-
             );
           })}
         </div>
-
       </div>
 
-
-      {/* --- 다운로드 버튼 --- */}
+      {/* 다운로드 */}
       <button
         onClick={handleDownload}
         className="px-4 py-2 bg-gray-800 text-white rounded-lg shadow hover:bg-black"
@@ -751,9 +752,9 @@ const waitForImages = () =>
         이미지로 다운로드
       </button>
 
-      {/* --- Thanks to --- */}
+      {/* Thanks to */}
       <div className="text-center text-xs opacity-60 mt-6">
-        OOC 원작자 - 룽 - 에게 감사의 인사를 남깁니다.<br/>
+        OOC 원작자 - 룽 - 에게 감사의 인사를 남깁니다.<br />
         개발한 사람: 중중
       </div>
     </div>
