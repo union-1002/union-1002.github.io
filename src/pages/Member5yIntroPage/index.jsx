@@ -1,7 +1,5 @@
 import { useState } from 'react';
-import MainLayout from '@/shared/MainLayout';
-import PageLayout from '@/shared/PageLayout';
-import { MENU_PROPS } from '@/shared/SideNavigationBar';
+import { Link } from 'react-router';
 import { useUser } from '@/shared/user';
 import supabase from '@/shared/supabase';
 import { useMemberData } from './hooks/useMemberData';
@@ -45,9 +43,12 @@ export default function Member5yIntroPage() {
     titles.filter(t => t.from_initials === from && t.to_initials === to);
 
   return (
-    <MainLayout>
-      <PageLayout title="직원 소개" sidebar={MENU_PROPS['유니온 소개']}>
-        <div className="flex flex-col items-center space-y-4 w-full">
+        <div className="flex flex-col items-center space-y-4 w-full py-8"
+          style={{
+          backgroundImage: "url('/images/5y_back.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}>
 
           {user.isAdmin && (
             <button
@@ -62,14 +63,22 @@ export default function Member5yIntroPage() {
             </button>
           )}
 
-          {user.isLoggedIn && (
-            <button
-              className="bg-[#404040] text-white px-2 py-1 rounded mb-10"
-              onClick={() => setUserEditModalOpen(true)}
-            >
-              ◆
-            </button>
-          )}
+          <Link
+            to="/memberIntro"
+            className="
+              inline-flex items-center gap-2
+              px-3 py-1.5
+              rounded-md
+              border border-gray-200
+              text-xs tracking-wide
+              text-gray-600
+              hover:bg-gray-100 hover:text-gray-900
+              transition
+            "
+          >
+            ⟵ 보안 문서 접속 종료
+          </Link>
+
 
           {isUserEditModalOpen && (
             <UserTitleEditModal
@@ -138,7 +147,5 @@ export default function Member5yIntroPage() {
 
 
         </div>
-      </PageLayout>
-    </MainLayout>
   );
 }

@@ -25,7 +25,8 @@ export default function CharacterFormModal({ mode = 'add', selected, onClose, on
     const fetchGroups = async () => {
       const { data, error } = await supabase
         .from('groups')
-        .select('id, group_name, color, border_color');
+        .select('id, group_name, border_color');
+      
       if (!error) setGroups(data);
     };
     fetchGroups();
