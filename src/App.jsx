@@ -8,6 +8,7 @@ import TimelinePage from './pages/TimelinePage';
 import TeamIntroPage from './pages/TeamIntroPage';
 import OrganizationPage from './pages/OrganizationPage';
 import MemberIntroPage from './pages/MemberIntroPage';
+import Member5yIntroPage from './pages/Member5yIntroPage';
 import NoticePage from './pages/NoticePage';
 import SchedulePage from './pages/SchedulePage';
 import CareerPage from './pages/CareerPage';
@@ -63,6 +64,7 @@ function App() {
         <Route path="/teamIntro" element={<TeamIntroPage />} />
         <Route path="/organization" element={<OrganizationPage />} />
         <Route path="/memberIntro" element={<MemberIntroPage />} />
+        <Route path="/member5yIntro" element={<Member5yIntroPage />} />
         <Route path="/notice" element={<NoticePage />} />
         <Route path="/schedule" element={<SchedulePage />} />
         <Route path="/career" element={<CareerPage />} />

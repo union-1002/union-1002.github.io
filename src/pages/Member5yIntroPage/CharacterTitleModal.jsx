@@ -10,6 +10,7 @@ export default function CharacterTitleModal({ nameMap, character, allInitials = 
       const { data, error } = await supabase
         .from('titles')
         .select('id, from_initials, to_initials, text, is_spoiler')
+        .eq('era', 'past_5y')
         .or(`from_initials.eq.${character.initials},to_initials.eq.${character.initials}`);
 
       if (error) {
@@ -95,7 +96,7 @@ export default function CharacterTitleModal({ nameMap, character, allInitials = 
             to_initials: to,
             text,
             is_spoiler: !!is_spoiler,
-            era: 'current',
+            era: 'past_5y',
             });
         } else if (id) {
             deleteIds.push(id);
@@ -110,7 +111,7 @@ export default function CharacterTitleModal({ nameMap, character, allInitials = 
             to_initials: character.initials,
             text,
             is_spoiler: !!is_spoiler,
-            era: 'current',
+            era: 'past_5y',
             });
         } else if (id) {
             deleteIds.push(id);
