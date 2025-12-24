@@ -2,19 +2,16 @@ import React from "react";
 import { Link, useNavigate } from "react-router";
 import { Mail } from "lucide-react";
 import { useUser } from "../user";
-import supabase from "@/shared/supabase"; // ✅ user.jsx와 동일한 싱글톤으로 통일
 
 function MemberStatus({ className, openNoteModal }) {
   const navigate = useNavigate();
   const user = useUser();
 
   const handleLogout = async () => {
-    // ✅ 여기서는 user.logout()만 호출 (내부에서 signOut 처리)
     await user.logout();
     navigate("/");
   };
 
-  // ✅ 세션 확인 전(bootstrapped false)에는 “로그인 버튼”으로 흔들리지 않게 처리
   if (!user.bootstrapped) {
     return (
       <div className={className}>
@@ -24,6 +21,7 @@ function MemberStatus({ className, openNoteModal }) {
   }
 
   if (user.isLoggedIn) {
+    // ✅ fake 로그인 = part에 문자열 들어있음 / 진짜 로그인 = group에도 있을 수 있음
     const partName = user.part ?? user.group?.group_name ?? "";
 
     return (

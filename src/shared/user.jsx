@@ -4,11 +4,11 @@ import supabase from "@/shared/supabase";
 
 const defaultUser = {
   // persisted/profile-ish
-  userId: null, // 로그인 입력 id (email 앞부분)
-  uid: null, // supabase auth user id (uuid)
+  userId: null,
+  uid: null,
   username: null,
-  part: null, // 부서명(문자열)
-  group: null, // groups row object
+  part: null,
+  group: null,
   isAdmin: false,
   hasNewNotes: false,
 
@@ -20,9 +20,12 @@ const defaultUser = {
   height: null,
   age: null,
 
+  // ✅ 추가: 인증 모드 (supabase 세션 / fake 로그인 / null)
+  authMode: null, // "supabase" | "fake" | null
+
   // runtime
-  bootstrapped: false, // ✅ 세션 확인 완료 여부
-  isLoggedIn: false, // ✅ session 기준 계산
+  bootstrapped: false,
+  isLoggedIn: false,
   isAuthenticated: false,
 
   // actions
@@ -40,9 +43,8 @@ export function useUser() {
 
 export function UserProvider({ children }) {
   const [userData, setUserData] = useSessionStorage("user", defaultUser);
-  const [session, setSession] = useState(null); // ✅ Supabase session이 truth source
+  const [session, setSession] = useState(null);
 
-  // ✅ members 프로필을 다시 불러와 userData를 복원 (새로고침/새탭 대응)
   const fetchAndStoreProfile = async (uid, prevUserId = null) => {
     const { data: profileData, error: profileError } = await supabase
       .from("members")
@@ -52,20 +54,16 @@ export function UserProvider({ children }) {
         groups ( id, group_name, color, border_color, order_index )
       `
       )
-      .eq("id", uid) // ✅ members.id == auth.users.id (UUID) 가정
+      .eq("id", uid)
       .single();
 
-    if (profileError || !profileData) {
-      // 세션은 있는데 프로필을 못 가져오면, 로그아웃시키진 말고 그대로 둠
-      // console.warn("[profile] fetch error:", profileError);
-      return;
-    }
+    if (profileError || !profileData) return;
 
     setUserData((prev) => ({
       ...prev,
       uid,
+      authMode: "supabase",
 
-      // userId(로그인 입력값)는 DB에 없으니 있으면 유지
       userId: prev.userId ?? prevUserId ?? prev.userId,
 
       username: profileData.username ?? prev.username,
@@ -85,34 +83,34 @@ export function UserProvider({ children }) {
     }));
   };
 
-  // ✅ 앱 시작 시 세션 확인 + auth state change 구독
   useEffect(() => {
     let mounted = true;
 
     (async () => {
-      const { data, error } = await supabase.auth.getSession();
+      const { data } = await supabase.auth.getSession();
       if (!mounted) return;
 
       const nextSession = data?.session ?? null;
       const uid = nextSession?.user?.id ?? null;
 
       setSession(nextSession);
+
+      // ✅ 세션 있으면 supabase 모드로, 없으면 기존 userData(fake 유지 가능)
       setUserData((prev) => ({
         ...prev,
         uid: uid ?? null,
+        authMode: uid ? "supabase" : prev.authMode, // fake 로그인 유지
         bootstrapped: true,
       }));
 
-      // 세션이 있는데 프로필(환영문 정보)이 비어있으면 복원
+      // 세션이 있는데 프로필 비어있으면 복원
       if (uid) {
         setUserData((prev) => {
           const needProfile = !prev.username || !prev.part || !prev.group;
-          if (needProfile) fetchAndStoreProfile(uid);
+          if (needProfile) fetchAndStoreProfile(uid, prev.userId);
           return prev;
         });
       }
-
-      // if (error) console.warn("[auth] getSession error:", error);
     })();
 
     const { data: sub } = supabase.auth.onAuthStateChange((_event, newSession) => {
@@ -120,25 +118,25 @@ export function UserProvider({ children }) {
 
       setSession(newSession ?? null);
 
-      // 로그아웃이면 전체 초기화
       if (!newSession) {
+        // ✅ 세션 로그아웃되더라도, fake 로그인까지 같이 날리는 게 “완전 로그아웃” 느낌
         setUserData({ ...defaultUser, bootstrapped: true });
         return;
       }
 
       const uid = newSession.user?.id ?? null;
 
-      // 세션이 생겼으면 uid 최신화 + 필요시 프로필 복원
       setUserData((prev) => ({
         ...prev,
         uid: uid ?? prev.uid,
+        authMode: "supabase",
         bootstrapped: true,
       }));
 
       if (uid) {
         setUserData((prev) => {
           const needProfile = !prev.username || !prev.part || !prev.group;
-          if (needProfile) fetchAndStoreProfile(uid);
+          if (needProfile) fetchAndStoreProfile(uid, prev.userId);
           return prev;
         });
       }
@@ -152,7 +150,10 @@ export function UserProvider({ children }) {
 
   const user = useMemo(() => {
     const isAuthed = !!session?.user?.id;
-    const isLoggedIn = isAuthed; // ✅ 세션 기준
+
+    // ✅ 세션 OR fake 로그인 모드면 로그인처럼 취급
+    const isFake = userData.authMode === "fake";
+    const isLoggedIn = isAuthed || isFake;
 
     return {
       ...userData,
@@ -160,18 +161,15 @@ export function UserProvider({ children }) {
       isAuthenticated: isAuthed,
 
       login: async (part, userId, password) => {
-        // 1) 로그인
-        const { data: authData, error: authError } =
-          await supabase.auth.signInWithPassword({
-            email: `${userId}@union-1002.com`,
-            password,
-          });
+        const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+          email: `${userId}@union-1002.com`,
+          password,
+        });
 
         if (authError || !authData?.user) {
           throw new Error("로그인에 실패했습니다. 아이디 또는 비밀번호를 확인하세요.");
         }
 
-        // 2) 프로필 조회
         const { data: profileData, error: profileError } = await supabase
           .from("members")
           .select(
@@ -188,16 +186,15 @@ export function UserProvider({ children }) {
           throw new Error("사용자 정보를 불러오지 못했습니다.");
         }
 
-        // 3) 부서 검증
         if (profileData.groups?.group_name !== part) {
           await supabase.auth.signOut();
           throw new Error("선택한 부서가 일치하지 않습니다.");
         }
 
-        // 4) 저장 (세션은 onAuthStateChange가 동기화해줌)
         setUserData({
           ...defaultUser,
           bootstrapped: true,
+          authMode: "supabase",
 
           userId,
           uid: authData.user.id,
@@ -219,17 +216,18 @@ export function UserProvider({ children }) {
         });
       },
 
-      // 인증 없는 로그인(세션 X)
+      // ✅ fake 로그인
       loginWithoutAuth: async (part, userId, _password) => {
         setUserData({
           ...defaultUser,
           bootstrapped: true,
+          authMode: "fake",
 
           userId,
           uid: null,
 
-          username: userId,
-          part,
+          username: userId, // 화면에 표시할 이름
+          part,             // 화면에 표시할 부서명
           group: null,
 
           isAdmin: false,
@@ -238,7 +236,15 @@ export function UserProvider({ children }) {
       },
 
       logout: async () => {
-        await supabase.auth.signOut();
+        // ✅ 세션 있으면 signOut, 없어도 무조건 스토리지 초기화
+        try {
+          const { data } = await supabase.auth.getSession();
+          if (data?.session) {
+            await supabase.auth.signOut();
+          }
+        } catch (e) {
+          // signOut 실패해도 UI는 로그아웃처럼 보이게 처리
+        }
         setUserData({ ...defaultUser, bootstrapped: true });
       },
 
