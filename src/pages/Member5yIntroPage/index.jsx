@@ -7,7 +7,6 @@ import CharacterDetail from './CharacterDetail';
 import CharacterFormModal from './CharacterFormModal';
 import UserTitleEditModal from './UserTitleEditModal';
 import CharacterTitleModal from './CharacterTitleModal';
-import AdMonth from "../../components/AdBottom";
 import AdBottom from '../../components/AdBottom';
 
 
@@ -44,12 +43,12 @@ export default function Member5yIntroPage() {
     titles.filter(t => t.from_initials === from && t.to_initials === to);
 
   return (
-    <div className="relative w-full min-h-[100dvh] overflow-y-auto">
+    <div className="relative w-full min-h-[100dvh] overflow-y-auto flex flex-col items-center">
       <div
         className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-20"
         style={{ backgroundImage: "url('/images/5y_back.jpg')" }}
       />
-        <div className="flex flex-col items-center text-center space-y-4 w-full py-8 px-2 lg:px-0">
+        <div className="max-w-4xl flex flex-col items-center text-center space-y-4 w-full py-8 px-2 lg:px-0">
 
           {user.isAdmin && (
             <button
