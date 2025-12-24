@@ -2,8 +2,29 @@ import React from 'react';
 import BannerSlide from './components/BannerSlide';
 import MainLayout from '@/shared/MainLayout';
 import { Link } from 'react-router';
+import { useUser } from '@/shared/user';
 
 function MainPage() {
+  const user = useUser();
+  const isDisaster = user.part === "새붉은 재앙";
+  const gateCounts =
+    user.part === "새붉은 재앙"
+      ? [
+          { grade: 'EX', count: "999", className: 'ex' },
+          { grade: 'S', count: "0", className: 's' },
+          { grade: 'A', count: "0", className: 'a' },
+          { grade: 'B', count: "0", className: 'b' },
+          { grade: 'C', count: "0", className: 'c' },
+          { grade: 'D', count: "0", className: 'd' },
+        ]
+      : [
+          { grade: 'EX', count: "0", className: 'ex' },
+          { grade: 'S', count: "25", className: 's' },
+          { grade: 'A', count: "1", className: 'a' },
+          { grade: 'B', count: "2", className: 'b' },
+          { grade: 'C', count: "2", className: 'c' },
+          { grade: 'D', count: "5", className: 'd' },
+        ];
   return (
     <MainLayout>
       <div className="max-w-7xl mx-auto px-4 lg:px-2 mt-8 gap-4 flex flex-col lg:flex-row lg:gap-2">
@@ -20,19 +41,34 @@ function MainPage() {
             {/* <p className='text-sm text-gray-300 text-center -mt-2'>안전한 장소로 즉시 대피하십시오</p> */}
             <div className="w-full h-px bg-[#B6C5F2] my-5"></div>
             <div className="status-grid grid grid-cols-3 xl:grid-cols-6 gap-2 justify-items-center">
-              {[
-                { grade: 'EX', count: "0", className: 'ex' },
-                { grade: 'S', count: "3", className: 's' },
-                { grade: 'A', count: "11", className: 'a' },
-                { grade: 'B', count: "9", className: 'b' },
-                { grade: 'C', count: "7", className: 'c' },
-                { grade: 'D', count: "4", className: 'd' },
-              ].map(({ grade, count, className }, idx) => (
-                <div key={idx} className={`status-card ${className}`}>
-                  <div className="label-section">{grade}</div>
-                  <div className="count-section">{count}</div>
-                </div>
-              ))}
+              {gateCounts.map(({ grade, count, className }, idx) => {
+                const card = (
+                  <div className={`status-card ${className}`}>
+                    <div className="label-section">{grade}</div>
+                    <div className="count-section">{count}</div>
+                  </div>
+                );
+
+                // ✅ 새붉은 재앙 + EX 일 때만 링크
+                if (isDisaster && grade === 'EX') {
+                  return (
+                    <Link
+                      key={idx}
+                      to="/career"   // ← 원하는 경로
+                      className="block cursor-default"
+                    >
+                      {card}
+                    </Link>
+                  );
+                }
+
+                // 기본
+                return (
+                  <div key={idx}>
+                    {card}
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="flex flex-row gap-2">

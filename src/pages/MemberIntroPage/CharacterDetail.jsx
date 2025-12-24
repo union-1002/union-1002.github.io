@@ -1,4 +1,12 @@
+import { useUser } from '@/shared/user';
+import { Link } from 'react-router';
+
+
+
 export default function CharacterDetail({ selected, revealedFields, setRevealedFields }) {
+
+  const user = useUser();
+  
   if (!selected) return null;
 
   return (
@@ -54,6 +62,18 @@ export default function CharacterDetail({ selected, revealedFields, setRevealedF
         <div className="col-span-2 p-4 border-b border-l border-r border-gray-300">
           <p className="text-xs text-gray-500 mb-1">기타</p>
           <p className="text-sm font-medium whitespace-pre-line">{selected.etc}</p>
+          {selected.initials === '라' && (
+            user.part === '새붉은 재앙' ? (
+              <Link
+                to="/member5yIntro"
+                className="text-sm font-medium cursor-text"
+              >
+                1. 크리스마스 이브엔 민스 파이
+              </Link>
+            ) : (
+              <p className="text-sm font-medium">1. 크리스마스 이브엔 민스 파이</p>
+            )
+          )}
         </div>
       </div>
     </div>

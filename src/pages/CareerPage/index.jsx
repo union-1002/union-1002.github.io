@@ -1,8 +1,123 @@
+import { useState } from 'react';
 import MainLayout from '@/shared/MainLayout';
 import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
 
 function CareerPage() {
+  const [open, setOpen] = useState(false);
+  const [who, setWho] = useState(null);   // 'neveah' | 'lamenta' | null
+  const [phase, setPhase] = useState('ask'); // for neveah: ask | yes | no
+
+  const openNeveah = () => {
+    setWho('neveah');
+    setPhase('ask');
+    setOpen(true);
+  };
+
+  const openLamenta = () => {
+    setWho('lamenta');
+    setPhase('ask'); // 라멘타는 phase 안 써도 되지만 초기화 겸
+    setOpen(true);
+  };
+
+  const close = () => {
+    setOpen(false);
+    setWho(null);
+    setPhase('ask');
+  };
+
+  const renderTitle = () => {
+    if (who === 'lamenta') return '라멘타';
+    if (who === 'neveah') return '느베야';
+    return '';
+  };
+
+  const renderBody = () => {
+    if (who === 'lamenta') {
+      return '어쩌면 정답이구나, 어린 양아.';
+    }
+    // neveah
+    if (phase === 'ask') return '느베야 불렀어??';
+    if (phase === 'yes') return '흥 어쩌라구';
+    return '힌트 안 줄거야!';
+  };
+
+  const renderImage = () => {
+    if (who === 'lamenta') {
+      return (
+        <img
+          src="/images/l5y.png"
+          alt="라멘타"
+          className="mx-auto w-32"
+        />
+      );
+    }
+    if (who === 'neveah') {
+      return (
+        <img
+          src="/images/n5y.png"
+          alt="느베야"
+          className="mx-auto w-32"
+        />
+      );
+    }
+    return null;
+  };
+
+  const renderButtons = () => {
+    if (who === 'lamenta') {
+      return (
+        <button
+          className="px-3 py-1 bg-gray-500 text-white rounded"
+          onClick={close}
+        >
+          닫기
+        </button>
+      );
+    }
+
+    // neveah
+    if (phase === 'ask') {
+      return (
+        <>
+          <button
+            className="px-3 py-1 bg-gray-800 text-white rounded"
+            onClick={() => setPhase('yes')}
+          >
+            응!
+          </button>
+          <button
+            className="px-3 py-1 bg-gray-300 rounded"
+            onClick={() => setPhase('no')}
+          >
+            아니오!
+          </button>
+        </>
+      );
+    }
+
+    return (
+      <button
+        className="px-3 py-1 bg-gray-500 text-white rounded"
+        onClick={close}
+      >
+        닫기
+      </button>
+    );
+  };
+
+  const Keyword = ({ onClick, children }) => (
+    <span
+      onClick={onClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') onClick();
+      }}
+    >
+      {children}
+    </span>
+  );
   return (
     <MainLayout>
       <PageLayout
@@ -121,14 +236,14 @@ function CareerPage() {
           - 론에 대한 명확한 정보 추가<br/>
           - 사 추가(다 죽자)<br/>
           <br/>
-          [라멘타]<br/>
+          <Keyword onClick={openLamenta}>[라멘타]</Keyword><br/>
           페어&대립 공통<br/>
           - 느베야 추가<br/>
           - 테리 최신 업데이트<br/>
           - 재앙께서 강림하심<br/>
           - 라틴어도 하게 됨<br/>
           <br/>
-          [느베야]<br/>
+          <Keyword onClick={openNeveah}>[느베야]</Keyword><br/>
           - 새붉은 재앙 추가<br/>
           - npc 최신 업데이트<br/>
           <br/>
@@ -142,6 +257,28 @@ function CareerPage() {
           [김도기] ← ?<br/>
           - npc 최신 업데이트<br/>
           - 새붉재님 오심
+          {/* 상태창(공용 모달) */}
+          {open && (
+            <div
+              className="fixed inset-0 bg-black/40 flex items-center justify-center z-50"
+              onClick={close} // 바깥 클릭 닫기
+            >
+              <div
+                className="bg-white rounded-lg p-6 w-[320px] text-center space-y-4 shadow-lg"
+                onClick={(e) => e.stopPropagation()} // 내부 클릭은 닫히지 않게
+              >
+                <div className="text-sm font-semibold">{renderTitle()}</div>
+
+                {renderImage()}
+
+                <div>{renderBody()}</div>
+
+                <div className="flex justify-center gap-3">
+                  {renderButtons()}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </PageLayout>
     </MainLayout>

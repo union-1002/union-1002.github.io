@@ -146,7 +146,7 @@ export default function Member5yIntroPage() {
           )}
 
           <div className="w-full mt-20 px-2">
-            <AdBottom /> 여기 머라고 나오나 봅시다
+            <AdBottom />
           </div>
 
         </div>
