@@ -75,206 +75,208 @@ export default function CharacterFormModal({ mode = 'add', selected, onClose, on
         <h2 className="text-xl font-bold mb-4 text-gray-800">
           {mode === 'add' ? '캐릭터 추가' : '캐릭터 수정'}
         </h2>
-
-        <div className="grid grid-cols-2 gap-4 max-h-[70vh] overflow-y-auto">
-          {/* 이름 */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1">이름</label>
-            <input
-              className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
-              value={form.name}
-              onChange={(e) => handleChange('name', e.target.value)}
-            />
-          </div>
-
-          {/* 닉네임 */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1">닉네임</label>
-            <input
-              className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
-              value={form.nickname}
-              onChange={(e) => handleChange('nickname', e.target.value)}
-            />
-          </div>
-
-          {/* ✅ 이니셜 */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1">이니셜</label>
-            <input
-              className="w-full border border-gray-300 rounded px-2 py-1.5 uppercase tracking-wide focus:ring-1 focus:ring-blue-400"
-              placeholder="예: R, L, J"
-              value={form.initials}
-              onChange={(e) => handleChange('initials', e.target.value)}
-            />
-          </div>
-
-          <div></div> {/* 균형 맞춤용 빈칸 */}
-
-          {/* 생일 */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1">생일</label>
-            <input
-              className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
-              value={form.birthday}
-              onChange={(e) => handleChange('birthday', e.target.value)}
-            />
-          </div>
-
-          {/* 나이 */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1">나이</label>
-            <input
-              className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
-              value={form.age}
-              onChange={(e) => handleChange('age', e.target.value)}
-            />
-          </div>
-
-          {/* 키 */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1">키(cm)</label>
-            <input
-              className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
-              value={form.height}
-              onChange={(e) => handleChange('height', e.target.value)}
-            />
-          </div>
-
-          {/* 세대 */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1">세대</label>
-            <input
-              className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
-              value={form.gen}
-              onChange={(e) => handleChange('gen', e.target.value)}
-            />
-          </div>
-
-          {/* 본명 */}
-          <div className="col-span-2">
-            <label className="block text-xs font-semibold text-gray-600 mb-1">본명 (영문 포함)</label>
-            <div className="flex gap-2">
+        <div className="max-h-[60vh] overflow-y-auto">
+          <div className="grid grid-cols-2 gap-4">
+            {/* 이름 */}
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">이름</label>
               <input
-                className="w-1/2 border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
-                placeholder="한글명"
-                value={form.fullname}
-                onChange={(e) => handleChange('fullname', e.target.value)}
+                className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
+                value={form.name}
+                onChange={(e) => handleChange('name', e.target.value)}
               />
+            </div>
+
+            {/* 닉네임 */}
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">닉네임</label>
               <input
-                className="w-1/2 border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
-                placeholder="영문명"
-                value={form.engname}
-                onChange={(e) => handleChange('engname', e.target.value)}
+                className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
+                value={form.nickname}
+                onChange={(e) => handleChange('nickname', e.target.value)}
+              />
+            </div>
+
+            {/* ✅ 이니셜 */}
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">이니셜</label>
+              <input
+                className="w-full border border-gray-300 rounded px-2 py-1.5 uppercase tracking-wide focus:ring-1 focus:ring-blue-400"
+                placeholder="예: R, L, J"
+                value={form.initials}
+                onChange={(e) => handleChange('initials', e.target.value)}
+              />
+            </div>
+
+            <div></div> {/* 균형 맞춤용 빈칸 */}
+
+            {/* 생일 */}
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">생일</label>
+              <input
+                className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
+                value={form.birthday}
+                onChange={(e) => handleChange('birthday', e.target.value)}
+              />
+            </div>
+
+            {/* 나이 */}
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">나이</label>
+              <input
+                className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
+                value={form.age}
+                onChange={(e) => handleChange('age', e.target.value)}
+              />
+            </div>
+
+            {/* 키 */}
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">키(cm)</label>
+              <input
+                className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
+                value={form.height}
+                onChange={(e) => handleChange('height', e.target.value)}
+              />
+            </div>
+
+            {/* 세대 */}
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">세대</label>
+              <input
+                className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
+                value={form.gen}
+                onChange={(e) => handleChange('gen', e.target.value)}
+              />
+            </div>
+
+            {/* 본명 */}
+            <div className="col-span-2">
+              <label className="block text-xs font-semibold text-gray-600 mb-1">본명 (영문 포함)</label>
+              <div className="flex gap-2">
+                <input
+                  className="w-1/2 border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
+                  placeholder="한글명"
+                  value={form.fullname}
+                  onChange={(e) => handleChange('fullname', e.target.value)}
+                />
+                <input
+                  className="w-1/2 border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
+                  placeholder="영문명"
+                  value={form.engname}
+                  onChange={(e) => handleChange('engname', e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* 출신 */}
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">출신</label>
+              <input
+                className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
+                value={form.nationality}
+                onChange={(e) => handleChange('nationality', e.target.value)}
+              />
+            </div>
+
+            {/* 기타 */}
+            <div className="col-span-2">
+              <label className="block text-xs font-semibold text-gray-600 mb-1">기타</label>
+              <textarea
+                className="w-full border border-gray-300 rounded px-2 py-1.5 h-20 resize-none focus:ring-1 focus:ring-blue-400"
+                value={form.etc}
+                onChange={(e) => handleChange('etc', e.target.value)}
               />
             </div>
           </div>
 
-          {/* 출신 */}
-          <div>
-            <label className="block text-xs font-semibold text-gray-600 mb-1">출신</label>
-            <input
-              className="w-full border border-gray-300 rounded px-2 py-1.5 focus:ring-1 focus:ring-blue-400"
-              value={form.nationality}
-              onChange={(e) => handleChange('nationality', e.target.value)}
-            />
+          {/* 그룹 선택 */}
+          <div className="mt-6">
+            <p className="text-xs font-semibold text-gray-600 mb-2">소속 그룹</p>
+            <div className="flex flex-wrap gap-2">
+              {groups.map((g) => (
+                <label
+                  key={g.id}
+                  className={`flex items-center gap-2 px-3 py-1 rounded-full border cursor-pointer text-sm transition ${
+                    form.group_id === g.id
+                      ? 'border-blue-500 bg-blue-50 font-semibold'
+                      : 'border-gray-300 hover:bg-gray-100'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="group"
+                    value={g.id}
+                    checked={form.group_id === g.id}
+                    onChange={() => handleChange('group_id', g.id)}
+                    className="hidden"
+                  />
+                  <span
+                    className="w-3 h-3 rounded-full border"
+                    style={{
+                      backgroundColor:
+                        form.group_id === g.id ? g.color : 'transparent',
+                      borderColor: g.border_color,
+                    }}
+                  ></span>
+                  <span>{g.group_name}</span>
+                </label>
+              ))}
+            </div>
           </div>
 
-          {/* 기타 */}
-          <div className="col-span-2">
-            <label className="block text-xs font-semibold text-gray-600 mb-1">기타</label>
-            <textarea
-              className="w-full border border-gray-300 rounded px-2 py-1.5 h-20 resize-none focus:ring-1 focus:ring-blue-400"
-              value={form.etc}
-              onChange={(e) => handleChange('etc', e.target.value)}
-            />
-          </div>
-        </div>
-
-        {/* 그룹 선택 */}
-        <div className="mt-6">
-          <p className="text-xs font-semibold text-gray-600 mb-2">소속 그룹</p>
-          <div className="flex flex-wrap gap-2">
-            {groups.map((g) => (
-              <label
-                key={g.id}
-                className={`flex items-center gap-2 px-3 py-1 rounded-full border cursor-pointer text-sm transition ${
-                  form.group_id === g.id
-                    ? 'border-blue-500 bg-blue-50 font-semibold'
-                    : 'border-gray-300 hover:bg-gray-100'
-                }`}
-              >
+          {/* Era 선택 */}
+          <div className="mt-5">
+            <p className="text-xs font-semibold text-gray-600 mb-1">시기</p>
+            <div className="flex gap-4 text-sm">
+              <label className="flex items-center gap-1 cursor-pointer">
                 <input
                   type="radio"
-                  name="group"
-                  value={g.id}
-                  checked={form.group_id === g.id}
-                  onChange={() => handleChange('group_id', g.id)}
-                  className="hidden"
+                  name="era"
+                  value="current"
+                  checked={form.era === 'current'}
+                  onChange={() => handleChange('era', 'current')}
                 />
-                <span
-                  className="w-3 h-3 rounded-full border"
-                  style={{
-                    backgroundColor:
-                      form.group_id === g.id ? g.color : 'transparent',
-                    borderColor: g.border_color,
-                  }}
-                ></span>
-                <span>{g.group_name}</span>
+                현재
               </label>
-            ))}
+              <label className="flex items-center gap-1 cursor-pointer">
+                <input
+                  type="radio"
+                  name="era"
+                  value="past_5y"
+                  checked={form.era === 'past_5y'}
+                  onChange={() => handleChange('era', 'past_5y')}
+                />
+                5년 전
+              </label>
+            </div>
           </div>
-        </div>
 
-        {/* Era 선택 */}
-        <div className="mt-5">
-          <p className="text-xs font-semibold text-gray-600 mb-1">시기</p>
-          <div className="flex gap-4 text-sm">
-            <label className="flex items-center gap-1 cursor-pointer">
-              <input
-                type="radio"
-                name="era"
-                value="current"
-                checked={form.era === 'current'}
-                onChange={() => handleChange('era', 'current')}
-              />
-              현재
-            </label>
-            <label className="flex items-center gap-1 cursor-pointer">
-              <input
-                type="radio"
-                name="era"
-                value="past_5y"
-                checked={form.era === 'past_5y'}
-                onChange={() => handleChange('era', 'past_5y')}
-              />
-              5년 전
-            </label>
+          {/* 공개 여부 */}
+          <div className="mt-5">
+            <p className="text-xs font-semibold text-gray-600 mb-1">공개 여부</p>
+            <div className="flex gap-4 text-sm">
+              <label className="flex items-center gap-1 cursor-pointer">
+                <input
+                  type="radio"
+                  name="is_public"
+                  checked={form.is_public === true}
+                  onChange={() => handleChange('is_public', true)}
+                />
+                공개
+              </label>
+              <label className="flex items-center gap-1 cursor-pointer">
+                <input
+                  type="radio"
+                  name="is_public"
+                  checked={form.is_public === false}
+                  onChange={() => handleChange('is_public', false)}
+                />
+                비공개
+              </label>
+            </div>
           </div>
-        </div>
 
-        {/* 공개 여부 */}
-        <div className="mt-5">
-          <p className="text-xs font-semibold text-gray-600 mb-1">공개 여부</p>
-          <div className="flex gap-4 text-sm">
-            <label className="flex items-center gap-1 cursor-pointer">
-              <input
-                type="radio"
-                name="is_public"
-                checked={form.is_public === true}
-                onChange={() => handleChange('is_public', true)}
-              />
-              공개
-            </label>
-            <label className="flex items-center gap-1 cursor-pointer">
-              <input
-                type="radio"
-                name="is_public"
-                checked={form.is_public === false}
-                onChange={() => handleChange('is_public', false)}
-              />
-              비공개
-            </label>
-          </div>
         </div>
 
         {/* 버튼 */}
