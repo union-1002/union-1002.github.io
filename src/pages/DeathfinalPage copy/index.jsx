@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router'; // 지금 안 쓰면 지워도 됨
 import supabase from '@/shared/supabase';
+import AdDeath from "../../components/AdDeath";
 
 const PX_PER_MIN = 4;
 
@@ -61,6 +62,10 @@ function DeathfinalPage() {
           <Link to="https://bangool.tistory.com/121" target="_blank" className="w-fit bg-black/20 border border-white/15 hover:bg-pink-300/20 transition p-1.5">
             🤖
           </Link>
+        </div>
+
+        <div className="w-full">
+          <AdDeath />
         </div>
         {posts.map((post, idx) => (
           <div key={post.id || idx}>

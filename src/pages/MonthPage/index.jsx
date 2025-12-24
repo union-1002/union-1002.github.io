@@ -1,7 +1,6 @@
 import MainLayout from '@/shared/MainLayout';
-import PageLayout from '@/shared/PageLayout';
-import { MENU_PROPS } from '@/shared/SideNavigationBar';
 import { useUser } from '@/shared/user';
+import AdMonth from "../../components/AdMonth";
 
 function MonthPage() {
   const user = useUser();
@@ -297,6 +296,9 @@ function MonthPage() {
             ))}
           </div>
         ))}
+        <div className="w-full mt-10">
+          <AdMonth />
+        </div>
       </div>
 
 
