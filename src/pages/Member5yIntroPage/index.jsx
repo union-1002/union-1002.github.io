@@ -49,7 +49,7 @@ export default function Member5yIntroPage() {
         className="fixed inset-0 bg-cover bg-center bg-no-repeat -z-20"
         style={{ backgroundImage: "url('/images/5y_back.jpg')" }}
       />
-        <div className="flex flex-col items-center space-y-4 w-full py-8 px-2 lg:px-0">
+        <div className="flex flex-col items-center text-center space-y-4 w-full py-8 px-2 lg:px-0">
 
           {user.isAdmin && (
             <button
@@ -146,8 +146,8 @@ export default function Member5yIntroPage() {
             />
           )}
 
-          <div className="w-full mt-20">
-            <AdBottom />
+          <div className="w-full mt-20 px-2">
+            <AdBottom /> 여기 머라고 나오나 봅시다
           </div>
 
         </div>
