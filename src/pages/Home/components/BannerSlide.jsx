@@ -1,24 +1,17 @@
 import { useState, useEffect } from "react";
 import { useUser } from '@/shared/user';
-import banner8 from '../images/banner8.jpg';
-import banner9 from '../images/banner9.jpg';
-import banner10 from '../images/banner10.gif';
-import banner11 from '../images/banner11.jpg';
-import banner7 from '../images/banner7.jpg';
 import banner5 from '../images/banner5.png';
+import banner25_2 from '../images/banner_25_2.png';
+import banner25_3 from '../images/banner_25_3.png';
+import banner25_4 from '../images/banner_25_4.png';
+import banner25_5 from '../images/banner_25_5.png';
+import banner25_6 from '../images/banner_25_6.png';
+import banner25_7 from '../images/banner_25_7.png';
+import banner25_8 from '../images/banner_25_8.png';
+import banner25_9 from '../images/banner_25_9.png';
+import banner25_10 from '../images/banner_25_10.png';
 import banner_n from '../images/banner_n.png';
-import banner6 from '../images/banner6.jpg';
-import banner_w from '../images/banner_w.jpg';
-import banner_e from '../images/banner_e.jpg';
-import banner_u from '../images/banner_u.jpg';
-import banner_d from '../images/banner_d.jpg';
-import banner_hu from '../images/banner_hu.jpg';
-import banner_nn from '../images/banner_n.jpg';
-import banner_hday from '../images/banner_hday.jpg';
-import banner_mday from '../images/banner_mday.gif';
-import banner_d1 from '../images/banner_d1.png';
-import banner_d2 from '../images/banner_d2.png';
-import banner_d3 from '../images/banner_d3.png';
+
 
 
 
@@ -29,22 +22,16 @@ const BannerSlide = () => {
   const [current, setCurrent] = useState(0);
 
   const images = [
-    // banner_d1,
-    // banner_d2,
-    // banner_d3,
     ...(user.part === '새붉은 재앙' ? [banner_n] : []),
-    ...(user.part === '울프독' ? [banner_mday] : []),
-    ...(user.part === '울프독' ? [banner_w] : []),
-    ...(user.part === '이글아이' ? [banner_hday] : []),
-    ...(user.part === '이글아이' ? [banner_e] : []),
-    ...(user.part === '드라칼' ? [banner_d] : []),
-    ...(user.part === '헌터즈' ? [banner_nn] : []),
-    ...(user.part === '헌터즈' ? [banner_hu] : []),
-    banner7,
-    banner9,
-    banner8,
-    banner10,
-    banner11,
+    ...(user.part === '헌터즈' ? [banner25_6] : []),
+    ...(user.part === '이글아이' ? [banner25_7] : []),
+    ...(user.part === '울프독' ? [banner25_8] : []),
+    ...(user.part === '드라칼' ? [banner25_9] : []),
+    ...(user.part === '언더 그라운드' ? [banner25_10] : []),
+    banner25_2,
+    banner25_3,
+    banner25_4,
+    banner25_5,
     banner5,
   ];
 
