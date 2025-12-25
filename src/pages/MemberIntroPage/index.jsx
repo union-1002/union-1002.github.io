@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router';
 import MainLayout from '@/shared/MainLayout';
 import PageLayout from '@/shared/PageLayout';
 import { MENU_PROPS } from '@/shared/SideNavigationBar';
@@ -48,6 +49,22 @@ export default function MemberIntroPage() {
     <MainLayout>
       <PageLayout title="직원 소개" sidebar={MENU_PROPS['유니온 소개']}>
         <div className="flex flex-col items-center space-y-4 w-full">
+          <div className="flex justify-end w-full mb-15">
+            <Link
+              to="/member5yIntro"
+              className="
+                px-3 py-1.5
+                rounded-md
+                border border-gray-200
+                text-xs tracking-wide
+                text-gray-600
+                hover:bg-gray-100 hover:text-gray-900
+                transition
+              "
+            >
+              [CONFIDENTIAL]
+            </Link>
+          </div>
 
           {user.isAdmin && (
             <button
