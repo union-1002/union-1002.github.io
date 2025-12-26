@@ -1,95 +1,157 @@
 import MainLayout from '@/shared/MainLayout';
 import { useUser } from '@/shared/user';
+import { useState } from "react";
 import AdMonth from "../../components/AdMonth";
 
 function MonthPage() {
   const user = useUser();
+  const [openRonByTriggerReplyId, setOpenRonByTriggerReplyId] = useState(() => ({}));
+
+
   const defaultPosts = [
     {
-      id: 7,
+      id: 1,
       author: "울프독 공용 계정",
-      text: "1빠임다 ㅋㅋ",
+      text: "울프독은 희생 앞에 묵념하며, 그들의 의지를 이어갑니다.",
       image: "/images/wolfdog1.png",
       replies: [
-        { id: 11, author: "I", image: "/images/wolfdog1.png", text: "아싸, 2빠. 베르너가 커피 사는 걸로." },
-        { id: 11, author: "A", image: "/images/wolfdog1.png", text: "야 관리자 계정으로 미리 오는 건 반칙 아닙니까?" },
-        { id: 11, author: "M", image: "/images/wolfdog1.png", text: "테리 군, 공용 계정으로 장난치지 마세요." },
-        { id: 11, author: "오르티", image: "/images/hunters1.png", text: "댜들ㅗ나이ㅅ갑ㅄ좀 하거라" },
-      ],
-    },
-    {
-      id: 7,
-      author: "N",
-      text: "이야 우리 부서 연속으로 이달사 하는 거 봐. 최고의 부서 아니냐? 저기 재수 없는 민트초코 나부랭이보다 우리 용용이가 먼저 이달사 받는 거 보면 답 나오지.",
-      image: "/images/hunters1.png",
-      replies: [
-        { id: 11, author: "J", image: "/images/dracal1.png", text: "재수 없는 치토스." },
-        { id: 11, author: "N", image: "/images/hunters1.png", text: "뭐냐? 이 싸가지가. 너라고 한적 없는데?" },
-        { id: 11, author: "J", image: "/images/dracal1.png", text: "저도 누군가를 특정하고 한 이야기는 아닙니다." },
-        { id: 11, author: "N", image: "/images/hunters1.png", text: "어 재활용도 안되는 민트초코 껍데기" },
-        { id: 11, author: "J", image: "/images/dracal1.png", text: "응 재활용 해도 적자 나는 치토스 봉지." },
-        { id: 11, author: "오르티", image: "/images/hunters1.png", text: "재활ㄹ용은ㅓ 어디ㅓ게이트에 사는ㄴ 용이느냐ㅑ" },
 
       ],
     },
     {
-      id: 7,
-      author: "R",
-      text: "고디바는 어떠십니까?",
-      image: "/images/underground1.png", 
+      id: 2,
+      author: "테리",
+      text: "오늘은 마시는 검다!",
+      image: "/images/wolfdog1.png",
       replies: [
-        { id: 11, author: "N", image: "/images/hunters1.png", text: "애 버릇 나빠진다고 했잖아 미친" },
-        { id: 11, author: "R", image: "/images/underground1.png", text: "제 알 바입니까?" },
-        { id: 11, author: "N", image: "/images/hunters1.png", text: "[신고 누적으로 가려진 댓글입니다.]" },
+        { id: 201, author: "I", image: "/images/wolfdog1.png", text: "마시고 죽어 따라가게, 친구?" },
+        { id: 202, author: "론", image: "/images/wolfdog1.png", text: "이 망할 놈이 또 말 이렇게 하네" },
+        { id: 203, author: "테리", image: "/images/wolfdog1.png", text: "저번에도 먼저 죽어서 택시 타고 간 사람이 할 말은 아니져?" },
       ],
     },
+
     {
-      id: 7,
-      author: "살라딘",
-      text: "우리 막내가 해냈구나!",
-      image: "/images/wolfdog1.png", 
-      replies: [
-        { id: 11, author: "살라딘", image: "/images/wolfdog1.png", text: "장하기 짝이 없다." },
-        { id: 11, author: "오르티", image: "/images/hunters1.png", text: "ㅋㅋ아직ㄱ도 이달 사 못받은ㄴ 요원없제? ㅋㅋ" },
-        { id: 11, author: "E", image: "/images/hunters1.png", text: "이런 말투는 누가 가르친 겁니까?" },
-      ],
-    },
-    {
-      id: 7,
-      author: "미네르바",
-      text: "축하한다, 오르토스.",
-      image: "/images/eagleeye1.png", 
-      replies: [        
- 
-      ],
-    },
-    {
-      id: 7,
-      author: "P",
-      text: "위대하신 분의 고아한 행적에 박수를!",
-      image: "/images/hunters1.png", 
-      replies: [
-        { id: 11, author: "미카엘", image: "/images/dracal1.png", text: "참다 참다 말하는 건데 이거 어떻게 할 수 없어요?" },
-        { id: 11, author: "P", image: "/images/hunters1.png", text: "[관리자에 의해 제재된 댓글(사유: 명예훼손)입니다.]" },
-        { id: 11, author: "미카엘", image: "/images/dracal1.png", text: "[관리자에 의해 제재된 댓글(사유: 욕설)입니다.]" },
-      ],
-    },
-    {
-      id: 7,
+      id: 3,
       author: "비광",
-      text: "경사로구먼! 한 턱 쏘게!",
-      image: "/images/wolfdog1.png", 
+      text: "에잉, 하여간에 사람 기분 이상하게 하는 데는 뭐 있구만.",
+      image: "/images/wolfdog1.png",
       replies: [
-        { id: 11, author: "오르티", image: "/images/hunters1.png", text: "ㅇㅠ유상종이노라!" },
+        { id: 301, author: "비광", image: "/images/wolfdog1.png", text: "자네 장례식 날에 더럽게 추웠다네. 아는가?" },
+        { id: 302, author: "비광", image: "/images/wolfdog1.png", text: "자네 친구도 잠시 와본 걸 내 눈 감아줬어." },
+        { id: 303, author: "비광", image: "/images/wolfdog1.png", text: "걱정일랑 말게." },
+        { id: 304, author: "I", image: "/images/wolfdog1.png", text: "친구 누구? 나 말고 친구가 있었어?" },
+        { id: 305, author: "론", image: "/images/wolfdog1.png", text: "내가 할 말 아냐????" },
+        { id: 306, author: "비광", image: "/images/wolfdog1.png", text: "그거는 론냐가 할 말 아닌감?" },
       ],
     },
+
+    {
+      id: 4,
+      author: "A",
+      text: "쓸 데 없는 걱정입니다.",
+      image: "/images/wolfdog1.png",
+      replies: [
+        { id: 401, author: "A", image: "/images/wolfdog1.png", text: "편히 쉬기나 하시죠." },
+        { id: 402, author: "I", image: "/images/wolfdog1.png", text: "오지랖도 대서양이야." },
+        { id: 402, author: "론", image: "/images/wolfdog1.png", text: "너네 하는 거 보다가 30살 됐어." },
+      ],
+    },
+
+    {
+      id: 5,
+      author: "J",
+      text: "그 누구보다도 따뜻하고, 소외된 자에게 손을 뻗는 동료였습니다. 그 마음을 기억하겠습니다.",
+      image: "/images/dracal1.png",
+      replies: [
+        { id: 501, author: "I", image: "/images/wolfdog1.png", text: "억울하네 나한테는 차가운 아이스 아메리카노였는데." },
+        { id: 502, author: "론", image: "/images/wolfdog1.png", text: "난 악마의 구정물이었던 적 없거든!" },
+        { id: 503, author: "M", image: "/images/wolfdog1.png", text: "고인이 알면 무덤에서 일어날 일입니다, I 군." },
+        { id: 504, author: "I", image: "/images/wolfdog1.png", text: "무덤에서 일어나면 좋은 일 아닌가?" },
+        { id: 505, author: "론", image: "/images/wolfdog1.png", text: "하…. 내가 이런 놈을 떠맡기고 가서 미안하다 모르페우스." },
+      ],
+    },
+
+    {
+      id: 6,
+      author: "M",
+      text: "글쎄요, 스스로를 괴물이라 생각하지 않습니다.",
+      image: "/images/wolfdog1.png",
+      replies: [
+        { id: 601, author: "M", image: "/images/wolfdog1.png", text: "지키고 싶은 것은…." },
+        { id: 602, author: "M", image: "/images/wolfdog1.png", text: "쉬어요, 론." },
+      ],
+    },
+
     {
       id: 7,
-      author: "S",
-      text: "🌙✨ 오르링~~~ 용용이~~~ ✨🌙 이달사 된 거 진짜루 축하해에에 🥳💛 역시 우리 오르링은 맛있는 고기처럼 씹을수록 대단한 사람이라니까아 🤤🔥",
-      image: "/images/hunters1.png", 
+      author: "D",
+      text: "론론.",
+      image: "/images/wolfdog1.png",
       replies: [
+        { id: 701, author: "D", image: "/images/wolfdog1.png", text: "슬럼에서 형아가 후회하냐고 물었단다." },
+        { id: 702, author: "론", image: "/images/wolfdog1.png", text: "웃긴 양반이야. 내가 후회를 왜 해요? 당신이야 말로 살아있는 게 아니라 기능하고 있는 게 아니에요? 라고 전해 줘." },
+        { id: 703, author: "I", image: "/images/wolfdog1.png", text: "그 노인네 아직도 그딴 소리를 해?" },
+        { id: 704, author: "론", image: "/images/wolfdog1.png", text: "얼씨구. 앞에서 못할 소리 여기 못 본다고 잘하네?" },
+        { id: 705, author: "D", image: "/images/wolfdog1.png", text: "직접 말하렴." },
+        { id: 706, author: "론", image: "/images/wolfdog1.png", text: "오늘만큼은 꼴도 보기 싫어. 하지만 당신도 한때 따뜻한 피가 흐르던 인간임을 기억하기를." },
+      ],
+    },
 
+    {
+      id: 8,
+      author: "R",
+      text: "울프독 최대의 손실임을 압니다.",
+      image: "/images/underground1.png",
+      replies: [
+        { id: 801, author: "I", image: "/images/wolfdog1.png", text: "뭘 아신다고?" },
+        { id: 802, author: "론", image: "/images/wolfdog1.png", text: "죄송합니다, 보시다시피 저희 애도 반성하고 있으니…." },
+        { id: 803, author: "R", image: "/images/underground1.png", text: "제가 당신보다 론을 모를까요?" },
+        { id: 804, author: "I", image: "/images/wolfdog1.png", text: "ㅋㅋㅋㅋ" },
+        { id: 804, author: "론", image: "/images/wolfdog1.png", text: "뭘 잘했다고 웃어?" },
+      ],
+    },
+
+    {
+      id: 9,
+      author: "X",
+      text: "이렇게 물러 터져서 그렇게 된 거라고요.",
+      image: "/images/underground1.png",
+      replies: [
+        { id: 901, author: "X", image: "/images/underground1.png", text: "역겨울 만큼 가증스러워." },
+        { id: 902, author: "X", image: "/images/underground1.png", text: "대체 왜." },
+        { id: 903, author: "I", image: "/images/wolfdog1.png", text: "ㅇㅈ 이 친구 슬럼 사투리를 나만 알고 있다는 게 참 개탄스럽네, 하하." },
+        { id: 904, author: "론", image: "/images/wolfdog1.png", text: "아가리 하자. 아직도 나보다 어린 새끼가." },
+      ],
+    },
+
+    {
+      id: 10,
+      author: "I",
+      text: "뭐야? 이제 아무도 댓글 안 달아?ㅋㅋ",
+      image: "/images/wolfdog1.png",
+      replies: [
+      ],
+    },
+
+    {
+      id: 11,
+      author: "I",
+      text: "뭐 얘는 딱 이 정도까지 라는 거지.",
+      image: "/images/wolfdog1.png",
+      replies: [
+      ],
+    },
+
+    {
+      id: 12,
+      author: "I",
+      text: "회식 해ㅆ는데",
+      image: "/images/wolfdog1.png",
+      replies: [
+        { id: 1201, author: "I", image: "/images/wolfdog1.png", text: "진짜 네가 했던 헛소리들" },
+        { id: 1202, author: "I", image: "/images/wolfdog1.png", text: "다ㅓ 맘에 안 들ㄹ어" },
+        { id: 1203, author: "I", image: "/images/wolfdog1.png", text: "네가 싫어." },
+        { id: 1204, author: "론", image: "/images/wolfdog1.png", text: "너 진짜 계속 그렇게\n사람 열받게 하고\n꼽줘가면서\n\n살아." },
       ],
     },
     
@@ -97,67 +159,65 @@ function MonthPage() {
   
   const grimmerReaperPosts = [
     {
-      id: 7,
+      id: 21,
       author: "뽀삐",
-      text: "용용이! 멋져! 축하해!",
+      text: "루디, 루디! 우리 이제 조각 물어와 놀이 안 해?",
       image: "/images/gr.png",
       replies: [
+        { id: 2101, author: "루두스", image: "/images/gr2.png", text: "그럼요, 나의 맹수! 이젠 작품이 완성 되었으니까요." },
+      ],
+    },
 
+    {
+      id: 22,
+      author: "매드 해터",
+      text: "브라보! 최고의 피그말리온입니다. 피그말리온 맞죠? 피규어?",
+      image: "/images/gr.png",
+      replies: [
       ],
     },
-    {
-      id: 7,
-      author: "에로스",
-      text: "✧⟆ㅣ벤r트 폭주중✦ 초ㅌㅣ한정 입장만 해도 ☞보너스 칩 증정☜ 오늘 밤은 ♨어른들의 비밀정원♨ 슬♚럼 아스ㅁㅗ데우스에 서∽ㄱ 빠져봐 ➺ 바로가기",
-      image: "/images/gr2.png", 
-      replies: [
 
+    {
+      id: 23,
+      author: "M",
+      text: "유니온 총장실 긴급 명령입니다. 오늘부로 울프독은 슬럼 순찰을 무기한 일절 중단합니다. 당신들도 알아서들 하세요.",
+      image: "/images/gr.png",
+      replies: [
       ],
     },
-    {
-      id: 7,
-      author: "아가페",
-      text: "제사장 님, 곤란한 일이 난 것 같은데요…….",
-      image: "/images/gr.png", 
-      replies: [
 
-      ],
-    },
     {
-      id: 7,
-      author: "루두스",
-      text: "제사장, 어디간 겁니까? 형제들이 당신을 찾고 있습니다만, 주인공은 마지막에 등장하는 법인가요?",
-      image: "/images/gr2.png", 
-      replies: [
-
-      ],
-    },
-    {
-      id: 7,
-      author: "매드 헤터",
-      text: "우리 막내, 축하합니다!",
-      image: "/images/gr.png", 
-      replies: [        
-      ],
-    },
-    {
-      id: 7,
-      author: "마니아",
-      text: "베야 지금 제 품에서 떨고 있는데요?",
-      image: "/images/gr.png", 
-      replies: [
-        
-      ],
-    },
-    {
-      id: 7,
+      id: 24,
       author: "C",
-      text: "아, 여기가 백신도 안 들어처먹는 바이러스 버러지 소굴인가요?",
-      image: "/images/gr.png", 
+      text: "하, 씨발…. 진짜 미친 새끼들이네, 이거.",
+      image: "/images/gr.png",
       replies: [
-        { id: 11, author: "C", image: "/images/gr.png", text: "우글우글 기생하고 있는 꼴이 기가 차지도 않네요." },
-        { id: 11, author: "C", image: "/images/gr.png", text: "랜섬웨어 같은 새끼들." },
-        { id: 11, author: "라멘타", image: "/images/gr2.png", text: "가여운 어린양이여, 실은 이해할지니." },
+        { id: 2401, author: "C", image: "/images/gr.png", text: "야 이 개 같은 새끼들아. 니들이 그러고도 인간이냐? 뭐? 구원? 재앙? 너희 신은 그런 뽕에 아직도 취했나 본디. 너희 눈깔에는 그게 천사로 보이냐? 남의 시체 도굴해서 프랑켄슈타인 쳐 만들어 놓고 천사라고 빨아제끼는 꼴이 같잖아 죽겠다 씨발 새끼들아." },
+        { id: 2402, author: "C", image: "/images/gr.png", text: "론이 장난감이냐? 죽어서도 편히 못 쉬게 그따위로 굴려? 니들 교주 수준도 알 만하다. 그러니까 데스 사이드 때 가슴팍이나 뚫리고 복수는 좆도 못하지." },
+        { id: 2403, author: "C", image: "/images/gr.png", text: "라멘타 이 개 좆같은 새끼, 넌 내 손에 죽는다. 니들이 론한테 한 짓, 억 배로 갚아줄게. 딱 기다려, 개새끼들아." },
+        { id: 2404, author: "마니아", image: "/images/gr.png", text: "오라버니, 계정 또 뺏겼어요?" },
+        { id: 2405, author: "C", image: "/images/gr.png", text: "오늘만큼은 내버려뒀소." },
+
+      ],
+    },
+
+    {
+      id: 25,
+      author: "하피",
+      text: "아 씨발 진짜.",
+      image: "/images/gr.png",
+      replies: [
+        { id: 2401, author: "하피", image: "/images/gr.png", text: "씨발 자기들아, 역겨워서 토하겠다." },
+      ],
+    },
+
+    {
+      id: 26,
+      author: "에로스",
+      text: "제 깃털을…… 이런 곳에 썼군요……?",
+      image: "/images/gr2.png",
+      replies: [
+        { id: 2401, author: "에로스", image: "/images/gr2.png", text: "새로운 방법으로 새 생명을 잉태했네……. 저는 구시대적 방법이 좋답니다." },
       ],
     },
     
@@ -178,10 +238,10 @@ function MonthPage() {
 
         {/* 타이틀 */}
         <h1 className="text-3xl font-extrabold font-book text-[#435373] mb-2">
-        👑{user.part === '새붉은 재앙' ? '그림 리퍼 보거라' : '이달의 우수 사원'}👑
+        {user.part === '새붉은 재앙' ? '🔴이달의 신규 신도🔴' : '추모합니다🪴'}
         </h1>
         <p className="text-gray-600 text-sm mb-10">          
-          {user.part === '새붉은 재앙' ? '이몸의 멋진 모습!' : '매달 유니온의 가장 빛나는 별을 소개합니다.'}
+          {user.part === '새붉은 재앙' ? '새로운 신도를 소개합니다.' : '그들의 임무는 멈추었지만, 의지를 이어 나갑니다.'}
         </p>
 
         {/* 우수 사원 카드 */}
@@ -190,61 +250,51 @@ function MonthPage() {
           <img
             src={
               user.part === '새붉은 재앙'
-                ? "/images/orti.png"
-                : "/images/rank/오르티.png"
+                ? "/images/rank/로이에.png"
+                : "/images/rank/론.png"
             }
             alt="이달의 우수 사원"
             className="w-full h-180 object-cover"
           />
           <div className="p-6">
             <h2
-              className={
-                user.part === "새붉은 재앙"
-                  ? `
-                    text-xl font-bold mb-1
-                    bg-gradient-to-r
-                    from-red-400 via-yellow-400 via-green-400 via-blue-400 to-purple-500
-                    bg-clip-text text-transparent
-
-                    bg-[length:300%_100%]
-                    animate-[rainbowFlow_3s_linear_infinite]
-                  `
-                  : "text-xl font-bold text-[#456EBF] mb-1"
-              }
-            >
-              {user.part === "새붉은 재앙" ? "오르티로다!" : "오르티"}
+              className="text-xl font-bold text-[#456EBF] mb-1">
+              {user.part === "새붉은 재앙" ? "로이에" : "론"}
             </h2>
 
 
-            <p className="text-sm text-gray-500 mb-2">{user.part === '새붉은 재앙' ? '킹왕짱 위대한 군주' : '헌터즈'}</p>
+            <p className="text-sm text-gray-500 mb-2">{user.part === '새붉은 재앙' ? '이상향의 계도자' : '울프독'}</p>
             <p className="text-sm text-gray-700 leading-relaxed text-left">
               {user.part === '새붉은 재앙' ? (
                 <>
-                  어이, ㄱㅓ기 음침한 구석ㅇㅇㅔ서  촛ㅅ불 켜놓ㄱ코 이상한 주문이나 외우는 너ㅓ희들! 잘 지냈느냐ㅑ??<br/>
-                  나 ㅇㅇㅟ대한 군주 오ㅗ르티 님이 직접 행차하셧ㅅ따!<br/>
-                  남의 사이틑ㅌ에 숨ㅁ어들어 하는 꼬라지가 한ㄴ심하도다!<br/><br/>
-
-                  아무튼, 중요한 건ㄴ 그게 아ㅇ니다ㄴ!<br/>
-                  내가 오늘 아ㅈ주 기쁜 소식을 가져왓ㅇ따. 이몸이 가장 ㄸㅇ뤼어나다는 것을 유니온이 공식적으로 린ㄴ정했단 말이다!<br/><br/>
-
-                  그러니ㄱ가 결론은 이거다.<br/><br/>
-                  그 음침한 짔ㅅ거리는 그만두고 유니온에 와서 내 팬크ㄹ럽 가입이나 해라. 아, 물론 가입비는 초ㅗ코로 받겠다.<br/><br/>
-
-                  이상, 우주 최강 귀염둥이 군주 오르티였다!<br/><br/>
-
-                  P.S. 관리자ㅏ 비밀번호가 BloodGod1234라니, 너무 유치하지 않느냐? 내ㅐ가 ChocoLove로 바꿔놨으니 그리 알도록ㄱ!!
+                  신도들이여, 신앙 아래에서 모두 평등하되 구원 받는 것에 귀천 없나니.<br/>
+                  진정한 이상향의 도래라.
                 </>
               ) : (
                 <>
-                  인간들! 아니, 동료 여러분!<br/><br/>
-                  
-                  이몸이, 위대한 군주 오르티가 이달의 가장 뛰어난 사원이 되었다는 소식을 들었노라! 처음엔 그저 반짝이는 황금 명패를 준다기에 좋다고 했지만, 이것이 너희가 나를 인정한다는 뜻이라니 기쁘기 그지없도다.<br/><br/>
+                  안녕, 친구들!<br/><br/>
 
-                  솔직히 말하자면, 몬스터들과 대화하는 건 내게 숨 쉬는 것처럼 쉬운 일이다. 너희가 길가에 핀 강아지풀에게 인사를 건네는 것과 다르지 않으니까! 하지만 그 작은 대화가 너희를 다치지 않게 하고, 웃게 만들었다니 참으로 신기하고 보람찬 일이 아닐 수 없다. 총장님과의 약속, 행복을 찾는 일이 이런 것인가 어렴풋이 알 것도 같다.<br/><br/>
+                  이 메시지를 보고 있다면, 나는 아마 더 이상 너희 곁에 없겠네. 음, 슬픈 일이지만 너무 울지는 마. 나는 꽤 즐겁게 살다 갔으니까. 우리가 함께 지켜낸 도시, 우리가 나눈 농담들, 그리고 가끔 옥상에서 몰래 마시던 캔맥주의 맛까지. 나는 모든 순간을 사랑했어.<br/><br/>
 
-                  이 영광을 나에게 가장 맛있는 초콜릿을 가르쳐 준 나의 친구이자 짝꿍에게 돌리노라! 그리고 매일 잔소리하지만 밥은 잘 챙겨주는 살라딘 형아, 오토바이 태워주는 쌩쌩이 누나, 그리고 나를 무서워하지 않고 사탕을 건네준 1층 안내 데스크 직원에게도 고마움을 전한다.<br/><br/>
+                  우리가 함께했던 시간들을 기억해? 훈련장에서 흘렸던 땀방울, 힘겨운 임무를 마치고 나눠 마시던 시원한 음료수, 그리고 서로의 등을 지키며 나누었던 눈빛들. 그 모든 순간이 나에게는 기적이었고, 축복이었어. 너희와 함께여서 나는 비로소 론이라는 이름으로 완성될 수 있었지.<br/><br/>
 
-                  부상으로 받은 백화점 상품권은 전부 초콜릿으로 바꿀 것이다! 다들 내 자리로 오면 하나씩 나눠주겠노라! 이상, 위대한 오르티였다!
+                  테리, 내 귀여운 동생. 형을 잃은 아픔을 알기에, 누구보다 상실의 고통을 두려워한다는 걸 알아. 하지만 잊지 마. 이별은 끝이 아니라, 또 다른 형태의 만남이라는 걸. 네가 형을 기억하듯, 나를 기억해 준다면 우리는 영원히 함께하는 거야. 그러니 너무 자책하지 말고, 네 몫의 삶을 당당하게 살아줘. 네가 걷는 그 길이 곧 나의 길이 될 테니까. 가끔은 하늘을 보며 웃어주렴. 내가 거기서 너를 지켜보고 있을 테니.<br/><br/>
+
+                  그리고 모르페우스. 친구.<br/><br/>
+
+                  너는 늘 생각이 너무 많아. 가끔은 그냥 저질러 보는 것도 나쁘지 않은데 말이야. 네가 가진 그늘이 너를 삼키지 않도록, 가끔은 햇볕도 쬐고 그래. 네가 스스로를 괴물이라 생각하지 않았으면 좋겠어. 너는... 꽤, 아니, 아주 많이 괜찮은 녀석이니까. 너에게 지키고 싶은 게 생긴다면, 도망치지 말고 꼭 잡아. 내가 응원할게.<br/><br/>
+
+                  우리 막내. 테리가 오면서 막내 딱지는 뗐지만, 나에겐 네가 여전히 막내 같아. 너는 언제나 삶을 예술이라 말했지. 나는 네가 그리는 세상이 잿빛이 아니라 네가 가진 그 다채로운 색으로 가득 차기를 바랐어. 너는 실패했다고 생각하겠지만 네가 멈춰 세운 그 찰나의 순간들이 얼마나 많은 생명을 구했는지 너는 모를 거야. 너는 충분히 영웅이었고, 지금도 그래. 가끔은 쉬어도 돼. 아무것도 하지 않아도, 너는 충분히 사랑받을 자격이 있는 사람이니까.<br/><br/>
+
+                  야나기, 지금쯤 어디 슬럼가 도박장에서 주사위나 굴리고 있는 건 아니겠지? 만약 내 장례식 날에도 땡땡이치고 룰렛이나 돌리고 있다면, 내가 정말로 화낼 거야. 농담 아니야. 내가 이제 와서 하는 말이지만 다들 너 한량 같다고 걱정한 거 알아? 하지만 네가 울프독에 얼마나 큰 숨구멍이 되어주었는지 넌 모를 거야. 네가 부리는 그 얄미운 애교조차도 힘이 되더라고. 물론, 아주 가끔 말이야. 뭐 하나 꽂히면 앞뒤 안 재는 그 버릇, 고치라고는 안 할게. 그게 너니까. 다만, 베팅을 할 때는 네 목숨값 좀 높게 쳐줘. 내가 없다고 너무 심심해하지 말고. 사고 치면 뒷수습해 줄 사람이 이제 없잖아? 그러니 적당히 해, 적당히. 도박장 주인한테도 안부 전해주고.<br/><br/>
+
+                  까칠한 친구. 나는 더 이상 네 곁에서 잔소리를 늘어놓을 수 없겠지. 아마 넌 속으로 이제야 좀 조용해졌네 하고 투덜거릴지도 모르겠다. 하지만 앙헬, 네가 아무리 귀찮아해도 나는 끝까지 너에게 잔소리를 남기고 가야겠어. 네 말이 맞을 수도 있어. 때로는 선의만으로는 해결할 수 없는 일들이 분명 존재하니까. 하지만 나는 네가 그 과정에서 스스로를 잃어버리지 않기를 바라. 부디 네가 선택한 그 길 끝에 파멸이 아닌 구원이 기다리고 있기를. 그리고 언젠가는, 네가 휘두르는 칼날이 너 자신을 베지 않고 오로지 너를 지키는 힘이 되기를. 마지막으로 부탁 하나만 할자. 테리와 화해하라는 말은 안 할게. 그건 너희 둘이 해결해야 할 숙제니까. 다만, 너무 늦지 않게 서로의 진심을 마주하길 바란다. 너희 둘은 생각보다 꽤 괜찮은 콤비였거든.<br/><br/>
+
+                  우리 도재. 지금은 내가 보일까? 네 세상은 늘 주위에 누군가 있었으니, 내 목소리 하나쯤 더해진다고 해서 크게 달라질 건 없으려나. 도재야, 네가 가진 그 특별한 눈으로 가끔은 살아있는 사람들의 따뜻한 체온도 느껴봤으면 좋겠어. 네 곁에 있는 동료들은 유령이 아니잖아. 그들은 만질 수 있고, 네가 손을 내밀면 잡아줄 수 있는 진짜 사람들이야. 가끔은 이상한 장난만 치지 말고, 조금은 네 나이에 맞게 웃었으면 하는데. 네가 진심으로 웃을 때면 더 이상 네 주변이 춥지만은 않으니까.<br/><br/>
+
+                  나에게 후회는 없어. 나는 마지막 순간까지 내가 믿는 정의를 위해, 그리고 너희가 살아갈 세상을 위해 싸웠을 테니까. 그것만으로도 내 삶은 충분히 아름다웠어.<br/><br/>
+
+                  사랑한다, 나의 가족 울프독! 내 몫까지 신나게 살아줘. 이상 끝!
                 </>
               )}
             </p>
@@ -275,25 +325,73 @@ function MonthPage() {
               </div>
             </div>
 
-            {post.replies.map((reply) => (
-              <div
-                key={reply.id}
-                className="flex items-start text-sm text-gray-600 border-t border-gray-200 py-2"
-              >
-                <div className="pl-3 pr-1">⤷</div>
-                <div>
-                  <div className="flex flex- items-center gap-1">
-                    <img
-                      src={reply.image}
-                      alt={reply.author}
-                      className="w-3 h-3"
-                    />
-                    <span className="text-gray-500 text-xs"> {reply.author}</span>
-                  </div>
-                  <div className="text-left"> {reply.text}</div>
-                </div>
-              </div>
-            ))}
+            {(() => {
+              const TRIGGERS = new Set(["I", "D"]);
+              const RON_AUTHOR = "론";
+
+              // 1) 각 트리거(reply.id) -> 매칭된 론(reply) 저장
+              const ronByTriggerId = new Map();
+
+              let lastTriggerId = null;
+              for (const r of post.replies) {
+                if (TRIGGERS.has(r.author)) lastTriggerId = r.id;
+
+                if (r.author === RON_AUTHOR) {
+                  // ✅ 론을 "바로 직전 트리거"에 붙임
+                  if (lastTriggerId != null && !ronByTriggerId.has(lastTriggerId)) {
+                    ronByTriggerId.set(lastTriggerId, r);
+                  }
+                  // 론을 만났으면 다음 트리거 나올 때까지 lastTriggerId는 그대로 둬도 됨
+                }
+              }
+
+              const rendered = [];
+
+              for (const reply of post.replies) {
+                // ✅ 원본 list의 론은 숨김(스킵)
+                if (reply.author === RON_AUTHOR) continue;
+
+                const isTrigger = TRIGGERS.has(reply.author);
+                const matchedRon = isTrigger ? ronByTriggerId.get(reply.id) : null;
+                const isOpen = !!openRonByTriggerReplyId[reply.id];
+
+                // ✅ 트리거면 클릭 가능(커서는 기본 유지하려면 cursor-pointer 안 넣기)
+                if (isTrigger) {
+                  rendered.push(
+                    <div
+                      key={reply.id}
+                      onClick={() => {
+                        if (!matchedRon) return;
+                        setOpenRonByTriggerReplyId((prev) => ({
+                          ...prev,
+                          [reply.id]: !prev[reply.id],
+                        }));
+                      }}
+                      className=""
+                    >
+                      <ReplyRow reply={reply} />
+                    </div>
+                  );
+
+                  if (matchedRon && isOpen) {
+                    rendered.push(
+                      <div key={`ron-${matchedRon.id}`} className="transition-all duration-200">
+                        <ReplyRow reply={matchedRon} />
+                      </div>
+                    );
+                  }
+                  continue;
+                }
+
+                // ✅ 트리거 아닌 애들은 그냥 렌더
+                rendered.push(<ReplyRow key={reply.id} reply={reply} />);
+              }
+
+              return rendered;
+            })()}
+
+
+
           </div>
         ))}
         <div className="w-full mt-10">
@@ -308,3 +406,18 @@ function MonthPage() {
 }
 
 export default MonthPage;
+
+function ReplyRow({ reply }) {
+  return (
+    <div className="flex items-start text-sm text-gray-600 border-t border-gray-200 py-2">
+      <div className="pl-3 pr-1">⤷</div>
+      <div>
+        <div className="flex items-center gap-1">
+          <img src={reply.image} alt={reply.author} className="w-3 h-3" />
+          <span className="text-gray-500 text-xs"> {reply.author}</span>
+        </div>
+        <div className="text-left whitespace-pre-line"> {reply.text}</div>
+      </div>
+    </div>
+  );
+}
